@@ -1,0 +1,936 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>운동 부족과 청소년 체력 저하 분석 - 데이터 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="운동-부족과-청소년-체력-저하-분석---데이터">운동 부족과 청소년 체력 저하 분석 - 데이터</h1>
+<p>상위 노트: <a href="10-%EC%9A%B4%EB%8F%99-%EB%B6%80%EC%A1%B1%EA%B3%BC-%EC%B2%AD%EC%86%8C%EB%85%84-%EC%B2%B4%EB%A0%A5-%EC%A0%80%ED%95%98-%EB%B6%84%EC%84%9D.html">운동 부족과 청소년 체력 저하 분석</a></p>
+<p>관련 개념: <a href="../../concepts/%EC%BD%94%EB%93%9C%EB%B6%81%EA%B3%BC%20%EB%B3%80%EC%88%98%20%EC%A0%95%EC%9D%98.html">concepts/코드북과 변수 정의</a>, <a href="../../concepts/%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EA%B8%B0%EB%B0%98%20%ED%83%90%EA%B5%AC.html">concepts/공공데이터 기반 탐구</a></p>
+<h2 id="코드북">코드북</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">10_codebook.xlsx</span></li>
+</ul>
+<h3 id="10_codebook-xlsx">10_codebook.xlsx</h3>
+<p>Codebook: 26행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>데이터 유형</th>
+<th>SPSS 측도</th>
+<th>코딩/값 설명</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>student_id</td>
+<td>익명 학생 ID</td>
+<td>문자</td>
+<td>문자</td>
+<td>명목</td>
+<td>S001~S050</td>
+<td>개인 식별정보 제거</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>학년</td>
+<td>1~3</td>
+<td>숫자</td>
+<td>명목</td>
+<td>1=1학년, 2=2학년, 3=3학년</td>
+<td>분석 시 집단변수</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>성별</td>
+<td>남/여</td>
+<td>문자</td>
+<td>명목</td>
+<td>남, 여</td>
+<td>민감정보 최소화</td>
+</tr>
+<tr>
+<td>academic_pressure</td>
+<td>입시·학업 압박감</td>
+<td>1~5점</td>
+<td>숫자</td>
+<td>서열</td>
+<td>1=매우 낮음, 5=매우 높음</td>
+<td>설문</td>
+</tr>
+<tr>
+<td>daily_sitting_hours</td>
+<td>하루 앉아있는 시간</td>
+<td>시간</td>
+<td>숫자</td>
+<td>척도</td>
+<td>학교+학원+자습 포함</td>
+<td>자기보고</td>
+</tr>
+<tr>
+<td>weekday_exercise_min</td>
+<td>평일 하루 평균 운동시간</td>
+<td>분</td>
+<td>숫자</td>
+<td>척도</td>
+<td>숨이 차는 활동+걷기 제외/포함 기준 명시 필요</td>
+<td>설문</td>
+</tr>
+<tr>
+<td>weekend_exercise_min</td>
+<td>주말 하루 평균 운동시간</td>
+<td>분</td>
+<td>숫자</td>
+<td>척도</td>
+<td>토·일 평균</td>
+<td>설문</td>
+</tr>
+<tr>
+<td>moderate_vigorous_days</td>
+<td>최근 7일 중 중강도 이상 신체활동 일수</td>
+<td>0~7일</td>
+<td>숫자</td>
+<td>척도</td>
+<td>0~7</td>
+<td>청소년건강행태조사형 문항</td>
+</tr>
+<tr>
+<td>strength_days</td>
+<td>최근 7일 중 근력운동 일수</td>
+<td>0~7일</td>
+<td>숫자</td>
+<td>척도</td>
+<td>0~7</td>
+<td>팔굽혀펴기/스쿼트 등</td>
+</tr>
+<tr>
+<td>pe_class_satisfaction</td>
+<td>체육수업 만족도</td>
+<td>1~5점</td>
+<td>숫자</td>
+<td>서열</td>
+<td>1=매우 낮음, 5=매우 높음</td>
+<td>설문</td>
+</tr>
+<tr>
+<td>school_club_participation</td>
+<td>스포츠 동아리 참여 여부</td>
+<td>0/1</td>
+<td>숫자</td>
+<td>명목</td>
+<td>0=미참여, 1=참여</td>
+<td>집단 비교</td>
+</tr>
+<tr>
+<td>sleep_hours</td>
+<td>평일 평균 수면시간</td>
+<td>시간</td>
+<td>숫자</td>
+<td>척도</td>
+<td>소수 1자리</td>
+<td>설문</td>
+</tr>
+<tr>
+<td>stress_score</td>
+<td>스트레스 점수</td>
+<td>0~100점</td>
+<td>숫자</td>
+<td>척도</td>
+<td>높을수록 스트레스 높음</td>
+<td>문항 합산</td>
+</tr>
+<tr>
+<td>bmi</td>
+<td>체질량지수</td>
+<td>kg/m²</td>
+<td>숫자</td>
+<td>척도</td>
+<td>체중(kg)/키(m)^2</td>
+<td>자기보고/측정</td>
+</tr>
+<tr>
+<td>paps_cardio_score</td>
+<td>PAPS 심폐지구력 점수</td>
+<td>0~100점</td>
+<td>숫자</td>
+<td>척도</td>
+<td>높을수록 좋음</td>
+<td>시범 환산</td>
+</tr>
+<tr>
+<td>paps_flexibility_score</td>
+<td>PAPS 유연성 점수</td>
+<td>0~100점</td>
+<td>숫자</td>
+<td>척도</td>
+<td>높을수록 좋음</td>
+<td>시범 환산</td>
+</tr>
+<tr>
+<td>paps_muscle_score</td>
+<td>PAPS 근력·근지구력 점수</td>
+<td>0~100점</td>
+<td>숫자</td>
+<td>척도</td>
+<td>높을수록 좋음</td>
+<td>시범 환산</td>
+</tr>
+<tr>
+<td>paps_power_score</td>
+<td>PAPS 순발력 점수</td>
+<td>0~100점</td>
+<td>숫자</td>
+<td>척도</td>
+<td>높을수록 좋음</td>
+<td>시범 환산</td>
+</tr>
+<tr>
+<td>paps_bmi_score</td>
+<td>PAPS BMI 건강점수</td>
+<td>0~100점</td>
+<td>숫자</td>
+<td>척도</td>
+<td>정상범위에 가까울수록 높음</td>
+<td>시범 환산</td>
+</tr>
+<tr>
+<td>total_fitness_score</td>
+<td>종합 체력점수</td>
+<td>0~100점</td>
+<td>숫자</td>
+<td>척도</td>
+<td>가중합</td>
+<td>종속/핵심지표</td>
+</tr>
+<tr>
+<td>fitness_grade</td>
+<td>체력등급</td>
+<td>1~5등급</td>
+<td>숫자</td>
+<td>서열</td>
+<td>1=우수, 5=개선 필요</td>
+<td>PAPS형 등급</td>
+</tr>
+<tr>
+<td>activity_type</td>
+<td>신체활동 유형</td>
+<td>운동부족형/보통형/활동형</td>
+<td>문자</td>
+<td>명목</td>
+<td>군집/유형</td>
+<td>보고서 핵심</td>
+</tr>
+<tr>
+<td>fatigue_score</td>
+<td>피로감 점수</td>
+<td>0~100점</td>
+<td>숫자</td>
+<td>척도</td>
+<td>높을수록 피로 높음</td>
+<td>설문</td>
+</tr>
+<tr>
+<td>concentration_score</td>
+<td>학습 집중도 점수</td>
+<td>0~100점</td>
+<td>숫자</td>
+<td>척도</td>
+<td>높을수록 집중도 높음</td>
+<td>설문</td>
+</tr>
+<tr>
+<td>improvement_priority</td>
+<td>개선 우선순위 점수</td>
+<td>0~100점</td>
+<td>숫자</td>
+<td>척도</td>
+<td>높을수록 개입 필요</td>
+<td>정책 제안 지표</td>
+</tr>
+</tbody></table></div>
+<h2 id="CSV-데이터셋">CSV 데이터셋</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">10_dataset.csv</span></li>
+</ul>
+<ul>
+<li>크기: 50행 x 25열</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>student_id</th>
+<th>grade</th>
+<th>gender</th>
+<th>academic_pressure</th>
+<th>daily_sitting_hours</th>
+<th>weekday_exercise_min</th>
+<th>weekend_exercise_min</th>
+<th>moderate_vigorous_days</th>
+<th>strength_days</th>
+<th>pe_class_satisfaction</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>S001</td>
+<td>3</td>
+<td>남</td>
+<td>4</td>
+<td>9.3</td>
+<td>36</td>
+<td>90</td>
+<td>7</td>
+<td>1</td>
+<td>5</td>
+</tr>
+<tr>
+<td>S002</td>
+<td>2</td>
+<td>여</td>
+<td>4</td>
+<td>9.7</td>
+<td>18</td>
+<td>38</td>
+<td>3</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S003</td>
+<td>1</td>
+<td>남</td>
+<td>3</td>
+<td>10.1</td>
+<td>35</td>
+<td>77</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>S004</td>
+<td>1</td>
+<td>여</td>
+<td>3</td>
+<td>9.0</td>
+<td>46</td>
+<td>89</td>
+<td>5</td>
+<td>3</td>
+<td>5</td>
+</tr>
+<tr>
+<td>S005</td>
+<td>3</td>
+<td>여</td>
+<td>3</td>
+<td>8.9</td>
+<td>53</td>
+<td>84</td>
+<td>5</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>S006</td>
+<td>2</td>
+<td>여</td>
+<td>4</td>
+<td>9.9</td>
+<td>15</td>
+<td>48</td>
+<td>3</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>S007</td>
+<td>3</td>
+<td>남</td>
+<td>5</td>
+<td>10.3</td>
+<td>14</td>
+<td>7</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>S008</td>
+<td>1</td>
+<td>여</td>
+<td>4</td>
+<td>8.4</td>
+<td>33</td>
+<td>53</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+</tr>
+</tbody></table></div>
+<h2 id="엑셀-데이터셋-미리보기">엑셀 데이터셋 미리보기</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">10_dataset.xlsx</span></li>
+</ul>
+<h3 id="Data">Data</h3>
+<p>Data: 51행 x 25열 / 미리보기 10행 x 10열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>student_id</th>
+<th>grade</th>
+<th>gender</th>
+<th>academic_pressure</th>
+<th>daily_sitting_hours</th>
+<th>weekday_exercise_min</th>
+<th>weekend_exercise_min</th>
+<th>moderate_vigorous_days</th>
+<th>strength_days</th>
+<th>pe_class_satisfaction</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>S001</td>
+<td>3</td>
+<td>남</td>
+<td>4</td>
+<td>9.3</td>
+<td>36</td>
+<td>90</td>
+<td>7</td>
+<td>1</td>
+<td>5</td>
+</tr>
+<tr>
+<td>S002</td>
+<td>2</td>
+<td>여</td>
+<td>4</td>
+<td>9.7</td>
+<td>18</td>
+<td>38</td>
+<td>3</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S003</td>
+<td>1</td>
+<td>남</td>
+<td>3</td>
+<td>10.1</td>
+<td>35</td>
+<td>77</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>S004</td>
+<td>1</td>
+<td>여</td>
+<td>3</td>
+<td>9</td>
+<td>46</td>
+<td>89</td>
+<td>5</td>
+<td>3</td>
+<td>5</td>
+</tr>
+<tr>
+<td>S005</td>
+<td>3</td>
+<td>여</td>
+<td>3</td>
+<td>8.9</td>
+<td>53</td>
+<td>84</td>
+<td>5</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>S006</td>
+<td>2</td>
+<td>여</td>
+<td>4</td>
+<td>9.9</td>
+<td>15</td>
+<td>48</td>
+<td>3</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>S007</td>
+<td>3</td>
+<td>남</td>
+<td>5</td>
+<td>10.3</td>
+<td>14</td>
+<td>7</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>S008</td>
+<td>1</td>
+<td>여</td>
+<td>4</td>
+<td>8.4</td>
+<td>33</td>
+<td>53</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>S009</td>
+<td>3</td>
+<td>여</td>
+<td>3</td>
+<td>10</td>
+<td>15</td>
+<td>47</td>
+<td>3</td>
+<td>2</td>
+<td>4</td>
+</tr>
+</tbody></table></div>
+<h3 id="Codebook">Codebook</h3>
+<p>Codebook: 26행 x 7열 / 미리보기 10행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>데이터 유형</th>
+<th>SPSS 측도</th>
+<th>코딩/값 설명</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>student_id</td>
+<td>익명 학생 ID</td>
+<td>문자</td>
+<td>문자</td>
+<td>명목</td>
+<td>S001~S050</td>
+<td>개인 식별정보 제거</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>학년</td>
+<td>1~3</td>
+<td>숫자</td>
+<td>명목</td>
+<td>1=1학년, 2=2학년, 3=3학년</td>
+<td>분석 시 집단변수</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>성별</td>
+<td>남/여</td>
+<td>문자</td>
+<td>명목</td>
+<td>남, 여</td>
+<td>민감정보 최소화</td>
+</tr>
+<tr>
+<td>academic_pressure</td>
+<td>입시·학업 압박감</td>
+<td>1~5점</td>
+<td>숫자</td>
+<td>서열</td>
+<td>1=매우 낮음, 5=매우 높음</td>
+<td>설문</td>
+</tr>
+<tr>
+<td>daily_sitting_hours</td>
+<td>하루 앉아있는 시간</td>
+<td>시간</td>
+<td>숫자</td>
+<td>척도</td>
+<td>학교+학원+자습 포함</td>
+<td>자기보고</td>
+</tr>
+<tr>
+<td>weekday_exercise_min</td>
+<td>평일 하루 평균 운동시간</td>
+<td>분</td>
+<td>숫자</td>
+<td>척도</td>
+<td>숨이 차는 활동+걷기 제외/포함 기준 명시 필요</td>
+<td>설문</td>
+</tr>
+<tr>
+<td>weekend_exercise_min</td>
+<td>주말 하루 평균 운동시간</td>
+<td>분</td>
+<td>숫자</td>
+<td>척도</td>
+<td>토·일 평균</td>
+<td>설문</td>
+</tr>
+<tr>
+<td>moderate_vigorous_days</td>
+<td>최근 7일 중 중강도 이상 신체활동 일수</td>
+<td>0~7일</td>
+<td>숫자</td>
+<td>척도</td>
+<td>0~7</td>
+<td>청소년건강행태조사형 문항</td>
+</tr>
+<tr>
+<td>strength_days</td>
+<td>최근 7일 중 근력운동 일수</td>
+<td>0~7일</td>
+<td>숫자</td>
+<td>척도</td>
+<td>0~7</td>
+<td>팔굽혀펴기/스쿼트 등</td>
+</tr>
+</tbody></table></div>
+<h3 id="Survey_Items">Survey_Items</h3>
+<p>Survey_Items: 13행 x 4열 / 미리보기 10행 x 4열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>문항번호</th>
+<th>설문 문항</th>
+<th>응답척도</th>
+<th>분석 변수</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Q1</td>
+<td>최근 7일 동안 숨이 찰 정도의 신체활동을 한 날은 며칠입니까?</td>
+<td>0~7일</td>
+<td>moderate_vigorous_days</td>
+</tr>
+<tr>
+<td>Q2</td>
+<td>최근 7일 동안 근력운동을 한 날은 며칠입니까?</td>
+<td>0~7일</td>
+<td>strength_days</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>평일 하루 평균 운동시간은 몇 분입니까?</td>
+<td>분 단위 주관식</td>
+<td>weekday_exercise_min</td>
+</tr>
+<tr>
+<td>Q4</td>
+<td>주말 하루 평균 운동시간은 몇 분입니까?</td>
+<td>분 단위 주관식</td>
+<td>weekend_exercise_min</td>
+</tr>
+<tr>
+<td>Q5</td>
+<td>하루 중 앉아서 보내는 시간은 몇 시간입니까?</td>
+<td>시간 단위 주관식</td>
+<td>daily_sitting_hours</td>
+</tr>
+<tr>
+<td>Q6</td>
+<td>평일 평균 수면시간은 몇 시간입니까?</td>
+<td>시간 단위 주관식</td>
+<td>sleep_hours</td>
+</tr>
+<tr>
+<td>Q7</td>
+<td>나는 최근 학업 압박감을 크게 느낀다.</td>
+<td>1=전혀 그렇지 않다~5=매우 그렇다</td>
+<td>academic_pressure</td>
+</tr>
+<tr>
+<td>Q8</td>
+<td>나는 평소 스트레스를 자주 느낀다.</td>
+<td>1~5점, 0~100 환산</td>
+<td>stress_score</td>
+</tr>
+<tr>
+<td>Q9</td>
+<td>나는 학교 체육수업에 만족한다.</td>
+<td>1=매우 낮음~5=매우 높음</td>
+<td>pe_class_satisfaction</td>
+</tr>
+</tbody></table></div>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 8행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>다운로드/API 링크</th>
+<th>파일 형식</th>
+<th>주요 변수</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>청소년건강행태조사 공식 누리집</td>
+<td>질병관리청</td>
+<td>https://www.kdca.go.kr/yhs/</td>
+<td>통계표/원시자료/결과자료</td>
+<td>신체활동, 수면, 스트레스, 식생활 등</td>
+<td>전국 청소년 기준 비교자료</td>
+<td>원시자료 이용 신청/다운로드 가능</td>
+</tr>
+<tr>
+<td>2025년 청소년건강행태조사 결과 보도자료</td>
+<td>질병관리청</td>
+<td>https://www.kdca.go.kr/bbs/kdca/41/215505/artclView.do?layout=unknown</td>
+<td>HTML/PDF</td>
+<td>신체활동, 식생활, 정신건강, 조사개요</td>
+<td>프로젝트 배경 및 공식 통계 인용</td>
+<td>즉시 조회 가능</td>
+</tr>
+<tr>
+<td>PAPS 학생건강체력평가 도움자료</td>
+<td>학생건강정보센터/교육부</td>
+<td>https://www.schoolhealth.kr/web/search/selectTotalSearchList.do?searchWrd=paps</td>
+<td>PDF</td>
+<td>심폐지구력, 유연성, 근력/근지구력, 순발력, BMI</td>
+<td>체력검사 항목 및 측정 기준 참고</td>
+<td>즉시 조회/다운로드 가능</td>
+</tr>
+<tr>
+<td>학생건강체력평가(PAPS) 매뉴얼 및 학생 체력증진 기본계획</td>
+<td>경기도교육청</td>
+<td>https://www.goe.go.kr/goe/na/ntt/selectNttInfo.do?mi=10961&amp;nttSn=106640</td>
+<td>PDF</td>
+<td>PAPS 매뉴얼, 체력증진 기본계획, Q&amp;A</td>
+<td>학교 체육 개선 제안 참고</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>2024년 학생 건강검사 표본통계 결과</td>
+<td>교육부</td>
+<td>https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=294&amp;boardSeq=103258&amp;lev=0&amp;m=020402&amp;opType=N&amp;s=moe&amp;statusYN=W</td>
+<td>HTML/PDF</td>
+<td>학생 신체발달, 건강검진 결과</td>
+<td>학생 건강상태 배경자료</td>
+<td>즉시 조회 가능</td>
+</tr>
+<tr>
+<td>학교 내부 체력검사/PAPS 자료</td>
+<td>학교 내부</td>
+<td>학교 체육교사·보건교사 협조 필요</td>
+<td>XLSX/CSV</td>
+<td>학생별 체력검사 결과, 체력등급</td>
+<td>실제 학교 분석의 핵심 데이터</td>
+<td>학교 내부자료 필요</td>
+</tr>
+<tr>
+<td>학생 익명 설문</td>
+<td>학생 직접 조사</td>
+<td>Google Form 또는 Microsoft Forms</td>
+<td>CSV/XLSX</td>
+<td>운동시간, 수면, 스트레스, 집중도, 만족도</td>
+<td>개별 프로젝트 분석 데이터</td>
+<td>학생 설문 필요</td>
+</tr>
+</tbody></table></div>
+<h3 id="SPSS_Steps">SPSS_Steps</h3>
+<p>SPSS_Steps: 7행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 빈도분석</td>
+<td>학년·성별·운동유형 분포 확인</td>
+<td>grade, gender, activity_type, fitness_grade</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>운동부족형 학생 비중과 체력등급 분포 확인</td>
+</tr>
+<tr>
+<td>2. 기술통계</td>
+<td>운동시간·수면·스트레스·체력점수 평균 확인</td>
+<td>weekday_exercise_min, sleep_hours, stress_score, total_fitness_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>평균 체력 수준과 운동 부족 정도 파악</td>
+</tr>
+<tr>
+<td>3. 상관분석</td>
+<td>운동시간과 체력점수·스트레스·집중도의 관계 확인</td>
+<td>weekday_exercise_min, moderate_vigorous_days, total_fitness_score, stress_score, concentration_score</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>운동량이 체력 및 학습 집중과 관련되는지 확인</td>
+</tr>
+<tr>
+<td>4. 집단비교</td>
+<td>운동유형별 체력·집중도 차이 확인</td>
+<td>activity_type, total_fitness_score, concentration_score, stress_score</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>운동부족형과 활동형의 평균 차이 해석</td>
+</tr>
+<tr>
+<td>5. 회귀분석</td>
+<td>체력점수에 영향을 주는 요인 탐색</td>
+<td>total_fitness_score / weekday_exercise_min, sleep_hours, daily_sitting_hours, stress_score</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>운동시간, 앉아있는 시간, 수면의 설명력 확인</td>
+</tr>
+<tr>
+<td>6. 군집분석</td>
+<td>학생 건강·활동 유형 분류</td>
+<td>weekday_exercise_min, sleep_hours, stress_score, total_fitness_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>체력개선 우선지원군 도출</td>
+</tr>
+</tbody></table></div>
+<h3 id="Summary">Summary</h3>
+<p>Summary: 9행 x 2열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>항목</th>
+<th>내용</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>프로젝트명</td>
+<td>운동 부족과 청소년 체력 저하 분석</td>
+</tr>
+<tr>
+<td>문제의식</td>
+<td>입시 중심 생활이 학생들의 신체활동을 얼마나 줄이고 있는가</td>
+</tr>
+<tr>
+<td>핵심 데이터</td>
+<td>운동 시간, 체력검사 결과, 수면, 스트레스 설문</td>
+</tr>
+<tr>
+<td>분석 방법</td>
+<td>상관분석, 그룹 비교, 회귀분석, 군집분석</td>
+</tr>
+<tr>
+<td>산출물</td>
+<td>학교 체육·동아리 개선 제안</td>
+</tr>
+<tr>
+<td>데이터 성격</td>
+<td>공식 통계 구조를 반영한 설문 기반 시범용 가상 데이터</td>
+</tr>
+<tr>
+<td>행 수</td>
+<td>50명 익명 학생 응답</td>
+</tr>
+<tr>
+<td>핵심 인사이트</td>
+<td>운동부족형 학생은 종합 체력점수와 집중도가 낮고 피로·스트레스가 높은 경향이 나타나도록 설계됨</td>
+</tr>
+</tbody></table></div>
+<h2 id="데이터-출처">데이터 출처</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">10_data_sources.xlsx</span></li>
+</ul>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 8행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>다운로드/API 링크</th>
+<th>파일 형식</th>
+<th>주요 변수</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>청소년건강행태조사 공식 누리집</td>
+<td>질병관리청</td>
+<td>https://www.kdca.go.kr/yhs/</td>
+<td>통계표/원시자료/결과자료</td>
+<td>신체활동, 수면, 스트레스, 식생활 등</td>
+<td>전국 청소년 기준 비교자료</td>
+<td>원시자료 이용 신청/다운로드 가능</td>
+</tr>
+<tr>
+<td>2025년 청소년건강행태조사 결과 보도자료</td>
+<td>질병관리청</td>
+<td>https://www.kdca.go.kr/bbs/kdca/41/215505/artclView.do?layout=unknown</td>
+<td>HTML/PDF</td>
+<td>신체활동, 식생활, 정신건강, 조사개요</td>
+<td>프로젝트 배경 및 공식 통계 인용</td>
+<td>즉시 조회 가능</td>
+</tr>
+<tr>
+<td>PAPS 학생건강체력평가 도움자료</td>
+<td>학생건강정보센터/교육부</td>
+<td>https://www.schoolhealth.kr/web/search/selectTotalSearchList.do?searchWrd=paps</td>
+<td>PDF</td>
+<td>심폐지구력, 유연성, 근력/근지구력, 순발력, BMI</td>
+<td>체력검사 항목 및 측정 기준 참고</td>
+<td>즉시 조회/다운로드 가능</td>
+</tr>
+<tr>
+<td>학생건강체력평가(PAPS) 매뉴얼 및 학생 체력증진 기본계획</td>
+<td>경기도교육청</td>
+<td>https://www.goe.go.kr/goe/na/ntt/selectNttInfo.do?mi=10961&amp;nttSn=106640</td>
+<td>PDF</td>
+<td>PAPS 매뉴얼, 체력증진 기본계획, Q&amp;A</td>
+<td>학교 체육 개선 제안 참고</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>2024년 학생 건강검사 표본통계 결과</td>
+<td>교육부</td>
+<td>https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=294&amp;boardSeq=103258&amp;lev=0&amp;m=020402&amp;opType=N&amp;s=moe&amp;statusYN=W</td>
+<td>HTML/PDF</td>
+<td>학생 신체발달, 건강검진 결과</td>
+<td>학생 건강상태 배경자료</td>
+<td>즉시 조회 가능</td>
+</tr>
+<tr>
+<td>학교 내부 체력검사/PAPS 자료</td>
+<td>학교 내부</td>
+<td>학교 체육교사·보건교사 협조 필요</td>
+<td>XLSX/CSV</td>
+<td>학생별 체력검사 결과, 체력등급</td>
+<td>실제 학교 분석의 핵심 데이터</td>
+<td>학교 내부자료 필요</td>
+</tr>
+<tr>
+<td>학생 익명 설문</td>
+<td>학생 직접 조사</td>
+<td>Google Form 또는 Microsoft Forms</td>
+<td>CSV/XLSX</td>
+<td>운동시간, 수면, 스트레스, 집중도, 만족도</td>
+<td>개별 프로젝트 분석 데이터</td>
+<td>학생 설문 필요</td>
+</tr>
+</tbody></table></div>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

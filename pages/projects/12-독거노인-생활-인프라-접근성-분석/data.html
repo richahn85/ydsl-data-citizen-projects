@@ -1,0 +1,1087 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>독거노인 생활 인프라 접근성 분석 - 데이터 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="독거노인-생활-인프라-접근성-분석---데이터">독거노인 생활 인프라 접근성 분석 - 데이터</h1>
+<p>상위 노트: <a href="12-%EB%8F%85%EA%B1%B0%EB%85%B8%EC%9D%B8-%EC%83%9D%ED%99%9C-%EC%9D%B8%ED%94%84%EB%9D%BC-%EC%A0%91%EA%B7%BC%EC%84%B1-%EB%B6%84%EC%84%9D.html">독거노인 생활 인프라 접근성 분석</a></p>
+<p>관련 개념: <a href="../../concepts/%EC%BD%94%EB%93%9C%EB%B6%81%EA%B3%BC%20%EB%B3%80%EC%88%98%20%EC%A0%95%EC%9D%98.html">concepts/코드북과 변수 정의</a>, <a href="../../concepts/%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EA%B8%B0%EB%B0%98%20%ED%83%90%EA%B5%AC.html">concepts/공공데이터 기반 탐구</a></p>
+<h2 id="코드북">코드북</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">12_codebook.xlsx</span></li>
+</ul>
+<h3 id="12_codebook-xlsx">12_codebook.xlsx</h3>
+<p>Codebook: 35행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>데이터 유형</th>
+<th>SPSS 측도</th>
+<th>실제 데이터 출처</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>zone_id</td>
+<td>생활권/격자 ID</td>
+<td>문자</td>
+<td>String</td>
+<td>명목</td>
+<td>시범 생성</td>
+<td>분석 단위 식별자</td>
+</tr>
+<tr>
+<td>zone_name</td>
+<td>생활권 이름</td>
+<td>문자</td>
+<td>String</td>
+<td>명목</td>
+<td>시범 생성</td>
+<td>학생이 이해 가능한 지역명</td>
+</tr>
+<tr>
+<td>gu</td>
+<td>자치구</td>
+<td>문자</td>
+<td>String</td>
+<td>명목</td>
+<td>서울시 통계/공간자료</td>
+<td>성북구로 설정</td>
+</tr>
+<tr>
+<td>dong</td>
+<td>행정동/생활권</td>
+<td>문자</td>
+<td>String</td>
+<td>명목</td>
+<td>서울시 독거노인 현황</td>
+<td>동별/생활권 분석 단위</td>
+</tr>
+<tr>
+<td>lat</td>
+<td>위도</td>
+<td>도</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>공간자료/지오코딩</td>
+<td>지도 시각화</td>
+</tr>
+<tr>
+<td>lon</td>
+<td>경도</td>
+<td>도</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>공간자료/지오코딩</td>
+<td>지도 시각화</td>
+</tr>
+<tr>
+<td>x_m</td>
+<td>학교 기준 상대 X좌표</td>
+<td>m</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>시범 생성</td>
+<td>SPSS 산점도 지도용</td>
+</tr>
+<tr>
+<td>y_m</td>
+<td>학교 기준 상대 Y좌표</td>
+<td>m</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>시범 생성</td>
+<td>SPSS 산점도 지도용</td>
+</tr>
+<tr>
+<td>solitary_elderly_count</td>
+<td>독거노인 수</td>
+<td>명</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>서울시 독거노인 현황</td>
+<td>취약성 산출 핵심 변수</td>
+</tr>
+<tr>
+<td>elderly_density_per_km2</td>
+<td>고령자 밀도</td>
+<td>명/km²</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>서울시 고령자 통계/추정</td>
+<td>취약성 보조 변수</td>
+</tr>
+<tr>
+<td>medical_facilities_500m</td>
+<td>500m 내 병의원 수</td>
+<td>개</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>서울시 병의원 위치 정보</td>
+<td>의료 접근성</td>
+</tr>
+<tr>
+<td>pharmacy_500m</td>
+<td>500m 내 약국 수</td>
+<td>개</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>서울시 약국 정보</td>
+<td>의약품 접근성</td>
+</tr>
+<tr>
+<td>senior_welfare_500m</td>
+<td>500m 내 노인복지시설 수</td>
+<td>개</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>서울시 노인여가복지시설 목록</td>
+<td>복지 접근성</td>
+</tr>
+<tr>
+<td>bus_stop_300m</td>
+<td>300m 내 버스정류장 수</td>
+<td>개</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>서울시 버스정류소 위치정보</td>
+<td>대중교통 접근성</td>
+</tr>
+<tr>
+<td>subway_distance_m</td>
+<td>가장 가까운 지하철역까지 거리</td>
+<td>m</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>서울교통공사 역사 좌표</td>
+<td>거리 분석</td>
+</tr>
+<tr>
+<td>hospital_distance_m</td>
+<td>가장 가까운 병의원까지 거리</td>
+<td>m</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>서울시 병의원 위치정보</td>
+<td>거리 분석</td>
+</tr>
+<tr>
+<td>pharmacy_distance_m</td>
+<td>가장 가까운 약국까지 거리</td>
+<td>m</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>서울시 약국 정보</td>
+<td>거리 분석</td>
+</tr>
+<tr>
+<td>welfare_distance_m</td>
+<td>가장 가까운 노인복지시설까지 거리</td>
+<td>m</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>서울시 노인여가복지시설 목록</td>
+<td>거리 분석</td>
+</tr>
+<tr>
+<td>bus_stop_distance_m</td>
+<td>가장 가까운 버스정류장까지 거리</td>
+<td>m</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>서울시 버스정류소 위치정보</td>
+<td>거리 분석</td>
+</tr>
+<tr>
+<td>slope_score_1_5</td>
+<td>경사 위험 점수</td>
+<td>1~5</td>
+<td>Numeric</td>
+<td>서열</td>
+<td>서울시 경사도/현장조사</td>
+<td>1 낮음, 5 높음</td>
+</tr>
+<tr>
+<td>sidewalk_width_m</td>
+<td>보도 폭</td>
+<td>m</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>서울시 보도통계/현장조사</td>
+<td>낮을수록 위험</td>
+</tr>
+<tr>
+<td>crosswalk_300m</td>
+<td>300m 내 횡단보도 수</td>
+<td>개</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>서울시 횡단보도 위치정보</td>
+<td>보행 연결성</td>
+</tr>
+<tr>
+<td>signal_300m</td>
+<td>300m 내 신호등 수</td>
+<td>개</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>서울시 신호등/횡단보도 자료</td>
+<td>안전시설 접근성</td>
+</tr>
+<tr>
+<td>night_lighting_score_1_5</td>
+<td>야간 조명 수준</td>
+<td>1~5</td>
+<td>Numeric</td>
+<td>서열</td>
+<td>현장조사</td>
+<td>높을수록 좋음</td>
+</tr>
+<tr>
+<td>bench_count_300m</td>
+<td>300m 내 벤치/쉼터 수</td>
+<td>개</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>자치구 시설 자료/현장조사</td>
+<td>보행 휴식 인프라</td>
+</tr>
+<tr>
+<td>facility_score</td>
+<td>시설 접근성 점수</td>
+<td>0~100</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>계산 변수</td>
+<td>시설 수 기반</td>
+</tr>
+<tr>
+<td>distance_score</td>
+<td>거리 접근성 점수</td>
+<td>0~100</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>계산 변수</td>
+<td>거리 짧을수록 높음</td>
+</tr>
+<tr>
+<td>environment_score</td>
+<td>보행환경 점수</td>
+<td>0~100</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>계산 변수</td>
+<td>보도·경사·조명 기반</td>
+</tr>
+<tr>
+<td>accessibility_score</td>
+<td>생활 인프라 접근성 종합점수</td>
+<td>0~100</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>계산 변수</td>
+<td>높을수록 접근성 좋음</td>
+</tr>
+<tr>
+<td>vulnerability_score</td>
+<td>독거노인 취약성 점수</td>
+<td>0~100</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>계산 변수</td>
+<td>높을수록 취약성 높음</td>
+</tr>
+<tr>
+<td>improvement_priority_score</td>
+<td>개선 우선순위 점수</td>
+<td>0~100</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>계산 변수</td>
+<td>높을수록 우선 개선</td>
+</tr>
+<tr>
+<td>priority_level</td>
+<td>개선 우선순위 등급</td>
+<td>낮음/보통/높음/매우 높음</td>
+<td>String</td>
+<td>서열</td>
+<td>계산 변수</td>
+<td>정책 제안 기준</td>
+</tr>
+<tr>
+<td>cluster_type</td>
+<td>생활권 유형</td>
+<td>문자</td>
+<td>String</td>
+<td>명목</td>
+<td>군집/규칙 기반 분류</td>
+<td>개선 전략 구분</td>
+</tr>
+<tr>
+<td>recommended_action</td>
+<td>권장 조치</td>
+<td>문자</td>
+<td>String</td>
+<td>명목</td>
+<td>계산 변수</td>
+<td>즉시 개선/우선 개선 등</td>
+</tr>
+</tbody></table></div>
+<h2 id="CSV-데이터셋">CSV 데이터셋</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">12_dataset.csv</span></li>
+</ul>
+<ul>
+<li>크기: 50행 x 34열</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>zone_id</th>
+<th>zone_name</th>
+<th>gu</th>
+<th>dong</th>
+<th>lat</th>
+<th>lon</th>
+<th>x_m</th>
+<th>y_m</th>
+<th>solitary_elderly_count</th>
+<th>elderly_density_per_km2</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Z001</td>
+<td>안암동 고대앞 생활권 1</td>
+<td>성북구</td>
+<td>안암동</td>
+<td>37.5805</td>
+<td>127.012984</td>
+<td>-1007</td>
+<td>-846</td>
+<td>268</td>
+<td>224.4</td>
+</tr>
+<tr>
+<td>Z002</td>
+<td>보문동 골목 생활권 1</td>
+<td>성북구</td>
+<td>보문동</td>
+<td>37.585917</td>
+<td>127.01609</td>
+<td>-733</td>
+<td>-243</td>
+<td>537</td>
+<td>641.4</td>
+</tr>
+<tr>
+<td>Z003</td>
+<td>동선동 역세권 생활권 1</td>
+<td>성북구</td>
+<td>동선동</td>
+<td>37.603174</td>
+<td>127.033265</td>
+<td>782</td>
+<td>1678</td>
+<td>189</td>
+<td>451.9</td>
+</tr>
+<tr>
+<td>Z004</td>
+<td>종암동 주거 생활권 1</td>
+<td>성북구</td>
+<td>종암동</td>
+<td>37.576197</td>
+<td>127.005559</td>
+<td>-1662</td>
+<td>-1325</td>
+<td>517</td>
+<td>290.4</td>
+</tr>
+<tr>
+<td>Z005</td>
+<td>길음동 아파트 생활권 1</td>
+<td>성북구</td>
+<td>길음동</td>
+<td>37.601575</td>
+<td>127.012055</td>
+<td>-1089</td>
+<td>1500</td>
+<td>402</td>
+<td>228.9</td>
+</tr>
+<tr>
+<td>Z006</td>
+<td>성북동 경사지 생활권 1</td>
+<td>성북구</td>
+<td>성북동</td>
+<td>37.595331</td>
+<td>127.016136</td>
+<td>-729</td>
+<td>805</td>
+<td>384</td>
+<td>176.8</td>
+</tr>
+<tr>
+<td>Z007</td>
+<td>삼선동 시장 인근 1</td>
+<td>성북구</td>
+<td>삼선동</td>
+<td>37.591244</td>
+<td>127.041767</td>
+<td>1532</td>
+<td>350</td>
+<td>663</td>
+<td>651.7</td>
+</tr>
+<tr>
+<td>Z008</td>
+<td>돈암동 대로변 생활권 1</td>
+<td>성북구</td>
+<td>돈암동</td>
+<td>37.58024</td>
+<td>127.016884</td>
+<td>-663</td>
+<td>-875</td>
+<td>134</td>
+<td>141.5</td>
+</tr>
+</tbody></table></div>
+<h2 id="엑셀-데이터셋-미리보기">엑셀 데이터셋 미리보기</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">12_dataset.xlsx</span></li>
+</ul>
+<h3 id="Data">Data</h3>
+<p>Data: 51행 x 34열 / 미리보기 10행 x 10열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>zone_id</th>
+<th>zone_name</th>
+<th>gu</th>
+<th>dong</th>
+<th>lat</th>
+<th>lon</th>
+<th>x_m</th>
+<th>y_m</th>
+<th>solitary_elderly_count</th>
+<th>elderly_density_per_km2</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Z001</td>
+<td>안암동 고대앞 생활권 1</td>
+<td>성북구</td>
+<td>안암동</td>
+<td>37.5805</td>
+<td>127.012984</td>
+<td>-1007</td>
+<td>-846</td>
+<td>268</td>
+<td>224.4</td>
+</tr>
+<tr>
+<td>Z002</td>
+<td>보문동 골목 생활권 1</td>
+<td>성북구</td>
+<td>보문동</td>
+<td>37.585917</td>
+<td>127.01609</td>
+<td>-733</td>
+<td>-243</td>
+<td>537</td>
+<td>641.4</td>
+</tr>
+<tr>
+<td>Z003</td>
+<td>동선동 역세권 생활권 1</td>
+<td>성북구</td>
+<td>동선동</td>
+<td>37.603174</td>
+<td>127.033265</td>
+<td>782</td>
+<td>1678</td>
+<td>189</td>
+<td>451.9</td>
+</tr>
+<tr>
+<td>Z004</td>
+<td>종암동 주거 생활권 1</td>
+<td>성북구</td>
+<td>종암동</td>
+<td>37.576197</td>
+<td>127.005559</td>
+<td>-1662</td>
+<td>-1325</td>
+<td>517</td>
+<td>290.4</td>
+</tr>
+<tr>
+<td>Z005</td>
+<td>길음동 아파트 생활권 1</td>
+<td>성북구</td>
+<td>길음동</td>
+<td>37.601575</td>
+<td>127.012055</td>
+<td>-1089</td>
+<td>1500</td>
+<td>402</td>
+<td>228.9</td>
+</tr>
+<tr>
+<td>Z006</td>
+<td>성북동 경사지 생활권 1</td>
+<td>성북구</td>
+<td>성북동</td>
+<td>37.595331</td>
+<td>127.016136</td>
+<td>-729</td>
+<td>805</td>
+<td>384</td>
+<td>176.8</td>
+</tr>
+<tr>
+<td>Z007</td>
+<td>삼선동 시장 인근 1</td>
+<td>성북구</td>
+<td>삼선동</td>
+<td>37.591244</td>
+<td>127.041767</td>
+<td>1532</td>
+<td>350</td>
+<td>663</td>
+<td>651.7</td>
+</tr>
+<tr>
+<td>Z008</td>
+<td>돈암동 대로변 생활권 1</td>
+<td>성북구</td>
+<td>돈암동</td>
+<td>37.58024</td>
+<td>127.016884</td>
+<td>-663</td>
+<td>-875</td>
+<td>134</td>
+<td>141.5</td>
+</tr>
+<tr>
+<td>Z009</td>
+<td>정릉동 산지 인접 1</td>
+<td>성북구</td>
+<td>정릉동</td>
+<td>37.586797</td>
+<td>127.028912</td>
+<td>398</td>
+<td>-145</td>
+<td>403</td>
+<td>607.1</td>
+</tr>
+</tbody></table></div>
+<h3 id="Codebook">Codebook</h3>
+<p>Codebook: 35행 x 7열 / 미리보기 10행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>데이터 유형</th>
+<th>SPSS 측도</th>
+<th>실제 데이터 출처</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>zone_id</td>
+<td>생활권/격자 ID</td>
+<td>문자</td>
+<td>String</td>
+<td>명목</td>
+<td>시범 생성</td>
+<td>분석 단위 식별자</td>
+</tr>
+<tr>
+<td>zone_name</td>
+<td>생활권 이름</td>
+<td>문자</td>
+<td>String</td>
+<td>명목</td>
+<td>시범 생성</td>
+<td>학생이 이해 가능한 지역명</td>
+</tr>
+<tr>
+<td>gu</td>
+<td>자치구</td>
+<td>문자</td>
+<td>String</td>
+<td>명목</td>
+<td>서울시 통계/공간자료</td>
+<td>성북구로 설정</td>
+</tr>
+<tr>
+<td>dong</td>
+<td>행정동/생활권</td>
+<td>문자</td>
+<td>String</td>
+<td>명목</td>
+<td>서울시 독거노인 현황</td>
+<td>동별/생활권 분석 단위</td>
+</tr>
+<tr>
+<td>lat</td>
+<td>위도</td>
+<td>도</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>공간자료/지오코딩</td>
+<td>지도 시각화</td>
+</tr>
+<tr>
+<td>lon</td>
+<td>경도</td>
+<td>도</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>공간자료/지오코딩</td>
+<td>지도 시각화</td>
+</tr>
+<tr>
+<td>x_m</td>
+<td>학교 기준 상대 X좌표</td>
+<td>m</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>시범 생성</td>
+<td>SPSS 산점도 지도용</td>
+</tr>
+<tr>
+<td>y_m</td>
+<td>학교 기준 상대 Y좌표</td>
+<td>m</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>시범 생성</td>
+<td>SPSS 산점도 지도용</td>
+</tr>
+<tr>
+<td>solitary_elderly_count</td>
+<td>독거노인 수</td>
+<td>명</td>
+<td>Numeric</td>
+<td>척도</td>
+<td>서울시 독거노인 현황</td>
+<td>취약성 산출 핵심 변수</td>
+</tr>
+</tbody></table></div>
+<h3 id="Survey_Items">Survey_Items</h3>
+<p>Survey_Items: 11행 x 4열 / 미리보기 10행 x 4열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>문항</th>
+<th>설문 문항</th>
+<th>코딩</th>
+<th>SPSS 측도</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Q1</td>
+<td>우리 동네에서 병원까지 가는 길이 멀다고 느낀다.</td>
+<td>1=전혀 그렇지 않다 ~ 5=매우 그렇다</td>
+<td>서열</td>
+</tr>
+<tr>
+<td>Q2</td>
+<td>우리 동네에서 약국까지 가는 길이 멀다고 느낀다.</td>
+<td>1~5 Likert</td>
+<td>서열</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>버스정류장까지 걷는 길이 불편하다.</td>
+<td>1~5 Likert</td>
+<td>서열</td>
+</tr>
+<tr>
+<td>Q4</td>
+<td>복지관이나 경로당 같은 노인 여가시설 접근이 어렵다.</td>
+<td>1~5 Likert</td>
+<td>서열</td>
+</tr>
+<tr>
+<td>Q5</td>
+<td>보도 폭이 좁아 보행이 불안하다.</td>
+<td>1~5 Likert</td>
+<td>서열</td>
+</tr>
+<tr>
+<td>Q6</td>
+<td>경사가 심해 걷기 어렵다.</td>
+<td>1~5 Likert</td>
+<td>서열</td>
+</tr>
+<tr>
+<td>Q7</td>
+<td>비 오는 날이나 밤에는 이동이 더 어렵다.</td>
+<td>1~5 Likert</td>
+<td>서열</td>
+</tr>
+<tr>
+<td>Q8</td>
+<td>우리 동네에는 쉬어갈 벤치나 그늘이 부족하다.</td>
+<td>1~5 Likert</td>
+<td>서열</td>
+</tr>
+<tr>
+<td>Q9</td>
+<td>생활 인프라 위치를 쉽게 알 수 있는 안내가 부족하다.</td>
+<td>1~5 Likert</td>
+<td>서열</td>
+</tr>
+</tbody></table></div>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 11행 x 7열 / 미리보기 10행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>다운로드/API 링크</th>
+<th>파일 형식</th>
+<th>주요 변수</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성/주의</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>서울시 독거노인 현황(성별/동별·구별) 통계</td>
+<td>서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/10178/S/2/datasetView.do</td>
+<td>통계/CSV·XLS</td>
+<td>독거노인 수, 성별, 자치구/동</td>
+<td>독거노인 분포 및 취약성 산출</td>
+<td>동별 자료 종료 여부 확인 필요, 구별 자료는 대체 가능</td>
+</tr>
+<tr>
+<td>서울특별시 병의원 위치 정보</td>
+<td>공공데이터포털/서울시</td>
+<td>https://www.data.go.kr/data/15088914/fileData.do</td>
+<td>CSV</td>
+<td>기관명, 주소, 병원분류, 응급실 여부, 위도·경도</td>
+<td>병의원 접근성 및 거리 분석</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 약국 운영시간 정보</td>
+<td>서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-20402/S/1/datasetView.do</td>
+<td>API/서비스</td>
+<td>약국명, 주소, 운영시간, 위치정보</td>
+<td>약국 접근성 및 야간 접근성 분석</td>
+<td>API 또는 서비스 조회 필요</td>
+</tr>
+<tr>
+<td>서울시 약국 인허가 정보</td>
+<td>서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-16484/S/1/datasetView.do</td>
+<td>API/CSV</td>
+<td>사업장명, 주소, 좌표X/Y, 영업상태</td>
+<td>약국 위치 보완자료</td>
+<td>좌표계 변환 필요 가능</td>
+</tr>
+<tr>
+<td>서울시 사회복지시설(노인여가복지시설) 목록</td>
+<td>서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-20412/S/1/datasetView.do</td>
+<td>CSV/API</td>
+<td>시설명, 시설유형, 시설주소</td>
+<td>노인복지관·경로당 접근성 분석</td>
+<td>월간 갱신 자료</td>
+</tr>
+<tr>
+<td>서울시 버스정류소 위치정보</td>
+<td>서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-15067/S/1/datasetView.do</td>
+<td>CSV/XLSX</td>
+<td>정류소ID, ARS-ID, 정류소명, 좌표</td>
+<td>대중교통 접근성 분석</td>
+<td>ARS-ID 앞자리 0 처리 주의</td>
+</tr>
+<tr>
+<td>서울교통공사 1~8호선 역사 좌표 정보</td>
+<td>공공데이터포털</td>
+<td>https://www.data.go.kr/data/15099316/fileData.do</td>
+<td>CSV/XLSX</td>
+<td>역명, 호선, 위도, 경도</td>
+<td>지하철 접근성 분석</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 대로변 횡단보도 위치정보</td>
+<td>서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-21209/S/1/datasetView.do</td>
+<td>CSV/SHP</td>
+<td>횡단보도 위치, 길이, 좌표</td>
+<td>보행 연결성 및 안전시설 접근성</td>
+<td>공간분석 권장</td>
+</tr>
+<tr>
+<td>서울시 자치구별 신호등 및 횡단보도 위치 및 현황</td>
+<td>서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-22364/F/1/datasetView.do</td>
+<td>XLSX</td>
+<td>관리번호, 종류, 주소, 교차로명, X/Y좌표</td>
+<td>신호등·횡단보도 시설 분석</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+</tbody></table></div>
+<h3 id="SPSS_Steps">SPSS_Steps</h3>
+<p>SPSS_Steps: 8행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>CSV/XLSX를 SPSS로 불러오고 변수 측도 지정</td>
+<td>전체 변수</td>
+<td>파일 → 열기 → 데이터</td>
+<td>문자형과 숫자형, 명목·서열·척도 구분</td>
+</tr>
+<tr>
+<td>2. 기술통계</td>
+<td>접근성·취약성·우선순위 점수의 분포 확인</td>
+<td>accessibility_score, vulnerability_score, improvement_priority_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>평균·표준편차·최소·최대값 확인</td>
+</tr>
+<tr>
+<td>3. 빈도분석</td>
+<td>개선 우선순위 등급별 구간 수 확인</td>
+<td>priority_level, cluster_type</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>매우 높음·높음 구간 비중 확인</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>접근성 점수와 개선 우선순위의 관계 확인</td>
+<td>accessibility_score, vulnerability_score, improvement_priority_score, slope_score_1_5, sidewalk_width_m</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>접근성이 낮을수록 우선순위가 높은지 확인</td>
+</tr>
+<tr>
+<td>5. 회귀분석</td>
+<td>어떤 요인이 개선 우선순위를 설명하는지 분석</td>
+<td>improvement_priority_score / hospital_distance_m, pharmacy_distance_m, welfare_distance_m, bus_stop_distance_m, slope_score_1_5, sidewalk_width_m</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>표준화계수 Beta와 유의확률 해석</td>
+</tr>
+<tr>
+<td>6. 군집분석</td>
+<td>생활권을 취약 유형별로 분류</td>
+<td>facility_score, distance_score, environment_score, vulnerability_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>의료접근 취약형, 교통접근 취약형 등 유형화</td>
+</tr>
+<tr>
+<td>7. 지도 시각화</td>
+<td>취약 생활권 위치를 지도형으로 표현</td>
+<td>x_m, y_m, improvement_priority_score, priority_level</td>
+<td>그래프 → 차트 작성기 → 산점도</td>
+<td>점 크기 또는 색상으로 우선순위 표현</td>
+</tr>
+</tbody></table></div>
+<h3 id="Summary">Summary</h3>
+<p>Summary: 20행 x 5열 / 미리보기 10행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 항목</th>
+<th>결과</th>
+<th></th>
+<th></th>
+</tr></thead>
+<tbody>
+<tr>
+<td>전체 생활권 수</td>
+<td>50</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>평균 접근성 점수</td>
+<td>42.2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>평균 개선 우선순위 점수</td>
+<td>52.1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>우선 개선 필요 구간 수(높음 이상)</td>
+<td>18</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>최우선 개선 생활권</td>
+<td>삼선동 시장 인근 1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>최우선 개선 점수</td>
+<td>75.1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>군집 유형</td>
+<td>구간 수</td>
+<td>평균 접근성</td>
+<td>평균 우선순위</td>
+</tr>
+<tr>
+<td>의료접근 취약형</td>
+<td>10</td>
+<td>31.9</td>
+<td>63.3</td>
+</tr>
+</tbody></table></div>
+<h2 id="데이터-출처">데이터 출처</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">12_data_sources.xlsx</span></li>
+</ul>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 11행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>다운로드/API 링크</th>
+<th>파일 형식</th>
+<th>주요 변수</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성/주의</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>서울시 독거노인 현황(성별/동별·구별) 통계</td>
+<td>서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/10178/S/2/datasetView.do</td>
+<td>통계/CSV·XLS</td>
+<td>독거노인 수, 성별, 자치구/동</td>
+<td>독거노인 분포 및 취약성 산출</td>
+<td>동별 자료 종료 여부 확인 필요, 구별 자료는 대체 가능</td>
+</tr>
+<tr>
+<td>서울특별시 병의원 위치 정보</td>
+<td>공공데이터포털/서울시</td>
+<td>https://www.data.go.kr/data/15088914/fileData.do</td>
+<td>CSV</td>
+<td>기관명, 주소, 병원분류, 응급실 여부, 위도·경도</td>
+<td>병의원 접근성 및 거리 분석</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 약국 운영시간 정보</td>
+<td>서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-20402/S/1/datasetView.do</td>
+<td>API/서비스</td>
+<td>약국명, 주소, 운영시간, 위치정보</td>
+<td>약국 접근성 및 야간 접근성 분석</td>
+<td>API 또는 서비스 조회 필요</td>
+</tr>
+<tr>
+<td>서울시 약국 인허가 정보</td>
+<td>서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-16484/S/1/datasetView.do</td>
+<td>API/CSV</td>
+<td>사업장명, 주소, 좌표X/Y, 영업상태</td>
+<td>약국 위치 보완자료</td>
+<td>좌표계 변환 필요 가능</td>
+</tr>
+<tr>
+<td>서울시 사회복지시설(노인여가복지시설) 목록</td>
+<td>서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-20412/S/1/datasetView.do</td>
+<td>CSV/API</td>
+<td>시설명, 시설유형, 시설주소</td>
+<td>노인복지관·경로당 접근성 분석</td>
+<td>월간 갱신 자료</td>
+</tr>
+<tr>
+<td>서울시 버스정류소 위치정보</td>
+<td>서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-15067/S/1/datasetView.do</td>
+<td>CSV/XLSX</td>
+<td>정류소ID, ARS-ID, 정류소명, 좌표</td>
+<td>대중교통 접근성 분석</td>
+<td>ARS-ID 앞자리 0 처리 주의</td>
+</tr>
+<tr>
+<td>서울교통공사 1~8호선 역사 좌표 정보</td>
+<td>공공데이터포털</td>
+<td>https://www.data.go.kr/data/15099316/fileData.do</td>
+<td>CSV/XLSX</td>
+<td>역명, 호선, 위도, 경도</td>
+<td>지하철 접근성 분석</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 대로변 횡단보도 위치정보</td>
+<td>서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-21209/S/1/datasetView.do</td>
+<td>CSV/SHP</td>
+<td>횡단보도 위치, 길이, 좌표</td>
+<td>보행 연결성 및 안전시설 접근성</td>
+<td>공간분석 권장</td>
+</tr>
+<tr>
+<td>서울시 자치구별 신호등 및 횡단보도 위치 및 현황</td>
+<td>서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-22364/F/1/datasetView.do</td>
+<td>XLSX</td>
+<td>관리번호, 종류, 주소, 교차로명, X/Y좌표</td>
+<td>신호등·횡단보도 시설 분석</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 보도통계자료</td>
+<td>서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-22240/F/1/datasetView.do</td>
+<td>XLSX/CSV</td>
+<td>노선, 위치, 연장, 폭, 면적</td>
+<td>보도 폭과 보행환경 분석</td>
+<td>자치구·현장조사와 결합 권장</td>
+</tr>
+</tbody></table></div>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

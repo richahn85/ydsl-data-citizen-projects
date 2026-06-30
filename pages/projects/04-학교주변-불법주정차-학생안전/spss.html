@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>학교주변 불법주정차 학생안전 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="학교주변-불법주정차-학생안전---SPSS">학교주변 불법주정차 학생안전 - SPSS</h1>
+<p>상위 노트: <a href="04-%ED%95%99%EA%B5%90%EC%A3%BC%EB%B3%80-%EB%B6%88%EB%B2%95%EC%A3%BC%EC%A0%95%EC%B0%A8-%ED%95%99%EC%83%9D%EC%95%88%EC%A0%84.html">학교주변 불법주정차 학생안전</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">04_spss_guide.docx</span></p>
+<p>SPSS 분석 가이드: 학교 주변 불법주정차가 학생 안전에 미치는 영향</p>
+<p>이 문서는 04_dataset.xlsx 또는 04_dataset.csv를 SPSS로 불러와 분석하는 절차를 안내한다.</p>
+<h2 id="1-데이터-불러오기">1. 데이터 불러오기</h2>
+<p>SPSS 실행 → 파일 → 열기 → 데이터 → 04_dataset.xlsx 선택 → 첫 행에서 변수 이름 읽어오기 체크 → Data 시트 선택</p>
+<p>CSV를 사용할 경우 파일 유형을 CSV로 선택하고 UTF-8 또는 CP949 인코딩을 확인한다.</p>
+<h2 id="2-변수-측도-설정">2. 변수 측도 설정</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>SPSS 측도</th>
+<th>변수</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>명목</td>
+<td>segment_id, segment_name, road_type, observation_time, fixed_cctv_100m, risk_cluster</td>
+</tr>
+<tr>
+<td>서열</td>
+<td>blind_spot_score, traffic_volume_score, risk_grade, priority_rank</td>
+</tr>
+<tr>
+<td>척도</td>
+<td>lat, lon, x_m, y_m, distance_school_m, observed_illegal_vehicles_30min, enforcement_cases_1yr, accident_count_3yr, student_flow_30min, safety_risk_score 등</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-분석-절차">3. 분석 절차</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 확인</td>
+<td>결측치와 이상값 확인</td>
+<td>모든 변수</td>
+<td>분석 → 기술통계량 → 빈도분석/기술통계</td>
+<td>불법주정차 차량 수, 사고건수, 학생 보행량의 범위 확인</td>
+</tr>
+<tr>
+<td>2. 위험점수 기술통계</td>
+<td>전체 위험 수준 파악</td>
+<td>safety_risk_score, parking_density_score, visibility_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>평균, 표준편차, 최댓값으로 위험의 분산 확인</td>
+</tr>
+<tr>
+<td>3. 위험등급 빈도분석</td>
+<td>매우 높음/높음 구간 비율 확인</td>
+<td>risk_grade</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>우선 개선 대상 규모 파악</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>불법주정차와 시야방해·사고의 관계 확인</td>
+<td>observed_illegal_vehicles_30min, enforcement_cases_1yr, blind_spot_score, accident_count_3yr, safety_risk_score</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>불법주정차가 많을수록 위험점수가 증가하는지 확인</td>
+</tr>
+<tr>
+<td>5. 회귀분석</td>
+<td>종합 위험점수의 설명 요인 확인</td>
+<td>종속: safety_risk_score / 독립: observed_illegal_vehicles_30min, blind_spot_score, student_flow_30min, accident_count_3yr, sidewalk_width_m</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>어떤 요인이 위험점수를 가장 많이 설명하는지 비교</td>
+</tr>
+<tr>
+<td>6. 군집분석</td>
+<td>위험구간 유형 분류</td>
+<td>parking_density_score, visibility_score, exposure_score, accident_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>불법주정차·시야방해형, 학생노출형, 사고이력형 등으로 해석</td>
+</tr>
+<tr>
+<td>7. 지도 시각화</td>
+<td>위험구간 공간분포 표시</td>
+<td>x_m, y_m, safety_risk_score, risk_grade</td>
+<td>그래프 → 차트 작성기 → 산점도</td>
+<td>학교 기준 좌표 위에 위험점수를 점 크기로 표시</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-위험점수-계산-Syntax-예시">4. 위험점수 계산 Syntax 예시</h2>
+<ul>
+<li>불법주정차와 학생 안전 위험 분석 예시.</li>
+</ul>
+<p>DESCRIPTIVES VARIABLES=observed_illegal_vehicles_30min enforcement_cases_1yr blind_spot_score student_flow_30min safety_risk_score. FREQUENCIES VARIABLES=risk_grade risk_cluster. CORRELATIONS /VARIABLES=observed_illegal_vehicles_30min enforcement_cases_1yr blind_spot_score accident_count_3yr safety_risk_score /PRINT=TWOTAIL NOSIG. REGRESSION /DEPENDENT safety_risk_score /METHOD=ENTER observed_illegal_vehicles_30min blind_spot_score student_flow_30min accident_count_3yr sidewalk_width_m. QUICK CLUSTER parking_density_score visibility_score exposure_score accident_score /CRITERIA=CLUSTER(4) MXITER(10) /SAVE CLUSTER. GRAPH /SCATTERPLOT(BIVAR)=x_m WITH y_m.</p>
+<h2 id="5-결과-해석-문장-예시">5. 결과 해석 문장 예시</h2>
+<p>상관분석에서 observed_illegal_vehicles_30min과 safety_risk_score의 상관이 양(+)의 방향으로 나타나면, 불법주정차 차량이 많은 구간일수록 종합 위험점수가 높아지는 경향이 있다고 해석할 수 있다.</p>
+<p>회귀분석에서 blind_spot_score의 표준화계수가 크게 나타나면, 단순히 주차 차량의 수보다 학생의 시야가 얼마나 가려지는지가 안전위험을 설명하는 핵심 요인일 수 있다.</p>
+<p>군집분석 결과 “불법주정차·시야방해형” 구간은 집중 단속과 시야확보 시설을 함께 제안하고, “학생노출·혼잡형” 구간은 통학지도 인력과 보행동선 분리를 우선 제안한다.</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="04_spss_syntax-sps">04_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">04_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">* Project 04: Illegal Parking and Student Safety around School.
+* Open 04_dataset.csv or 04_dataset.xlsx first.
+
+DESCRIPTIVES VARIABLES=observed_illegal_vehicles_30min enforcement_cases_1yr blind_spot_score student_flow_30min safety_risk_score
+  /STATISTICS=MEAN STDDEV MIN MAX.
+
+FREQUENCIES VARIABLES=risk_grade risk_cluster.
+
+CORRELATIONS
+  /VARIABLES=observed_illegal_vehicles_30min enforcement_cases_1yr blind_spot_score accident_count_3yr pedestrian_accident_3yr safety_risk_score
+  /PRINT=TWOTAIL NOSIG.
+
+REGRESSION
+  /DEPENDENT safety_risk_score
+  /METHOD=ENTER observed_illegal_vehicles_30min blind_spot_score student_flow_30min accident_count_3yr sidewalk_width_m.
+
+QUICK CLUSTER parking_density_score visibility_score exposure_score accident_score
+  /CRITERIA=CLUSTER(4) MXITER(10)
+  /SAVE CLUSTER.
+
+GRAPH /SCATTERPLOT(BIVAR)=x_m WITH y_m.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

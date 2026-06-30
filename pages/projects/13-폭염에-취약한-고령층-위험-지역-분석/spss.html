@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>폭염에 취약한 고령층 위험 지역 분석 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="폭염에-취약한-고령층-위험-지역-분석---SPSS">폭염에 취약한 고령층 위험 지역 분석 - SPSS</h1>
+<p>상위 노트: <a href="13-%ED%8F%AD%EC%97%BC%EC%97%90-%EC%B7%A8%EC%95%BD%ED%95%9C-%EA%B3%A0%EB%A0%B9%EC%B8%B5-%EC%9C%84%ED%97%98-%EC%A7%80%EC%97%AD-%EB%B6%84%EC%84%9D.html">폭염에 취약한 고령층 위험 지역 분석</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">13_spss_guide.docx</span></p>
+<p>SPSS 분석 가이드</p>
+<ol>
+<li>폭염에 취약한 고령층 위험 지역 분석</li>
+</ol>
+<p>이 가이드는 13_dataset.xlsx 또는 13_dataset.csv를 SPSS에서 불러와 폭염 취약지수, 위험등급, 상관·회귀·군집분석, 지도형 산점도를 작성하는 절차를 안내한다.</p>
+<h2 id="1-데이터-불러오기">1. 데이터 불러오기</h2>
+<p>SPSS 실행 → 파일 → 열기 → 데이터 → 13_dataset.xlsx 선택</p>
+<p>Excel 파일 읽기 창에서 &#x27;데이터 첫 행에서 변수 이름 읽어오기&#x27; 체크</p>
+<p>변수 보기에서 area_id, area_name, dong, area_type, risk_grade, recommended_action은 명목 또는 서열로 지정하고, 나머지 숫자 변수는 척도로 지정</p>
+<h2 id="2-기술통계">2. 기술통계</h2>
+<p>메뉴: 분석 → 기술통계량 → 기술통계</p>
+<p>변수: avg_max_temp_c, heatwave_days, green_ratio_pct, elderly_pop65, living_alone_elderly, nearest_shelter_m, heat_vulnerability_index</p>
+<p>해석: 폭염 노출, 녹지, 고령인구, 쉼터 접근성의 기본 분포를 파악한다.</p>
+<h2 id="3-위험등급-빈도분석">3. 위험등급 빈도분석</h2>
+<p>메뉴: 분석 → 기술통계량 → 빈도분석</p>
+<p>변수: risk_grade, area_type, recommended_action</p>
+<p>해석: 매우 높음·높음 등급이 몇 개 생활권인지 확인하고, 필요한 개선유형을 파악한다.</p>
+<h2 id="4-상관분석">4. 상관분석</h2>
+<p>메뉴: 분석 → 상관분석 → 이변량 상관계수</p>
+<p>변수: heat_vulnerability_index, heat_exposure_score, demographic_vulnerability_score, shelter_deficit_score, cooling_environment_risk, green_ratio_pct, nearest_shelter_m</p>
+<p>해석: 취약지수와 관련성이 큰 요인을 확인한다. 녹지율은 음의 상관, 쉼터 거리와 취약성 점수는 양의 상관을 보일 수 있다.</p>
+<h2 id="5-회귀분석">5. 회귀분석</h2>
+<p>메뉴: 분석 → 회귀분석 → 선형</p>
+<p>종속변수: heat_vulnerability_index</p>
+<p>독립변수: heat_exposure_score, demographic_vulnerability_score, shelter_deficit_score, cooling_environment_risk</p>
+<p>해석: 어떤 요인이 취약지수를 가장 크게 설명하는지 확인한다.</p>
+<h2 id="6-K-평균-군집분석">6. K-평균 군집분석</h2>
+<p>메뉴: 분석 → 분류분석 → K-평균 군집분석</p>
+<p>변수: heat_exposure_score, demographic_vulnerability_score, shelter_deficit_score, cooling_environment_risk</p>
+<p>군집 수: 4개 권장. 폭염노출형, 고령취약형, 쉼터부족형, 저위험형으로 해석할 수 있다.</p>
+<h2 id="7-지도형-산점도">7. 지도형 산점도</h2>
+<p>메뉴: 그래프 → 차트 작성기 → 산점도</p>
+<p>X축: longitude, Y축: latitude</p>
+<p>점 크기: heat_vulnerability_index, 색상 또는 패널: risk_grade</p>
+<p>해석: 고위험 생활권이 공간적으로 어디에 모여 있는지 확인한다.</p>
+<h2 id="8-보고서-해석-문장-예시">8. 보고서 해석 문장 예시</h2>
+<p>폭염 취약지수를 종속변수로 하는 회귀분석 결과, 쉼터 부족 점수와 고령층 취약성 점수가 취약지수를 크게 설명하는 것으로 나타났다. 이는 폭염 대응 정책이 단순한 기온 관리가 아니라, 고령층 생활권의 쉼터 접근성과 돌봄 인프라 개선으로 이어져야 함을 보여준다.</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="13_spss_syntax-sps">13_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">13_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">* Project 13: Heat-vulnerable elderly risk area analysis.
+* Import CSV.
+GET DATA
+  /TYPE=TXT
+  /FILE=&#x27;13_dataset.csv&#x27;
+  /ENCODING=&#x27;UTF8&#x27;
+  /DELCASE=LINE
+  /DELIMITERS=&quot;,&quot;
+  /ARRANGEMENT=DELIMITED
+  /FIRSTCASE=2
+  /VARIABLES=
+    area_id A8
+    area_name A40
+    dong A20
+    area_type A20
+    latitude F10.6
+    longitude F10.6
+    avg_max_temp_c F4.1
+    heatwave_days F3.0
+    tropical_nights F3.0
+    green_ratio_pct F5.1
+    shade_score F1.0
+    pavement_heat_score F1.0
+    elderly_pop65 F5.0
+    elderly75_ratio_pct F5.1
+    living_alone_elderly F5.0
+    field_observed_elderly_2h F4.0
+    heat_shelters_500m F2.0
+    nearest_shelter_m F5.0
+    shelter_capacity F5.0
+    bus_stops_500m F2.0
+    clinics_500m F2.0
+    slope_score F1.0
+    old_building_ratio_pct F5.1
+    heat_exposure_score F5.1
+    demographic_vulnerability_score F5.1
+    shelter_deficit_score F5.1
+    cooling_environment_risk F5.1
+    heat_vulnerability_index F5.1
+    risk_grade A10
+    priority_rank F2.0
+    recommended_action A60.
+EXECUTE.
+
+VARIABLE LABELS
+ avg_max_temp_c &#x27;Average summer maximum temperature&#x27;
+ heatwave_days &#x27;Number of heatwave days&#x27;
+ tropical_nights &#x27;Number of tropical nights&#x27;
+ green_ratio_pct &#x27;Green ratio percent&#x27;
+ elderly_pop65 &#x27;Population aged 65 and older&#x27;
+ living_alone_elderly &#x27;Elderly living alone&#x27;
+ nearest_shelter_m &#x27;Distance to nearest heat shelter in meters&#x27;
+ heat_vulnerability_index &#x27;Heat vulnerability index&#x27;.
+
+DESCRIPTIVES VARIABLES=avg_max_temp_c heatwave_days tropical_nights green_ratio_pct elderly_pop65 living_alone_elderly nearest_shelter_m heat_vulnerability_index
+  /STATISTICS=MEAN STDDEV MIN MAX.
+
+FREQUENCIES VARIABLES=risk_grade area_type recommended_action.
+
+CORRELATIONS
+  /VARIABLES=heat_vulnerability_index heat_exposure_score demographic_vulnerability_score shelter_deficit_score cooling_environment_risk green_ratio_pct nearest_shelter_m
+  /PRINT=TWOTAIL NOSIG
+  /MISSING=PAIRWISE.
+
+REGRESSION
+  /DEPENDENT heat_vulnerability_index
+  /METHOD=ENTER heat_exposure_score demographic_vulnerability_score shelter_deficit_score cooling_environment_risk.
+
+QUICK CLUSTER heat_exposure_score demographic_vulnerability_score shelter_deficit_score cooling_environment_risk
+  /CRITERIA=CLUSTER(4) MXITER(10)
+  /SAVE CLUSTER.
+
+GRAPH
+  /SCATTERPLOT(BIVAR)=longitude WITH latitude
+  /TITLE=&#x27;Heat Vulnerability Map (Demo)&#x27;.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

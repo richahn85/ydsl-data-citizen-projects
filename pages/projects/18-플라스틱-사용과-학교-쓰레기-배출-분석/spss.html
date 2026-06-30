@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>플라스틱 사용과 학교 쓰레기 배출 분석 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="플라스틱-사용과-학교-쓰레기-배출-분석---SPSS">플라스틱 사용과 학교 쓰레기 배출 분석 - SPSS</h1>
+<p>상위 노트: <a href="18-%ED%94%8C%EB%9D%BC%EC%8A%A4%ED%8B%B1-%EC%82%AC%EC%9A%A9%EA%B3%BC-%ED%95%99%EA%B5%90-%EC%93%B0%EB%A0%88%EA%B8%B0-%EB%B0%B0%EC%B6%9C-%EB%B6%84%EC%84%9D.html">플라스틱 사용과 학교 쓰레기 배출 분석</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">18_spss_guide.docx</span></p>
+<p>SPSS 분석 가이드: 플라스틱 사용과 학교 쓰레기 배출 분석</p>
+<p>이 가이드는 18_dataset.xlsx 또는 18_dataset.csv를 SPSS에서 불러와 품목별 배출량 분석, 장소별 비교, 상관분석, 회귀분석, 군집분석을 수행하는 절차를 안내한다.</p>
+<h2 id="1-데이터-불러오기">1. 데이터 불러오기</h2>
+<p>SPSS 실행 → 파일 → 열기 → 데이터 → Excel 또는 CSV 선택 → 첫 행에서 변수 이름 읽기 체크 → 확인.</p>
+<h2 id="2-변수-보기-설정">2. 변수 보기 설정</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수</th>
+<th>측도</th>
+<th>역할</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>location_type</td>
+<td>명목</td>
+<td>장소 유형 독립변수</td>
+</tr>
+<tr>
+<td>total_plastic_items</td>
+<td>척도</td>
+<td>핵심 종속변수</td>
+</tr>
+<tr>
+<td>separation_accuracy_pct</td>
+<td>척도</td>
+<td>분리배출 환경 변수</td>
+</tr>
+<tr>
+<td>reusable_bottle_rate_pct</td>
+<td>척도</td>
+<td>감축 행동 변수</td>
+</tr>
+<tr>
+<td>waste_score</td>
+<td>척도</td>
+<td>위험점수</td>
+</tr>
+<tr>
+<td>priority_level</td>
+<td>서열</td>
+<td>개선 우선순위 등급</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-분석-절차">3. 분석 절차</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>SPSS 메뉴</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>파일 → 열기 → 데이터</td>
+<td>첫 행을 변수명으로 읽어오고, 한글 변수명 대신 영문 변수명 사용</td>
+</tr>
+<tr>
+<td>2. 빈도분석</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>어느 공간에서 관찰이 많이 이루어졌는지 확인</td>
+</tr>
+<tr>
+<td>3. 기술통계</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>평균보다 높은 공간을 우선 파악</td>
+</tr>
+<tr>
+<td>4. 장소유형별 차이</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>매점·급식실·교실복도 간 차이 해석</td>
+</tr>
+<tr>
+<td>5. 상관분석</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>거리↑ 정확도↓, 다회용기↑ 배출량↓ 여부 확인</td>
+</tr>
+<tr>
+<td>6. 회귀분석</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>학생 수를 통제했을 때 구매·다회용기 영향 확인</td>
+</tr>
+<tr>
+<td>7. 군집분석</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>고배출형, 분리배출 취약형, 저위험형으로 명명</td>
+</tr>
+<tr>
+<td>8. 시각화</td>
+<td>그래프 → 차트 작성기</td>
+<td>학생·교사·학교가 직관적으로 볼 수 있게 표현</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-SPSS-Syntax-예시">4. SPSS Syntax 예시</h2>
+<p>FREQUENCIES VARIABLES=weekday location_type priority_level.</p>
+<p>DESCRIPTIVES VARIABLES=total_plastic_items plastic_weight_g separation_accuracy_pct reusable_bottle_rate_pct waste_score reduction_potential_score.</p>
+<p>ONEWAY total_plastic_items waste_score BY location_type /STATISTICS DESCRIPTIVES.</p>
+<p>CORRELATIONS /VARIABLES=total_plastic_items recycling_bin_distance_m separation_accuracy_pct reusable_bottle_rate_pct reduction_potential_score.</p>
+<p>REGRESSION /DEPENDENT total_plastic_items /METHOD=ENTER students_observed single_use_purchase_count reusable_bottle_rate_pct separation_accuracy_pct.</p>
+<p>QUICK CLUSTER total_plastic_items separation_accuracy_pct reusable_bottle_rate_pct waste_score /CRITERIA=CLUSTER(3).</p>
+<h2 id="5-보고서-해석-문장-예시">5. 보고서 해석 문장 예시</h2>
+<p>분석 결과, 장소유형에 따라 플라스틱 배출량에 차이가 나타났다. 특히 매점 앞과 급식실 퇴식구의 평균 배출량이 높았으며, 다회용기 사용률이 높은 장소에서는 총 플라스틱 품목 수가 상대적으로 낮았다. 따라서 플라스틱 감축 정책은 학생 개인의 실천만 요구하기보다 매점 포장 방식, 분리수거함 배치, 다회용기 사용 유도 등 학교 시스템 개선과 함께 추진되어야 한다.</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="18_spss_syntax-sps">18_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">18_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">FREQUENCIES VARIABLES=weekday location_type priority_level.
+DESCRIPTIVES VARIABLES=total_plastic_items plastic_weight_g separation_accuracy_pct reusable_bottle_rate_pct waste_score reduction_potential_score.
+ONEWAY total_plastic_items waste_score BY location_type /STATISTICS DESCRIPTIVES.
+CORRELATIONS /VARIABLES=total_plastic_items recycling_bin_distance_m separation_accuracy_pct reusable_bottle_rate_pct reduction_potential_score.
+REGRESSION /DEPENDENT total_plastic_items /METHOD=ENTER students_observed single_use_purchase_count reusable_bottle_rate_pct separation_accuracy_pct.
+QUICK CLUSTER total_plastic_items separation_accuracy_pct reusable_bottle_rate_pct waste_score /CRITERIA=CLUSTER(3).</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

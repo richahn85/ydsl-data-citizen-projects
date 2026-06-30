@@ -1,0 +1,1327 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>미래 직업 변화와 용문고 학생 진로 준비도 분석 - 데이터 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="미래-직업-변화와-용문고-학생-진로-준비도-분석---데이터">미래 직업 변화와 용문고 학생 진로 준비도 분석 - 데이터</h1>
+<p>상위 노트: <a href="25-%EB%AF%B8%EB%9E%98-%EC%A7%81%EC%97%85-%EB%B3%80%ED%99%94%EC%99%80-%EC%9A%A9%EB%AC%B8%EA%B3%A0-%ED%95%99%EC%83%9D-%EC%A7%84%EB%A1%9C-%EC%A4%80%EB%B9%84%EB%8F%84-%EB%B6%84%EC%84%9D.html">미래 직업 변화와 용문고 학생 진로 준비도 분석</a></p>
+<p>관련 개념: <a href="../../concepts/%EC%BD%94%EB%93%9C%EB%B6%81%EA%B3%BC%20%EB%B3%80%EC%88%98%20%EC%A0%95%EC%9D%98.html">concepts/코드북과 변수 정의</a>, <a href="../../concepts/%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EA%B8%B0%EB%B0%98%20%ED%83%90%EA%B5%AC.html">concepts/공공데이터 기반 탐구</a></p>
+<h2 id="코드북">코드북</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">25_codebook.xlsx</span></li>
+</ul>
+<h3 id="25_codebook-xlsx">25_codebook.xlsx</h3>
+<p>Codebook: 26행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>데이터 유형</th>
+<th>SPSS 측도</th>
+<th>실제 데이터 출처</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>student_id</td>
+<td>익명 학생 ID</td>
+<td>문자</td>
+<td>문자</td>
+<td>명목</td>
+<td>학생 설문</td>
+<td>개인정보 미수집</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>학년</td>
+<td>1/2/3</td>
+<td>숫자</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>고1~고3</td>
+</tr>
+<tr>
+<td>hope_job</td>
+<td>희망 직업</td>
+<td>직업명</td>
+<td>문자</td>
+<td>명목</td>
+<td>학생 설문+커리어넷/워크넷 표준화</td>
+<td>직업군 분류 기준</td>
+</tr>
+<tr>
+<td>job_family</td>
+<td>희망직업 직업군</td>
+<td>범주</td>
+<td>문자</td>
+<td>명목</td>
+<td>O*NET/워크넷 직업분류 참고</td>
+<td>Tech/Data 등 7개군</td>
+</tr>
+<tr>
+<td>hope_major</td>
+<td>희망 전공</td>
+<td>전공명</td>
+<td>문자</td>
+<td>명목</td>
+<td>학생 설문+커리어넷 학과정보</td>
+<td>직업-전공 연결</td>
+</tr>
+<tr>
+<td>future_growth_score</td>
+<td>직업 성장성 전망 점수</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>WEF/워크넷 직업전망 참고</td>
+<td>높을수록 성장성 큼</td>
+</tr>
+<tr>
+<td>ai_exposure_score</td>
+<td>AI Exposure of Preferred Job</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>WEF/O*NET 기반 시범 지표</td>
+<td>높을수록 AI 영향 큼</td>
+</tr>
+<tr>
+<td>skill_requirement_score</td>
+<td>해당 직업 요구역량 수준</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>O*NET 직업 요구역량 참고</td>
+<td>높을수록 요구역량 높음</td>
+</tr>
+<tr>
+<td>human_centricity_score</td>
+<td>인간중심 역량 중요도</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>직업특성 기반 시범 지표</td>
+<td>공감·소통·돌봄 중요도</td>
+</tr>
+<tr>
+<td>ai_literacy_score</td>
+<td>AI 활용 역량 점수</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>학생 설문</td>
+<td>AI 도구 활용·검증·윤리 문항</td>
+</tr>
+<tr>
+<td>data_literacy_score</td>
+<td>데이터 해석 역량 점수</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>학생 설문</td>
+<td>표·그래프·통계 이해</td>
+</tr>
+<tr>
+<td>creativity_score</td>
+<td>창의적 산출 역량</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>학생 설문</td>
+<td>콘텐츠·아이디어·문제해결</td>
+</tr>
+<tr>
+<td>communication_score</td>
+<td>소통·협업 역량</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>학생 설문</td>
+<td>팀 프로젝트·발표·피드백</td>
+</tr>
+<tr>
+<td>problem_solving_score</td>
+<td>문제해결 역량</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>학생 설문</td>
+<td>문제분해·가설검증</td>
+</tr>
+<tr>
+<td>adaptability_score</td>
+<td>재학습·적응 역량</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>학생 설문</td>
+<td>새 기술 학습 의지</td>
+</tr>
+<tr>
+<td>career_info_access_score</td>
+<td>진로 정보 접근성</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>학생 설문</td>
+<td>직업·전공 탐색 빈도</td>
+</tr>
+<tr>
+<td>project_experience_count</td>
+<td>관련 프로젝트 경험 수</td>
+<td>개</td>
+<td>숫자</td>
+<td>척도</td>
+<td>학생 설문/포트폴리오</td>
+<td>보고서·대회·블로그 경험</td>
+</tr>
+<tr>
+<td>portfolio_score</td>
+<td>포트폴리오 구축 수준</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>학생 설문/포트폴리오 점검</td>
+<td>산출물 정리 정도</td>
+</tr>
+<tr>
+<td>english_global_score</td>
+<td>영어·글로벌 자료 활용 역량</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>학생 설문</td>
+<td>해외 자료 활용</td>
+</tr>
+<tr>
+<td>career_anxiety_score</td>
+<td>미래직업 불안 점수</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>학생 설문</td>
+<td>AI·진로 변화 불안</td>
+</tr>
+<tr>
+<td>career_readiness_score</td>
+<td>종합 Career Readiness</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>계산 지표</td>
+<td>AI·데이터·문제해결·소통·포트폴리오</td>
+</tr>
+<tr>
+<td>skill_gap_score</td>
+<td>Skill Gap Score</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>계산 지표</td>
+<td>요구역량-보유역량 차이</td>
+</tr>
+<tr>
+<td>ai_era_fit_score</td>
+<td>AI-Era Fit Score</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>계산 지표</td>
+<td>성장성+준비도+낮은 갭</td>
+</tr>
+<tr>
+<td>gap_level</td>
+<td>역량 갭 등급</td>
+<td>낮음/중간/높음</td>
+<td>문자</td>
+<td>서열</td>
+<td>계산 지표</td>
+<td>우선 지원 기준</td>
+</tr>
+<tr>
+<td>roadmap_recommendation</td>
+<td>추천 로드맵</td>
+<td>범주</td>
+<td>문자</td>
+<td>명목</td>
+<td>계산 지표</td>
+<td>학생별 우선 지원 방식</td>
+</tr>
+</tbody></table></div>
+<h3 id="25_codebook-xlsx">25_codebook.xlsx</h3>
+<p>Survey_Items: 13행 x 4열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>문항코드</th>
+<th>설문 문항</th>
+<th>척도/코딩</th>
+<th>연결 변수</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Q1_AI활용자신감</td>
+<td>나는 생성형 AI를 학습 보조 도구로 적절히 활용할 수 있다.</td>
+<td>1=전혀 그렇지 않다 ~ 5=매우 그렇다</td>
+<td>ai_literacy_score</td>
+</tr>
+<tr>
+<td>Q2_데이터해석자신감</td>
+<td>나는 표와 그래프를 보고 의미 있는 결론을 도출할 수 있다.</td>
+<td>1~5 Likert</td>
+<td>data_literacy_score</td>
+</tr>
+<tr>
+<td>Q3_문제해결자신감</td>
+<td>나는 복잡한 문제를 작은 단위로 나누어 해결할 수 있다.</td>
+<td>1~5 Likert</td>
+<td>problem_solving_score</td>
+</tr>
+<tr>
+<td>Q4_창의적산출물</td>
+<td>나는 보고서, 영상, 앱, 블로그 등 나만의 산출물을 만들 수 있다.</td>
+<td>1~5 Likert</td>
+<td>creativity_score</td>
+</tr>
+<tr>
+<td>Q5_소통협업역량</td>
+<td>나는 팀원과 협력하고 의견을 조율하는 데 자신이 있다.</td>
+<td>1~5 Likert</td>
+<td>communication_score</td>
+</tr>
+<tr>
+<td>Q6_진로정보탐색</td>
+<td>나는 희망 직업에 필요한 역량과 학과 정보를 스스로 찾아본다.</td>
+<td>1~5 Likert</td>
+<td>career_info_access_score</td>
+</tr>
+<tr>
+<td>Q7_포트폴리오관리</td>
+<td>나는 프로젝트 결과를 블로그나 파일로 정리해 포트폴리오화하고 있다.</td>
+<td>1~5 Likert</td>
+<td>portfolio_score</td>
+</tr>
+<tr>
+<td>Q8_영어글로벌역량</td>
+<td>나는 해외 자료나 영어 콘텐츠를 학습에 활용할 수 있다.</td>
+<td>1~5 Likert</td>
+<td>english_global_score</td>
+</tr>
+<tr>
+<td>Q9_미래직업불안</td>
+<td>AI로 인해 내가 원하는 직업이 사라질까 걱정된다.</td>
+<td>1~5 Likert</td>
+<td>career_anxiety_score</td>
+</tr>
+<tr>
+<td>Q10_재학습의지</td>
+<td>필요하면 새로운 기술을 계속 배우고 진로 계획을 수정할 의지가 있다.</td>
+<td>1~5 Likert</td>
+<td>adaptability_score</td>
+</tr>
+<tr>
+<td>Q11_관심직업명</td>
+<td>현재 가장 관심 있는 직업을 한 가지 적는다.</td>
+<td>범주형</td>
+<td>hope_job</td>
+</tr>
+<tr>
+<td>Q12_관심전공명</td>
+<td>현재 가장 관심 있는 전공을 한 가지 적는다.</td>
+<td>범주형</td>
+<td>hope_major</td>
+</tr>
+</tbody></table></div>
+<h3 id="25_codebook-xlsx">25_codebook.xlsx</h3>
+<p>Occupation_Master: 13행 x 8열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>hope_job</th>
+<th>job_family</th>
+<th>future_growth_score</th>
+<th>ai_exposure_score</th>
+<th>skill_requirement_score</th>
+<th>human_centricity_score</th>
+<th>핵심 필요역량</th>
+<th>추천 준비활동</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>AI/데이터 엔지니어</td>
+<td>Tech/Data</td>
+<td>92</td>
+<td>78</td>
+<td>82</td>
+<td>30</td>
+<td>Python, 통계, 데이터베이스, AI 윤리</td>
+<td>AI·데이터 프로젝트 포트폴리오</td>
+</tr>
+<tr>
+<td>의사/바이오 연구자</td>
+<td>Health/Bio</td>
+<td>74</td>
+<td>48</td>
+<td>72</td>
+<td>78</td>
+<td>생명과학, 데이터 해석, 공감 소통</td>
+<td>바이오 데이터 읽기와 의료 윤리 탐구</td>
+</tr>
+<tr>
+<td>교사/교육기획자</td>
+<td>Education/Public</td>
+<td>62</td>
+<td>42</td>
+<td>61</td>
+<td>85</td>
+<td>질문 설계, 피드백, AI 활용 수업 설계</td>
+<td>AI 시대 학습코칭 프로젝트</td>
+</tr>
+<tr>
+<td>콘텐츠 크리에이터</td>
+<td>Creative/Media</td>
+<td>70</td>
+<td>68</td>
+<td>60</td>
+<td>64</td>
+<td>스토리텔링, 영상편집, 저작권, 플랫폼 분석</td>
+<td>콘텐츠 분석 포트폴리오</td>
+</tr>
+<tr>
+<td>게임/UX 디자이너</td>
+<td>Creative/Media</td>
+<td>76</td>
+<td>63</td>
+<td>66</td>
+<td>70</td>
+<td>사용자 이해, 디자인씽킹, 프로토타입</td>
+<td>UX 리서치와 인터랙션 디자인</td>
+</tr>
+<tr>
+<td>금융/투자 애널리스트</td>
+<td>Business/Finance</td>
+<td>69</td>
+<td>72</td>
+<td>75</td>
+<td>48</td>
+<td>회계, 데이터분석, 리스크 해석, 글쓰기</td>
+<td>기업·산업 데이터 분석 보고서</td>
+</tr>
+<tr>
+<td>공무원/정책분석가</td>
+<td>Social/Public</td>
+<td>58</td>
+<td>50</td>
+<td>64</td>
+<td>76</td>
+<td>공공데이터, 법·정책 이해, 시민 소통</td>
+<td>지역사회 문제해결 정책제안서</td>
+</tr>
+<tr>
+<td>사회복지/상담 전문가</td>
+<td>Social/Public</td>
+<td>54</td>
+<td>32</td>
+<td>55</td>
+<td>92</td>
+<td>공감, 상담, 사례관리, 디지털 포용</td>
+<td>People First 사회문제 프로젝트</td>
+</tr>
+<tr>
+<td>환경/에너지 엔지니어</td>
+<td>Green/Climate</td>
+<td>82</td>
+<td>55</td>
+<td>76</td>
+<td>58</td>
+<td>기후 데이터, 에너지, 시스템 사고</td>
+<td>탄소중립·에너지 절감 프로젝트</td>
+</tr>
+<tr>
+<td>창업가/서비스 기획자</td>
+<td>Business/Finance</td>
+<td>78</td>
+<td>66</td>
+<td>74</td>
+<td>70</td>
+<td>고객문제 발견, 데이터, 실험설계</td>
+<td>문제정의-가설검증 MVP</td>
+</tr>
+<tr>
+<td>로봇/스마트제조 엔지니어</td>
+<td>Tech/Data</td>
+<td>86</td>
+<td>74</td>
+<td>83</td>
+<td>50</td>
+<td>제어, 센서, AI, 제조공정 이해</td>
+<td>스마트팩토리 문제해결 프로젝트</td>
+</tr>
+<tr>
+<td>간호/헬스케어 코디네이터</td>
+<td>Health/Bio</td>
+<td>67</td>
+<td>44</td>
+<td>62</td>
+<td>88</td>
+<td>보건지식, 환자소통, 디지털헬스</td>
+<td>디지털헬스와 돌봄 서비스 설계</td>
+</tr>
+</tbody></table></div>
+<h2 id="CSV-데이터셋">CSV 데이터셋</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">25_dataset.csv</span></li>
+</ul>
+<ul>
+<li>크기: 50행 x 25열</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>student_id</th>
+<th>grade</th>
+<th>hope_job</th>
+<th>job_family</th>
+<th>hope_major</th>
+<th>future_growth_score</th>
+<th>ai_exposure_score</th>
+<th>skill_requirement_score</th>
+<th>human_centricity_score</th>
+<th>ai_literacy_score</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>S001</td>
+<td>2</td>
+<td>창업가/서비스 기획자</td>
+<td>Business/Finance</td>
+<td>경영학</td>
+<td>78</td>
+<td>66</td>
+<td>74</td>
+<td>70</td>
+<td>17.5</td>
+</tr>
+<tr>
+<td>S002</td>
+<td>2</td>
+<td>AI/데이터 엔지니어</td>
+<td>Tech/Data</td>
+<td>인공지능학과</td>
+<td>92</td>
+<td>78</td>
+<td>82</td>
+<td>30</td>
+<td>98</td>
+</tr>
+<tr>
+<td>S003</td>
+<td>3</td>
+<td>금융/투자 애널리스트</td>
+<td>Business/Finance</td>
+<td>경제학</td>
+<td>69</td>
+<td>72</td>
+<td>75</td>
+<td>48</td>
+<td>92.9</td>
+</tr>
+<tr>
+<td>S004</td>
+<td>3</td>
+<td>사회복지/상담 전문가</td>
+<td>Social/Public</td>
+<td>상담학</td>
+<td>54</td>
+<td>32</td>
+<td>55</td>
+<td>92</td>
+<td>94.9</td>
+</tr>
+<tr>
+<td>S005</td>
+<td>3</td>
+<td>공무원/정책분석가</td>
+<td>Social/Public</td>
+<td>행정학</td>
+<td>58</td>
+<td>50</td>
+<td>64</td>
+<td>76</td>
+<td>58.8</td>
+</tr>
+<tr>
+<td>S006</td>
+<td>1</td>
+<td>환경/에너지 엔지니어</td>
+<td>Green/Climate</td>
+<td>에너지공학</td>
+<td>82</td>
+<td>55</td>
+<td>76</td>
+<td>58</td>
+<td>81.3</td>
+</tr>
+<tr>
+<td>S007</td>
+<td>1</td>
+<td>의사/바이오 연구자</td>
+<td>Health/Bio</td>
+<td>바이오시스템공학</td>
+<td>74</td>
+<td>48</td>
+<td>72</td>
+<td>78</td>
+<td>72.8</td>
+</tr>
+<tr>
+<td>S008</td>
+<td>1</td>
+<td>교사/교육기획자</td>
+<td>Education/Public</td>
+<td>국어교육</td>
+<td>62</td>
+<td>42</td>
+<td>61</td>
+<td>85</td>
+<td>48.4</td>
+</tr>
+</tbody></table></div>
+<h2 id="엑셀-데이터셋-미리보기">엑셀 데이터셋 미리보기</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">25_dataset.xlsx</span></li>
+</ul>
+<h3 id="Data">Data</h3>
+<p>Data: 51행 x 25열 / 미리보기 10행 x 10열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>student_id</th>
+<th>grade</th>
+<th>hope_job</th>
+<th>job_family</th>
+<th>hope_major</th>
+<th>future_growth_score</th>
+<th>ai_exposure_score</th>
+<th>skill_requirement_score</th>
+<th>human_centricity_score</th>
+<th>ai_literacy_score</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>S001</td>
+<td>2</td>
+<td>창업가/서비스 기획자</td>
+<td>Business/Finance</td>
+<td>경영학</td>
+<td>78</td>
+<td>66</td>
+<td>74</td>
+<td>70</td>
+<td>17.5</td>
+</tr>
+<tr>
+<td>S002</td>
+<td>2</td>
+<td>AI/데이터 엔지니어</td>
+<td>Tech/Data</td>
+<td>인공지능학과</td>
+<td>92</td>
+<td>78</td>
+<td>82</td>
+<td>30</td>
+<td>98</td>
+</tr>
+<tr>
+<td>S003</td>
+<td>3</td>
+<td>금융/투자 애널리스트</td>
+<td>Business/Finance</td>
+<td>경제학</td>
+<td>69</td>
+<td>72</td>
+<td>75</td>
+<td>48</td>
+<td>92.9</td>
+</tr>
+<tr>
+<td>S004</td>
+<td>3</td>
+<td>사회복지/상담 전문가</td>
+<td>Social/Public</td>
+<td>상담학</td>
+<td>54</td>
+<td>32</td>
+<td>55</td>
+<td>92</td>
+<td>94.9</td>
+</tr>
+<tr>
+<td>S005</td>
+<td>3</td>
+<td>공무원/정책분석가</td>
+<td>Social/Public</td>
+<td>행정학</td>
+<td>58</td>
+<td>50</td>
+<td>64</td>
+<td>76</td>
+<td>58.8</td>
+</tr>
+<tr>
+<td>S006</td>
+<td>1</td>
+<td>환경/에너지 엔지니어</td>
+<td>Green/Climate</td>
+<td>에너지공학</td>
+<td>82</td>
+<td>55</td>
+<td>76</td>
+<td>58</td>
+<td>81.3</td>
+</tr>
+<tr>
+<td>S007</td>
+<td>1</td>
+<td>의사/바이오 연구자</td>
+<td>Health/Bio</td>
+<td>바이오시스템공학</td>
+<td>74</td>
+<td>48</td>
+<td>72</td>
+<td>78</td>
+<td>72.8</td>
+</tr>
+<tr>
+<td>S008</td>
+<td>1</td>
+<td>교사/교육기획자</td>
+<td>Education/Public</td>
+<td>국어교육</td>
+<td>62</td>
+<td>42</td>
+<td>61</td>
+<td>85</td>
+<td>48.4</td>
+</tr>
+<tr>
+<td>S009</td>
+<td>2</td>
+<td>의사/바이오 연구자</td>
+<td>Health/Bio</td>
+<td>생명과학</td>
+<td>74</td>
+<td>48</td>
+<td>72</td>
+<td>78</td>
+<td>78.5</td>
+</tr>
+</tbody></table></div>
+<h3 id="Codebook">Codebook</h3>
+<p>Codebook: 26행 x 7열 / 미리보기 10행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>데이터 유형</th>
+<th>SPSS 측도</th>
+<th>실제 데이터 출처</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>student_id</td>
+<td>익명 학생 ID</td>
+<td>문자</td>
+<td>문자</td>
+<td>명목</td>
+<td>학생 설문</td>
+<td>개인정보 미수집</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>학년</td>
+<td>1/2/3</td>
+<td>숫자</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>고1~고3</td>
+</tr>
+<tr>
+<td>hope_job</td>
+<td>희망 직업</td>
+<td>직업명</td>
+<td>문자</td>
+<td>명목</td>
+<td>학생 설문+커리어넷/워크넷 표준화</td>
+<td>직업군 분류 기준</td>
+</tr>
+<tr>
+<td>job_family</td>
+<td>희망직업 직업군</td>
+<td>범주</td>
+<td>문자</td>
+<td>명목</td>
+<td>O*NET/워크넷 직업분류 참고</td>
+<td>Tech/Data 등 7개군</td>
+</tr>
+<tr>
+<td>hope_major</td>
+<td>희망 전공</td>
+<td>전공명</td>
+<td>문자</td>
+<td>명목</td>
+<td>학생 설문+커리어넷 학과정보</td>
+<td>직업-전공 연결</td>
+</tr>
+<tr>
+<td>future_growth_score</td>
+<td>직업 성장성 전망 점수</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>WEF/워크넷 직업전망 참고</td>
+<td>높을수록 성장성 큼</td>
+</tr>
+<tr>
+<td>ai_exposure_score</td>
+<td>AI Exposure of Preferred Job</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>WEF/O*NET 기반 시범 지표</td>
+<td>높을수록 AI 영향 큼</td>
+</tr>
+<tr>
+<td>skill_requirement_score</td>
+<td>해당 직업 요구역량 수준</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>O*NET 직업 요구역량 참고</td>
+<td>높을수록 요구역량 높음</td>
+</tr>
+<tr>
+<td>human_centricity_score</td>
+<td>인간중심 역량 중요도</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>직업특성 기반 시범 지표</td>
+<td>공감·소통·돌봄 중요도</td>
+</tr>
+</tbody></table></div>
+<h3 id="Survey_Items">Survey_Items</h3>
+<p>Survey_Items: 13행 x 4열 / 미리보기 10행 x 4열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>문항코드</th>
+<th>설문 문항</th>
+<th>척도/코딩</th>
+<th>연결 변수</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Q1_AI활용자신감</td>
+<td>나는 생성형 AI를 학습 보조 도구로 적절히 활용할 수 있다.</td>
+<td>1=전혀 그렇지 않다 ~ 5=매우 그렇다</td>
+<td>ai_literacy_score</td>
+</tr>
+<tr>
+<td>Q2_데이터해석자신감</td>
+<td>나는 표와 그래프를 보고 의미 있는 결론을 도출할 수 있다.</td>
+<td>1~5 Likert</td>
+<td>data_literacy_score</td>
+</tr>
+<tr>
+<td>Q3_문제해결자신감</td>
+<td>나는 복잡한 문제를 작은 단위로 나누어 해결할 수 있다.</td>
+<td>1~5 Likert</td>
+<td>problem_solving_score</td>
+</tr>
+<tr>
+<td>Q4_창의적산출물</td>
+<td>나는 보고서, 영상, 앱, 블로그 등 나만의 산출물을 만들 수 있다.</td>
+<td>1~5 Likert</td>
+<td>creativity_score</td>
+</tr>
+<tr>
+<td>Q5_소통협업역량</td>
+<td>나는 팀원과 협력하고 의견을 조율하는 데 자신이 있다.</td>
+<td>1~5 Likert</td>
+<td>communication_score</td>
+</tr>
+<tr>
+<td>Q6_진로정보탐색</td>
+<td>나는 희망 직업에 필요한 역량과 학과 정보를 스스로 찾아본다.</td>
+<td>1~5 Likert</td>
+<td>career_info_access_score</td>
+</tr>
+<tr>
+<td>Q7_포트폴리오관리</td>
+<td>나는 프로젝트 결과를 블로그나 파일로 정리해 포트폴리오화하고 있다.</td>
+<td>1~5 Likert</td>
+<td>portfolio_score</td>
+</tr>
+<tr>
+<td>Q8_영어글로벌역량</td>
+<td>나는 해외 자료나 영어 콘텐츠를 학습에 활용할 수 있다.</td>
+<td>1~5 Likert</td>
+<td>english_global_score</td>
+</tr>
+<tr>
+<td>Q9_미래직업불안</td>
+<td>AI로 인해 내가 원하는 직업이 사라질까 걱정된다.</td>
+<td>1~5 Likert</td>
+<td>career_anxiety_score</td>
+</tr>
+</tbody></table></div>
+<h3 id="Occupation_Master">Occupation_Master</h3>
+<p>Occupation_Master: 13행 x 8열 / 미리보기 10행 x 8열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>hope_job</th>
+<th>job_family</th>
+<th>future_growth_score</th>
+<th>ai_exposure_score</th>
+<th>skill_requirement_score</th>
+<th>human_centricity_score</th>
+<th>핵심 필요역량</th>
+<th>추천 준비활동</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>AI/데이터 엔지니어</td>
+<td>Tech/Data</td>
+<td>92</td>
+<td>78</td>
+<td>82</td>
+<td>30</td>
+<td>Python, 통계, 데이터베이스, AI 윤리</td>
+<td>AI·데이터 프로젝트 포트폴리오</td>
+</tr>
+<tr>
+<td>의사/바이오 연구자</td>
+<td>Health/Bio</td>
+<td>74</td>
+<td>48</td>
+<td>72</td>
+<td>78</td>
+<td>생명과학, 데이터 해석, 공감 소통</td>
+<td>바이오 데이터 읽기와 의료 윤리 탐구</td>
+</tr>
+<tr>
+<td>교사/교육기획자</td>
+<td>Education/Public</td>
+<td>62</td>
+<td>42</td>
+<td>61</td>
+<td>85</td>
+<td>질문 설계, 피드백, AI 활용 수업 설계</td>
+<td>AI 시대 학습코칭 프로젝트</td>
+</tr>
+<tr>
+<td>콘텐츠 크리에이터</td>
+<td>Creative/Media</td>
+<td>70</td>
+<td>68</td>
+<td>60</td>
+<td>64</td>
+<td>스토리텔링, 영상편집, 저작권, 플랫폼 분석</td>
+<td>콘텐츠 분석 포트폴리오</td>
+</tr>
+<tr>
+<td>게임/UX 디자이너</td>
+<td>Creative/Media</td>
+<td>76</td>
+<td>63</td>
+<td>66</td>
+<td>70</td>
+<td>사용자 이해, 디자인씽킹, 프로토타입</td>
+<td>UX 리서치와 인터랙션 디자인</td>
+</tr>
+<tr>
+<td>금융/투자 애널리스트</td>
+<td>Business/Finance</td>
+<td>69</td>
+<td>72</td>
+<td>75</td>
+<td>48</td>
+<td>회계, 데이터분석, 리스크 해석, 글쓰기</td>
+<td>기업·산업 데이터 분석 보고서</td>
+</tr>
+<tr>
+<td>공무원/정책분석가</td>
+<td>Social/Public</td>
+<td>58</td>
+<td>50</td>
+<td>64</td>
+<td>76</td>
+<td>공공데이터, 법·정책 이해, 시민 소통</td>
+<td>지역사회 문제해결 정책제안서</td>
+</tr>
+<tr>
+<td>사회복지/상담 전문가</td>
+<td>Social/Public</td>
+<td>54</td>
+<td>32</td>
+<td>55</td>
+<td>92</td>
+<td>공감, 상담, 사례관리, 디지털 포용</td>
+<td>People First 사회문제 프로젝트</td>
+</tr>
+<tr>
+<td>환경/에너지 엔지니어</td>
+<td>Green/Climate</td>
+<td>82</td>
+<td>55</td>
+<td>76</td>
+<td>58</td>
+<td>기후 데이터, 에너지, 시스템 사고</td>
+<td>탄소중립·에너지 절감 프로젝트</td>
+</tr>
+</tbody></table></div>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 9행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>다운로드/API 링크</th>
+<th>파일 형식</th>
+<th>주요 변수</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>World Economic Forum Future of Jobs Report 2025</td>
+<td>World Economic Forum</td>
+<td>https://www.weforum.org/publications/the-future-of-jobs-report-2025/</td>
+<td>HTML/PDF</td>
+<td>2030년 노동시장 변화 요인, 고용주 관점, 직무·역량 변화</td>
+<td>미래직업 변화 배경과 필요 역량 기준</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>O*NET 30.2 Database</td>
+<td>U.S. Department of Labor / National Center for O*NET Development</td>
+<td>https://www.onetcenter.org/database.html</td>
+<td>XLSX/TXT/SQL/API</td>
+<td>직업명, 과업, 기술스킬, 직무활동, 직업특성</td>
+<td>직업별 필요 역량과 기술 요구 수준 매핑</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>O*NET OnLine</td>
+<td>U.S. Department of Labor / O*NET</td>
+<td>https://www.onetonline.org/</td>
+<td>웹 조회</td>
+<td>900개 이상 직업 설명, 요구역량, 직무활동</td>
+<td>학생 희망직업의 필요 역량 탐색</td>
+<td>웹 조회 가능</td>
+</tr>
+<tr>
+<td>커리어넷 Open API 센터</td>
+<td>한국직업능력연구원/커리어넷</td>
+<td>https://www.career.go.kr/cnet/front/openapi/openApiMainCenter.do</td>
+<td>API</td>
+<td>진로심리검사, 직업정보, 학과정보, 진로상담사례</td>
+<td>학생 희망직업·희망전공 표준화 및 진로검사 연계</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>커리어넷 학과정보 API</td>
+<td>커리어넷</td>
+<td>https://www.career.go.kr/cnet/front/openapi/openApiMajorCenter.do</td>
+<td>API JSON/XML</td>
+<td>학과 목록, 학과 설명, 관련 진로</td>
+<td>희망전공과 희망직업 연결</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>워크넷 직업정보 API</td>
+<td>한국고용정보원/공공데이터포털</td>
+<td>https://www.data.go.kr/data/3071087/openapi.do</td>
+<td>API XML</td>
+<td>직업명, 직업분류코드, 직업코드, 직업정보</td>
+<td>직업군 표준화 및 직업 설명 보강</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>워크넷 직업전망목록 및 상세정보 API</td>
+<td>한국고용정보원/공공데이터포털</td>
+<td>https://www.data.go.kr/data/3071367/openapi.do</td>
+<td>API XML</td>
+<td>향후 10년 일자리 전망, 하는 일, 근무환경, 평균임금, 관련 학과·자격</td>
+<td>직업 전망 점수와 준비도 비교</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>2025 초·중등 진로교육 현황조사</td>
+<td>커리어넷/한국직업능력연구원</td>
+<td>https://www.career.go.kr/cloud/w/courseEdu/course2025</td>
+<td>PDF/통계표</td>
+<td>학생 희망직업, 진로교육 경험, 진로 인식</td>
+<td>전국 진로교육 비교 기준</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+</tbody></table></div>
+<h3 id="SPSS_Steps">SPSS_Steps</h3>
+<p>SPSS_Steps: 9행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 빈도분석</td>
+<td>희망 직업·직업군 분포 확인</td>
+<td>hope_job, job_family, gap_level</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>학생들이 어떤 직업군에 몰려 있는지 확인</td>
+</tr>
+<tr>
+<td>2. 기술통계</td>
+<td>Career Readiness와 역량 갭 평균 확인</td>
+<td>career_readiness_score, skill_gap_score, ai_era_fit_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>평균·표준편차·최댓값·최솟값 확인</td>
+</tr>
+<tr>
+<td>3. 교차분석</td>
+<td>직업군별 역량 갭 등급 차이 확인</td>
+<td>job_family × gap_level</td>
+<td>분석 → 기술통계량 → 교차분석</td>
+<td>고위험 갭이 많은 직업군 파악</td>
+</tr>
+<tr>
+<td>4. 일원배치 분산분석</td>
+<td>직업군별 평균 준비도 차이 검증</td>
+<td>job_family, career_readiness_score</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>직업군에 따라 준비도 차이가 있는지 확인</td>
+</tr>
+<tr>
+<td>5. 상관분석</td>
+<td>AI 노출도·준비도·갭 간 관계 확인</td>
+<td>ai_exposure_score, career_readiness_score, skill_gap_score</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>AI 노출도가 높을수록 갭이 커지는지 탐색</td>
+</tr>
+<tr>
+<td>6. 회귀분석</td>
+<td>AI-Era Fit Score 예측 요인 확인</td>
+<td>ai_era_fit_score ← AI·데이터·포트폴리오·정보접근성</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>어떤 역량이 적합도에 큰 영향을 주는지 해석</td>
+</tr>
+<tr>
+<td>7. 군집분석</td>
+<td>학생 진로 준비 유형 분류</td>
+<td>ai_literacy_score, data_literacy_score, portfolio_score, skill_gap_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>AI준비형, 정보탐색형, 포트폴리오보완형 등으로 명명</td>
+</tr>
+<tr>
+<td>8. 그래프</td>
+<td>로드맵과 역량 갭 시각화</td>
+<td>job_family, skill_gap_score, roadmap_recommendation</td>
+<td>그래프 → 차트 작성기</td>
+<td>보고서용 핵심 시각화 작성</td>
+</tr>
+</tbody></table></div>
+<h3 id="Summary">Summary</h3>
+<p>Summary: 19행 x 6열 / 미리보기 10행 x 6열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>job_family</th>
+<th>Number of Students</th>
+<th>평균 진로준비도</th>
+<th>평균 역량갭</th>
+<th>평균 AI시대 적합도</th>
+<th>평균 AI노출도</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Business/Finance</td>
+<td>8</td>
+<td>68.4</td>
+<td>8.2</td>
+<td>74.8</td>
+<td>69</td>
+</tr>
+<tr>
+<td>Creative/Media</td>
+<td>6</td>
+<td>67.7</td>
+<td>5.6</td>
+<td>75.2</td>
+<td>64.7</td>
+</tr>
+<tr>
+<td>Education/Public</td>
+<td>5</td>
+<td>60.6</td>
+<td>5.8</td>
+<td>67.8</td>
+<td>42</td>
+</tr>
+<tr>
+<td>Green/Climate</td>
+<td>4</td>
+<td>64.8</td>
+<td>5.7</td>
+<td>76.7</td>
+<td>55</td>
+</tr>
+<tr>
+<td>Health/Bio</td>
+<td>9</td>
+<td>67</td>
+<td>5.3</td>
+<td>74.7</td>
+<td>47.6</td>
+</tr>
+<tr>
+<td>Social/Public</td>
+<td>7</td>
+<td>66.5</td>
+<td>3.8</td>
+<td>68.7</td>
+<td>39.7</td>
+</tr>
+<tr>
+<td>Tech/Data</td>
+<td>11</td>
+<td>65.2</td>
+<td>10</td>
+<td>79</td>
+<td>76.9</td>
+</tr>
+<tr>
+<td>로드맵 추천</td>
+<td>Number of Students</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table></div>
+<h2 id="데이터-출처">데이터 출처</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">25_data_sources.xlsx</span></li>
+</ul>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 9행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>다운로드/API 링크</th>
+<th>파일 형식</th>
+<th>주요 변수</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>World Economic Forum Future of Jobs Report 2025</td>
+<td>World Economic Forum</td>
+<td>https://www.weforum.org/publications/the-future-of-jobs-report-2025/</td>
+<td>HTML/PDF</td>
+<td>2030년 노동시장 변화 요인, 고용주 관점, 직무·역량 변화</td>
+<td>미래직업 변화 배경과 필요 역량 기준</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>O*NET 30.2 Database</td>
+<td>U.S. Department of Labor / National Center for O*NET Development</td>
+<td>https://www.onetcenter.org/database.html</td>
+<td>XLSX/TXT/SQL/API</td>
+<td>직업명, 과업, 기술스킬, 직무활동, 직업특성</td>
+<td>직업별 필요 역량과 기술 요구 수준 매핑</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>O*NET OnLine</td>
+<td>U.S. Department of Labor / O*NET</td>
+<td>https://www.onetonline.org/</td>
+<td>웹 조회</td>
+<td>900개 이상 직업 설명, 요구역량, 직무활동</td>
+<td>학생 희망직업의 필요 역량 탐색</td>
+<td>웹 조회 가능</td>
+</tr>
+<tr>
+<td>커리어넷 Open API 센터</td>
+<td>한국직업능력연구원/커리어넷</td>
+<td>https://www.career.go.kr/cnet/front/openapi/openApiMainCenter.do</td>
+<td>API</td>
+<td>진로심리검사, 직업정보, 학과정보, 진로상담사례</td>
+<td>학생 희망직업·희망전공 표준화 및 진로검사 연계</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>커리어넷 학과정보 API</td>
+<td>커리어넷</td>
+<td>https://www.career.go.kr/cnet/front/openapi/openApiMajorCenter.do</td>
+<td>API JSON/XML</td>
+<td>학과 목록, 학과 설명, 관련 진로</td>
+<td>희망전공과 희망직업 연결</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>워크넷 직업정보 API</td>
+<td>한국고용정보원/공공데이터포털</td>
+<td>https://www.data.go.kr/data/3071087/openapi.do</td>
+<td>API XML</td>
+<td>직업명, 직업분류코드, 직업코드, 직업정보</td>
+<td>직업군 표준화 및 직업 설명 보강</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>워크넷 직업전망목록 및 상세정보 API</td>
+<td>한국고용정보원/공공데이터포털</td>
+<td>https://www.data.go.kr/data/3071367/openapi.do</td>
+<td>API XML</td>
+<td>향후 10년 일자리 전망, 하는 일, 근무환경, 평균임금, 관련 학과·자격</td>
+<td>직업 전망 점수와 준비도 비교</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>2025 초·중등 진로교육 현황조사</td>
+<td>커리어넷/한국직업능력연구원</td>
+<td>https://www.career.go.kr/cloud/w/courseEdu/course2025</td>
+<td>PDF/통계표</td>
+<td>학생 희망직업, 진로교육 경험, 진로 인식</td>
+<td>전국 진로교육 비교 기준</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+</tbody></table></div>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

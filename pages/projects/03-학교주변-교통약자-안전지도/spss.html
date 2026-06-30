@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>학교주변 교통약자 안전지도 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="학교주변-교통약자-안전지도---SPSS">학교주변 교통약자 안전지도 - SPSS</h1>
+<p>상위 노트: <a href="03-%ED%95%99%EA%B5%90%EC%A3%BC%EB%B3%80-%EA%B5%90%ED%86%B5%EC%95%BD%EC%9E%90-%EC%95%88%EC%A0%84%EC%A7%80%EB%8F%84.html">학교주변 교통약자 안전지도</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">03_spss_guide.docx</span></p>
+<h2 id="SPSS-분석-가이드-학교-주변-교통-약자-안전지도-만들기">SPSS 분석 가이드: 학교 주변 교통 약자 안전지도 만들기</h2>
+<p>이 문서는 03_dataset.xlsx 또는 03_dataset.csv를 SPSS로 불러와 교통약자 위험구간을 분석하는 절차를 안내한다. 분석 목적은 교통약자 위험점수가 높은 구간을 찾고, 위험을 만드는 핵심 요인을 파악하며, 개선 우선순위를 도출하는 것이다.</p>
+<h3 id="1-데이터-불러오기">1. 데이터 불러오기</h3>
+<p>SPSS 실행 → 파일 → 열기 → 데이터 → 03_dataset.xlsx 또는 03_dataset.csv 선택. XLSX를 사용할 때는 Data 시트를 선택하고 첫 행을 변수 이름으로 읽어온다.</p>
+<h3 id="2-변수-측도-설정">2. 변수 측도 설정</h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수 유형</th>
+<th>예시</th>
+<th>SPSS 측도</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>문자형 ID·유형</td>
+<td>segment_id, route_type, road_type, risk_type</td>
+<td>명목</td>
+</tr>
+<tr>
+<td>위험등급·순위</td>
+<td>risk_grade, priority_rank</td>
+<td>서열</td>
+</tr>
+<tr>
+<td>점수·거리·개수</td>
+<td>vulnerable_risk_score, distance_school_m, accident_count_3yr</td>
+<td>척도</td>
+</tr>
+</tbody></table></div>
+<h3 id="3-분석-절차">3. 분석 절차</h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>단계</th>
+<th>목적</th>
+<th>SPSS 메뉴</th>
+<th>주요 변수</th>
+<th>해석</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>XLSX/CSV를 SPSS로 불러와 변수 측도 확인</td>
+<td>파일 → 열기 → 데이터</td>
+<td>전체 변수</td>
+<td>첫 행을 변수명으로 읽고, 범주형은 명목/서열, 점수형은 척도로 설정</td>
+</tr>
+<tr>
+<td>2. 기술통계</td>
+<td>위험점수와 보행환경 변수의 평균·최대값 확인</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>vulnerable_risk_score, environment_score, exposure_score</td>
+<td>어떤 변수의 편차가 큰지 확인</td>
+</tr>
+<tr>
+<td>3. 빈도분석</td>
+<td>위험등급과 위험유형 분포 확인</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>risk_grade, risk_type, route_type</td>
+<td>높음/매우 높음 구간 비율 확인</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>교통약자 위험점수와 주요 위험요인 관계 확인</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>vulnerable_risk_score, exposure_score, environment_score, accident_score, infrastructure_lack_score</td>
+<td>위험점수와 가장 관련이 큰 요인 파악</td>
+</tr>
+<tr>
+<td>5. 회귀분석</td>
+<td>위험점수를 설명하는 주요 요인 검증</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>종속: vulnerable_risk_score / 독립: exposure_score, environment_score, accident_score, infrastructure_lack_score, facility_score</td>
+<td>표준화계수 Beta로 영향력 비교</td>
+</tr>
+<tr>
+<td>6. 군집분석</td>
+<td>구간을 위험유형별로 분류</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>exposure_score, environment_score, accident_score, infrastructure_lack_score, facility_score</td>
+<td>노출형·환경취약형·사고이력형 등 정책유형 분류</td>
+</tr>
+<tr>
+<td>7. 지도 시각화</td>
+<td>학교 주변 위험구간을 좌표 기반으로 표시</td>
+<td>그래프 → 차트 작성기 → 산점도</td>
+<td>x_m_from_school, y_m_from_school, vulnerable_risk_score, risk_grade</td>
+<td>점 크기/색으로 위험 수준 표시</td>
+</tr>
+<tr>
+<td>8. 우선순위표 작성</td>
+<td>상위 10개 개선대상 구간 도출</td>
+<td>데이터 → 케이스 정렬</td>
+<td>priority_rank, segment_id, risk_grade, recommended_action</td>
+<td>성북구청·경찰서 제안용 표 작성</td>
+</tr>
+</tbody></table></div>
+<h3 id="4-위험점수-해석-기준">4. 위험점수 해석 기준</h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>위험점수</th>
+<th>등급</th>
+<th>해석</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>75점 이상</td>
+<td>매우 높음</td>
+<td>즉시 개선 검토가 필요한 구간</td>
+</tr>
+<tr>
+<td>60~74점</td>
+<td>높음</td>
+<td>우선 개선 대상</td>
+</tr>
+<tr>
+<td>40~59점</td>
+<td>보통</td>
+<td>지속 관찰과 부분 개선 대상</td>
+</tr>
+<tr>
+<td>40점 미만</td>
+<td>낮음</td>
+<td>정기 점검 대상</td>
+</tr>
+</tbody></table></div>
+<h3 id="5-보고서-작성-문장-예시">5. 보고서 작성 문장 예시</h3>
+<p>“교통약자 종합 위험점수를 기준으로 상위 구간을 도출한 결과, 병원·복지시설 접근로와 대형 교차로 인접 구간의 위험도가 높게 나타났다. 이는 교통약자의 이동수요와 보행환경 위험요인이 결합될 때 잠재적 사고위험이 커질 수 있음을 의미한다.”</p>
+<h3 id="6-SPSS-Syntax-예시">6. SPSS Syntax 예시</h3>
+<p>별도 파일 03_spss_syntax.sps를 SPSS Syntax 창에서 열어 실행할 수 있다. 단, 파일 경로는 각자의 컴퓨터 환경에 맞게 수정해야 한다.</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="03_spss_syntax-sps">03_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">03_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">* Project 03: 학교 주변 교통 약자 안전지도 만들기.
+* 파일 경로는 사용자 PC에 맞게 수정하세요.
+
+GET DATA
+  /TYPE=XLSX
+  /FILE=&#x27;03_dataset.xlsx&#x27;
+  /SHEET=name &#x27;Data&#x27;
+  /READNAMES=ON.
+EXECUTE.
+
+VARIABLE LEVEL segment_id route_name route_type road_type risk_grade risk_type recommended_action recommended_agency (NOMINAL).
+VARIABLE LEVEL priority_rank slope_risk_1_5 visibility_risk_1_5 lighting_risk_1_5 (ORDINAL).
+VARIABLE LEVEL vulnerable_risk_score exposure_score facility_score environment_score infrastructure_lack_score accident_score (SCALE).
+
+FREQUENCIES VARIABLES=risk_grade risk_type route_type road_type
+  /ORDER=ANALYSIS.
+
+DESCRIPTIVES VARIABLES=vulnerable_risk_score exposure_score facility_score environment_score infrastructure_lack_score accident_score sidewalk_width_m slope_grade_pct accident_count_3yr ped_accident_count_3yr
+  /STATISTICS=MEAN STDDEV MIN MAX.
+
+CORRELATIONS
+  /VARIABLES=vulnerable_risk_score exposure_score facility_score environment_score infrastructure_lack_score accident_score
+  /PRINT=TWOTAIL NOSIG
+  /MISSING=PAIRWISE.
+
+REGRESSION
+  /DEPENDENT vulnerable_risk_score
+  /METHOD=ENTER exposure_score facility_score environment_score infrastructure_lack_score accident_score.
+
+QUICK CLUSTER exposure_score facility_score environment_score infrastructure_lack_score accident_score
+  /CRITERIA=CLUSTER(3) MXITER(10)
+  /METHOD=KMEANS
+  /SAVE CLUSTER.
+
+GRAPH
+  /SCATTERPLOT(BIVAR)=x_m_from_school WITH y_m_from_school
+  /TITLE=&#x27;학교 주변 교통약자 안전지도: 학교 기준 상대좌표&#x27;.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

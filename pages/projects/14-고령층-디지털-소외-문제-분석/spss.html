@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>고령층 디지털 소외 문제 분석 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="고령층-디지털-소외-문제-분석---SPSS">고령층 디지털 소외 문제 분석 - SPSS</h1>
+<p>상위 노트: <a href="14-%EA%B3%A0%EB%A0%B9%EC%B8%B5-%EB%94%94%EC%A7%80%ED%84%B8-%EC%86%8C%EC%99%B8-%EB%AC%B8%EC%A0%9C-%EB%B6%84%EC%84%9D.html">고령층 디지털 소외 문제 분석</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">14_spss_guide.docx</span></p>
+<p>SPSS 분석 가이드: 고령층 디지털 소외 문제 분석</p>
+<p>이 가이드는 14_dataset.xlsx 또는 14_dataset.csv를 SPSS에서 불러와 분석하는 절차를 안내한다.</p>
+<h2 id="1-데이터-불러오기">1. 데이터 불러오기</h2>
+<p>SPSS 실행 → 파일 → 열기 → 데이터 → 14_dataset.xlsx 선택 → Data 시트 선택 → 첫 행에서 변수 이름 읽어오기를 체크한다. CSV를 사용할 경우 UTF-8 또는 한국어 인코딩을 확인한다.</p>
+<h2 id="2-변수-보기-설정">2. 변수 보기 설정</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수</th>
+<th>측도</th>
+<th>값 레이블</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>respondent_id</td>
+<td>명목</td>
+<td>E001~E050</td>
+</tr>
+<tr>
+<td>district</td>
+<td>명목</td>
+<td>성북구</td>
+</tr>
+<tr>
+<td>dong</td>
+<td>명목</td>
+<td>돈암1동 등</td>
+</tr>
+<tr>
+<td>age</td>
+<td>척도</td>
+<td>60~86</td>
+</tr>
+<tr>
+<td>age_group</td>
+<td>서열</td>
+<td>60-64세~80세 이상</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>명목</td>
+<td>남/여</td>
+</tr>
+<tr>
+<td>living_alone</td>
+<td>명목</td>
+<td>0=아니오, 1=예</td>
+</tr>
+<tr>
+<td>education_level</td>
+<td>서열</td>
+<td>1=초졸 이하,2=중졸,3=고졸,4=대졸 이상</td>
+</tr>
+<tr>
+<td>smartphone_own</td>
+<td>명목</td>
+<td>0=없음, 1=있음</td>
+</tr>
+<tr>
+<td>kiosk_use_freq_month</td>
+<td>척도</td>
+<td>0~12</td>
+</tr>
+<tr>
+<td>mobile_app_use_freq_month</td>
+<td>척도</td>
+<td>0~20</td>
+</tr>
+<tr>
+<td>kiosk_difficulty</td>
+<td>서열</td>
+<td>1=매우 쉬움, 5=매우 어려움</td>
+</tr>
+<tr>
+<td>app_difficulty</td>
+<td>서열</td>
+<td>1=매우 쉬움, 5=매우 어려움</td>
+</tr>
+<tr>
+<td>online_reservation_difficulty</td>
+<td>서열</td>
+<td>1=매우 쉬움, 5=매우 어려움</td>
+</tr>
+<tr>
+<td>digital_confidence</td>
+<td>서열</td>
+<td>1=매우 낮음, 5=매우 높음</td>
+</tr>
+<tr>
+<td>digital_literacy_score</td>
+<td>척도</td>
+<td>0~100</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-분석-절차">3. 분석 절차</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>CSV 또는 XLSX 파일을 SPSS로 불러온다.</td>
+<td>respondent_id~support_priority_rank</td>
+<td>파일 → 열기 → 데이터</td>
+<td>첫 행을 변수명으로 읽고 측도를 확인한다.</td>
+</tr>
+<tr>
+<td>2. 빈도분석</td>
+<td>응답자 특성과 위험등급 분포를 확인한다.</td>
+<td>age_group, gender, living_alone, exclusion_level</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>고위험 집단이 어느 연령대·독거 여부에 집중되는지 확인한다.</td>
+</tr>
+<tr>
+<td>3. 기술통계</td>
+<td>핵심 변수의 평균과 분산을 파악한다.</td>
+<td>kiosk_difficulty, app_difficulty, digital_literacy_score, digital_exclusion_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>평균 소외점수와 변수별 차이를 확인한다.</td>
+</tr>
+<tr>
+<td>4. 교육 경험별 차이 분석</td>
+<td>디지털 교육 경험이 소외점수 차이와 관련되는지 본다.</td>
+<td>digital_education_experience, digital_exclusion_score</td>
+<td>분석 → 평균비교 → 독립표본 t 검정</td>
+<td>교육 경험이 있는 집단의 위험점수가 낮은지 해석한다.</td>
+</tr>
+<tr>
+<td>5. 연령대별 차이 분석</td>
+<td>연령대별 디지털 소외 위험 차이를 검증한다.</td>
+<td>age_group, digital_exclusion_score</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>80세 이상 집단의 위험점수가 유의하게 높은지 확인한다.</td>
+</tr>
+<tr>
+<td>6. 상관분석</td>
+<td>디지털 소외와 관련된 주요 요인을 탐색한다.</td>
+<td>kiosk_difficulty, app_difficulty, digital_confidence, nearest_digital_center_min, digital_exclusion_score</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>어려움·두려움은 양의 상관, 자신감·도움 가능성은 음의 상관이 예상된다.</td>
+</tr>
+<tr>
+<td>7. 회귀분석</td>
+<td>소외점수를 예측하는 핵심 변수를 파악한다.</td>
+<td>digital_exclusion_score, age, kiosk_difficulty, app_difficulty, education_experience, help_available_score</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>가장 영향력이 큰 변수를 찾아 프로그램 설계 근거로 사용한다.</td>
+</tr>
+<tr>
+<td>8. 군집분석</td>
+<td>고령층을 지원유형별로 분류한다.</td>
+<td>kiosk_difficulty, app_difficulty, digital_confidence, access_gap_score, digital_literacy_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>방문상담형·체험교육형·자립보완형 등으로 해석한다.</td>
+</tr>
+<tr>
+<td>9. 시각화</td>
+<td>위험집단과 교육 인프라 취약성을 그림으로 보여준다.</td>
+<td>digital_exclusion_score, nearest_digital_center_min, access_gap_score</td>
+<td>그래프 → 차트 작성기</td>
+<td>지원 우선지역·우선대상을 직관적으로 제시한다.</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-Syntax-예시">4. Syntax 예시</h2>
+<p>GET DATA /TYPE=XLSX /FILE=&#x27;14_dataset.xlsx&#x27; /SHEET=name &#x27;Data&#x27; /READNAMES=ON. EXECUTE. FREQUENCIES VARIABLES=age_group gender living_alone exclusion_level. DESCRIPTIVES VARIABLES=kiosk_difficulty app_difficulty digital_confidence digital_literacy_score digital_exclusion_score. T-TEST GROUPS=digital_education_experience(0 1) /VARIABLES=digital_exclusion_score. ONEWAY digital_exclusion_score BY age_group /STATISTICS DESCRIPTIVES. CORRELATIONS /VARIABLES=kiosk_difficulty app_difficulty digital_confidence nearest_digital_center_min help_available_score digital_exclusion_score. REGRESSION /DEPENDENT digital_exclusion_score /METHOD=ENTER age kiosk_difficulty app_difficulty online_reservation_difficulty digital_education_experience help_available_score nearest_digital_center_min. QUICK CLUSTER kiosk_difficulty app_difficulty digital_confidence access_gap_score digital_literacy_score /CRITERIA=CLUSTER(3) MXITER(10) /SAVE CLUSTER.</p>
+<h2 id="5-해석-문장-예시">5. 해석 문장 예시</h2>
+<p>교육 경험이 없는 집단의 평균 디지털 소외 위험점수가 교육 경험이 있는 집단보다 높게 나타났다면, 이는 고령층 디지털 교육이 단순 취미 활동이 아니라 생활서비스 접근성을 높이는 지원정책이 될 수 있음을 의미한다.</p>
+<p>키오스크 사용 어려움과 디지털 소외 위험점수가 높은 양의 상관을 보인다면, 음식 주문·병원 접수·은행 업무와 같은 생활밀착형 키오스크 체험교육을 우선 설계해야 한다.</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="14_spss_syntax-sps">14_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">14_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">GET DATA /TYPE=XLSX /FILE=&#x27;14_dataset.xlsx&#x27; /SHEET=name &#x27;Data&#x27; /READNAMES=ON.
+EXECUTE.
+FREQUENCIES VARIABLES=age_group gender living_alone exclusion_level.
+DESCRIPTIVES VARIABLES=kiosk_difficulty app_difficulty digital_confidence digital_literacy_score digital_exclusion_score.
+T-TEST GROUPS=digital_education_experience(0 1) /VARIABLES=digital_exclusion_score.
+ONEWAY digital_exclusion_score BY age_group /STATISTICS DESCRIPTIVES.
+CORRELATIONS /VARIABLES=kiosk_difficulty app_difficulty digital_confidence nearest_digital_center_min help_available_score digital_exclusion_score.
+REGRESSION /DEPENDENT digital_exclusion_score /METHOD=ENTER age kiosk_difficulty app_difficulty online_reservation_difficulty digital_education_experience help_available_score nearest_digital_center_min.
+QUICK CLUSTER kiosk_difficulty app_difficulty digital_confidence access_gap_score digital_literacy_score /CRITERIA=CLUSTER(3) MXITER(10) /SAVE CLUSTER.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

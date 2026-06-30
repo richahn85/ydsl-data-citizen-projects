@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>학교 급식 만족도와 영양 균형 분석 - 보고서 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="학교-급식-만족도와-영양-균형-분석---보고서">학교 급식 만족도와 영양 균형 분석 - 보고서</h1>
+<p>상위 노트: <a href="09-%ED%95%99%EA%B5%90-%EA%B8%89%EC%8B%9D-%EB%A7%8C%EC%A1%B1%EB%8F%84%EC%99%80-%EC%98%81%EC%96%91-%EA%B7%A0%ED%98%95-%EB%B6%84%EC%84%9D.html">학교 급식 만족도와 영양 균형 분석</a></p>
+<p>원본 문서: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">09_report.docx</span></p>
+<p>학교 급식 만족도와 영양 균형 분석 보고서</p>
+<p>학생들이 선호하는 급식과 영양적으로 좋은 급식은 일치하는가</p>
+<h2 id="1-프로젝트-개요">1. 프로젝트 개요</h2>
+<p>본 프로젝트는 학교 급식이 학생들에게 맛있고 만족스러운 동시에 영양적으로 균형 잡힌 식사인지 확인하기 위한 데이터 기반 문제해결 프로젝트이다. 학생이 선호하는 메뉴와 영양적으로 좋은 메뉴가 항상 일치하지 않을 수 있다는 문제의식에서 출발한다.</p>
+<p>분석의 핵심 질문은 ‘학생들이 좋아하는 급식은 영양적으로도 균형 잡혀 있는가, 그리고 영양적으로 좋은 급식은 학생들이 실제로 잘 먹고 만족하는가?’이다. 이 질문은 단순한 급식 취향 조사가 아니라, 학생 건강과 학교 급식 운영의 균형을 찾기 위한 질문이다.</p>
+<p>연결 전공: 식품영양학, 보건학, 데이터 분석, 경영학</p>
+<h2 id="2-문제-정의-카드">2. 문제 정의 카드</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>질문</th>
+<th>답변</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>내가 본 문제는 무엇인가?</td>
+<td>급식 메뉴 중 학생들이 매우 좋아하지만 영양균형 점수가 낮거나, 반대로 영양적으로 우수하지만 잔반이 많이 남는 메뉴가 존재한다.</td>
+</tr>
+<tr>
+<td>왜 중요한가?</td>
+<td>급식은 학생의 하루 에너지와 건강을 좌우하지만, 학생이 먹지 않으면 영양적으로 좋은 메뉴도 실제 효과를 얻기 어렵다.</td>
+</tr>
+<tr>
+<td>어떤 데이터를 사용할 것인가?</td>
+<td>급식 메뉴, 칼로리·영양성분, 알레르기 정보, 잔반율, 학생 만족도 설문, 메뉴 유형 분류 데이터를 사용한다.</td>
+</tr>
+<tr>
+<td>어떤 분석을 할 것인가?</td>
+<td>메뉴별 만족도 분석, 영양균형 점수화, 잔반율 비교, 상관분석, 회귀분석, 군집분석을 수행한다.</td>
+</tr>
+<tr>
+<td>누구에게 제안할 것인가?</td>
+<td>학교 급식실, 영양교사, 학생회, 학교운영위원회, 학부모회에 학생 친화형 건강 급식 개선안을 제안한다.</td>
+</tr>
+<tr>
+<td>전공 관심과의 연결은?</td>
+<td>식품영양학·보건학 관점에서는 건강 식단 설계, 경영학 관점에서는 학생 만족도와 서비스 개선, 데이터 분석 관점에서는 의사결정 지원으로 연결된다.</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-데이터-설명">3. 데이터 설명</h2>
+<p>이번 파일의 데이터는 NEIS 급식식단정보와 학교급식 영양관리기준의 구조를 반영해 만든 시범용 가상 데이터이다. 실제 프로젝트에서는 학교 급식표와 NEIS API의 급식식단정보를 사용하고, 학생 설문과 잔반 관찰 자료를 결합한다.</p>
+<p>분석 단위는 ‘익명 학생 1명이 특정 급식일의 메뉴를 평가한 응답’이다. 10개의 급식 메뉴를 대상으로 각 메뉴당 5명의 학생 평가를 가정하여 총 50행으로 구성했다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>SPSS 측도</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>student_id</td>
+<td>익명 학생 ID</td>
+<td>문자</td>
+<td>명목</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>학년</td>
+<td>1/2/3</td>
+<td>서열</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>성별</td>
+<td>남/여</td>
+<td>명목</td>
+</tr>
+<tr>
+<td>meal_date</td>
+<td>급식일</td>
+<td>YYYY-MM-DD</td>
+<td>명목</td>
+</tr>
+<tr>
+<td>weekday</td>
+<td>요일</td>
+<td>문자</td>
+<td>명목</td>
+</tr>
+<tr>
+<td>menu_name</td>
+<td>식단명</td>
+<td>문자</td>
+<td>명목</td>
+</tr>
+<tr>
+<td>menu_category</td>
+<td>메뉴 유형</td>
+<td>범주</td>
+<td>명목</td>
+</tr>
+<tr>
+<td>energy_kcal</td>
+<td>열량</td>
+<td>kcal</td>
+<td>척도</td>
+</tr>
+<tr>
+<td>carbohydrate_g</td>
+<td>탄수화물</td>
+<td>g</td>
+<td>척도</td>
+</tr>
+<tr>
+<td>protein_g</td>
+<td>단백질</td>
+<td>g</td>
+<td>척도</td>
+</tr>
+<tr>
+<td>fat_g</td>
+<td>지방</td>
+<td>g</td>
+<td>척도</td>
+</tr>
+<tr>
+<td>sodium_mg</td>
+<td>나트륨</td>
+<td>mg</td>
+<td>척도</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-영양균형-점수화-방식">4. 영양균형 점수화 방식</h2>
+<p>영양균형 점수는 100점 만점으로 구성하였다. 열량 적정성, 탄수화물·단백질·지방 비율, 나트륨 수준, 과일·채소 제공량을 반영하였다. 이 점수는 학생들의 선호도와 비교하기 위한 교육용 지표이다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>구성요소</th>
+<th>가중치</th>
+<th>설명</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>열량 적정성</td>
+<td>35%</td>
+<td>1식 기준 목표 열량에서 지나치게 벗어나지 않는지 평가</td>
+</tr>
+<tr>
+<td>3대 영양소 균형</td>
+<td>30%</td>
+<td>탄수화물·단백질·지방 에너지 비율이 기준 범위에 가까운지 평가</td>
+</tr>
+<tr>
+<td>나트륨 관리</td>
+<td>20%</td>
+<td>나트륨이 높을수록 감점</td>
+</tr>
+<tr>
+<td>과일·채소 제공량</td>
+<td>15%</td>
+<td>과일·채소가 충분히 포함될수록 가점</td>
+</tr>
+</tbody></table></div>
+<h2 id="5-분석-방법">5. 분석 방법</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>CSV/XLSX를 SPSS로 불러와 변수 보기에서 측도를 지정한다.</td>
+<td>전체 변수</td>
+<td>파일 → 열기 → 데이터</td>
+<td>날짜·범주·척도 변수 구분</td>
+</tr>
+<tr>
+<td>2. 기술통계</td>
+<td>만족도, 영양균형, 잔반율의 평균과 표준편차를 확인한다.</td>
+<td>satisfaction_score, nutrition_balance_score, leftover_pct</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>전체 급식 품질의 기본 수준 파악</td>
+</tr>
+<tr>
+<td>3. 메뉴유형별 평균 비교</td>
+<td>메뉴 유형별 만족도·영양균형·잔반율 차이를 비교한다.</td>
+<td>menu_category, satisfaction_score, nutrition_balance_score, leftover_pct</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>인기 메뉴와 균형 메뉴의 차이 확인</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>영양균형과 만족도, 잔반율 간 관계를 확인한다.</td>
+<td>satisfaction_score, nutrition_balance_score, leftover_pct, sodium_mg, fruit_veg_servings</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>학생 선호와 건강성의 일치/불일치 판단</td>
+</tr>
+<tr>
+<td>5. 회귀분석</td>
+<td>만족도를 설명하는 요인을 파악한다.</td>
+<td>종속: satisfaction_score / 독립: taste_q, freshness_q, portion_q, nutrition_balance_score, processed_food_level</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>무엇이 만족도를 가장 크게 높이는지 확인</td>
+</tr>
+<tr>
+<td>6. 군집분석</td>
+<td>메뉴를 선호도와 영양균형 기준으로 유형화한다.</td>
+<td>preference_score, nutrition_balance_score, leftover_pct</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>건강·선호 균형형, 선호 높음·영양 보완형 등 분류</td>
+</tr>
+<tr>
+<td>7. 시각화</td>
+<td>메뉴 유형별 결과와 선호-영양 차이를 그래프로 표현한다.</td>
+<td>menu_category, satisfaction_score, nutrition_balance_score, preference_nutrition_gap</td>
+<td>그래프 → 차트 작성기</td>
+<td>보고서용 핵심 시각화 생성</td>
+</tr>
+</tbody></table></div>
+<h2 id="6-분석-결과-예시">6. 분석 결과 예시</h2>
+<p>전체 평균 급식 만족도는 3.96점, 평균 영양균형 점수는 83.0점, 평균 잔반율은 10.3%로 나타났다.</p>
+<p>상관분석 결과, 급식 만족도와 영양균형 점수의 상관은 -0.19, 급식 만족도와 잔반율의 상관은 -0.53로 나타났다. 이 시범 결과는 학생들이 좋아하는 메뉴가 반드시 영양적으로 우수한 메뉴와 일치하지 않을 수 있음을 보여준다.</p>
+<p>메뉴 유형별 평균을 보면 패스트푸드형과 인기고열량형은 만족도가 높지만 영양균형 점수가 낮은 경향이 있고, 한식균형형과 채소강화형은 영양균형 점수가 높지만 일부 메뉴에서 잔반율과 수용성 문제가 나타났다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>menu_category</th>
+<th>satisfaction</th>
+<th>nutrition</th>
+<th>leftover</th>
+<th>priority</th>
+<th>gap</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>패스트푸드형</td>
+<td>4.13</td>
+<td>56.2</td>
+<td>9.08</td>
+<td>23.8</td>
+<td>26.44</td>
+</tr>
+<tr>
+<td>채소강화형</td>
+<td>3.57</td>
+<td>92.6</td>
+<td>15.42</td>
+<td>23.4</td>
+<td>-21.28</td>
+</tr>
+<tr>
+<td>면류선호형</td>
+<td>3.87</td>
+<td>78.4</td>
+<td>9.8</td>
+<td>20.6</td>
+<td>-1.04</td>
+</tr>
+<tr>
+<td>인기고열량형</td>
+<td>4.05</td>
+<td>65.2</td>
+<td>3.53</td>
+<td>19.3</td>
+<td>15.82</td>
+</tr>
+<tr>
+<td>한식균형형</td>
+<td>4.0</td>
+<td>95.15</td>
+<td>13.13</td>
+<td>17.45</td>
+<td>-15.15</td>
+</tr>
+<tr>
+<td>양식선호형</td>
+<td>3.97</td>
+<td>91.5</td>
+<td>9.06</td>
+<td>16.4</td>
+<td>-12.18</td>
+</tr>
+</tbody></table></div>
+<p>그림 1. 영양균형 점수와 급식 만족도의 관계</p>
+<p>그림 2. 메뉴 유형별 평균 급식 만족도</p>
+<p>그림 3. 급식 만족도와 잔반율의 관계</p>
+<p>그림 4. 메뉴 유형별 선호도-영양균형 차이</p>
+<h2 id="7-개선-제안서">7. 개선 제안서</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>제안 대상</th>
+<th>제안 내용</th>
+<th>근거 데이터</th>
+<th>기대 효과</th>
+<th>실행 난이도</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>학교 급식실·영양교사</td>
+<td>인기 메뉴는 유지하되 튀김·가공식품 비율을 낮추고 채소·과일을 자연스럽게 결합한다.</td>
+<td>인기고열량형의 만족도는 높지만 영양균형 점수가 낮음</td>
+<td>선호도와 영양균형의 동시 개선</td>
+<td>중</td>
+</tr>
+<tr>
+<td>학생회</td>
+<td>월 1회 학생 선호 메뉴 투표와 영양 균형 피드백을 함께 운영한다.</td>
+<td>만족도 문항과 영양정보 인지 문항</td>
+<td>학생 참여와 급식 수용성 향상</td>
+<td>하</td>
+</tr>
+<tr>
+<td>학교운영위원회</td>
+<td>잔반율 높은 메뉴를 대상으로 조리법·양·제공 방식 개선 회의를 정례화한다.</td>
+<td>잔반율, 만족도, 메뉴 유형별 분석</td>
+<td>음식물 쓰레기 감소와 예산 효율화</td>
+<td>중</td>
+</tr>
+<tr>
+<td>학부모회</td>
+<td>급식표에 ‘오늘의 영양 포인트’를 쉬운 문장으로 표시한다.</td>
+<td>영양정보 인지 점수의 편차</td>
+<td>학생·학부모의 건강 정보 접근성 개선</td>
+<td>하</td>
+</tr>
+<tr>
+<td>교육청</td>
+<td>급식 만족도와 영양균형을 함께 보는 학교 단위 대시보드 시범사업을 제안한다.</td>
+<td>영양균형 점수와 설문 데이터 결합</td>
+<td>데이터 기반 학교급식 정책 개선</td>
+<td>상</td>
+</tr>
+</tbody></table></div>
+<h2 id="8-한계점과-후속-연구">8. 한계점과 후속 연구</h2>
+<p>이번 자료는 실제 급식 데이터가 아니라 공공데이터 구조를 반영한 시범용 가상 데이터이므로, 실제 분석에서는 NEIS 급식식단정보와 학교 급식실의 잔반량 자료, 학생 설문 결과를 직접 수집해야 한다.</p>
+<p>후속 연구에서는 메뉴별 사진, 조리 방식, 배식 시간, 줄 서는 시간, 급식실 혼잡도, 식사 시간 부족 여부 등을 추가하면 학생 만족도와 잔반율을 더 정확하게 설명할 수 있다.</p>
+<h2 id="9-나의-진로-전공-관심과의-연결">9. 나의 진로·전공 관심과의 연결</h2>
+<p>이 프로젝트는 식품영양학과 보건학을 배우고 싶은 학생에게는 건강한 식단 설계의 실제 문제를 보여준다. 경영학과 데이터 분석에 관심 있는 학생에게는 고객 만족도와 서비스 품질 개선의 사례가 된다. 중요한 것은 학생을 ‘편식하는 사람’으로 판단하는 것이 아니라, 건강한 식단이 실제로 먹히도록 만드는 환경을 설계하는 것이다.</p>
+<h2 id="10-에세이형-성찰-질문">10. 에세이형 성찰 질문</h2>
+<p>· 나는 급식을 단순히 맛있는 음식과 맛없는 음식으로만 보았는가?</p>
+<p>· 영양적으로 좋은 메뉴가 학생들에게 선택받지 못한다면, 문제는 학생의 태도인가, 메뉴 설계와 소통 방식인가?</p>
+<p>· 데이터는 나의 직관과 같았는가, 달랐는가?</p>
+<p>· 학교 급식은 학생의 건강과 행복을 어떻게 동시에 고려해야 하는가?</p>
+<h2 id="11-실제-데이터-출처">11. 실제 데이터 출처</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>다운로드/API 링크</th>
+<th>활용 목적</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>NEIS 급식식단정보 Open API</td>
+<td>교육부·17개 시도교육청 / 나이스 교육정보 개방 포털</td>
+<td>https://open.neis.go.kr/portal/data/service/selectServicePage.do?infId=OPEN17320190722180924242823&amp;infSeq=2</td>
+<td>학교별 급식 메뉴와 영양정보 수집</td>
+</tr>
+<tr>
+<td>교육부_나이스(NEIS) 교육정보 개방 포털_급식식단정보</td>
+<td>공공데이터포털 / 교육부</td>
+<td>https://www.data.go.kr/data/15139198/openapi.do</td>
+<td>API키 기반 자동 수집</td>
+</tr>
+<tr>
+<td>학교급식의 영양관리기준 [별표 3]</td>
+<td>국가법령정보센터 / 교육부</td>
+<td>https://www.law.go.kr/flDownload.do?flNm=%5B%EB%B3%84%ED%91%9C+3%5D+%ED%95%99%EA%B5%90%EA%B8%89%EC%8B%9D%EC%9D%98+%EC%98%81%EC%96%91%EA%B4%80%EB%A6%AC%EA%B8%B0%EC%A4%80%28%EC%A0%9C5%EC%A1%B0%EC%A0%9C1%ED%95%AD%EA%B4%80%EB%A0%A8%29%0A&amp;flSeq=95407985</td>
+<td>영양균형 점수 산식 기준</td>
+</tr>
+<tr>
+<td>청소년건강행태조사</td>
+<td>질병관리청</td>
+<td>https://www.kdca.go.kr/yhs/yhshmpg/main.do</td>
+<td>전국/서울 청소년 식생활 비교 기준</td>
+</tr>
+<tr>
+<td>서울시 청소년 식생활 통계</td>
+<td>서울특별시 / 공공데이터포털</td>
+<td>https://www.data.go.kr/data/15047044/fileData.do</td>
+<td>지역사회 배경자료</td>
+</tr>
+<tr>
+<td>학교 자체 급식 만족도 설문</td>
+<td>학생 직접 조사</td>
+<td>학교 Google Form 또는 종이 설문</td>
+<td>본 프로젝트의 1차 데이터</td>
+</tr>
+<tr>
+<td>학교 잔반량 현장 조사</td>
+<td>학교 급식실 협조 또는 학생 관찰</td>
+<td>학교 내부자료 / 관찰기록</td>
+<td>잔반율과 만족도/영양균형 비교</td>
+</tr>
+</tbody></table></div>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

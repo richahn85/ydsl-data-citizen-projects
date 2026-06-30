@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>등교시간 교통혼잡 지각가능성 - 데이터 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="등교시간-교통혼잡-지각가능성---데이터">등교시간 교통혼잡 지각가능성 - 데이터</h1>
+<p>상위 노트: <a href="02-%EB%93%B1%EA%B5%90%EC%8B%9C%EA%B0%84-%EA%B5%90%ED%86%B5%ED%98%BC%EC%9E%A1-%EC%A7%80%EA%B0%81%EA%B0%80%EB%8A%A5%EC%84%B1.html">등교시간 교통혼잡 지각가능성</a></p>
+<p>관련 개념: <a href="../../concepts/%EC%BD%94%EB%93%9C%EB%B6%81%EA%B3%BC%20%EB%B3%80%EC%88%98%20%EC%A0%95%EC%9D%98.html">concepts/코드북과 변수 정의</a>, <a href="../../concepts/%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EA%B8%B0%EB%B0%98%20%ED%83%90%EA%B5%AC.html">concepts/공공데이터 기반 탐구</a></p>
+<h2 id="코드북">코드북</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">02_codebook.xlsx</span></li>
+</ul>
+<h3 id="02_codebook-xlsx">02_codebook.xlsx</h3>
+<p>Codebook: 27행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>SPSS 측도</th>
+<th>코딩/비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>obs_id</td>
+<td>관측 ID</td>
+<td>문자</td>
+<td>명목</td>
+<td>학생-날짜 단위 관측치</td>
+</tr>
+<tr>
+<td>student_id</td>
+<td>학생 익명 ID</td>
+<td>문자</td>
+<td>명목</td>
+<td>개인 식별 방지를 위해 익명화</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>학년</td>
+<td>1~3</td>
+<td>서열</td>
+<td>1=1학년, 2=2학년, 3=3학년</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>성별</td>
+<td>남/여</td>
+<td>명목</td>
+<td>선택 입력</td>
+</tr>
+<tr>
+<td>home_area</td>
+<td>거주 권역</td>
+<td>행정동 수준</td>
+<td>명목</td>
+<td>정확한 주소가 아닌 권역만 기록</td>
+</tr>
+<tr>
+<td>date</td>
+<td>조사일</td>
+<td>YYYY-MM-DD</td>
+<td>명목</td>
+<td>정렬 가능하도록 날짜 형식 권장</td>
+</tr>
+<tr>
+<td>weekday</td>
+<td>요일</td>
+<td>월~금</td>
+<td>명목</td>
+<td>요일별 패턴 분석</td>
+</tr>
+<tr>
+<td>commute_route</td>
+<td>통학 경로 유형</td>
+<td>범주</td>
+<td>명목</td>
+<td>버스직행/지하철중심/버스+지하철/도보+마을버스/도보</td>
+</tr>
+<tr>
+<td>school_start_min</td>
+<td>등교 기준 시각</td>
+<td>분</td>
+<td>척도</td>
+<td>08:00=480으로 코딩</td>
+</tr>
+<tr>
+<td>depart_min</td>
+<td>집 출발 시각</td>
+<td>분</td>
+<td>척도</td>
+<td>자정 이후 분 단위, 예: 07:25=445</td>
+</tr>
+<tr>
+<td>arrival_min</td>
+<td>학교 도착 시각</td>
+<td>분</td>
+<td>척도</td>
+<td>자정 이후 분 단위</td>
+</tr>
+<tr>
+<td>travel_time_min</td>
+<td>통학 소요시간</td>
+<td>분</td>
+<td>척도</td>
+<td>arrival_min - depart_min</td>
+</tr>
+<tr>
+<td>late_min</td>
+<td>지각 시간</td>
+<td>분</td>
+<td>척도</td>
+<td>max(0, arrival_min - school_start_min)</td>
+</tr>
+<tr>
+<td>late_yn</td>
+<td>지각 여부</td>
+<td>0/1</td>
+<td>명목</td>
+<td>0=정상, 1=지각</td>
+</tr>
+<tr>
+<td>bus_delay_min</td>
+<td>버스 지연시간</td>
+<td>분</td>
+<td>척도</td>
+<td>버스 이용 경로만 값이 큼</td>
+</tr>
+<tr>
+<td>subway_congestion_pct</td>
+<td>지하철 혼잡도</td>
+<td>%</td>
+<td>척도</td>
+<td>지하철 미이용은 0으로 코딩</td>
+</tr>
+<tr>
+<td>rain_yn</td>
+<td>비 여부</td>
+<td>0/1</td>
+<td>명목</td>
+<td>0=비 안 옴, 1=비 옴</td>
+</tr>
+<tr>
+<td>temperature_c</td>
+<td>기온</td>
+<td>℃</td>
+<td>척도</td>
+<td>등교 시간대 기온</td>
+</tr>
+<tr>
+<td>transfer_count</td>
+<td>환승 횟수</td>
+<td>회</td>
+<td>척도</td>
+<td>경로 복잡도</td>
+</tr>
+<tr>
+<td>walking_time_min</td>
+<td>도보 시간</td>
+<td>분</td>
+<td>척도</td>
+<td>정류장/역까지 걷는 시간 포함</td>
+</tr>
+<tr>
+<td>bus_wait_min</td>
+<td>버스 대기시간</td>
+<td>분</td>
+<td>척도</td>
+<td>버스 미이용은 0</td>
+</tr>
+<tr>
+<td>perceived_crowding</td>
+<td>체감 혼잡도</td>
+<td>1~5</td>
+<td>서열</td>
+<td>1=매우 여유, 5=매우 혼잡</td>
+</tr>
+<tr>
+<td>departure_buffer_min</td>
+<td>출발 여유시간</td>
+<td>분</td>
+<td>척도</td>
+<td>등교 기준 대비 계획상 여유</td>
+</tr>
+<tr>
+<td>route_stability_score</td>
+<td>경로 안정성 점수</td>
+<td>0~100</td>
+<td>척도</td>
+<td>높을수록 도착시간 예측 안정</td>
+</tr>
+<tr>
+<td>lateness_risk_score</td>
+<td>지각 위험점수</td>
+<td>0~100</td>
+<td>척도</td>
+<td>높을수록 지각 가능성 큼</td>
+</tr>
+<tr>
+<td>recommended_action</td>
+<td>추천 행동</td>
+<td>문자</td>
+<td>명목</td>
+<td>경로 또는 출발시각 개선 제안</td>
+</tr>
+</tbody></table></div>
+<h2 id="CSV-데이터셋">CSV 데이터셋</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">02_dataset.csv</span></li>
+</ul>
+<ul>
+<li>크기: 50행 x 26열</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>obs_id</th>
+<th>student_id</th>
+<th>grade</th>
+<th>gender</th>
+<th>home_area</th>
+<th>date</th>
+<th>weekday</th>
+<th>commute_route</th>
+<th>school_start_min</th>
+<th>depart_min</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>O001</td>
+<td>S001</td>
+<td>1</td>
+<td>남</td>
+<td>성북구 정릉동</td>
+<td>2026-05-11</td>
+<td>월</td>
+<td>버스직행</td>
+<td>480</td>
+<td>444</td>
+</tr>
+<tr>
+<td>O002</td>
+<td>S001</td>
+<td>1</td>
+<td>남</td>
+<td>성북구 정릉동</td>
+<td>2026-05-12</td>
+<td>화</td>
+<td>버스직행</td>
+<td>480</td>
+<td>440</td>
+</tr>
+<tr>
+<td>O003</td>
+<td>S001</td>
+<td>1</td>
+<td>남</td>
+<td>성북구 정릉동</td>
+<td>2026-05-13</td>
+<td>수</td>
+<td>버스직행</td>
+<td>480</td>
+<td>440</td>
+</tr>
+<tr>
+<td>O004</td>
+<td>S001</td>
+<td>1</td>
+<td>남</td>
+<td>성북구 정릉동</td>
+<td>2026-05-14</td>
+<td>목</td>
+<td>버스직행</td>
+<td>480</td>
+<td>437</td>
+</tr>
+<tr>
+<td>O005</td>
+<td>S001</td>
+<td>1</td>
+<td>남</td>
+<td>성북구 정릉동</td>
+<td>2026-05-15</td>
+<td>금</td>
+<td>버스직행</td>
+<td>480</td>
+<td>438</td>
+</tr>
+<tr>
+<td>O006</td>
+<td>S002</td>
+<td>1</td>
+<td>여</td>
+<td>동대문구 제기동</td>
+<td>2026-05-11</td>
+<td>월</td>
+<td>지하철중심</td>
+<td>480</td>
+<td>442</td>
+</tr>
+<tr>
+<td>O007</td>
+<td>S002</td>
+<td>1</td>
+<td>여</td>
+<td>동대문구 제기동</td>
+<td>2026-05-12</td>
+<td>화</td>
+<td>지하철중심</td>
+<td>480</td>
+<td>441</td>
+</tr>
+<tr>
+<td>O008</td>
+<td>S002</td>
+<td>1</td>
+<td>여</td>
+<td>동대문구 제기동</td>
+<td>2026-05-13</td>
+<td>수</td>
+<td>지하철중심</td>
+<td>480</td>
+<td>440</td>
+</tr>
+</tbody></table></div>
+<h2 id="엑셀-데이터셋-미리보기">엑셀 데이터셋 미리보기</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">02_dataset.xlsx</span></li>
+</ul>
+<h3 id="Data">Data</h3>
+<p>Data: 51행 x 26열 / 미리보기 10행 x 10열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>obs_id</th>
+<th>student_id</th>
+<th>grade</th>
+<th>gender</th>
+<th>home_area</th>
+<th>date</th>
+<th>weekday</th>
+<th>commute_route</th>
+<th>school_start_min</th>
+<th>depart_min</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>O001</td>
+<td>S001</td>
+<td>1</td>
+<td>남</td>
+<td>성북구 정릉동</td>
+<td>2026-05-11</td>
+<td>월</td>
+<td>버스직행</td>
+<td>480</td>
+<td>444</td>
+</tr>
+<tr>
+<td>O002</td>
+<td>S001</td>
+<td>1</td>
+<td>남</td>
+<td>성북구 정릉동</td>
+<td>2026-05-12</td>
+<td>화</td>
+<td>버스직행</td>
+<td>480</td>
+<td>440</td>
+</tr>
+<tr>
+<td>O003</td>
+<td>S001</td>
+<td>1</td>
+<td>남</td>
+<td>성북구 정릉동</td>
+<td>2026-05-13</td>
+<td>수</td>
+<td>버스직행</td>
+<td>480</td>
+<td>440</td>
+</tr>
+<tr>
+<td>O004</td>
+<td>S001</td>
+<td>1</td>
+<td>남</td>
+<td>성북구 정릉동</td>
+<td>2026-05-14</td>
+<td>목</td>
+<td>버스직행</td>
+<td>480</td>
+<td>437</td>
+</tr>
+<tr>
+<td>O005</td>
+<td>S001</td>
+<td>1</td>
+<td>남</td>
+<td>성북구 정릉동</td>
+<td>2026-05-15</td>
+<td>금</td>
+<td>버스직행</td>
+<td>480</td>
+<td>438</td>
+</tr>
+<tr>
+<td>O006</td>
+<td>S002</td>
+<td>1</td>
+<td>여</td>
+<td>동대문구 제기동</td>
+<td>2026-05-11</td>
+<td>월</td>
+<td>지하철중심</td>
+<td>480</td>
+<td>442</td>
+</tr>
+<tr>
+<td>O007</td>
+<td>S002</td>
+<td>1</td>
+<td>여</td>
+<td>동대문구 제기동</td>
+<td>2026-05-12</td>
+<td>화</td>
+<td>지하철중심</td>
+<td>480</td>
+<td>441</td>
+</tr>
+<tr>
+<td>O008</td>
+<td>S002</td>
+<td>1</td>
+<td>여</td>
+<td>동대문구 제기동</td>
+<td>2026-05-13</td>
+<td>수</td>
+<td>지하철중심</td>
+<td>480</td>
+<td>440</td>
+</tr>
+<tr>
+<td>O009</td>
+<td>S002</td>
+<td>1</td>
+<td>여</td>
+<td>동대문구 제기동</td>
+<td>2026-05-14</td>
+<td>목</td>
+<td>지하철중심</td>
+<td>480</td>
+<td>441</td>
+</tr>
+</tbody></table></div>
+<h3 id="Codebook">Codebook</h3>
+<p>Codebook: 27행 x 5열 / 미리보기 10행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>SPSS 측도</th>
+<th>코딩/비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>obs_id</td>
+<td>관측 ID</td>
+<td>문자</td>
+<td>명목</td>
+<td>학생-날짜 단위 관측치</td>
+</tr>
+<tr>
+<td>student_id</td>
+<td>학생 익명 ID</td>
+<td>문자</td>
+<td>명목</td>
+<td>개인 식별 방지를 위해 익명화</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>학년</td>
+<td>1~3</td>
+<td>서열</td>
+<td>1=1학년, 2=2학년, 3=3학년</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>성별</td>
+<td>남/여</td>
+<td>명목</td>
+<td>선택 입력</td>
+</tr>
+<tr>
+<td>home_area</td>
+<td>거주 권역</td>
+<td>행정동 수준</td>
+<td>명목</td>
+<td>정확한 주소가 아닌 권역만 기록</td>
+</tr>
+<tr>
+<td>date</td>
+<td>조사일</td>
+<td>YYYY-MM-DD</td>
+<td>명목</td>
+<td>정렬 가능하도록 날짜 형식 권장</td>
+</tr>
+<tr>
+<td>weekday</td>
+<td>요일</td>
+<td>월~금</td>
+<td>명목</td>
+<td>요일별 패턴 분석</td>
+</tr>
+<tr>
+<td>commute_route</td>
+<td>통학 경로 유형</td>
+<td>범주</td>
+<td>명목</td>
+<td>버스직행/지하철중심/버스+지하철/도보+마을버스/도보</td>
+</tr>
+<tr>
+<td>school_start_min</td>
+<td>등교 기준 시각</td>
+<td>분</td>
+<td>척도</td>
+<td>08:00=480으로 코딩</td>
+</tr>
+</tbody></table></div>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 8행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>다운로드/API 링크</th>
+<th>파일 형식</th>
+<th>주요 변수</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>서울시 버스도착 정보 조회</td>
+<td>서울특별시/서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-1091/L/1/datasetView.do</td>
+<td>API, 활용가이드 DOCX</td>
+<td>버스 기본정보, 현재위치, 도착예정시간</td>
+<td>정류소·노선별 도착예정시간, 지연시간 산출</td>
+<td>인증키 필요</td>
+</tr>
+<tr>
+<td>서울시 버스위치 정보 조회</td>
+<td>서울특별시/서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-1093/L/1/datasetView.do</td>
+<td>API</td>
+<td>차량번호, 정류소 도착 여부, 종점 도착 소요시간</td>
+<td>버스 이동 상황 및 지연 보조변수</td>
+<td>인증키 필요</td>
+</tr>
+<tr>
+<td>서울시 대중교통 환승경로 조회</td>
+<td>서울특별시/서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-1092/L/1/datasetView.do</td>
+<td>API, 활용가이드 DOCX</td>
+<td>환승정보, 경유노선정보, 버스/지하철 경로</td>
+<td>대체 통학 경로 후보 및 환승 횟수 산출</td>
+<td>인증키 필요</td>
+</tr>
+<tr>
+<td>서울교통공사_지하철혼잡도정보</td>
+<td>서울교통공사/서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-12928/F/1/datasetView.do</td>
+<td>CSV/XLSX/파일 다운로드</td>
+<td>요일구분, 호선, 역번호, 역명, 상하선, 30분 단위 혼잡도</td>
+<td>등교 시간 지하철 혼잡도 변수 생성</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울교통공사_지하철혼잡도정보</td>
+<td>서울교통공사/공공데이터포털</td>
+<td>https://www.data.go.kr/data/15071311/fileData.do</td>
+<td>XML/JSON/원문파일</td>
+<td>호선, 역명, 30분 단위 혼잡도</td>
+<td>서울 열린데이터와 교차 확인</td>
+<td>다운로드 가능</td>
+</tr>
+<tr>
+<td>기상청_단기예보 조회서비스</td>
+<td>기상청/공공데이터포털</td>
+<td>https://www.data.go.kr/data/15084084/openapi.do</td>
+<td>API, XML/JSON</td>
+<td>초단기실황, 초단기예보, 단기예보, 강수, 기온</td>
+<td>등교 시간 비 여부, 기온 변수 생성</td>
+<td>API키 필요</td>
+</tr>
+<tr>
+<td>학생 학교 도착시간 설문</td>
+<td>학교 자체 조사</td>
+<td>Google Forms/Excel 직접 수집</td>
+<td>XLSX/CSV</td>
+<td>집 출발시각, 학교 도착시각, 이용수단, 체감 혼잡도</td>
+<td>종속변수 및 개인 행동 변수 생성</td>
+<td>학생 설문 필요</td>
+</tr>
+</tbody></table></div>
+<h3 id="SPSS_Steps">SPSS_Steps</h3>
+<p>SPSS_Steps: 10행 x 4열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>Data 시트를 SPSS에서 불러온다.</td>
+<td>파일 → 열기 → 데이터</td>
+<td>첫 행을 변수명으로 읽고, 변수보기에서 측도 지정</td>
+</tr>
+<tr>
+<td>2. 지각 여부 확인</td>
+<td>arrival_min과 school_start_min으로 late_min, late_yn 검산</td>
+<td>변환 → 변수 계산</td>
+<td>late_min = max(0, arrival_min - school_start_min)</td>
+</tr>
+<tr>
+<td>3. 기술통계</td>
+<td>통학시간, 지연시간, 혼잡도, 위험점수의 평균과 분포 확인</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>평균, 표준편차, 최솟값, 최댓값 해석</td>
+</tr>
+<tr>
+<td>4. 요일별 패턴</td>
+<td>요일에 따라 지각시간이 달라지는지 확인</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>월·목요일 지각 증가 여부 해석</td>
+</tr>
+<tr>
+<td>5. 경로별 비교</td>
+<td>통학경로별 평균 통학시간과 지각률 비교</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>버스직행, 지하철중심 등 비교</td>
+</tr>
+<tr>
+<td>6. 상관분석</td>
+<td>출발시각, 버스 지연, 혼잡도와 지각시간의 관계 확인</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>상관계수의 방향과 크기 해석</td>
+</tr>
+<tr>
+<td>7. 선형회귀분석</td>
+<td>late_min을 설명하는 주요 요인 파악</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>버스 지연, 비, 환승횟수, 출발시각 효과 해석</td>
+</tr>
+<tr>
+<td>8. 로지스틱 회귀분석</td>
+<td>late_yn=1이 될 가능성을 예측</td>
+<td>분석 → 회귀분석 → 이분형 로지스틱</td>
+<td>Exp(B)를 통해 지각 가능성 증가 요인 해석</td>
+</tr>
+<tr>
+<td>9. 산점도/그래프</td>
+<td>지각 위험점수와 경로 안정성을 시각화</td>
+<td>그래프 → 차트 작성기</td>
+<td>위험이 높은 학생-요일 조합 식별</td>
+</tr>
+</tbody></table></div>
+<h3 id="Summary">Summary</h3>
+<p>Summary: 26행 x 5열 / 미리보기 10행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>항목</th>
+<th>값</th>
+<th>해석</th>
+<th></th>
+<th></th>
+</tr></thead>
+<tbody>
+<tr>
+<td>총 관측치</td>
+<td>50</td>
+<td>학생×날짜 단위 50행 시범 데이터</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>평균 통학시간</td>
+<td>40.8</td>
+<td>등교 소요시간 평균</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>평균 지각시간</td>
+<td>1.5</td>
+<td>0분 포함 평균</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>전체 지각률(%)</td>
+<td>34</td>
+<td>arrival_min &gt; 480인 비율</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>평균 버스 지연시간</td>
+<td>3</td>
+<td>버스 미이용 0 포함</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>평균 지하철 혼잡도</td>
+<td>135</td>
+<td>지하철 이용 관측치 기준</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>최고 위험 경로</td>
+<td>도보+마을버스</td>
+<td>평균 지각위험점수 기준</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>통학 경로</td>
+<td>평균 통학시간</td>
+<td>지각률(%)</td>
+<td>평균 지각위험점수</td>
+<td>평균 경로안정성</td>
+</tr>
+</tbody></table></div>
+<h2 id="데이터-출처">데이터 출처</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">02_data_sources.xlsx</span></li>
+</ul>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 8행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>다운로드/API 링크</th>
+<th>파일 형식</th>
+<th>주요 변수</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>서울시 버스도착 정보 조회</td>
+<td>서울특별시/서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-1091/L/1/datasetView.do</td>
+<td>API, 활용가이드 DOCX</td>
+<td>버스 기본정보, 현재위치, 도착예정시간</td>
+<td>정류소·노선별 도착예정시간, 지연시간 산출</td>
+<td>인증키 필요</td>
+</tr>
+<tr>
+<td>서울시 버스위치 정보 조회</td>
+<td>서울특별시/서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-1093/L/1/datasetView.do</td>
+<td>API</td>
+<td>차량번호, 정류소 도착 여부, 종점 도착 소요시간</td>
+<td>버스 이동 상황 및 지연 보조변수</td>
+<td>인증키 필요</td>
+</tr>
+<tr>
+<td>서울시 대중교통 환승경로 조회</td>
+<td>서울특별시/서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-1092/L/1/datasetView.do</td>
+<td>API, 활용가이드 DOCX</td>
+<td>환승정보, 경유노선정보, 버스/지하철 경로</td>
+<td>대체 통학 경로 후보 및 환승 횟수 산출</td>
+<td>인증키 필요</td>
+</tr>
+<tr>
+<td>서울교통공사_지하철혼잡도정보</td>
+<td>서울교통공사/서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-12928/F/1/datasetView.do</td>
+<td>CSV/XLSX/파일 다운로드</td>
+<td>요일구분, 호선, 역번호, 역명, 상하선, 30분 단위 혼잡도</td>
+<td>등교 시간 지하철 혼잡도 변수 생성</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울교통공사_지하철혼잡도정보</td>
+<td>서울교통공사/공공데이터포털</td>
+<td>https://www.data.go.kr/data/15071311/fileData.do</td>
+<td>XML/JSON/원문파일</td>
+<td>호선, 역명, 30분 단위 혼잡도</td>
+<td>서울 열린데이터와 교차 확인</td>
+<td>다운로드 가능</td>
+</tr>
+<tr>
+<td>기상청_단기예보 조회서비스</td>
+<td>기상청/공공데이터포털</td>
+<td>https://www.data.go.kr/data/15084084/openapi.do</td>
+<td>API, XML/JSON</td>
+<td>초단기실황, 초단기예보, 단기예보, 강수, 기온</td>
+<td>등교 시간 비 여부, 기온 변수 생성</td>
+<td>API키 필요</td>
+</tr>
+<tr>
+<td>학생 학교 도착시간 설문</td>
+<td>학교 자체 조사</td>
+<td>Google Forms/Excel 직접 수집</td>
+<td>XLSX/CSV</td>
+<td>집 출발시각, 학교 도착시각, 이용수단, 체감 혼잡도</td>
+<td>종속변수 및 개인 행동 변수 생성</td>
+<td>학생 설문 필요</td>
+</tr>
+</tbody></table></div>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

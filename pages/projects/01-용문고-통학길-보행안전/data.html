@@ -1,0 +1,923 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>용문고 통학길 보행안전 - 데이터 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="용문고-통학길-보행안전---데이터">용문고 통학길 보행안전 - 데이터</h1>
+<p>상위 노트: <a href="01-%EC%9A%A9%EB%AC%B8%EA%B3%A0-%ED%86%B5%ED%95%99%EA%B8%B8-%EB%B3%B4%ED%96%89%EC%95%88%EC%A0%84.html">용문고 통학길 보행안전</a></p>
+<p>관련 개념: <a href="../../concepts/%EC%BD%94%EB%93%9C%EB%B6%81%EA%B3%BC%20%EB%B3%80%EC%88%98%20%EC%A0%95%EC%9D%98.html">concepts/코드북과 변수 정의</a>, <a href="../../concepts/%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EA%B8%B0%EB%B0%98%20%ED%83%90%EA%B5%AC.html">concepts/공공데이터 기반 탐구</a></p>
+<h2 id="코드북">코드북</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">01_codebook.xlsx</span></li>
+</ul>
+<h3 id="01_codebook-xlsx">01_codebook.xlsx</h3>
+<p>Codebook: 33행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>데이터 유형</th>
+<th>SPSS 측도</th>
+<th>실제 데이터 출처</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>obs_id</td>
+<td>관찰 단위 ID</td>
+<td>문자</td>
+<td>문자</td>
+<td>명목</td>
+<td>시범용 가상 데이터</td>
+<td>각 행은 통학로 구간 관찰값</td>
+</tr>
+<tr>
+<td>segment_id</td>
+<td>도로 구간 ID</td>
+<td>문자</td>
+<td>문자</td>
+<td>명목</td>
+<td>현장 구간 설정</td>
+<td>동일 구간을 여러 시간대에 관찰 가능</td>
+</tr>
+<tr>
+<td>route_name</td>
+<td>도로 구간명</td>
+<td>문자</td>
+<td>문자</td>
+<td>명목</td>
+<td>학생 현장조사</td>
+<td>학생이 이해할 수 있는 구간명</td>
+</tr>
+<tr>
+<td>district</td>
+<td>자치구</td>
+<td>문자</td>
+<td>문자</td>
+<td>명목</td>
+<td>서울시 주소/행정구역</td>
+<td>본 예시는 성북구</td>
+</tr>
+<tr>
+<td>observed_date</td>
+<td>관찰일</td>
+<td>YYYY-MM-DD</td>
+<td>날짜</td>
+<td>명목</td>
+<td>학생 현장조사</td>
+<td>SPSS에서는 문자열 또는 날짜로 처리</td>
+</tr>
+<tr>
+<td>time_slot</td>
+<td>관찰 시간대</td>
+<td>문자</td>
+<td>문자</td>
+<td>명목</td>
+<td>학생 현장조사</td>
+<td>등교/하교 시간대 구분</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>위도</td>
+<td>WGS84</td>
+<td>숫자</td>
+<td>척도</td>
+<td>서울시 공간데이터/현장 좌표</td>
+<td>실제 데이터 교체 시 공식 좌표 사용</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>경도</td>
+<td>WGS84</td>
+<td>숫자</td>
+<td>척도</td>
+<td>서울시 공간데이터/현장 좌표</td>
+<td>실제 데이터 교체 시 공식 좌표 사용</td>
+</tr>
+<tr>
+<td>distance_m</td>
+<td>학교 정문과의 거리</td>
+<td>m</td>
+<td>숫자</td>
+<td>척도</td>
+<td>좌표 거리계산</td>
+<td>Google My Maps/QGIS 활용 가능</td>
+</tr>
+<tr>
+<td>road_type</td>
+<td>도로 유형</td>
+<td>분류</td>
+<td>문자</td>
+<td>명목</td>
+<td>현장조사/도로자료</td>
+<td>주간선도로, 이면도로 등</td>
+</tr>
+<tr>
+<td>crosswalk_count_100m</td>
+<td>반경 100m 내 횡단보도 수</td>
+<td>개</td>
+<td>숫자</td>
+<td>척도</td>
+<td>서울시 대로변 횡단보도 위치정보, 자치구별 횡단보도 자료</td>
+<td>공간 결합 후 산출</td>
+</tr>
+<tr>
+<td>signal_count_100m</td>
+<td>반경 100m 내 신호등 수</td>
+<td>개</td>
+<td>숫자</td>
+<td>척도</td>
+<td>서울시 자치구별 신호등 및 횡단보도 위치 및 현황</td>
+<td>공간 결합 후 산출</td>
+</tr>
+<tr>
+<td>bus_stop_count_100m</td>
+<td>반경 100m 내 버스정류장 수</td>
+<td>개</td>
+<td>숫자</td>
+<td>척도</td>
+<td>서울시 버스정류소 위치정보</td>
+<td>공간 결합 후 산출</td>
+</tr>
+<tr>
+<td>accident_3yr</td>
+<td>최근 3년 전체 교통사고 건수</td>
+<td>건</td>
+<td>숫자</td>
+<td>척도</td>
+<td>TAAS 교통사고 GIS</td>
+<td>지도 조회 후 구간별 집계</td>
+</tr>
+<tr>
+<td>ped_accident_3yr</td>
+<td>최근 3년 보행자 사고 건수</td>
+<td>건</td>
+<td>숫자</td>
+<td>척도</td>
+<td>TAAS 교통사고 GIS, 보행자 교통사고 다발지역 API</td>
+<td>보행자 사고 중심</td>
+</tr>
+<tr>
+<td>severe_accident_3yr</td>
+<td>최근 3년 중상 이상 사고 건수</td>
+<td>건</td>
+<td>숫자</td>
+<td>척도</td>
+<td>한국도로교통공단 보행자 사고 다발지역 API</td>
+<td>위험 가중치 반영</td>
+</tr>
+<tr>
+<td>floating_pop_2h</td>
+<td>등하교 2시간 추정 보행량</td>
+<td>명</td>
+<td>숫자</td>
+<td>척도</td>
+<td>학생 현장조사/생활인구 보조자료</td>
+<td>학생 10분 관찰값을 환산</td>
+</tr>
+<tr>
+<td>sidewalk_width_m</td>
+<td>보도 폭</td>
+<td>m</td>
+<td>숫자</td>
+<td>척도</td>
+<td>학생 현장조사</td>
+<td>줄자/지도 거리측정</td>
+</tr>
+<tr>
+<td>lane_count</td>
+<td>차로 수</td>
+<td>개</td>
+<td>숫자</td>
+<td>척도</td>
+<td>현장조사/도로자료</td>
+<td>차량 노출위험</td>
+</tr>
+<tr>
+<td>illegal_parking_30min</td>
+<td>30분 관찰 불법주정차 수</td>
+<td>대</td>
+<td>숫자</td>
+<td>척도</td>
+<td>학생 현장조사</td>
+<td>사진 기록 병행</td>
+</tr>
+<tr>
+<td>visibility_risk_1_5</td>
+<td>시야 방해 위험</td>
+<td>1~5점</td>
+<td>숫자</td>
+<td>서열</td>
+<td>학생 현장조사</td>
+<td>1 낮음, 5 매우 높음</td>
+</tr>
+<tr>
+<td>slope_risk_1_5</td>
+<td>경사 위험</td>
+<td>1~5점</td>
+<td>숫자</td>
+<td>서열</td>
+<td>현장조사/경사도 자료</td>
+<td>1 낮음, 5 매우 높음</td>
+</tr>
+<tr>
+<td>school_zone</td>
+<td>학교 근접/보호구역 여부</td>
+<td>0/1</td>
+<td>숫자</td>
+<td>명목</td>
+<td>현장조사/보호구역 자료</td>
+<td>0 아니오, 1 예</td>
+</tr>
+<tr>
+<td>student_flow_score_1_5</td>
+<td>학생 통행 집중도</td>
+<td>1~5점</td>
+<td>숫자</td>
+<td>서열</td>
+<td>학생 현장조사</td>
+<td>보행량을 5단계로 환산</td>
+</tr>
+<tr>
+<td>accident_score</td>
+<td>사고위험 점수</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>계산변수</td>
+<td>사고건수·보행자사고·중상사고 가중합</td>
+</tr>
+<tr>
+<td>exposure_score</td>
+<td>노출위험 점수</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>계산변수</td>
+<td>보행량·버스정류장·횡단보도 반영</td>
+</tr>
+<tr>
+<td>environment_score</td>
+<td>도로환경위험 점수</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>계산변수</td>
+<td>보도폭, 차로수, 주정차, 시야, 경사 반영</td>
+</tr>
+<tr>
+<td>school_score</td>
+<td>통학집중위험 점수</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>계산변수</td>
+<td>학교 거리, 학생집중도, 보호구역 반영</td>
+</tr>
+<tr>
+<td>risk_score</td>
+<td>최종 위험점수</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>계산변수</td>
+<td>0.35<em>사고+0.25</em>노출+0.25<em>환경+0.15</em>통학</td>
+</tr>
+<tr>
+<td>risk_grade</td>
+<td>위험등급</td>
+<td>문자</td>
+<td>문자</td>
+<td>서열</td>
+<td>계산변수</td>
+<td>매우 높음/높음/보통/낮음</td>
+</tr>
+<tr>
+<td>priority_group</td>
+<td>개선 우선순위</td>
+<td>문자</td>
+<td>문자</td>
+<td>서열</td>
+<td>계산변수</td>
+<td>1순위/2순위/3순위/관찰</td>
+</tr>
+<tr>
+<td>cluster_suggestion</td>
+<td>군집 해석 제안</td>
+<td>문자</td>
+<td>문자</td>
+<td>명목</td>
+<td>계산변수</td>
+<td>K-평균 군집분석 후 비교 가능</td>
+</tr>
+</tbody></table></div>
+<h2 id="CSV-데이터셋">CSV 데이터셋</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">01_dataset.csv</span></li>
+</ul>
+<ul>
+<li>크기: 50행 x 32열</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>obs_id</th>
+<th>segment_id</th>
+<th>route_name</th>
+<th>district</th>
+<th>observed_date</th>
+<th>time_slot</th>
+<th>latitude</th>
+<th>longitude</th>
+<th>distance_m</th>
+<th>road_type</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>R01_1</td>
+<td>R01</td>
+<td>정문 앞 횡단보도</td>
+<td>성북구</td>
+<td>2026-05-11</td>
+<td>등교 07:30-08:30</td>
+<td>37.586177</td>
+<td>127.028061</td>
+<td>472</td>
+<td>주간선도로</td>
+</tr>
+<tr>
+<td>R02_1</td>
+<td>R02</td>
+<td>정문-큰길 연결 골목</td>
+<td>성북구</td>
+<td>2026-05-12</td>
+<td>하교 15:30-16:30</td>
+<td>37.587534</td>
+<td>127.027164</td>
+<td>416</td>
+<td>보조간선도로</td>
+</tr>
+<tr>
+<td>R03_1</td>
+<td>R03</td>
+<td>버스정류장 인접 구간</td>
+<td>성북구</td>
+<td>2026-05-13</td>
+<td>등교 07:30-08:30</td>
+<td>37.587241</td>
+<td>127.01843</td>
+<td>390</td>
+<td>이면도로</td>
+</tr>
+<tr>
+<td>R04_1</td>
+<td>R04</td>
+<td>대형 교차로 접근부</td>
+<td>성북구</td>
+<td>2026-05-14</td>
+<td>하교 15:30-16:30</td>
+<td>37.585243</td>
+<td>127.021833</td>
+<td>140</td>
+<td>골목길</td>
+</tr>
+<tr>
+<td>R05_1</td>
+<td>R05</td>
+<td>이면도로 급경사 구간</td>
+<td>성북구</td>
+<td>2026-05-15</td>
+<td>등교 07:30-08:30</td>
+<td>37.584112</td>
+<td>127.018341</td>
+<td>454</td>
+<td>교차로 접근부</td>
+</tr>
+<tr>
+<td>R06_1</td>
+<td>R06</td>
+<td>학원가·상가 밀집 보행로</td>
+<td>성북구</td>
+<td>2026-05-16</td>
+<td>하교 15:30-16:30</td>
+<td>37.584309</td>
+<td>127.025872</td>
+<td>356</td>
+<td>주간선도로</td>
+</tr>
+<tr>
+<td>R07_1</td>
+<td>R07</td>
+<td>아파트 단지 후문 통학로</td>
+<td>성북구</td>
+<td>2026-05-17</td>
+<td>등교 07:30-08:30</td>
+<td>37.586662</td>
+<td>127.017196</td>
+<td>486</td>
+<td>보조간선도로</td>
+</tr>
+<tr>
+<td>R08_1</td>
+<td>R08</td>
+<td>무신호 횡단 지점</td>
+<td>성북구</td>
+<td>2026-05-18</td>
+<td>하교 15:30-16:30</td>
+<td>37.586788</td>
+<td>127.026249</td>
+<td>317</td>
+<td>이면도로</td>
+</tr>
+</tbody></table></div>
+<h2 id="엑셀-데이터셋-미리보기">엑셀 데이터셋 미리보기</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">01_dataset.xlsx</span></li>
+</ul>
+<h3 id="Data">Data</h3>
+<p>Data: 51행 x 32열 / 미리보기 10행 x 10열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>obs_id</th>
+<th>segment_id</th>
+<th>route_name</th>
+<th>district</th>
+<th>observed_date</th>
+<th>time_slot</th>
+<th>latitude</th>
+<th>longitude</th>
+<th>distance_m</th>
+<th>road_type</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>R01_1</td>
+<td>R01</td>
+<td>정문 앞 횡단보도</td>
+<td>성북구</td>
+<td>2026-05-11</td>
+<td>등교 07:30-08:30</td>
+<td>37.586177</td>
+<td>127.028061</td>
+<td>472</td>
+<td>주간선도로</td>
+</tr>
+<tr>
+<td>R02_1</td>
+<td>R02</td>
+<td>정문-큰길 연결 골목</td>
+<td>성북구</td>
+<td>2026-05-12</td>
+<td>하교 15:30-16:30</td>
+<td>37.587534</td>
+<td>127.027164</td>
+<td>416</td>
+<td>보조간선도로</td>
+</tr>
+<tr>
+<td>R03_1</td>
+<td>R03</td>
+<td>버스정류장 인접 구간</td>
+<td>성북구</td>
+<td>2026-05-13</td>
+<td>등교 07:30-08:30</td>
+<td>37.587241</td>
+<td>127.01843</td>
+<td>390</td>
+<td>이면도로</td>
+</tr>
+<tr>
+<td>R04_1</td>
+<td>R04</td>
+<td>대형 교차로 접근부</td>
+<td>성북구</td>
+<td>2026-05-14</td>
+<td>하교 15:30-16:30</td>
+<td>37.585243</td>
+<td>127.021833</td>
+<td>140</td>
+<td>골목길</td>
+</tr>
+<tr>
+<td>R05_1</td>
+<td>R05</td>
+<td>이면도로 급경사 구간</td>
+<td>성북구</td>
+<td>2026-05-15</td>
+<td>등교 07:30-08:30</td>
+<td>37.584112</td>
+<td>127.018341</td>
+<td>454</td>
+<td>교차로 접근부</td>
+</tr>
+<tr>
+<td>R06_1</td>
+<td>R06</td>
+<td>학원가·상가 밀집 보행로</td>
+<td>성북구</td>
+<td>2026-05-16</td>
+<td>하교 15:30-16:30</td>
+<td>37.584309</td>
+<td>127.025872</td>
+<td>356</td>
+<td>주간선도로</td>
+</tr>
+<tr>
+<td>R07_1</td>
+<td>R07</td>
+<td>아파트 단지 후문 통학로</td>
+<td>성북구</td>
+<td>2026-05-17</td>
+<td>등교 07:30-08:30</td>
+<td>37.586662</td>
+<td>127.017196</td>
+<td>486</td>
+<td>보조간선도로</td>
+</tr>
+<tr>
+<td>R08_1</td>
+<td>R08</td>
+<td>무신호 횡단 지점</td>
+<td>성북구</td>
+<td>2026-05-18</td>
+<td>하교 15:30-16:30</td>
+<td>37.586788</td>
+<td>127.026249</td>
+<td>317</td>
+<td>이면도로</td>
+</tr>
+<tr>
+<td>R09_1</td>
+<td>R09</td>
+<td>보도 폭 협소 구간</td>
+<td>성북구</td>
+<td>2026-05-19</td>
+<td>등교 07:30-08:30</td>
+<td>37.591819</td>
+<td>127.02209</td>
+<td>615</td>
+<td>골목길</td>
+</tr>
+</tbody></table></div>
+<h3 id="Codebook">Codebook</h3>
+<p>Codebook: 33행 x 7열 / 미리보기 10행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>데이터 유형</th>
+<th>SPSS 측도</th>
+<th>실제 데이터 출처</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>obs_id</td>
+<td>관찰 단위 ID</td>
+<td>문자</td>
+<td>문자</td>
+<td>명목</td>
+<td>시범용 가상 데이터</td>
+<td>각 행은 통학로 구간 관찰값</td>
+</tr>
+<tr>
+<td>segment_id</td>
+<td>도로 구간 ID</td>
+<td>문자</td>
+<td>문자</td>
+<td>명목</td>
+<td>현장 구간 설정</td>
+<td>동일 구간을 여러 시간대에 관찰 가능</td>
+</tr>
+<tr>
+<td>route_name</td>
+<td>도로 구간명</td>
+<td>문자</td>
+<td>문자</td>
+<td>명목</td>
+<td>학생 현장조사</td>
+<td>학생이 이해할 수 있는 구간명</td>
+</tr>
+<tr>
+<td>district</td>
+<td>자치구</td>
+<td>문자</td>
+<td>문자</td>
+<td>명목</td>
+<td>서울시 주소/행정구역</td>
+<td>본 예시는 성북구</td>
+</tr>
+<tr>
+<td>observed_date</td>
+<td>관찰일</td>
+<td>YYYY-MM-DD</td>
+<td>날짜</td>
+<td>명목</td>
+<td>학생 현장조사</td>
+<td>SPSS에서는 문자열 또는 날짜로 처리</td>
+</tr>
+<tr>
+<td>time_slot</td>
+<td>관찰 시간대</td>
+<td>문자</td>
+<td>문자</td>
+<td>명목</td>
+<td>학생 현장조사</td>
+<td>등교/하교 시간대 구분</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>위도</td>
+<td>WGS84</td>
+<td>숫자</td>
+<td>척도</td>
+<td>서울시 공간데이터/현장 좌표</td>
+<td>실제 데이터 교체 시 공식 좌표 사용</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>경도</td>
+<td>WGS84</td>
+<td>숫자</td>
+<td>척도</td>
+<td>서울시 공간데이터/현장 좌표</td>
+<td>실제 데이터 교체 시 공식 좌표 사용</td>
+</tr>
+<tr>
+<td>distance_m</td>
+<td>학교 정문과의 거리</td>
+<td>m</td>
+<td>숫자</td>
+<td>척도</td>
+<td>좌표 거리계산</td>
+<td>Google My Maps/QGIS 활용 가능</td>
+</tr>
+</tbody></table></div>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 8행 x 8열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>공식 링크</th>
+<th>파일 형식</th>
+<th>주요 변수</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성</th>
+<th>활용 절차</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>서울시 대로변 횡단보도 위치정보</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/OA-21209/S/1/datasetView.do?tab=A</td>
+<td>Open API/CSV</td>
+<td>횡단보도 위치, 길이, WGS84 좌표</td>
+<td>반경 100m 횡단보도 수, 횡단거리 분석</td>
+<td>즉시 조회/API 또는 CSV 가능</td>
+<td>서울 열린데이터광장에서 다운로드 또는 API 신청 후 성북구·학교 주변 필터링</td>
+</tr>
+<tr>
+<td>서울시 버스정류소 위치정보</td>
+<td>서울특별시 교통정보과</td>
+<td>https://data.seoul.go.kr/dataList/OA-15067/S/1/datasetView.do</td>
+<td>CSV/XLSX</td>
+<td>정류소ID, ARS-ID, 정류소명, 좌표</td>
+<td>버스정류장 인접 위험, 승하차 혼잡 분석</td>
+<td>즉시 다운로드 가능</td>
+<td>파일 다운로드 후 ARS-ID 앞자리 0 보존, 성북구 주변 필터링</td>
+</tr>
+<tr>
+<td>서울시 자치구별 신호등 및 횡단보도 위치 및 현황</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/OA-22364/F/1/datasetView.do</td>
+<td>XLSX/CSV</td>
+<td>관리번호, 종류, 주소, 교차로명, X좌표, Y좌표</td>
+<td>신호등·횡단보도 시설밀도 분석</td>
+<td>즉시 다운로드 가능</td>
+<td>자치구명=성북구 필터링 후 학교 주변 추출</td>
+</tr>
+<tr>
+<td>TAAS 교통사고 GIS</td>
+<td>한국도로교통공단</td>
+<td>https://taas.koroad.or.kr/web/shp/sbm/initGisAnals.do?menuId=WEB_KMP_GIS_TAS</td>
+<td>지도 조회/CSV 가능 여부는 조건별 상이</td>
+<td>사고 위치, 사고유형, 지역별·경찰서별 사고정보</td>
+<td>최근 3년 사고건수와 보행자사고 추출</td>
+<td>지도 조회 후 수작업 또는 조건별 다운로드 필요</td>
+<td>성북구·학교 주변·최근 3년·보행자 사고 조건으로 조회</td>
+</tr>
+<tr>
+<td>한국도로교통공단 보행자 교통사고 다발지역 API</td>
+<td>한국도로교통공단</td>
+<td>https://www.data.go.kr/data/15105289/openapi.do?recommendDataYn=Y</td>
+<td>API XML/JSON/WMS</td>
+<td>다발지역명, 사고건수, 사상자수, 경도, 위도, 폴리곤</td>
+<td>보행자 사고 다발지역 여부 확인</td>
+<td>회원가입/API키 필요</td>
+<td>공공데이터포털 API 신청 후 연도·시도·시군구 코드 입력</td>
+</tr>
+<tr>
+<td>서울 생활인구/유동인구 보조자료</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataVisual/seoul/seoulLivingPopulation.do</td>
+<td>CSV/시각화</td>
+<td>시간대·지역별 생활인구</td>
+<td>등하교 시간 보행노출 보조변수</td>
+<td>조회/다운로드 가능</td>
+<td>행정동 단위로 보조 활용, 학생 현장조사와 병행</td>
+</tr>
+<tr>
+<td>학생 현장 관찰 데이터</td>
+<td>학생 직접 수집</td>
+<td>학교 자체 조사</td>
+<td>XLSX/Google Form</td>
+<td>보행량, 불법주정차, 보도폭, 시야위험, 사진기록</td>
+<td>공식 데이터가 포착하지 못하는 생활위험 보완</td>
+<td>학생 조사 필요</td>
+<td>관찰지로 2주간 10분 단위 측정 후 SPSS 입력</td>
+</tr>
+</tbody></table></div>
+<h3 id="SPSS_Steps">SPSS_Steps</h3>
+<p>SPSS_Steps: 9행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>XLSX 또는 CSV를 SPSS로 가져오기</td>
+<td>전체 변수</td>
+<td>파일 → 열기 → 데이터</td>
+<td>첫 행을 변수명으로 인식하고 변수보기에서 측도 확인</td>
+</tr>
+<tr>
+<td>2. 빈도분석</td>
+<td>위험등급·도로유형의 분포 확인</td>
+<td>risk_grade, road_type, time_slot</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>고위험 구간이 몇 개인지 파악</td>
+</tr>
+<tr>
+<td>3. 기술통계</td>
+<td>주요 위험요인의 평균·최댓값 확인</td>
+<td>accident_3yr, ped_accident_3yr, floating_pop_2h, sidewalk_width_m, risk_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>어떤 변수가 전체 위험을 높이는지 기초 진단</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>위험점수와 요인 간 관계 확인</td>
+<td>risk_score, accident_3yr, ped_accident_3yr, floating_pop_2h, illegal_parking_30min, sidewalk_width_m</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>위험점수와 가장 관련이 큰 변수를 찾음</td>
+</tr>
+<tr>
+<td>5. 회귀분석</td>
+<td>위험점수를 설명하는 핵심 요인 검증</td>
+<td>risk_score 종속변수 / 사고·보행량·정류장·보도폭·주정차 독립변수</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>위험점수에 유의한 영향을 주는 변수 확인</td>
+</tr>
+<tr>
+<td>6. 군집분석</td>
+<td>위험구간 유형 분류</td>
+<td>accident_score, exposure_score, environment_score, school_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>사고위험형, 노출위험형, 환경개선형 등으로 명명</td>
+</tr>
+<tr>
+<td>7. 지도형 산점도</td>
+<td>위험지도 시각화</td>
+<td>longitude, latitude, risk_score, risk_grade</td>
+<td>그래프 → 차트 작성기 → 산점도</td>
+<td>학교 주변의 위험점 분포를 시각적으로 설명</td>
+</tr>
+<tr>
+<td>8. 개선 우선순위 도출</td>
+<td>구간별 정책 제안 연결</td>
+<td>priority_group, risk_grade, cluster_suggestion</td>
+<td>데이터 → 케이스 정렬</td>
+<td>1순위 구간부터 학교·구청 제안서 작성</td>
+</tr>
+</tbody></table></div>
+<h2 id="데이터-출처">데이터 출처</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">01_data_sources.xlsx</span></li>
+</ul>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 8행 x 8열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>공식 링크</th>
+<th>파일 형식</th>
+<th>주요 변수</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성</th>
+<th>활용 절차</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>서울시 대로변 횡단보도 위치정보</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/OA-21209/S/1/datasetView.do?tab=A</td>
+<td>Open API/CSV</td>
+<td>횡단보도 위치, 길이, WGS84 좌표</td>
+<td>반경 100m 횡단보도 수, 횡단거리 분석</td>
+<td>즉시 조회/API 또는 CSV 가능</td>
+<td>서울 열린데이터광장에서 다운로드 또는 API 신청 후 성북구·학교 주변 필터링</td>
+</tr>
+<tr>
+<td>서울시 버스정류소 위치정보</td>
+<td>서울특별시 교통정보과</td>
+<td>https://data.seoul.go.kr/dataList/OA-15067/S/1/datasetView.do</td>
+<td>CSV/XLSX</td>
+<td>정류소ID, ARS-ID, 정류소명, 좌표</td>
+<td>버스정류장 인접 위험, 승하차 혼잡 분석</td>
+<td>즉시 다운로드 가능</td>
+<td>파일 다운로드 후 ARS-ID 앞자리 0 보존, 성북구 주변 필터링</td>
+</tr>
+<tr>
+<td>서울시 자치구별 신호등 및 횡단보도 위치 및 현황</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/OA-22364/F/1/datasetView.do</td>
+<td>XLSX/CSV</td>
+<td>관리번호, 종류, 주소, 교차로명, X좌표, Y좌표</td>
+<td>신호등·횡단보도 시설밀도 분석</td>
+<td>즉시 다운로드 가능</td>
+<td>자치구명=성북구 필터링 후 학교 주변 추출</td>
+</tr>
+<tr>
+<td>TAAS 교통사고 GIS</td>
+<td>한국도로교통공단</td>
+<td>https://taas.koroad.or.kr/web/shp/sbm/initGisAnals.do?menuId=WEB_KMP_GIS_TAS</td>
+<td>지도 조회/CSV 가능 여부는 조건별 상이</td>
+<td>사고 위치, 사고유형, 지역별·경찰서별 사고정보</td>
+<td>최근 3년 사고건수와 보행자사고 추출</td>
+<td>지도 조회 후 수작업 또는 조건별 다운로드 필요</td>
+<td>성북구·학교 주변·최근 3년·보행자 사고 조건으로 조회</td>
+</tr>
+<tr>
+<td>한국도로교통공단 보행자 교통사고 다발지역 API</td>
+<td>한국도로교통공단</td>
+<td>https://www.data.go.kr/data/15105289/openapi.do?recommendDataYn=Y</td>
+<td>API XML/JSON/WMS</td>
+<td>다발지역명, 사고건수, 사상자수, 경도, 위도, 폴리곤</td>
+<td>보행자 사고 다발지역 여부 확인</td>
+<td>회원가입/API키 필요</td>
+<td>공공데이터포털 API 신청 후 연도·시도·시군구 코드 입력</td>
+</tr>
+<tr>
+<td>서울 생활인구/유동인구 보조자료</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataVisual/seoul/seoulLivingPopulation.do</td>
+<td>CSV/시각화</td>
+<td>시간대·지역별 생활인구</td>
+<td>등하교 시간 보행노출 보조변수</td>
+<td>조회/다운로드 가능</td>
+<td>행정동 단위로 보조 활용, 학생 현장조사와 병행</td>
+</tr>
+<tr>
+<td>학생 현장 관찰 데이터</td>
+<td>학생 직접 수집</td>
+<td>학교 자체 조사</td>
+<td>XLSX/Google Form</td>
+<td>보행량, 불법주정차, 보도폭, 시야위험, 사진기록</td>
+<td>공식 데이터가 포착하지 못하는 생활위험 보완</td>
+<td>학생 조사 필요</td>
+<td>관찰지로 2주간 10분 단위 측정 후 SPSS 입력</td>
+</tr>
+</tbody></table></div>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

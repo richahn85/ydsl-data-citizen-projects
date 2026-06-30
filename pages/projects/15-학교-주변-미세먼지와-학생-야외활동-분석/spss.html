@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>학교 주변 미세먼지와 학생 야외활동 분석 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="학교-주변-미세먼지와-학생-야외활동-분석---SPSS">학교 주변 미세먼지와 학생 야외활동 분석 - SPSS</h1>
+<p>상위 노트: <a href="15-%ED%95%99%EA%B5%90-%EC%A3%BC%EB%B3%80-%EB%AF%B8%EC%84%B8%EB%A8%BC%EC%A7%80%EC%99%80-%ED%95%99%EC%83%9D-%EC%95%BC%EC%99%B8%ED%99%9C%EB%8F%99-%EB%B6%84%EC%84%9D.html">학교 주변 미세먼지와 학생 야외활동 분석</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">15_spss_guide.docx</span></p>
+<p>15번 SPSS 분석 가이드: 학교 주변 미세먼지와 학생 야외활동 분석</p>
+<p>이 문서는 15_dataset.xlsx 또는 15_dataset.csv를 SPSS에서 불러와 분석하는 절차를 안내한다.</p>
+<h2 id="1-데이터-불러오기">1. 데이터 불러오기</h2>
+<p>SPSS 실행 → 파일 → 열기 → 데이터 → Excel 또는 CSV 선택</p>
+<p>Excel을 사용할 경우 “데이터 첫 행에서 변수 이름 읽어오기”를 체크한다.</p>
+<p>변수 보기에서 case_id, weekday, location_id, location_name, activity_type 등은 명목, air_quality_level은 서열, pm10, pm25, risk_score 등은 척도로 설정한다.</p>
+<h2 id="2-분석-순서">2. 분석 순서</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>순서</th>
+<th>메뉴</th>
+<th>변수</th>
+<th>결과 해석</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>파일 → 열기 → 데이터</td>
+<td>15_dataset.xlsx 또는 CSV</td>
+<td>첫 행 변수명 읽기, 결측치 확인</td>
+</tr>
+<tr>
+<td>2. 빈도분석</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>air_quality_label, decision_label, activity_type</td>
+<td>대기질 단계와 활동 조정 결정 분포 확인</td>
+</tr>
+<tr>
+<td>3. 기술통계</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>pm10, pm25, ozone, risk_score, actual_outdoor_min</td>
+<td>평균·최소·최대·표준편차 확인</td>
+</tr>
+<tr>
+<td>4. 평균 비교</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>air_quality_level → actual_outdoor_min, risk_score</td>
+<td>미세먼지 단계별 야외활동 시간 차이 검증</td>
+</tr>
+<tr>
+<td>5. 상관분석</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>pm25, pm10, risk_score, actual_outdoor_min, symptom_score</td>
+<td>오염도와 위험점수·활동시간 관계 확인</td>
+</tr>
+<tr>
+<td>6. 회귀분석</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>종속: risk_score / 독립: pm25, pm10, ozone, symptom_score, sensitive_students</td>
+<td>위험점수 예측 요인 확인</td>
+</tr>
+<tr>
+<td>7. 로지스틱 회귀</td>
+<td>분석 → 회귀분석 → 이분형 로지스틱</td>
+<td>종속: outdoor_allowed_yn / 독립: pm25, pm10, ozone, rain_yn</td>
+<td>야외활동 가능 여부 예측</td>
+</tr>
+<tr>
+<td>8. 지도 시각화</td>
+<td>그래프 → 차트 작성기 → 산점도</td>
+<td>x_m, y_m, risk_score, location_name</td>
+<td>학교 주변 공간별 위험지도를 작성</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-권장-결과표">3. 권장 결과표</h2>
+<p>표 1: 대기질 단계별 사례 수와 의사결정 분포</p>
+<p>표 2: PM10, PM2.5, 오존, 위험점수의 기술통계</p>
+<p>표 3: 대기질 단계별 실제 야외활동 시간 평균 비교</p>
+<p>표 4: PM2.5, 증상점수, 위험점수 간 상관분석</p>
+<p>표 5: 야외활동 위험점수 회귀분석 결과</p>
+<h2 id="4-보고서-해석-문장-예시">4. 보고서 해석 문장 예시</h2>
+<p>“분석 결과 PM2.5가 높을수록 야외활동 위험점수가 높아졌고, 실제 야외활동 시간은 줄어드는 경향을 보였다. 따라서 학교는 미세먼지 농도만 확인하는 데서 그치지 말고, 학생 증상 설문과 민감군 학생 수를 함께 반영한 야외활동 의사결정 기준을 마련할 필요가 있다.”</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="15_spss_syntax-sps">15_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">15_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">* Project 15: 학교 주변 미세먼지와 학생 야외활동 분석.
+GET DATA /TYPE=XLSX
+  /FILE=&#x27;15_dataset.xlsx&#x27;
+  /SHEET=name &#x27;Data&#x27;
+  /READNAMES=ON.
+EXECUTE.
+
+FREQUENCIES VARIABLES=air_quality_label decision_label activity_type.
+DESCRIPTIVES VARIABLES=pm10 pm25 ozone temperature_c humidity_pct actual_outdoor_min symptom_score risk_score improvement_priority.
+
+ONEWAY actual_outdoor_min risk_score BY air_quality_level
+  /STATISTICS DESCRIPTIVES
+  /POSTHOC=TUKEY.
+
+CORRELATIONS
+  /VARIABLES=pm10 pm25 ozone risk_score actual_outdoor_min symptom_score concentration_after
+  /PRINT=TWOTAIL NOSIG.
+
+REGRESSION
+  /DEPENDENT risk_score
+  /METHOD=ENTER pm25 pm10 ozone symptom_score sensitive_students rain_yn.
+
+LOGISTIC REGRESSION VARIABLES outdoor_allowed_yn
+  /METHOD=ENTER pm25 pm10 ozone rain_yn sensitive_students
+  /PRINT=CI(95).
+
+QUICK CLUSTER pm25 pm10 ozone symptom_score risk_score actual_outdoor_min
+  /CRITERIA=CLUSTER(3) MXITER(10)
+  /SAVE CLUSTER.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

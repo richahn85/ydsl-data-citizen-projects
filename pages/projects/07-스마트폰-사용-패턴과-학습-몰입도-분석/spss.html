@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>스마트폰 사용 패턴과 학습 몰입도 분석 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="스마트폰-사용-패턴과-학습-몰입도-분석---SPSS">스마트폰 사용 패턴과 학습 몰입도 분석 - SPSS</h1>
+<p>상위 노트: <a href="07-%EC%8A%A4%EB%A7%88%ED%8A%B8%ED%8F%B0-%EC%82%AC%EC%9A%A9-%ED%8C%A8%ED%84%B4%EA%B3%BC-%ED%95%99%EC%8A%B5-%EB%AA%B0%EC%9E%85%EB%8F%84-%EB%B6%84%EC%84%9D.html">스마트폰 사용 패턴과 학습 몰입도 분석</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">07_spss_guide.docx</span></p>
+<ol>
+<li>스마트폰 사용 패턴과 학습 몰입도 분석</li>
+</ol>
+<p>SPSS 분석 가이드</p>
+<p>이 가이드는 07_dataset.xlsx 또는 07_dataset.csv를 SPSS에서 불러와 분석하는 절차를 설명한다. 분석의 핵심은 총 사용시간보다 사용 방식이 학습 몰입도를 더 잘 설명하는지 확인하는 것이다.</p>
+<h2 id="1-데이터-불러오기와-변수-확인">1. 데이터 불러오기와 변수 확인</h2>
+<p>SPSS에서 파일 → 열기 → 데이터를 선택한 뒤 07_dataset.xlsx의 Data 시트를 불러온다. 첫 행을 변수명으로 읽고, 변수 보기에서 grade, gender, phone_type_code, high_immersion은 명목 또는 서열, 사용시간·점수 변수는 척도로 설정한다.</p>
+<h2 id="2-분석-단계별-메뉴">2. 분석 단계별 메뉴</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>CSV/XLSX를 SPSS로 불러오기</td>
+<td>전체 변수</td>
+<td>파일 → 열기 → 데이터</td>
+<td>문자형/수치형 변수와 측도 확인</td>
+</tr>
+<tr>
+<td>2. 빈도분석</td>
+<td>성별·학년·사용 유형 분포 확인</td>
+<td>grade, gender, phone_type_code</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>표본 구성과 유형별 빈도 확인</td>
+</tr>
+<tr>
+<td>3. 기술통계</td>
+<td>사용시간·집중도·자기조절 평균 확인</td>
+<td>weekday_phone_min, shortform_min, bedtime_phone_min, concentration_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>평균, 표준편차, 최대/최소값 확인</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>사용 방식과 집중도의 관련성 탐색</td>
+<td>study_app_ratio, shortform_min, bedtime_phone_min, sleep_hours, concentration_score</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>전체 사용시간보다 사용 방식이 더 중요한지 확인</td>
+</tr>
+<tr>
+<td>5. 회귀분석</td>
+<td>학습 집중도 예측 요인 분석</td>
+<td>종속: concentration_score / 독립: study_app_ratio, shortform_min, bedtime_phone_min, sleep_hours, self_control_score</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>어떤 요인이 집중도를 설명하는지 확인</td>
+</tr>
+<tr>
+<td>6. 군집분석</td>
+<td>학생의 스마트폰 사용 유형 분류</td>
+<td>study_app_ratio, sns_min, shortform_min, game_min, bedtime_phone_min, self_control_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>학습도구형, 균형형, SNS·숏폼형, 게임형, 고위험분산형 도출</td>
+</tr>
+<tr>
+<td>7. 분산분석</td>
+<td>사용 유형별 집중도 차이 검증</td>
+<td>독립: phone_type_code / 종속: concentration_score, flow_score</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>유형별 평균 차이가 유의한지 확인</td>
+</tr>
+<tr>
+<td>8. 로지스틱 회귀</td>
+<td>고몰입 여부 예측</td>
+<td>종속: high_immersion / 독립: 사용 방식 변수</td>
+<td>분석 → 회귀분석 → 이분형 로지스틱</td>
+<td>고몰입 가능성을 높이는 요인 확인</td>
+</tr>
+<tr>
+<td>9. 그래프 작성</td>
+<td>핵심 결과 시각화</td>
+<td>study_app_ratio, concentration_score, phone_type_code</td>
+<td>그래프 → 차트 작성기</td>
+<td>산점도·막대그래프를 보고서에 삽입</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-권장-해석-순서">3. 권장 해석 순서</h2>
+<p>• 기술통계로 전체 사용시간과 집중도 평균을 먼저 확인한다.</p>
+<p>• 상관분석으로 총 사용시간, 학습 앱 비율, 숏폼 사용시간, 취침 전 사용시간이 집중도와 어떤 관련이 있는지 확인한다.</p>
+<p>• 회귀분석으로 집중도에 영향을 미치는 변수를 동시에 투입한다.</p>
+<p>• K-평균 군집분석으로 학생 사용 유형을 분류하고 유형별 집중도 차이를 분산분석으로 검증한다.</p>
+<p>• 결과를 학생 비난이 아니라 디지털 습관 개선안으로 연결한다.</p>
+<h2 id="4-SPSS-Syntax-예시">4. SPSS Syntax 예시</h2>
+<p>GET DATA /TYPE=XLSX /FILE=&#x27;07_dataset.xlsx&#x27; /SHEET=name &#x27;Data&#x27; /READNAMES=ON.</p>
+<p>EXECUTE.</p>
+<p>FREQUENCIES VARIABLES=grade gender phone_type_code high_immersion.</p>
+<p>DESCRIPTIVES VARIABLES=weekday_phone_min weekend_phone_min study_app_ratio shortform_min bedtime_phone_min sleep_hours concentration_score flow_score distraction_score self_control_score overuse_risk_score.</p>
+<p>CORRELATIONS /VARIABLES=weekday_phone_min study_app_ratio shortform_min game_min bedtime_phone_min sleep_hours self_control_score concentration_score flow_score.</p>
+<p>REGRESSION /DEPENDENT concentration_score /METHOD=ENTER study_app_ratio shortform_min bedtime_phone_min sleep_hours self_control_score weekday_phone_min.</p>
+<p>QUICK CLUSTER study_app_ratio sns_min shortform_min game_min bedtime_phone_min self_control_score /CRITERIA=CLUSTER(5) MXITER(10) /SAVE CLUSTER.</p>
+<p>ONEWAY concentration_score flow_score BY phone_type_code /STATISTICS DESCRIPTIVES /POSTHOC=TUKEY.</p>
+<p>LOGISTIC REGRESSION VARIABLES high_immersion /METHOD=ENTER study_app_ratio shortform_min bedtime_phone_min sleep_hours self_control_score overuse_risk_score.</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="07_spss_syntax-sps">07_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">07_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">GET DATA /TYPE=XLSX /FILE=&#x27;07_dataset.xlsx&#x27; /SHEET=name &#x27;Data&#x27; /READNAMES=ON.
+EXECUTE.
+
+FREQUENCIES VARIABLES=grade gender phone_type_code high_immersion.
+DESCRIPTIVES VARIABLES=weekday_phone_min weekend_phone_min study_app_ratio shortform_min bedtime_phone_min sleep_hours concentration_score flow_score distraction_score self_control_score overuse_risk_score.
+CORRELATIONS /VARIABLES=weekday_phone_min study_app_ratio shortform_min game_min bedtime_phone_min sleep_hours self_control_score concentration_score flow_score.
+REGRESSION /DEPENDENT concentration_score /METHOD=ENTER study_app_ratio shortform_min bedtime_phone_min sleep_hours self_control_score weekday_phone_min.
+QUICK CLUSTER study_app_ratio sns_min shortform_min game_min bedtime_phone_min self_control_score /CRITERIA=CLUSTER(5) MXITER(10) /SAVE CLUSTER.
+ONEWAY concentration_score flow_score BY phone_type_code /STATISTICS DESCRIPTIVES /POSTHOC=TUKEY.
+LOGISTIC REGRESSION VARIABLES high_immersion /METHOD=ENTER study_app_ratio shortform_min bedtime_phone_min sleep_hours self_control_score overuse_risk_score.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

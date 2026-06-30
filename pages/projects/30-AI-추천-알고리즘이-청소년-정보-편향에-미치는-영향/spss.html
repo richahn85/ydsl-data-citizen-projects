@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 추천 알고리즘이 청소년 정보 편향에 미치는 영향 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="AI-추천-알고리즘이-청소년-정보-편향에-미치는-영향---SPSS">AI 추천 알고리즘이 청소년 정보 편향에 미치는 영향 - SPSS</h1>
+<p>상위 노트: <a href="30-AI-%EC%B6%94%EC%B2%9C-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%B4-%EC%B2%AD%EC%86%8C%EB%85%84-%EC%A0%95%EB%B3%B4-%ED%8E%B8%ED%96%A5%EC%97%90-%EB%AF%B8%EC%B9%98%EB%8A%94-%EC%98%81%ED%96%A5.html">AI 추천 알고리즘이 청소년 정보 편향에 미치는 영향</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">30_spss_guide.docx</span></p>
+<p>SPSS 분석 가이드: AI 추천 알고리즘이 청소년 정보 편향에 미치는 영향</p>
+<p>이 가이드는 30_dataset.xlsx 또는 30_dataset.csv를 SPSS에서 불러와 분석하는 절차를 안내한다. 데이터는 설문 기반 시범용 가상 데이터이며, 실제 조사에서는 익명성과 개인정보 보호를 반드시 지켜야 한다.</p>
+<h2 id="1-데이터-불러오기">1. 데이터 불러오기</h2>
+<p>SPSS → 파일 → 열기 → 데이터 → 30_dataset.xlsx 선택 → 첫 행을 변수명으로 읽기. 이후 변수 보기에서 student_id, gender, main_platform, interest_topic, user_type은 명목으로, 점수형 변수는 척도로 지정한다.</p>
+<h2 id="2-기본-분석-절차">2. 기본 분석 절차</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>CSV/XLSX를 SPSS로 불러와 변수 측도 확인</td>
+<td>전체 변수</td>
+<td>파일 → 열기 → 데이터</td>
+<td>문자형 ID와 명목형 변수는 명목, 점수형 변수는 척도로 설정</td>
+</tr>
+<tr>
+<td>2. 빈도분석</td>
+<td>주 이용 플랫폼과 정보 이용 유형 분포 확인</td>
+<td>main_platform, user_type</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>어떤 플랫폼과 유형이 많은지 파악</td>
+</tr>
+<tr>
+<td>3. 기술통계</td>
+<td>이용시간·편향지수·리터러시 평균 확인</td>
+<td>shortform_min, digital_literacy_score, content_bias_index, algorithmic_bias_risk_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>위험 평균과 분포 확인</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>추천 의존도·숏폼 시간·디지털 리터러시와 편향 위험 관계 확인</td>
+<td>recommendation_dependence, shortform_min, digital_literacy_score, algorithmic_bias_risk_score</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>위험을 높이거나 낮추는 요인 해석</td>
+</tr>
+<tr>
+<td>5. 일원배치 분산분석</td>
+<td>정보 이용 유형별 위험점수 차이 검증</td>
+<td>user_type → algorithmic_bias_risk_score</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>어떤 유형이 가장 위험한지 비교</td>
+</tr>
+<tr>
+<td>6. 회귀분석</td>
+<td>알고리즘 편향 위험을 예측하는 주요 변수 확인</td>
+<td>종속: algorithmic_bias_risk_score / 독립: shortform_min, recommendation_dependence, fact_check_frequency, content_category_diversity, digital_literacy_score</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>위험 예측 요인을 찾고 교육 우선순위 결정</td>
+</tr>
+<tr>
+<td>7. 군집분석</td>
+<td>학생의 정보 이용 유형 자동 분류</td>
+<td>shortform_min, source_diversity, fact_check_frequency, recommendation_dependence, digital_literacy_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>균형탐색형·알고리즘의존형 등 유형화</td>
+</tr>
+<tr>
+<td>8. 시각화</td>
+<td>위험점수와 리터러시의 관계 표시</td>
+<td>digital_literacy_score, algorithmic_bias_risk_score</td>
+<td>그래프 → 차트 작성기</td>
+<td>고위험 학생군과 교육 필요 지점 시각화</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-핵심-해석-문장-예시">3. 핵심 해석 문장 예시</h2>
+<p>상관분석 결과 추천 피드 의존도와 알고리즘 편향 위험점수 간 정적 상관이 나타난다면, 추천 피드에 많이 의존할수록 정보 편향 위험이 높다고 해석할 수 있다.</p>
+<p>디지털 리터러시 점수와 편향 위험점수 간 부적 상관이 나타난다면, 알고리즘 이해·팩트체크·출처 다양화 행동이 보호요인임을 의미한다.</p>
+<p>군집분석 결과 알고리즘의존형 집단의 위험점수가 높다면, 전체 학생에게 동일한 교육보다 유형별 맞춤 교육이 필요하다는 제안으로 연결할 수 있다.</p>
+<h2 id="4-보고서-작성-요령">4. 보고서 작성 요령</h2>
+<p>결과표를 그대로 나열하지 말고, 반드시 “그래서 학교가 무엇을 해야 하는가”로 연결한다. 예를 들어 고위험 집단에는 알고리즘 이해와 팩트체크 교육을, 다양성 부족 집단에는 관심사 확장 미션을 제안한다.</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="30_spss_syntax-sps">30_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">30_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">* Project 30: AI recommendation algorithms and youth information bias.
+GET DATA
+  /TYPE=XLSX
+  /FILE=&#x27;30_dataset.xlsx&#x27;
+  /SHEET=name &#x27;Data&#x27;
+  /READNAMES=ON.
+EXECUTE.
+
+VARIABLE LEVEL grade (ORDINAL) gender main_platform interest_topic user_type recommended_education (NOMINAL)
+ /daily_youtube_min daily_sns_min shortform_min news_min news_source_diversity content_category_diversity
+ recommended_same_topic_ratio recommended_opposing_view_ratio recommendation_dependence algorithm_awareness
+ echo_chamber_awareness fact_check_frequency content_variety_behavior algorithm_trust exposure_to_extreme_content
+ misinformation_experience discussion_with_others information_bias_perception digital_literacy_score content_bias_index
+ algorithmic_bias_risk_score (SCALE).
+
+FREQUENCIES VARIABLES=main_platform user_type recommended_education.
+DESCRIPTIVES VARIABLES=shortform_min recommendation_dependence digital_literacy_score content_bias_index algorithmic_bias_risk_score.
+CORRELATIONS
+ /VARIABLES=shortform_min recommendation_dependence fact_check_frequency content_category_diversity digital_literacy_score algorithmic_bias_risk_score
+ /PRINT=TWOTAIL NOSIG.
+ONEWAY algorithmic_bias_risk_score BY user_type
+ /STATISTICS DESCRIPTIVES.
+REGRESSION
+ /DEPENDENT algorithmic_bias_risk_score
+ /METHOD=ENTER shortform_min recommendation_dependence fact_check_frequency content_category_diversity digital_literacy_score.
+QUICK CLUSTER shortform_min news_source_diversity fact_check_frequency recommendation_dependence digital_literacy_score
+ /CRITERIA=CLUSTER(4) MXITER(10)
+ /SAVE CLUSTER.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

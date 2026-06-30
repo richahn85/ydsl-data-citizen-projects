@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>학교 주변 상권 변화 분석 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="학교-주변-상권-변화-분석---SPSS">학교 주변 상권 변화 분석 - SPSS</h1>
+<p>상위 노트: <a href="26-%ED%95%99%EA%B5%90-%EC%A3%BC%EB%B3%80-%EC%83%81%EA%B6%8C-%EB%B3%80%ED%99%94-%EB%B6%84%EC%84%9D.html">학교 주변 상권 변화 분석</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">26_spss_guide.docx</span></p>
+<h2 id="SPSS-분석-가이드-26번-학교-주변-상권-변화-분석">SPSS 분석 가이드: 26번 학교 주변 상권 변화 분석</h2>
+<p>이 가이드는 26_dataset.xlsx 또는 26_dataset.csv를 SPSS로 불러와 상권 변화 시각화, 업종별 생존율 분석, 상관분석, 회귀분석, 군집분석을 수행하는 절차를 설명한다.</p>
+<h3 id="1-데이터-불러오기">1. 데이터 불러오기</h3>
+<p>파일 → 열기 → 데이터 → 26_dataset.xlsx 선택 → 첫 행을 변수 이름으로 읽어오기 체크 → Data 시트 선택</p>
+<h3 id="2-변수-보기-설정">2. 변수 보기 설정</h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>SPSS 측도</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>quarter</td>
+<td>명목</td>
+<td>2024Q1 형식</td>
+</tr>
+<tr>
+<td>area_id</td>
+<td>명목</td>
+<td>A01~A10</td>
+</tr>
+<tr>
+<td>area_name</td>
+<td>명목</td>
+<td>학생 보고서용 별칭</td>
+</tr>
+<tr>
+<td>business_type</td>
+<td>명목</td>
+<td>업종분류</td>
+</tr>
+<tr>
+<td>location_type</td>
+<td>명목</td>
+<td>정문, 후문, 역세권 등</td>
+</tr>
+<tr>
+<td>distance_to_school_m</td>
+<td>척도</td>
+<td>지도거리</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>척도</td>
+<td>지도 시각화</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>척도</td>
+<td>지도 시각화</td>
+</tr>
+<tr>
+<td>store_count</td>
+<td>척도</td>
+<td>상권 규모</td>
+</tr>
+<tr>
+<td>opening_count</td>
+<td>척도</td>
+<td>변화 정도</td>
+</tr>
+<tr>
+<td>closing_count</td>
+<td>척도</td>
+<td>위험 정도</td>
+</tr>
+<tr>
+<td>survival_rate_pct</td>
+<td>척도</td>
+<td>높을수록 안정</td>
+</tr>
+<tr>
+<td>estimated_sales_million_krw</td>
+<td>척도</td>
+<td>단위 환산</td>
+</tr>
+<tr>
+<td>floating_population</td>
+<td>척도</td>
+<td>기간별 합산</td>
+</tr>
+<tr>
+<td>student_visit_share_pct</td>
+<td>척도</td>
+<td>청소년 영향</td>
+</tr>
+<tr>
+<td>rent_index</td>
+<td>척도</td>
+<td>높을수록 부담</td>
+</tr>
+<tr>
+<td>vacancy_risk_score</td>
+<td>척도</td>
+<td>높을수록 위험</td>
+</tr>
+<tr>
+<td>youth_friendly_score</td>
+<td>척도</td>
+<td>높을수록 친화</td>
+</tr>
+<tr>
+<td>resident_life_score</td>
+<td>척도</td>
+<td>주민 생활성</td>
+</tr>
+<tr>
+<td>commercial_change_index</td>
+<td>척도</td>
+<td>개업, 폐업, 매출 변화</td>
+</tr>
+<tr>
+<td>improvement_priority_score</td>
+<td>척도</td>
+<td>높을수록 정책 제안 우선</td>
+</tr>
+<tr>
+<td>commercial_type</td>
+<td>명목</td>
+<td>분석 후 유형화</td>
+</tr>
+</tbody></table></div>
+<h3 id="3-분석-절차">3. 분석 절차</h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 입력</td>
+<td>분기별 상권 데이터를 SPSS로 불러오기</td>
+<td>quarter, area_id, business_type 등</td>
+<td>파일 → 열기 → 데이터</td>
+<td>문자 변수와 숫자 변수 측도 확인</td>
+</tr>
+<tr>
+<td>2. 기술통계</td>
+<td>상권의 평균 점포수·매출·유동인구 파악</td>
+<td>store_count, estimated_sales_million_krw, floating_population</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>평균과 표준편차가 큰 지점 확인</td>
+</tr>
+<tr>
+<td>3. 업종별 비교</td>
+<td>업종에 따라 생존율·청소년 친화성이 다른지 확인</td>
+<td>business_type, survival_rate_pct, youth_friendly_score</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>문구·학용품, 분식·카페, 학원가 차이 해석</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>유동인구·학생방문비중·매출·폐업위험의 관계 파악</td>
+<td>floating_population, student_visit_share_pct, estimated_sales_million_krw, vacancy_risk_score</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>상권 활성화와 폐업위험의 관계 해석</td>
+</tr>
+<tr>
+<td>5. 회귀분석</td>
+<td>상권 매출을 설명하는 요인 확인</td>
+<td>estimated_sales_million_krw, store_count, floating_population, student_visit_share_pct, rent_index</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>학생 방문 비중과 유동인구가 매출에 미치는 영향 해석</td>
+</tr>
+<tr>
+<td>6. 군집분석</td>
+<td>상권을 유형별로 분류</td>
+<td>survival_rate_pct, vacancy_risk_score, youth_friendly_score, resident_life_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>청소년친화 안정상권, 공실위험상권 등 명명</td>
+</tr>
+<tr>
+<td>7. 시각화</td>
+<td>상권 변화와 개선 우선순위 제시</td>
+<td>latitude, longitude, improvement_priority_score</td>
+<td>그래프 → 차트 작성기 / Google My Maps</td>
+<td>점 크기와 색으로 위험도 표현</td>
+</tr>
+</tbody></table></div>
+<h3 id="4-주요-해석-문장-예시">4. 주요 해석 문장 예시</h3>
+<p>기술통계 결과, 학교와 가까운 상권일수록 학생 방문 비중이 높고 청소년 친화 점수가 높게 나타나는 경향이 있었다.</p>
+<p>상관분석 결과, 유동인구와 추정 매출 간에는 정적 관계가 나타났으며, 폐업 점포 수와 공실 위험점수도 함께 증가하는 경향을 보였다.</p>
+<p>군집분석 결과, 학교 주변 상권은 청소년친화 안정상권, 공실·폐업 위험상권, 변화·성장상권, 지역주민 생활상권으로 구분할 수 있었다.</p>
+<h3 id="5-SPSS-Syntax-예시">5. SPSS Syntax 예시</h3>
+<p>아래 Syntax는 CSV 파일을 불러온 뒤 기술통계, 상관분석, 회귀분석, 군집분석을 수행하는 예시다. 파일 경로는 사용자의 저장 위치에 맞게 수정한다.</p>
+<p>GET DATA /TYPE=TXT /FILE=&quot;26_dataset.csv&quot; /DELCASE=LINE /DELIMITERS=&quot;,&quot; /ARRANGEMENT=DELIMITED /FIRSTCASE=2 /VARIABLES=quarter A8 area_id A4 area_name A40 business_type A20 location_type A20 distance_to_school_m F8.0 latitude F10.6 longitude F10.6 store_count F8.0 opening_count F8.0 closing_count F8.0 survival_rate_pct F8.1 estimated_sales_million_krw F8.1 floating_population F8.0 student_visit_share_pct F8.1 rent_index F8.1 vacancy_risk_score F8.1 youth_friendly_score F8.1 resident_life_score F8.1 commercial_change_index F8.1 improvement_priority_score F8.1 commercial_type A30. EXECUTE. DESCRIPTIVES VARIABLES=store_count estimated_sales_million_krw floating_population survival_rate_pct vacancy_risk_score youth_friendly_score improvement_priority_score. ONEWAY survival_rate_pct youth_friendly_score BY business_type. CORRELATIONS /VARIABLES=floating_population estimated_sales_million_krw student_visit_share_pct survival_rate_pct vacancy_risk_score. REGRESSION /DEPENDENT estimated_sales_million_krw /METHOD=ENTER store_count floating_population student_visit_share_pct rent_index. QUICK CLUSTER survival_rate_pct vacancy_risk_score youth_friendly_score resident_life_score /CRITERIA=CLUSTERS(4).</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="26_spss_syntax-sps">26_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">26_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">* 26번 학교 주변 상권 변화 분석 SPSS Syntax 예시.
+GET DATA
+ /TYPE=TXT
+ /FILE=&#x27;26_dataset.csv&#x27;
+ /DELCASE=LINE
+ /DELIMITERS=&#x27;,&#x27;
+ /ARRANGEMENT=DELIMITED
+ /FIRSTCASE=2
+ /VARIABLES=
+ quarter A8 area_id A4 area_name A40 business_type A20 location_type A20
+ distance_to_school_m F8.0 latitude F10.6 longitude F10.6 store_count F8.0
+ opening_count F8.0 closing_count F8.0 survival_rate_pct F8.1
+ estimated_sales_million_krw F8.1 floating_population F8.0
+ student_visit_share_pct F8.1 rent_index F8.1 vacancy_risk_score F8.1
+ youth_friendly_score F8.1 resident_life_score F8.1 commercial_change_index F8.1
+ improvement_priority_score F8.1 commercial_type A30.
+EXECUTE.
+
+DESCRIPTIVES VARIABLES=store_count estimated_sales_million_krw floating_population survival_rate_pct vacancy_risk_score youth_friendly_score improvement_priority_score.
+
+ONEWAY survival_rate_pct youth_friendly_score improvement_priority_score BY business_type
+ /STATISTICS DESCRIPTIVES.
+
+CORRELATIONS
+ /VARIABLES=floating_population estimated_sales_million_krw student_visit_share_pct survival_rate_pct vacancy_risk_score rent_index
+ /PRINT=TWOTAIL NOSIG.
+
+REGRESSION
+ /DEPENDENT estimated_sales_million_krw
+ /METHOD=ENTER store_count floating_population student_visit_share_pct rent_index.
+
+QUICK CLUSTER survival_rate_pct vacancy_risk_score youth_friendly_score resident_life_score
+ /CRITERIA=CLUSTERS(4) MXITER(10)
+ /SAVE CLUSTER.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

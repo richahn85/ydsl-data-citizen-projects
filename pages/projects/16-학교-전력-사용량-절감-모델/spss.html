@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>학교 전력 사용량 절감 모델 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="학교-전력-사용량-절감-모델---SPSS">학교 전력 사용량 절감 모델 - SPSS</h1>
+<p>상위 노트: <a href="16-%ED%95%99%EA%B5%90-%EC%A0%84%EB%A0%A5-%EC%82%AC%EC%9A%A9%EB%9F%89-%EC%A0%88%EA%B0%90-%EB%AA%A8%EB%8D%B8.html">학교 전력 사용량 절감 모델</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">16_spss_guide.docx</span></p>
+<ol>
+<li>학교 전력 사용량 절감 모델: SPSS 분석 가이드</li>
+</ol>
+<p>이 문서는 16_dataset.xlsx 또는 16_dataset.csv를 SPSS에 불러와 분석하는 절차를 안내한다.</p>
+<h2 id="1-데이터-불러오기">1. 데이터 불러오기</h2>
+<p>SPSS 실행 → 파일 → 열기 → 데이터 → 16_dataset.xlsx 선택 → 첫 행을 변수명으로 읽어오기 체크 → Data 시트 선택</p>
+<h2 id="2-변수-측도-설정">2. 변수 측도 설정</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>SPSS 측도</th>
+<th>변수</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>명목</td>
+<td>record_id, weekday, weather, room_id, room_name, room_type, ac_on, heater_on, window_open_while_ac, curtain_used, peak_flag, recommendation</td>
+</tr>
+<tr>
+<td>서열</td>
+<td>floor</td>
+</tr>
+<tr>
+<td>척도</td>
+<td>class_blocks, occupants, outdoor_temp_c, humidity_pct, ac_set_temp_c, lights_on_rate, device_count, standby_device_count, electricity_kwh, waste_score, expected_saving_kwh, priority_score</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-분석-절차">3. 분석 절차</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>Excel/CSV를 SPSS로 불러와 변수 측도 확인</td>
+<td>전체 변수</td>
+<td>파일 → 열기 → 데이터</td>
+<td>문자/숫자 변수 구분, 결측값 확인</td>
+</tr>
+<tr>
+<td>2. 기술통계</td>
+<td>전력사용량·외기온도·낭비점수의 기본 수준 파악</td>
+<td>electricity_kwh, outdoor_temp_c, waste_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>평균, 표준편차, 최대값으로 피크 확인</td>
+</tr>
+<tr>
+<td>3. 공간유형별 비교</td>
+<td>일반교실·특별실·공용공간의 사용량 차이 확인</td>
+<td>room_type, electricity_kwh</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>어떤 공간유형이 가장 많이 쓰는가</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>온도, 재실인원, 조명, 기기 수와 전력 사용량 관계 확인</td>
+<td>electricity_kwh, outdoor_temp_c, occupants, lights_on_rate, device_count</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>전력사용량과 관련이 큰 요인 확인</td>
+</tr>
+<tr>
+<td>5. 회귀분석</td>
+<td>전력사용량을 예측하는 핵심 요인 확인</td>
+<td>electricity_kwh ← outdoor_temp_c, class_blocks, occupants, ac_on, lights_on_rate, device_count</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>온도와 냉방 가동의 영향 해석</td>
+</tr>
+<tr>
+<td>6. 피크 여부 예측</td>
+<td>피크 사용 여부를 예측하는 조건 확인</td>
+<td>peak_flag ← outdoor_temp_c, ac_on, lights_on_rate, device_count, window_open_while_ac</td>
+<td>분석 → 회귀분석 → 이분형 로지스틱</td>
+<td>피크가 발생할 가능성이 높은 조건 도출</td>
+</tr>
+<tr>
+<td>7. 우선순위 시각화</td>
+<td>절감 우선순위가 높은 공간을 찾음</td>
+<td>priority_score, room_id, weekday</td>
+<td>그래프 → 차트 작성기</td>
+<td>행정실·학생회 제안 대상 선정</td>
+</tr>
+<tr>
+<td>8. 에너지 절감 대시보드</td>
+<td>총 사용량, 예상 절감량, 비용·탄소 절감효과 제시</td>
+<td>electricity_kwh, expected_saving_kwh, electricity_cost_krw, co2_kg</td>
+<td>Excel/대시보드 또는 SPSS 출력표</td>
+<td>절감안을 숫자로 설명</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-SPSS-Syntax-예시">4. SPSS Syntax 예시</h2>
+<p>GET DATA /TYPE=XLSX /FILE=&#x27;16_dataset.xlsx&#x27; /SHEET=name &#x27;Data&#x27; /READNAMES=on. EXECUTE.</p>
+<p>DESCRIPTIVES VARIABLES=electricity_kwh outdoor_temp_c lights_on_rate device_count standby_device_count waste_score expected_saving_kwh priority_score /STATISTICS=MEAN STDDEV MIN MAX.</p>
+<p>ONEWAY electricity_kwh BY room_type /STATISTICS DESCRIPTIVES /POSTHOC=TUKEY ALPHA(0.05).</p>
+<p>CORRELATIONS /VARIABLES=electricity_kwh outdoor_temp_c occupants class_blocks lights_on_rate device_count standby_device_count waste_score /PRINT=TWOTAIL NOSIG.</p>
+<p>REGRESSION /DEPENDENT electricity_kwh /METHOD=ENTER outdoor_temp_c class_blocks occupants ac_on lights_on_rate device_count window_open_while_ac.</p>
+<p>LOGISTIC REGRESSION VARIABLES peak_flag /METHOD=ENTER outdoor_temp_c ac_on lights_on_rate device_count standby_device_count window_open_while_ac.</p>
+<p>QUICK CLUSTER electricity_kwh waste_score expected_saving_rate_pct priority_score /CRITERIA=CLUSTER(3) MXITER(10) /SAVE CLUSTER.</p>
+<h2 id="5-해석-문장-예시">5. 해석 문장 예시</h2>
+<p>전력사용량에 대한 회귀분석 결과, 외기온도와 냉방 가동 여부가 유의하면 ‘더운 날씨 자체보다 냉방 운영 방식이 전력 피크를 만드는 핵심 요인’으로 해석할 수 있다.</p>
+<p>공간유형별 차이가 유의하면 일반교실 전체를 동일하게 관리하기보다 특별실, 공용공간, 교무공간 등 공간 특성별 절감전략이 필요하다고 제안한다.</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="16_spss_syntax-sps">16_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">16_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">* 16. 학교 전력 사용량 절감 모델 SPSS Syntax.
+GET DATA
+  /TYPE=XLSX
+  /FILE=&#x27;16_dataset.xlsx&#x27;
+  /SHEET=name &#x27;Data&#x27;
+  /READNAMES=on.
+EXECUTE.
+
+DESCRIPTIVES VARIABLES=electricity_kwh outdoor_temp_c humidity_pct class_blocks occupants lights_on_rate device_count standby_device_count waste_score expected_saving_kwh priority_score
+  /STATISTICS=MEAN STDDEV MIN MAX.
+
+ONEWAY electricity_kwh BY room_type
+  /STATISTICS DESCRIPTIVES
+  /POSTHOC=TUKEY ALPHA(0.05).
+
+CORRELATIONS
+  /VARIABLES=electricity_kwh outdoor_temp_c occupants class_blocks lights_on_rate device_count standby_device_count waste_score expected_saving_kwh
+  /PRINT=TWOTAIL NOSIG.
+
+REGRESSION
+  /DEPENDENT electricity_kwh
+  /METHOD=ENTER outdoor_temp_c class_blocks occupants ac_on lights_on_rate device_count window_open_while_ac.
+
+LOGISTIC REGRESSION VARIABLES peak_flag
+  /METHOD=ENTER outdoor_temp_c ac_on lights_on_rate device_count standby_device_count window_open_while_ac
+  /CRITERIA=PIN(.05) POUT(.10) ITERATE(20) CUT(.5).
+
+QUICK CLUSTER electricity_kwh waste_score expected_saving_rate_pct priority_score
+  /CRITERIA=CLUSTER(3) MXITER(10)
+  /SAVE CLUSTER.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

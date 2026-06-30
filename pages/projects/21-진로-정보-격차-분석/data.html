@@ -1,0 +1,948 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>진로 정보 격차 분석 - 데이터 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="진로-정보-격차-분석---데이터">진로 정보 격차 분석 - 데이터</h1>
+<p>상위 노트: <a href="21-%EC%A7%84%EB%A1%9C-%EC%A0%95%EB%B3%B4-%EA%B2%A9%EC%B0%A8-%EB%B6%84%EC%84%9D.html">진로 정보 격차 분석</a></p>
+<p>관련 개념: <a href="../../concepts/%EC%BD%94%EB%93%9C%EB%B6%81%EA%B3%BC%20%EB%B3%80%EC%88%98%20%EC%A0%95%EC%9D%98.html">concepts/코드북과 변수 정의</a>, <a href="../../concepts/%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EA%B8%B0%EB%B0%98%20%ED%83%90%EA%B5%AC.html">concepts/공공데이터 기반 탐구</a></p>
+<h2 id="코드북">코드북</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">21_codebook.xlsx</span></li>
+</ul>
+<h3 id="21_codebook-xlsx">21_codebook.xlsx</h3>
+<p>Codebook: 31행 x 6열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>SPSS 측도</th>
+<th>코딩/값</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>student_id</td>
+<td>익명 학생 ID</td>
+<td>문자</td>
+<td>명목</td>
+<td>S001~S050</td>
+<td>학생 개인 식별 불가 임의 ID</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>학년</td>
+<td>1/2/3</td>
+<td>서열</td>
+<td>1=1학년, 2=2학년, 3=3학년</td>
+<td>학년별 진로정보 격차 비교</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>성별</td>
+<td>남/여</td>
+<td>명목</td>
+<td>남, 여</td>
+<td>민감한 해석 금지, 단순 비교 보조</td>
+</tr>
+<tr>
+<td>desired_major_area</td>
+<td>희망 전공 계열</td>
+<td>범주</td>
+<td>명목</td>
+<td>공학·AI 등 8개 범주</td>
+<td>희망 전공 분포</td>
+</tr>
+<tr>
+<td>desired_career_field</td>
+<td>희망 직업 분야</td>
+<td>범주</td>
+<td>명목</td>
+<td>AI개발자 등 8개 범주</td>
+<td>직업 정보 필요 분야</td>
+</tr>
+<tr>
+<td>career_counseling_count</td>
+<td>최근 1년 진로상담 횟수</td>
+<td>회</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>상담 접근성</td>
+</tr>
+<tr>
+<td>counseling_satisfaction</td>
+<td>진로상담 만족도</td>
+<td>1~5점</td>
+<td>서열</td>
+<td>1=매우 낮음, 5=매우 높음</td>
+<td>상담 질 평가</td>
+</tr>
+<tr>
+<td>career_class_experience</td>
+<td>진로수업·진로행사 경험 횟수</td>
+<td>회</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>학교 진로교육 경험</td>
+</tr>
+<tr>
+<td>parent_job_info_access</td>
+<td>부모·보호자를 통한 직업정보 접근성</td>
+<td>1~5점</td>
+<td>서열</td>
+<td>1=매우 낮음, 5=매우 높음</td>
+<td>가정 배경 정보 접근성</td>
+</tr>
+<tr>
+<td>family_support_score</td>
+<td>가정의 진로탐색 지원감</td>
+<td>1~5점</td>
+<td>서열</td>
+<td>1=낮음, 5=높음</td>
+<td>가정 지원 정도</td>
+</tr>
+<tr>
+<td>alumni_mentoring_experience</td>
+<td>동문 멘토링 경험 여부</td>
+<td>0/1</td>
+<td>명목</td>
+<td>0=없음, 1=있음</td>
+<td>동문 네트워크 접근성</td>
+</tr>
+<tr>
+<td>alumni_mentoring_count</td>
+<td>최근 1년 동문 멘토링 횟수</td>
+<td>회</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>멘토링 노출 정도</td>
+</tr>
+<tr>
+<td>mentor_availability</td>
+<td>내 관심 분야 멘토 접근 가능성</td>
+<td>1~5점</td>
+<td>서열</td>
+<td>1=낮음, 5=높음</td>
+<td>동문 매칭 필요성</td>
+</tr>
+<tr>
+<td>online_career_info_use</td>
+<td>온라인 진로정보 활용도</td>
+<td>1~5점</td>
+<td>서열</td>
+<td>1=거의 안함, 5=매우 자주</td>
+<td>자기 탐색 행동</td>
+</tr>
+<tr>
+<td>career_net_use</td>
+<td>커리어넷 활용도</td>
+<td>1~5점</td>
+<td>서열</td>
+<td>1=거의 안함, 5=매우 자주</td>
+<td>공식 진로정보 활용</td>
+</tr>
+<tr>
+<td>worknet_use</td>
+<td>워크넷·고용정보 활용도</td>
+<td>1~5점</td>
+<td>서열</td>
+<td>1=거의 안함, 5=매우 자주</td>
+<td>직업 전망 정보 활용</td>
+</tr>
+<tr>
+<td>university_info_search</td>
+<td>대학·학과 정보 탐색 정도</td>
+<td>1~5점</td>
+<td>서열</td>
+<td>1=낮음, 5=높음</td>
+<td>전공 정보 접근</td>
+</tr>
+<tr>
+<td>peer_info_share</td>
+<td>친구·선배와 정보 공유 정도</td>
+<td>1~5점</td>
+<td>서열</td>
+<td>1=낮음, 5=높음</td>
+<td>비공식 정보망</td>
+</tr>
+<tr>
+<td>teacher_guidance_score</td>
+<td>교사 진로지도 체감 수준</td>
+<td>1~5점</td>
+<td>서열</td>
+<td>1=낮음, 5=높음</td>
+<td>학교 지원</td>
+</tr>
+<tr>
+<td>major_info_understanding</td>
+<td>희망 전공 이해도</td>
+<td>1~5점</td>
+<td>서열</td>
+<td>1=낮음, 5=높음</td>
+<td>전공 정보 수준</td>
+</tr>
+<tr>
+<td>job_info_understanding</td>
+<td>희망 직업 이해도</td>
+<td>1~5점</td>
+<td>서열</td>
+<td>1=낮음, 5=높음</td>
+<td>직업 정보 수준</td>
+</tr>
+<tr>
+<td>career_confidence</td>
+<td>진로 선택 확신</td>
+<td>1~5점</td>
+<td>서열</td>
+<td>1=낮음, 5=높음</td>
+<td>진로 확신 결과변수</td>
+</tr>
+<tr>
+<td>career_anxiety</td>
+<td>진로 불안</td>
+<td>1~5점</td>
+<td>서열</td>
+<td>1=낮음, 5=높음</td>
+<td>정보 부족의 심리적 결과</td>
+</tr>
+<tr>
+<td>paid_consulting_exp</td>
+<td>유료 진로컨설팅 경험 여부</td>
+<td>0/1</td>
+<td>명목</td>
+<td>0=없음, 1=있음</td>
+<td>민간정보 접근성 보조</td>
+</tr>
+<tr>
+<td>information_access_index</td>
+<td>진로정보 접근성 지수</td>
+<td>0~100점</td>
+<td>척도</td>
+<td>높을수록 접근성 높음</td>
+<td>핵심 지수</td>
+</tr>
+<tr>
+<td>career_gap_risk_score</td>
+<td>진로정보 격차 위험점수</td>
+<td>0~100점</td>
+<td>척도</td>
+<td>높을수록 정보격차 위험 높음</td>
+<td>개선 우선순위</td>
+</tr>
+<tr>
+<td>high_gap_yn</td>
+<td>고위험 정보격차 여부</td>
+<td>0/1</td>
+<td>명목</td>
+<td>0=일반, 1=고위험</td>
+<td>로지스틱 분석용</td>
+</tr>
+<tr>
+<td>career_info_user_type</td>
+<td>진로정보 이용 유형</td>
+<td>범주</td>
+<td>명목</td>
+<td>고정보·고확신형 등</td>
+<td>군집·세그먼트 해석</td>
+</tr>
+<tr>
+<td>primary_gap_type</td>
+<td>주요 정보 부족 유형</td>
+<td>범주</td>
+<td>명목</td>
+<td>전공 정보 부족 등</td>
+<td>개선 프로그램 연결</td>
+</tr>
+<tr>
+<td>recommended_support</td>
+<td>추천 지원 방식</td>
+<td>범주</td>
+<td>명목</td>
+<td>동문 멘토 매칭 등</td>
+<td>개선 제안 산출물</td>
+</tr>
+</tbody></table></div>
+<h2 id="CSV-데이터셋">CSV 데이터셋</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">21_dataset.csv</span></li>
+</ul>
+<ul>
+<li>크기: 50행 x 30열</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>student_id</th>
+<th>grade</th>
+<th>gender</th>
+<th>desired_major_area</th>
+<th>desired_career_field</th>
+<th>career_counseling_count</th>
+<th>counseling_satisfaction</th>
+<th>career_class_experience</th>
+<th>parent_job_info_access</th>
+<th>family_support_score</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>S001</td>
+<td>2</td>
+<td>여</td>
+<td>공학·AI</td>
+<td>콘텐츠기획자</td>
+<td>3</td>
+<td>4</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>S002</td>
+<td>1</td>
+<td>여</td>
+<td>공학·AI</td>
+<td>교사·상담가</td>
+<td>3</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S003</td>
+<td>3</td>
+<td>여</td>
+<td>인문·언어</td>
+<td>데이터분석가</td>
+<td>5</td>
+<td>4</td>
+<td>5</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>S004</td>
+<td>3</td>
+<td>남</td>
+<td>예술·디자인</td>
+<td>교사·상담가</td>
+<td>2</td>
+<td>3</td>
+<td>5</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>S005</td>
+<td>3</td>
+<td>남</td>
+<td>예술·디자인</td>
+<td>AI개발자</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S006</td>
+<td>2</td>
+<td>남</td>
+<td>예술·디자인</td>
+<td>의사·간호사</td>
+<td>3</td>
+<td>2</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S007</td>
+<td>2</td>
+<td>남</td>
+<td>자연과학</td>
+<td>공무원·정책</td>
+<td>5</td>
+<td>4</td>
+<td>4</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S008</td>
+<td>3</td>
+<td>남</td>
+<td>의학·보건</td>
+<td>데이터분석가</td>
+<td>2</td>
+<td>3</td>
+<td>6</td>
+<td>1</td>
+<td>3</td>
+</tr>
+</tbody></table></div>
+<h2 id="엑셀-데이터셋-미리보기">엑셀 데이터셋 미리보기</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">21_dataset.xlsx</span></li>
+</ul>
+<h3 id="Data">Data</h3>
+<p>Data: 51행 x 30열 / 미리보기 10행 x 10열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>student_id</th>
+<th>grade</th>
+<th>gender</th>
+<th>desired_major_area</th>
+<th>desired_career_field</th>
+<th>career_counseling_count</th>
+<th>counseling_satisfaction</th>
+<th>career_class_experience</th>
+<th>parent_job_info_access</th>
+<th>family_support_score</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>S001</td>
+<td>2</td>
+<td>여</td>
+<td>공학·AI</td>
+<td>콘텐츠기획자</td>
+<td>3</td>
+<td>4</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>S002</td>
+<td>1</td>
+<td>여</td>
+<td>공학·AI</td>
+<td>교사·상담가</td>
+<td>3</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S003</td>
+<td>3</td>
+<td>여</td>
+<td>인문·언어</td>
+<td>데이터분석가</td>
+<td>5</td>
+<td>4</td>
+<td>5</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>S004</td>
+<td>3</td>
+<td>남</td>
+<td>예술·디자인</td>
+<td>교사·상담가</td>
+<td>2</td>
+<td>3</td>
+<td>5</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>S005</td>
+<td>3</td>
+<td>남</td>
+<td>예술·디자인</td>
+<td>AI개발자</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S006</td>
+<td>2</td>
+<td>남</td>
+<td>예술·디자인</td>
+<td>의사·간호사</td>
+<td>3</td>
+<td>2</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S007</td>
+<td>2</td>
+<td>남</td>
+<td>자연과학</td>
+<td>공무원·정책</td>
+<td>5</td>
+<td>4</td>
+<td>4</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S008</td>
+<td>3</td>
+<td>남</td>
+<td>의학·보건</td>
+<td>데이터분석가</td>
+<td>2</td>
+<td>3</td>
+<td>6</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S009</td>
+<td>3</td>
+<td>남</td>
+<td>경영·경제</td>
+<td>마케터</td>
+<td>5</td>
+<td>3</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+</tr>
+</tbody></table></div>
+<h3 id="Codebook">Codebook</h3>
+<p>Codebook: 31행 x 6열 / 미리보기 10행 x 6열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>SPSS 측도</th>
+<th>코딩/값</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>student_id</td>
+<td>익명 학생 ID</td>
+<td>문자</td>
+<td>명목</td>
+<td>S001~S050</td>
+<td>학생 개인 식별 불가 임의 ID</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>학년</td>
+<td>1/2/3</td>
+<td>서열</td>
+<td>1=1학년, 2=2학년, 3=3학년</td>
+<td>학년별 진로정보 격차 비교</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>성별</td>
+<td>남/여</td>
+<td>명목</td>
+<td>남, 여</td>
+<td>민감한 해석 금지, 단순 비교 보조</td>
+</tr>
+<tr>
+<td>desired_major_area</td>
+<td>희망 전공 계열</td>
+<td>범주</td>
+<td>명목</td>
+<td>공학·AI 등 8개 범주</td>
+<td>희망 전공 분포</td>
+</tr>
+<tr>
+<td>desired_career_field</td>
+<td>희망 직업 분야</td>
+<td>범주</td>
+<td>명목</td>
+<td>AI개발자 등 8개 범주</td>
+<td>직업 정보 필요 분야</td>
+</tr>
+<tr>
+<td>career_counseling_count</td>
+<td>최근 1년 진로상담 횟수</td>
+<td>회</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>상담 접근성</td>
+</tr>
+<tr>
+<td>counseling_satisfaction</td>
+<td>진로상담 만족도</td>
+<td>1~5점</td>
+<td>서열</td>
+<td>1=매우 낮음, 5=매우 높음</td>
+<td>상담 질 평가</td>
+</tr>
+<tr>
+<td>career_class_experience</td>
+<td>진로수업·진로행사 경험 횟수</td>
+<td>회</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>학교 진로교육 경험</td>
+</tr>
+<tr>
+<td>parent_job_info_access</td>
+<td>부모·보호자를 통한 직업정보 접근성</td>
+<td>1~5점</td>
+<td>서열</td>
+<td>1=매우 낮음, 5=매우 높음</td>
+<td>가정 배경 정보 접근성</td>
+</tr>
+</tbody></table></div>
+<h3 id="Survey_Items">Survey_Items</h3>
+<p>Survey_Items: 13행 x 4열 / 미리보기 10행 x 4열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>문항</th>
+<th>설문 문항</th>
+<th>척도</th>
+<th>연결 변수</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Q1</td>
+<td>나는 내가 관심 있는 전공에 대해 충분한 정보를 갖고 있다.</td>
+<td>1~5 리커트</td>
+<td>major_info_understanding</td>
+</tr>
+<tr>
+<td>Q2</td>
+<td>나는 내가 관심 있는 직업의 실제 업무와 필요한 역량을 알고 있다.</td>
+<td>1~5 리커트</td>
+<td>job_info_understanding</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>나는 커리어넷 같은 공식 진로정보 사이트를 활용할 수 있다.</td>
+<td>1~5 리커트</td>
+<td>career_net_use</td>
+</tr>
+<tr>
+<td>Q4</td>
+<td>나는 워크넷이나 고용정보 자료에서 직업 전망을 찾아볼 수 있다.</td>
+<td>1~5 리커트</td>
+<td>worknet_use</td>
+</tr>
+<tr>
+<td>Q5</td>
+<td>나는 대학 학과 정보와 교육과정을 스스로 찾아본 적이 있다.</td>
+<td>1~5 리커트</td>
+<td>university_info_search</td>
+</tr>
+<tr>
+<td>Q6</td>
+<td>학교의 진로수업이나 상담은 나의 진로 탐색에 도움이 된다.</td>
+<td>1~5 리커트</td>
+<td>teacher_guidance_score</td>
+</tr>
+<tr>
+<td>Q7</td>
+<td>부모님 또는 보호자는 나에게 직업 세계에 대한 정보를 제공해준다.</td>
+<td>1~5 리커트</td>
+<td>parent_job_info_access</td>
+</tr>
+<tr>
+<td>Q8</td>
+<td>내 주변에는 내가 관심 있는 분야를 조언해줄 선배나 동문이 있다.</td>
+<td>1~5 리커트</td>
+<td>mentor_availability</td>
+</tr>
+<tr>
+<td>Q9</td>
+<td>나는 친구나 선배와 진로 정보를 자주 공유한다.</td>
+<td>1~5 리커트</td>
+<td>peer_info_share</td>
+</tr>
+</tbody></table></div>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 8행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>다운로드/API 링크</th>
+<th>파일 형식</th>
+<th>주요 변수</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>커리어넷 Open API 센터</td>
+<td>한국직업능력연구원/교육부</td>
+<td>https://www.career.go.kr/cnet/front/openapi/openApiMainCenter.do</td>
+<td>API</td>
+<td>직업정보, 학과정보, 진로상담사례, 진로교육자료</td>
+<td>희망 전공·직업별 공식 정보 연결</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>한국직업능력연구원_진로심리검사</td>
+<td>공공데이터포털/한국직업능력연구원</td>
+<td>https://www.data.go.kr/data/15058948/openapi.do</td>
+<td>API(XML)</td>
+<td>진로심리검사, 대학학과정보, 직업정보</td>
+<td>학생의 자기이해·진로심리 결과와 연결 가능</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>한국고용정보원_워크넷_직업정보</td>
+<td>공공데이터포털/한국고용정보원</td>
+<td>https://www.data.go.kr/data/3071087/openapi.do</td>
+<td>API(XML)</td>
+<td>직업명, 직업분류코드, 직업분류명, 직업상세</td>
+<td>희망 직업별 정보 접근성 교육 자료</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>한국고용정보원_워크넷_직업전망목록 및 상세정보</td>
+<td>공공데이터포털/한국고용정보원</td>
+<td>https://www.data.go.kr/data/3071367/openapi.do</td>
+<td>API(XML)</td>
+<td>대표직업 200여 개, 10년 전망, 하는일, 임금, 관련 교육</td>
+<td>직업 전망 정보 부족 진단과 특강 자료</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>2025 초·중등 진로교육 현황조사</td>
+<td>커리어넷/국가진로교육연구센터</td>
+<td>https://www.career.go.kr/cloud/w/courseEdu/course2025</td>
+<td>PDF/HWPX 통계표</td>
+<td>학생·교사·학부모 진로교육 조사, 진로 인식 격차</td>
+<td>전국 기준 비교와 설문 문항 참고</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>학생 진로정보 접근성 설문</td>
+<td>학교 자체 조사</td>
+<td>학교 Google Form 또는 종이 설문</td>
+<td>설문/XLSX</td>
+<td>진로상담 경험, 부모 정보 접근성, 동문 멘토링 경험</td>
+<td>핵심 분석 데이터</td>
+<td>학생 설문 필요</td>
+</tr>
+<tr>
+<td>용문고 동문 멘토링 가능 분야 목록</td>
+<td>학교·동문회 내부자료</td>
+<td>내부 작성</td>
+<td>XLSX</td>
+<td>동문 직업군, 전공, 산업, 멘토링 가능 분야</td>
+<td>동문 기반 멘토링 매칭 플랫폼 설계</td>
+<td>학교 내부자료 필요</td>
+</tr>
+</tbody></table></div>
+<h3 id="SPSS_Steps">SPSS_Steps</h3>
+<p>SPSS_Steps: 9행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 빈도분석</td>
+<td>학년·희망 전공·정보 부족 유형의 분포 확인</td>
+<td>grade, desired_major_area, primary_gap_type</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>어느 전공·직업 분야에서 정보 부족이 집중되는지 확인</td>
+</tr>
+<tr>
+<td>2. 기술통계</td>
+<td>진로정보 접근성 지수와 격차 위험점수의 평균·표준편차 확인</td>
+<td>information_access_index, career_gap_risk_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>전체 학생의 정보 접근성 수준 진단</td>
+</tr>
+<tr>
+<td>3. 그룹 비교</td>
+<td>동문 멘토링 경험 여부에 따라 진로 확신이 다른지 검정</td>
+<td>alumni_mentoring_experience, career_confidence</td>
+<td>분석 → 평균비교 → 독립표본 t 검정</td>
+<td>멘토링 경험 학생의 진로 확신이 유의하게 높은지 확인</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>정보 접근성 요인과 진로 확신·불안의 관련성 확인</td>
+<td>information_access_index, career_confidence, career_anxiety</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>정보 접근성이 높을수록 진로 확신이 높고 불안이 낮은지 확인</td>
+</tr>
+<tr>
+<td>5. 회귀분석</td>
+<td>진로 확신을 설명하는 핵심 요인 파악</td>
+<td>career_confidence ~ mentor_availability, teacher_guidance_score, parent_job_info_access, major_info_understanding</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>전공 이해, 동문 멘토 접근성, 교사 지도 중 핵심 요인 도출</td>
+</tr>
+<tr>
+<td>6. 로지스틱 회귀</td>
+<td>고위험 정보격차 학생을 예측</td>
+<td>high_gap_yn ~ counseling_count, mentor_availability, parent_job_info_access, career_net_use</td>
+<td>분석 → 회귀분석 → 이분형 로지스틱</td>
+<td>지원이 필요한 학생 유형 예측</td>
+</tr>
+<tr>
+<td>7. K-평균 군집분석</td>
+<td>진로정보 이용 유형 분류</td>
+<td>information_access_index, career_confidence, career_anxiety, mentor_availability</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>정보취약형·정보탐색형·고확신형 등으로 구분</td>
+</tr>
+<tr>
+<td>8. 시각화</td>
+<td>격차 위험과 접근성의 관계 표현</td>
+<td>information_access_index, career_gap_risk_score</td>
+<td>그래프 → 차트 작성기</td>
+<td>위험 학생군을 직관적으로 제시</td>
+</tr>
+</tbody></table></div>
+<h3 id="Summary">Summary</h3>
+<p>Summary: 6행 x 3열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>지표</th>
+<th>값</th>
+<th>해석</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>평균 진로정보 접근성 지수</td>
+<td>100</td>
+<td>높을수록 진로정보를 다양하게 얻고 있음</td>
+</tr>
+<tr>
+<td>평균 진로정보 격차 위험점수</td>
+<td>14.6</td>
+<td>높을수록 정보 부족과 불안 가능성이 큼</td>
+</tr>
+<tr>
+<td>고위험 정보격차 학생 비율</td>
+<td>0.0%</td>
+<td>우선 상담·멘토링 대상</td>
+</tr>
+<tr>
+<td>동문 멘토링 경험 학생 수</td>
+<td>32</td>
+<td>동문 네트워크 접근성</td>
+</tr>
+<tr>
+<td>추천 지원 1순위</td>
+<td>커리어넷 활용 교육</td>
+<td>가장 많이 필요한 지원 방식</td>
+</tr>
+</tbody></table></div>
+<h2 id="데이터-출처">데이터 출처</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">21_data_sources.xlsx</span></li>
+</ul>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 8행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>다운로드/API 링크</th>
+<th>파일 형식</th>
+<th>주요 변수</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>커리어넷 Open API 센터</td>
+<td>한국직업능력연구원/교육부</td>
+<td>https://www.career.go.kr/cnet/front/openapi/openApiMainCenter.do</td>
+<td>API</td>
+<td>직업정보, 학과정보, 진로상담사례, 진로교육자료</td>
+<td>희망 전공·직업별 공식 정보 연결</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>한국직업능력연구원_진로심리검사</td>
+<td>공공데이터포털/한국직업능력연구원</td>
+<td>https://www.data.go.kr/data/15058948/openapi.do</td>
+<td>API(XML)</td>
+<td>진로심리검사, 대학학과정보, 직업정보</td>
+<td>학생의 자기이해·진로심리 결과와 연결 가능</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>한국고용정보원_워크넷_직업정보</td>
+<td>공공데이터포털/한국고용정보원</td>
+<td>https://www.data.go.kr/data/3071087/openapi.do</td>
+<td>API(XML)</td>
+<td>직업명, 직업분류코드, 직업분류명, 직업상세</td>
+<td>희망 직업별 정보 접근성 교육 자료</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>한국고용정보원_워크넷_직업전망목록 및 상세정보</td>
+<td>공공데이터포털/한국고용정보원</td>
+<td>https://www.data.go.kr/data/3071367/openapi.do</td>
+<td>API(XML)</td>
+<td>대표직업 200여 개, 10년 전망, 하는일, 임금, 관련 교육</td>
+<td>직업 전망 정보 부족 진단과 특강 자료</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>2025 초·중등 진로교육 현황조사</td>
+<td>커리어넷/국가진로교육연구센터</td>
+<td>https://www.career.go.kr/cloud/w/courseEdu/course2025</td>
+<td>PDF/HWPX 통계표</td>
+<td>학생·교사·학부모 진로교육 조사, 진로 인식 격차</td>
+<td>전국 기준 비교와 설문 문항 참고</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>학생 진로정보 접근성 설문</td>
+<td>학교 자체 조사</td>
+<td>학교 Google Form 또는 종이 설문</td>
+<td>설문/XLSX</td>
+<td>진로상담 경험, 부모 정보 접근성, 동문 멘토링 경험</td>
+<td>핵심 분석 데이터</td>
+<td>학생 설문 필요</td>
+</tr>
+<tr>
+<td>용문고 동문 멘토링 가능 분야 목록</td>
+<td>학교·동문회 내부자료</td>
+<td>내부 작성</td>
+<td>XLSX</td>
+<td>동문 직업군, 전공, 산업, 멘토링 가능 분야</td>
+<td>동문 기반 멘토링 매칭 플랫폼 설계</td>
+<td>학교 내부자료 필요</td>
+</tr>
+</tbody></table></div>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

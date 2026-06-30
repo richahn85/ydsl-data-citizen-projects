@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>운동 부족과 청소년 체력 저하 분석 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="운동-부족과-청소년-체력-저하-분석---SPSS">운동 부족과 청소년 체력 저하 분석 - SPSS</h1>
+<p>상위 노트: <a href="10-%EC%9A%B4%EB%8F%99-%EB%B6%80%EC%A1%B1%EA%B3%BC-%EC%B2%AD%EC%86%8C%EB%85%84-%EC%B2%B4%EB%A0%A5-%EC%A0%80%ED%95%98-%EB%B6%84%EC%84%9D.html">운동 부족과 청소년 체력 저하 분석</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">10_spss_guide.docx</span></p>
+<p>SPSS 분석 가이드: 운동 부족과 청소년 체력 저하 분석</p>
+<h2 id="1-데이터-불러오기">1. 데이터 불러오기</h2>
+<p>1) SPSS 실행 → 파일 → 열기 → 데이터</p>
+<p>2) 파일 유형을 Excel 또는 CSV로 선택</p>
+<p>3) 10_dataset.xlsx의 Data 시트를 선택하고, 첫 행을 변수명으로 읽어온다.</p>
+<p>4) 변수 보기에서 grade, gender, activity_type, fitness_grade는 명목/서열로, 운동시간·점수 변수는 척도로 설정한다.</p>
+<h2 id="2-변수-측도-설정">2. 변수 측도 설정</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>데이터 유형</th>
+<th>SPSS 측도</th>
+<th>코딩/값 설명</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>student_id</td>
+<td>익명 학생 ID</td>
+<td>문자</td>
+<td>문자</td>
+<td>명목</td>
+<td>S001~S050</td>
+<td>개인 식별정보 제거</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>학년</td>
+<td>1~3</td>
+<td>숫자</td>
+<td>명목</td>
+<td>1=1학년, 2=2학년, 3=3학년</td>
+<td>분석 시 집단변수</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>성별</td>
+<td>남/여</td>
+<td>문자</td>
+<td>명목</td>
+<td>남, 여</td>
+<td>민감정보 최소화</td>
+</tr>
+<tr>
+<td>academic_pressure</td>
+<td>입시·학업 압박감</td>
+<td>1~5점</td>
+<td>숫자</td>
+<td>서열</td>
+<td>1=매우 낮음, 5=매우 높음</td>
+<td>설문</td>
+</tr>
+<tr>
+<td>daily_sitting_hours</td>
+<td>하루 앉아있는 시간</td>
+<td>시간</td>
+<td>숫자</td>
+<td>척도</td>
+<td>학교+학원+자습 포함</td>
+<td>자기보고</td>
+</tr>
+<tr>
+<td>weekday_exercise_min</td>
+<td>평일 하루 평균 운동시간</td>
+<td>분</td>
+<td>숫자</td>
+<td>척도</td>
+<td>숨이 차는 활동+걷기 제외/포함 기준 명시 필요</td>
+<td>설문</td>
+</tr>
+<tr>
+<td>weekend_exercise_min</td>
+<td>주말 하루 평균 운동시간</td>
+<td>분</td>
+<td>숫자</td>
+<td>척도</td>
+<td>토·일 평균</td>
+<td>설문</td>
+</tr>
+<tr>
+<td>moderate_vigorous_days</td>
+<td>최근 7일 중 중강도 이상 신체활동 일수</td>
+<td>0~7일</td>
+<td>숫자</td>
+<td>척도</td>
+<td>0~7</td>
+<td>청소년건강행태조사형 문항</td>
+</tr>
+<tr>
+<td>strength_days</td>
+<td>최근 7일 중 근력운동 일수</td>
+<td>0~7일</td>
+<td>숫자</td>
+<td>척도</td>
+<td>0~7</td>
+<td>팔굽혀펴기/스쿼트 등</td>
+</tr>
+<tr>
+<td>pe_class_satisfaction</td>
+<td>체육수업 만족도</td>
+<td>1~5점</td>
+<td>숫자</td>
+<td>서열</td>
+<td>1=매우 낮음, 5=매우 높음</td>
+<td>설문</td>
+</tr>
+<tr>
+<td>school_club_participation</td>
+<td>스포츠 동아리 참여 여부</td>
+<td>0/1</td>
+<td>숫자</td>
+<td>명목</td>
+<td>0=미참여, 1=참여</td>
+<td>집단 비교</td>
+</tr>
+<tr>
+<td>sleep_hours</td>
+<td>평일 평균 수면시간</td>
+<td>시간</td>
+<td>숫자</td>
+<td>척도</td>
+<td>소수 1자리</td>
+<td>설문</td>
+</tr>
+<tr>
+<td>stress_score</td>
+<td>스트레스 점수</td>
+<td>0~100점</td>
+<td>숫자</td>
+<td>척도</td>
+<td>높을수록 스트레스 높음</td>
+<td>문항 합산</td>
+</tr>
+<tr>
+<td>bmi</td>
+<td>체질량지수</td>
+<td>kg/m²</td>
+<td>숫자</td>
+<td>척도</td>
+<td>체중(kg)/키(m)^2</td>
+<td>자기보고/측정</td>
+</tr>
+<tr>
+<td>paps_cardio_score</td>
+<td>PAPS 심폐지구력 점수</td>
+<td>0~100점</td>
+<td>숫자</td>
+<td>척도</td>
+<td>높을수록 좋음</td>
+<td>시범 환산</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-분석-절차">3. 분석 절차</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 빈도분석</td>
+<td>학년·성별·운동유형 분포 확인</td>
+<td>grade, gender, activity_type, fitness_grade</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>운동부족형 학생 비중과 체력등급 분포 확인</td>
+</tr>
+<tr>
+<td>2. 기술통계</td>
+<td>운동시간·수면·스트레스·체력점수 평균 확인</td>
+<td>weekday_exercise_min, sleep_hours, stress_score, total_fitness_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>평균 체력 수준과 운동 부족 정도 파악</td>
+</tr>
+<tr>
+<td>3. 상관분석</td>
+<td>운동시간과 체력점수·스트레스·집중도의 관계 확인</td>
+<td>weekday_exercise_min, moderate_vigorous_days, total_fitness_score, stress_score, concentration_score</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>운동량이 체력 및 학습 집중과 관련되는지 확인</td>
+</tr>
+<tr>
+<td>4. 집단비교</td>
+<td>운동유형별 체력·집중도 차이 확인</td>
+<td>activity_type, total_fitness_score, concentration_score, stress_score</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>운동부족형과 활동형의 평균 차이 해석</td>
+</tr>
+<tr>
+<td>5. 회귀분석</td>
+<td>체력점수에 영향을 주는 요인 탐색</td>
+<td>total_fitness_score / weekday_exercise_min, sleep_hours, daily_sitting_hours, stress_score</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>운동시간, 앉아있는 시간, 수면의 설명력 확인</td>
+</tr>
+<tr>
+<td>6. 군집분석</td>
+<td>학생 건강·활동 유형 분류</td>
+<td>weekday_exercise_min, sleep_hours, stress_score, total_fitness_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>체력개선 우선지원군 도출</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-권장-분석-순서">4. 권장 분석 순서</h2>
+<h3 id="1단계-빈도분석">1단계: 빈도분석</h3>
+<p>activity_type과 fitness_grade를 빈도분석하여 운동부족형 학생 비중과 체력등급 분포를 확인한다.</p>
+<h3 id="2단계-기술통계">2단계: 기술통계</h3>
+<p>weekday_exercise_min, daily_sitting_hours, sleep_hours, stress_score, total_fitness_score의 평균과 표준편차를 확인한다.</p>
+<h3 id="3단계-상관분석">3단계: 상관분석</h3>
+<p>운동시간, 활동일수, 앉아있는 시간, 수면시간, 스트레스와 체력점수·집중도 간 상관관계를 확인한다.</p>
+<h3 id="4단계-일원배치-분산분석">4단계: 일원배치 분산분석</h3>
+<p>activity_type별 total_fitness_score, stress_score, concentration_score 차이를 확인한다.</p>
+<h3 id="5단계-선형회귀분석">5단계: 선형회귀분석</h3>
+<p>total_fitness_score를 종속변수로 두고 운동시간, 수면, 앉아있는 시간, 스트레스를 독립변수로 투입한다.</p>
+<h3 id="6단계-군집분석">6단계: 군집분석</h3>
+<p>건강·생활 패턴이 비슷한 학생군을 찾고, 체력 개선 우선지원군을 도출한다.</p>
+<h2 id="5-해석-문장-예시">5. 해석 문장 예시</h2>
+<p>상관분석 결과, 중강도 이상 신체활동 일수는 종합 체력점수와 정적 상관을 보였다. 반면 앉아있는 시간과 스트레스는 체력점수 및 학습 집중도와 부적 상관을 보였다. 이는 운동 부족이 단순히 체력 문제에 그치지 않고 피로감, 스트레스, 집중도와 연결될 수 있음을 의미한다.</p>
+<p>일원배치 분산분석 결과, 운동유형에 따라 종합 체력점수에 차이가 나타난다면, 사후분석을 통해 어떤 집단 간 차이가 큰지 확인한다. 특히 운동부족형과 활동형의 차이가 유의하다면 학교 체육·동아리 프로그램의 정책적 필요성을 제시할 수 있다.</p>
+<h2 id="6-보고서-작성-팁">6. 보고서 작성 팁</h2>
+<p>분석 결과를 학생 개인 비난으로 해석하지 않는다.</p>
+<p>운동 부족을 학업시간, 좌식시간, 수면, 스트레스가 결합된 생활 구조의 문제로 해석한다.</p>
+<p>표와 그래프는 반드시 개선 제안으로 연결한다.</p>
+<p>최종 산출물은 ‘학교 체육·동아리 개선 제안서’로 정리한다.</p>
+<p>실제 조사 시 익명 설문으로 진행하고, 건강 관련 민감정보는 최소한으로 수집한다.</p>
+<h2 id="7-SPSS-Syntax-예시">7. SPSS Syntax 예시</h2>
+<p>FREQUENCIES VARIABLES=activity_type fitness_grade. DESCRIPTIVES VARIABLES=weekday_exercise_min daily_sitting_hours sleep_hours stress_score total_fitness_score concentration_score. CORRELATIONS /VARIABLES=weekday_exercise_min moderate_vigorous_days daily_sitting_hours sleep_hours stress_score total_fitness_score concentration_score /PRINT=TWOTAIL NOSIG. ONEWAY total_fitness_score stress_score concentration_score BY activity_type /STATISTICS DESCRIPTIVES /POSTHOC=TUKEY. REGRESSION /DEPENDENT total_fitness_score /METHOD=ENTER weekday_exercise_min moderate_vigorous_days daily_sitting_hours sleep_hours stress_score. QUICK CLUSTER weekday_exercise_min sleep_hours stress_score total_fitness_score /CRITERIA=CLUSTER(3) MXITER(10) /SAVE CLUSTER.</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="10_spss_syntax-sps">10_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">10_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">* Project 10: Physical Activity Deficit and Adolescent Fitness Decline.
+* Import 10_dataset.csv first or open 10_dataset.xlsx Data sheet.
+
+FREQUENCIES VARIABLES=grade gender activity_type fitness_grade
+ /ORDER=ANALYSIS.
+
+DESCRIPTIVES VARIABLES=weekday_exercise_min weekend_exercise_min moderate_vigorous_days daily_sitting_hours sleep_hours stress_score total_fitness_score concentration_score
+ /STATISTICS=MEAN STDDEV MIN MAX.
+
+CORRELATIONS
+ /VARIABLES=weekday_exercise_min moderate_vigorous_days daily_sitting_hours sleep_hours stress_score total_fitness_score concentration_score
+ /PRINT=TWOTAIL NOSIG
+ /MISSING=PAIRWISE.
+
+ONEWAY total_fitness_score stress_score concentration_score BY activity_type
+ /STATISTICS DESCRIPTIVES
+ /POSTHOC=TUKEY ALPHA(.05).
+
+REGRESSION
+ /DEPENDENT total_fitness_score
+ /METHOD=ENTER weekday_exercise_min moderate_vigorous_days daily_sitting_hours sleep_hours stress_score.
+
+QUICK CLUSTER weekday_exercise_min sleep_hours stress_score total_fitness_score
+ /CRITERIA=CLUSTER(3) MXITER(10)
+ /SAVE CLUSTER.
+
+GRAPH
+ /SCATTERPLOT(BIVAR)=weekday_exercise_min WITH total_fitness_score.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

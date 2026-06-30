@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 학습 도구 사용 격차 분석 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="AI-학습-도구-사용-격차-분석---SPSS">AI 학습 도구 사용 격차 분석 - SPSS</h1>
+<p>상위 노트: <a href="19-AI-%ED%95%99%EC%8A%B5-%EB%8F%84%EA%B5%AC-%EC%82%AC%EC%9A%A9-%EA%B2%A9%EC%B0%A8-%EB%B6%84%EC%84%9D.html">AI 학습 도구 사용 격차 분석</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">19_spss_guide.docx</span></p>
+<p>SPSS 분석 가이드 19번 AI 학습 도구 사용 격차 분석</p>
+<h2 id="1-데이터-불러오기">1. 데이터 불러오기</h2>
+<p>1) SPSS 실행 → 파일 → 열기 → 데이터 → 19_dataset.xlsx 또는 19_dataset.csv 선택</p>
+<p>2) Excel 파일을 불러올 경우 ‘첫 행에서 변수 이름 읽어오기’를 체크한다.</p>
+<p>3) 변수 보기에서 student_id는 명목, Likert 문항은 서열, 점수 변수는 척도로 지정한다.</p>
+<h2 id="2-분석-절차-요약">2. 분석 절차 요약</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>단계</th>
+<th>메뉴 경로</th>
+<th>사용 변수</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>빈도분석</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>grade, paid_ai_access, user_type</td>
+<td>AI 접근성 및 사용 유형 분포 확인</td>
+</tr>
+<tr>
+<td>기술통계</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>ai_literacy_score, gap_risk_score</td>
+<td>평균과 표준편차로 전체 수준 파악</td>
+</tr>
+<tr>
+<td>t검정</td>
+<td>분석 → 평균비교 → 독립표본 t 검정</td>
+<td>paid_ai_access, ai_literacy_score</td>
+<td>유료 AI 접근 여부에 따른 차이 확인</td>
+</tr>
+<tr>
+<td>분산분석</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>user_type, ai_literacy_score</td>
+<td>사용 유형별 리터러시 차이 확인</td>
+</tr>
+<tr>
+<td>상관분석</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>home_digital_env, ai4_output_verification, ai_literacy_score</td>
+<td>환경·검증습관과 리터러시 관계 확인</td>
+</tr>
+<tr>
+<td>회귀분석</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>ai_literacy_score와 예측변수</td>
+<td>AI 리터러시를 설명하는 핵심 요인 도출</td>
+</tr>
+<tr>
+<td>군집분석</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>weekly_ai_sessions, prompt, verification 등</td>
+<td>학생 유형 분류</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-보고서-해석-문장-예시">3. 보고서 해석 문장 예시</h2>
+<p>AI 리터러시 점수는 가정 디지털 환경, 교사의 안내 수준, 프롬프트 작성 역량, AI 답변 검증 습관과 관련이 있는 것으로 나타났다. 따라서 AI 학습 격차는 개인의 관심 부족만이 아니라 학교와 가정이 제공하는 학습 조건의 차이와도 연결된다.</p>
+<h2 id="4-그래프-작성">4. 그래프 작성</h2>
+<p>그래프 → 차트 작성기에서 user_type별 ai_literacy_score 평균 막대그래프, home_digital_env와 ai_literacy_score 산점도, ai7_teacher_guidance와 ai10_learning_gain 산점도를 작성한다.</p>
+<h2 id="5-정책-제안-연결">5. 정책 제안 연결</h2>
+<p>분석 결과는 반드시 교육 제안으로 연결한다. 기초형 학생에게는 AI 접근·사용법 교육, 과제해결형 학생에게는 출처검증·윤리교육, 고급활용형 학생에게는 심화 프로젝트와 동료 멘토링을 제안한다.</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="19_spss_syntax-sps">19_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">19_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">* Project 19: AI 학습 도구 사용 격차 분석.
+* 데이터 파일: 19_dataset.csv 또는 19_dataset.xlsx.
+* CSV를 사용할 경우 SPSS에서 파일 &gt; 데이터 가져오기 &gt; 텍스트 데이터로 불러온다.
+
+VARIABLE LABELS
+ student_id &quot;익명 학생 ID&quot;
+ grade &quot;학년&quot;
+ home_digital_env &quot;가정 디지털 환경 수준&quot;
+ device_access &quot;개인 학습기기 접근성&quot;
+ internet_stability &quot;인터넷 안정성&quot;
+ private_study_space &quot;집중 가능한 학습공간&quot;
+ paid_ai_access &quot;유료 AI 도구 접근 여부&quot;
+ ai_experience_months &quot;AI 학습 도구 사용 경험 개월&quot;
+ weekly_ai_sessions &quot;주간 AI 학습 도구 사용 횟수&quot;
+ ai_tool_diversity &quot;활용하는 AI 도구 수&quot;
+ ai1_access &quot;AI 도구 접근 용이성&quot;
+ ai2_use_frequency &quot;AI 학습 도구 사용 빈도&quot;
+ ai3_prompt_skill &quot;프롬프트 작성 역량&quot;
+ ai4_output_verification &quot;AI 답변 검증 습관&quot;
+ ai5_ethics_awareness &quot;AI 윤리 인식&quot;
+ ai6_confidence &quot;AI 활용 자신감&quot;
+ ai7_teacher_guidance &quot;교사의 AI 활용 안내 수준&quot;
+ ai8_home_support &quot;가정 내 AI 활용 지원 수준&quot;
+ ai9_peer_sharing &quot;친구와 AI 활용법 공유 수준&quot;
+ ai10_learning_gain &quot;AI 활용 후 학습효과 자기평가&quot;
+ ai11_overreliance_risk &quot;AI 의존 위험 자기평가&quot;
+ ai12_future_interest &quot;AI 기반 탐구 관심&quot;
+ ai_literacy_score &quot;AI 리터러시 종합점수&quot;
+ learning_outcome_score &quot;학습 성과 자기평가 점수&quot;
+ gap_risk_score &quot;AI 학습 격차 위험점수&quot;
+ user_type &quot;AI 학습 도구 사용 유형&quot;
+ recommended_support &quot;추천 지원 방식&quot;.
+
+VALUE LABELS
+ grade 1 &quot;1학년&quot; 2 &quot;2학년&quot; 3 &quot;3학년&quot;
+ paid_ai_access 0 &quot;유료 접근 없음&quot; 1 &quot;유료 접근 있음&quot;
+ user_type 1 &quot;비사용·기초형&quot; 2 &quot;과제해결형&quot; 3 &quot;비판적검증형&quot; 4 &quot;고급활용형&quot;
+ recommended_support 1 &quot;기초 AI 리터러시 교육&quot; 2 &quot;프롬프트 작성 워크숍&quot; 3 &quot;출처검증·윤리교육&quot; 4 &quot;동료 멘토링&quot; 5 &quot;심화 프로젝트 트랙&quot;.
+
+FREQUENCIES VARIABLES=grade paid_ai_access user_type recommended_support
+ /ORDER=ANALYSIS.
+
+DESCRIPTIVES VARIABLES=home_digital_env weekly_ai_sessions ai_literacy_score learning_outcome_score gap_risk_score
+ /STATISTICS=MEAN STDDEV MIN MAX.
+
+T-TEST GROUPS=paid_ai_access(0 1)
+ /VARIABLES=ai_literacy_score learning_outcome_score gap_risk_score
+ /MISSING=ANALYSIS.
+
+ONEWAY ai_literacy_score learning_outcome_score gap_risk_score BY user_type
+ /STATISTICS DESCRIPTIVES
+ /POSTHOC=TUKEY ALPHA(0.05).
+
+CORRELATIONS
+ /VARIABLES=home_digital_env device_access internet_stability weekly_ai_sessions ai3_prompt_skill ai4_output_verification ai7_teacher_guidance ai_literacy_score learning_outcome_score gap_risk_score
+ /PRINT=TWOTAIL NOSIG
+ /MISSING=PAIRWISE.
+
+REGRESSION
+ /DEPENDENT ai_literacy_score
+ /METHOD=ENTER home_digital_env device_access internet_stability paid_ai_access weekly_ai_sessions ai3_prompt_skill ai4_output_verification ai7_teacher_guidance.
+
+REGRESSION
+ /DEPENDENT gap_risk_score
+ /METHOD=ENTER home_digital_env device_access internet_stability paid_ai_access weekly_ai_sessions ai3_prompt_skill ai4_output_verification ai7_teacher_guidance.
+
+QUICK CLUSTER weekly_ai_sessions ai3_prompt_skill ai4_output_verification ai5_ethics_awareness ai_literacy_score
+ /MISSING=LISTWISE
+ /CRITERIA=CLUSTER(4) MXITER(10) CONVERGE(0)
+ /METHOD=KMEANS(NOUPDATE)
+ /SAVE CLUSTER.
+
+GRAPH
+ /SCATTERPLOT(BIVAR)=home_digital_env WITH ai_literacy_score
+ /TITLE=&quot;가정 디지털 환경과 AI 리터러시&quot;.
+
+GRAPH
+ /SCATTERPLOT(BIVAR)=ai7_teacher_guidance WITH ai10_learning_gain
+ /TITLE=&quot;교사 안내 수준과 AI 학습효과 자기평가&quot;.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

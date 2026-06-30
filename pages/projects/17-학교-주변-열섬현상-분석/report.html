@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>학교 주변 열섬현상 분석 - 보고서 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="학교-주변-열섬현상-분석---보고서">학교 주변 열섬현상 분석 - 보고서</h1>
+<p>상위 노트: <a href="17-%ED%95%99%EA%B5%90-%EC%A3%BC%EB%B3%80-%EC%97%B4%EC%84%AC%ED%98%84%EC%83%81-%EB%B6%84%EC%84%9D.html">학교 주변 열섬현상 분석</a></p>
+<p>원본 문서: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">17_report.docx</span></p>
+<ol>
+<li>학교 주변 열섬현상 분석</li>
+</ol>
+<p>콘크리트와 녹지 부족은 학생들의 체감 온도를 얼마나 높이는가</p>
+<p>※ 본 보고서는 공식 공공데이터 구조를 반영한 시범용 가상 데이터로 작성되었으며, 실제 제출 시에는 Sources 시트의 공식 데이터로 교체할 수 있다.</p>
+<h2 id="1-프로젝트-개요">1. 프로젝트 개요</h2>
+<p>학교 주변 열섬현상 분석은 학생들이 매일 걷는 정문 앞, 후문 골목, 큰길 버스정류장, 운동장 가장자리 등의 체감 온도 차이를 데이터로 확인하는 프로젝트이다. 특히 아스팔트와 콘크리트가 많은 곳은 지표면 온도가 높아지고, 녹지와 그늘이 부족하면 같은 날씨에서도 학생들이 훨씬 덥게 느낄 수 있다.</p>
+<p>이 프로젝트의 핵심은 더위를 학생 개인의 참을성 문제가 아니라 학교와 지역의 공간 구조 문제로 보는 데 있다. 열섬 위험지도를 만들고, 그늘막·가로수·쿨페이브먼트·우회 통학로 같은 실행 가능한 개선안을 학교와 구청에 제안하는 것이 목표이다.</p>
+<h2 id="2-문제-정의-카드">2. 문제 정의 카드</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>질문</th>
+<th>답변</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>내가 본 문제는 무엇인가?</td>
+<td>학교 주변의 일부 보행로는 여름철에 유난히 뜨겁고, 학생들이 등하교 중 햇볕과 복사열에 오래 노출된다.</td>
+</tr>
+<tr>
+<td>왜 중요한가?</td>
+<td>폭염과 열섬은 학생 건강, 학습 집중도, 안전한 보행 환경에 영향을 준다. 특히 정문 앞과 버스정류장 주변은 학생 보행량이 많아 개선 효과가 크다.</td>
+</tr>
+<tr>
+<td>어떤 데이터를 사용할 것인가?</td>
+<td>기온, 지표면 온도, 녹지율, 수관 피복률, 불투수면 비율, 건물 밀도, 그늘 수준, 학생 보행량, 학교 주변 위치 좌표.</td>
+</tr>
+<tr>
+<td>어떤 분석을 할 것인가?</td>
+<td>열섬 위험점수 산출, 상관분석, 회귀분석, 공간 유형별 비교, K-평균 군집분석, 지도 시각화.</td>
+</tr>
+<tr>
+<td>누구에게 제안할 것인가?</td>
+<td>학교, 학부모회, 학생회, 성북구청 공원녹지과·교통행정과, 서울시교육청.</td>
+</tr>
+<tr>
+<td>전공 관심과의 연결</td>
+<td>환경공학, 도시계획, 기후과학, 데이터사이언스를 결합해 사람 중심의 안전한 학교 공간을 설계하는 경험이다.</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-데이터-설명">3. 데이터 설명</h2>
+<p>분석 단위는 날짜 × 학교 주변 관측 지점이다. 10개 지점을 5일 동안 관찰한 것으로 가정하여 총 50행의 SPSS 실습용 데이터를 구성하였다. 실제 분석에서는 S-DoT 환경정보, 기상청 폭염자료, 서울시 녹지현황, 토지피복지도, 학교 위치자료 등을 결합할 수 있다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수</th>
+<th>의미</th>
+<th>활용</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>surface_temp_c</td>
+<td>지표면 온도</td>
+<td>아스팔트·콘크리트 복사열 확인</td>
+</tr>
+<tr>
+<td>green_ratio_pct</td>
+<td>녹지율</td>
+<td>녹지 부족이 위험점수에 미치는 영향 확인</td>
+</tr>
+<tr>
+<td>impervious_ratio_pct</td>
+<td>불투수면 비율</td>
+<td>포장면이 많은 지역의 열섬 위험 확인</td>
+</tr>
+<tr>
+<td>shade_score</td>
+<td>그늘 수준</td>
+<td>그늘 부족 구간 확인</td>
+</tr>
+<tr>
+<td>student_flow_30min</td>
+<td>30분 학생 보행량</td>
+<td>학생 노출 규모 반영</td>
+</tr>
+<tr>
+<td>heat_risk_score</td>
+<td>열섬 위험점수</td>
+<td>개선 우선순위 산정</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-분석-방법">4. 분석 방법</h2>
+<p>열섬 위험점수는 지표면 온도, 기온, 불투수면 비율, 건물 밀도, 녹지 부족, 그늘 부족, 학생 보행량을 종합해 0~100점으로 계산하였다. 이후 위험등급을 낮음·보통·높음·매우 높음으로 구분하고, 상위 위험구간을 개선 우선순위로 정리하였다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석</th>
+<th>목적</th>
+<th>SPSS 메뉴</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>기술통계</td>
+<td>위험점수와 지표면 온도의 평균·범위 확인</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+</tr>
+<tr>
+<td>상관분석</td>
+<td>녹지율·불투수면·그늘과 위험점수의 관련성 확인</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+</tr>
+<tr>
+<td>회귀분석</td>
+<td>열섬 위험점수를 설명하는 요인 파악</td>
+<td>분석 → 회귀분석 → 선형</td>
+</tr>
+<tr>
+<td>분산분석</td>
+<td>공간 유형별 위험점수 차이 확인</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+</tr>
+<tr>
+<td>군집분석</td>
+<td>고온·저녹지형 등 열섬 유형 분류</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+</tr>
+<tr>
+<td>지도 시각화</td>
+<td>학교 주변 열섬 위험지도 작성</td>
+<td>그래프 → 차트 작성기 → 산점도</td>
+</tr>
+</tbody></table></div>
+<h2 id="5-분석-결과-예시">5. 분석 결과 예시</h2>
+<p>시범 데이터에서 평균 열섬 위험점수는 65.8점, 평균 지표면 온도는 47.3℃로 나타났다. 위험등급이 높음 이상인 관측은 37건이었다. 최고 위험 지점은 큰길 버스정류장 주변이며, 최고 위험점수는 94.8점이었다.</p>
+<p>상위 위험구간은 주로 아스팔트, 콘크리트, 상가 밀집 보행로, 버스정류장, 횡단보도 대기 공간에 집중되었다. 반면 공원 방향 산책로와 나무그늘 골목은 녹지율과 그늘 수준이 높아 위험점수가 낮았다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>순위</th>
+<th>지점</th>
+<th>공간유형</th>
+<th>지표면온도</th>
+<th>녹지율</th>
+<th>위험점수</th>
+<th>권장 개선안</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>큰길 버스정류장 주변</td>
+<td>bus_stop</td>
+<td>52.8</td>
+<td>5</td>
+<td>94.8</td>
+<td>그늘막 설치+가로수 보강+쿨페이브먼트 우선 검토</td>
+</tr>
+<tr>
+<td>2</td>
+<td>정문 앞 아스팔트 보행로</td>
+<td>school_gate</td>
+<td>56.2</td>
+<td>8</td>
+<td>94.1</td>
+<td>그늘막 설치+가로수 보강+쿨페이브먼트 우선 검토</td>
+</tr>
+<tr>
+<td>3</td>
+<td>큰길 버스정류장 주변</td>
+<td>bus_stop</td>
+<td>53.4</td>
+<td>5</td>
+<td>92.7</td>
+<td>그늘막 설치+가로수 보강+쿨페이브먼트 우선 검토</td>
+</tr>
+<tr>
+<td>4</td>
+<td>상가 밀집 보행로</td>
+<td>commercial</td>
+<td>54.6</td>
+<td>7</td>
+<td>92.6</td>
+<td>그늘막 설치+가로수 보강+쿨페이브먼트 우선 검토</td>
+</tr>
+<tr>
+<td>5</td>
+<td>상가 밀집 보행로</td>
+<td>commercial</td>
+<td>53.5</td>
+<td>7</td>
+<td>91.5</td>
+<td>그늘막 설치+가로수 보강+쿨페이브먼트 우선 검토</td>
+</tr>
+<tr>
+<td>6</td>
+<td>횡단보도 대기 공간</td>
+<td>crosswalk_wait</td>
+<td>53.1</td>
+<td>6</td>
+<td>90.7</td>
+<td>그늘막 설치+가로수 보강+쿨페이브먼트 우선 검토</td>
+</tr>
+<tr>
+<td>7</td>
+<td>정문 앞 아스팔트 보행로</td>
+<td>school_gate</td>
+<td>52.9</td>
+<td>8</td>
+<td>90.4</td>
+<td>그늘막 설치+가로수 보강+쿨페이브먼트 우선 검토</td>
+</tr>
+</tbody></table></div>
+<p>그림 1. 학교 주변 열섬 위험지도: 점 색이 진할수록 위험점수가 높고, 점 크기가 클수록 학생 보행량이 많다.</p>
+<p>그림 2. 열섬 위험점수 상위 10개 지점</p>
+<p>그림 3. 녹지율과 열섬 위험점수의 관계</p>
+<h2 id="6-개선-제안">6. 개선 제안</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>제안 대상</th>
+<th>제안 내용</th>
+<th>근거 데이터</th>
+<th>기대 효과</th>
+<th>실행 난이도</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>학교</td>
+<td>정문 앞과 횡단보도 대기 공간에 등하교 시간 임시 그늘막 설치</td>
+<td>위험점수 상위 지점, 학생 보행량 높음</td>
+<td>폭염 노출 감소, 통학 안전 개선</td>
+<td>중</td>
+</tr>
+<tr>
+<td>성북구청 공원녹지과</td>
+<td>상가 밀집 보행로와 버스정류장 주변 가로수·띠녹지 보강</td>
+<td>녹지율 낮고 불투수면 비율 높음</td>
+<td>장기적 열섬 완화</td>
+<td>상</td>
+</tr>
+<tr>
+<td>서울시교육청</td>
+<td>학교 담장 주변 학교숲·벽면녹화·그늘 쉼터 조성 지원</td>
+<td>학교녹지 부족 구간 존재</td>
+<td>친환경 학교공간 조성</td>
+<td>상</td>
+</tr>
+<tr>
+<td>학생회</td>
+<td>폭염 시간대 안전 통학로 안내지도 제작</td>
+<td>고위험 지점과 저위험 우회 지점 비교</td>
+<td>학생 참여형 안전 캠페인 가능</td>
+<td>하</td>
+</tr>
+<tr>
+<td>학부모회</td>
+<td>여름철 등하교 열노출 모니터링 봉사단 운영</td>
+<td>현장 관찰 데이터 축적 필요</td>
+<td>데이터 품질 개선과 지역사회 참여</td>
+<td>중</td>
+</tr>
+</tbody></table></div>
+<h2 id="7-한계점과-후속-연구">7. 한계점과 후속 연구</h2>
+<p>본 보고서는 시범용 가상 데이터를 사용했기 때문에 실제 제출 전에는 공식 데이터와 현장 측정값으로 교체해야 한다. 또한 지표면 온도는 측정 시간, 구름, 바람, 측정 장비에 따라 달라질 수 있으므로 같은 조건에서 반복 측정해야 한다.</p>
+<p>후속 연구에서는 열화상 카메라, 위성영상 기반 지표면온도, S-DoT 환경정보, 학생 보행량 조사를 결합하여 실제 학교 주변 열섬 위험지도를 만들 수 있다. 나아가 그늘막 설치 전후의 온도 차이를 비교하면 정책 효과 분석까지 가능하다.</p>
+<h2 id="8-나의-진로-전공-관심과의-연결">8. 나의 진로·전공 관심과의 연결</h2>
+<p>이 프로젝트는 환경공학, 도시계획, 기후과학, 데이터사이언스와 연결된다. 데이터 분석은 단순히 더운 곳을 찾는 일이 아니라, 학생과 지역주민이 더 안전하게 걸을 수 있는 공간을 설계하는 출발점이다. 특히 폭염이 심해지는 시대에는 학교 공간도 기후 적응 인프라로 바라볼 필요가 있다.</p>
+<p>성찰 문장: 나는 더위를 개인이 견뎌야 할 불편으로만 보았지만, 데이터를 통해 더위가 공간 구조와 녹지 부족이 만들어낸 사회적 환경 문제일 수 있음을 이해하게 되었다.</p>
+<h2 id="9-참고-데이터-출처">9. 참고 데이터 출처</h2>
+<ul>
+<li>스마트서울 도시데이터 센서(S-DoT) 환경정보 (서울특별시): https://data.seoul.go.kr/dataList/OA-15969/S/1/datasetView.do</li>
+</ul>
+<ul>
+<li>스마트서울 도시데이터 센서(S_DoT) 환경정보 실시간 (서울특별시/공공데이터포털): https://www.data.go.kr/data/15157504/openapi.do</li>
+</ul>
+<ul>
+<li>서울시 녹지현황 통계 (서울특별시): https://data.seoul.go.kr/dataList/368/S/2/datasetView.do</li>
+</ul>
+<ul>
+<li>서울시 아파트 및 학교녹지 현황 통계 (서울특별시): https://data.seoul.go.kr/dataList/10233/S/2/datasetView.do</li>
+</ul>
+<ul>
+<li>서울시 건물주변녹지 현황 통계 (서울특별시): https://data.seoul.go.kr/dataList/10232/S/2/datasetView.do</li>
+</ul>
+<ul>
+<li>토지피복지도 (환경부 환경공간정보서비스): https://aid.mcee.go.kr/intro/land.do</li>
+</ul>
+<ul>
+<li>기상청 ASOS 일자료/폭염일수 (기상청 기상자료개방포털): https://data.kma.go.kr/climate/heatWave/selectHeatWaveChart.do</li>
+</ul>
+<ul>
+<li>서울시 연도별 학교 위도경도 데이터 (서울특별시교육청/공공데이터포털): https://www.data.go.kr/data/15152021/fileData.do</li>
+</ul>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

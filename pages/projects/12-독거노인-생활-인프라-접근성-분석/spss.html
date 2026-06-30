@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>독거노인 생활 인프라 접근성 분석 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="독거노인-생활-인프라-접근성-분석---SPSS">독거노인 생활 인프라 접근성 분석 - SPSS</h1>
+<p>상위 노트: <a href="12-%EB%8F%85%EA%B1%B0%EB%85%B8%EC%9D%B8-%EC%83%9D%ED%99%9C-%EC%9D%B8%ED%94%84%EB%9D%BC-%EC%A0%91%EA%B7%BC%EC%84%B1-%EB%B6%84%EC%84%9D.html">독거노인 생활 인프라 접근성 분석</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">12_spss_guide.docx</span></p>
+<p>SPSS 분석 가이드: 독거노인 생활 인프라 접근성 분석</p>
+<h2 id="1-데이터-불러오기">1. 데이터 불러오기</h2>
+<p>12_dataset.csv 또는 12_dataset.xlsx 파일을 SPSS에서 연다. Excel 파일을 사용할 경우 첫 행에서 변수 이름 읽어오기를 체크한다. 변수 보기에서 zone_id, zone_name, gu, dong, priority_level, cluster_type은 명목으로 지정하고, slope_score_1_5, night_lighting_score_1_5는 서열 또는 척도로 설정한다. 나머지 수치형 변수는 척도로 설정한다.</p>
+<h2 id="2-분석-절차">2. 분석 절차</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>CSV/XLSX를 SPSS로 불러오고 변수 측도 지정</td>
+<td>전체 변수</td>
+<td>파일 → 열기 → 데이터</td>
+<td>문자형과 숫자형, 명목·서열·척도 구분</td>
+</tr>
+<tr>
+<td>2. 기술통계</td>
+<td>접근성·취약성·우선순위 점수의 분포 확인</td>
+<td>accessibility_score, vulnerability_score, improvement_priority_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>평균·표준편차·최소·최대값 확인</td>
+</tr>
+<tr>
+<td>3. 빈도분석</td>
+<td>개선 우선순위 등급별 구간 수 확인</td>
+<td>priority_level, cluster_type</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>매우 높음·높음 구간 비중 확인</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>접근성 점수와 개선 우선순위의 관계 확인</td>
+<td>accessibility_score, vulnerability_score, improvement_priority_score, slope_score_1_5, sidewalk_width_m</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>접근성이 낮을수록 우선순위가 높은지 확인</td>
+</tr>
+<tr>
+<td>5. 회귀분석</td>
+<td>어떤 요인이 개선 우선순위를 설명하는지 분석</td>
+<td>improvement_priority_score / hospital_distance_m, pharmacy_distance_m, welfare_distance_m, bus_stop_distance_m, slope_score_1_5, sidewalk_width_m</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>표준화계수 Beta와 유의확률 해석</td>
+</tr>
+<tr>
+<td>6. 군집분석</td>
+<td>생활권을 취약 유형별로 분류</td>
+<td>facility_score, distance_score, environment_score, vulnerability_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>의료접근 취약형, 교통접근 취약형 등 유형화</td>
+</tr>
+<tr>
+<td>7. 지도 시각화</td>
+<td>취약 생활권 위치를 지도형으로 표현</td>
+<td>x_m, y_m, improvement_priority_score, priority_level</td>
+<td>그래프 → 차트 작성기 → 산점도</td>
+<td>점 크기 또는 색상으로 우선순위 표현</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-결과-해석-요령">3. 결과 해석 요령</h2>
+<p>기술통계에서는 접근성 점수의 평균과 개선 우선순위 점수의 최대값을 확인한다. 빈도분석에서는 높음 또는 매우 높음 등급의 생활권이 몇 개인지 본다. 상관분석에서는 접근성 점수와 개선 우선순위 점수가 음의 관계를 보이는지 확인한다. 회귀분석에서는 병의원 거리, 약국 거리, 복지시설 거리, 버스정류장 거리, 경사 점수, 보도 폭 중 어떤 요인이 개선 우선순위를 가장 잘 설명하는지 본다.</p>
+<h2 id="4-권장-그래프">4. 권장 그래프</h2>
+<p>SPSS 차트 작성기에서 x_m을 X축, y_m을 Y축으로 산점도를 만들면 학교 주변 상대좌표 기반의 취약지역 지도를 만들 수 있다. 접근성 점수를 X축, 취약성 점수를 Y축으로 둔 산점도는 접근성은 낮고 취약성은 높은 생활권을 찾는 데 유용하다.</p>
+<h2 id="5-보고서에-넣을-문장-예시">5. 보고서에 넣을 문장 예시</h2>
+<p>분석 결과, 접근성 점수가 낮고 독거노인 취약성 점수가 높은 생활권에서 개선 우선순위 점수가 높게 나타났다. 이는 독거노인 생활 인프라 문제를 시설 부족만이 아니라 거리, 보행환경, 대중교통 연결성의 결합 문제로 이해해야 함을 보여준다.</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="12_spss_syntax-sps">12_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">12_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">* Project 12: 독거노인 생활 인프라 접근성 분석.
+GET DATA /TYPE=TXT
+  /FILE=&#x27;/mnt/data/project12_living_infra/12_dataset.csv&#x27;
+  /ENCODING=&#x27;UTF8&#x27;
+  /DELCASE=LINE
+  /DELIMITERS=&#x27;,&#x27;
+  /QUALIFIER=&#x27;&quot;&#x27;
+  /ARRANGEMENT=DELIMITED
+  /FIRSTCASE=2
+  /VARIABLES=
+  zone_id A10 zone_name A80 gu A20 dong A30 lat F10.6 lon F10.6 x_m F8.0 y_m F8.0
+  solitary_elderly_count F8.0 elderly_density_per_km2 F8.1 medical_facilities_500m F8.0 pharmacy_500m F8.0 senior_welfare_500m F8.0 bus_stop_300m F8.0
+  subway_distance_m F8.0 hospital_distance_m F8.0 pharmacy_distance_m F8.0 welfare_distance_m F8.0 bus_stop_distance_m F8.0
+  slope_score_1_5 F8.0 sidewalk_width_m F8.1 crosswalk_300m F8.0 signal_300m F8.0 night_lighting_score_1_5 F8.0 bench_count_300m F8.0
+  facility_score F8.1 distance_score F8.1 environment_score F8.1 accessibility_score F8.1 vulnerability_score F8.1 improvement_priority_score F8.1
+  priority_level A20 cluster_type A40 recommended_action A20.
+EXECUTE.
+
+VARIABLE LABELS
+accessibility_score &#x27;생활 인프라 접근성 종합점수&#x27;
+vulnerability_score &#x27;독거노인 취약성 점수&#x27;
+improvement_priority_score &#x27;개선 우선순위 점수&#x27;.
+
+FREQUENCIES VARIABLES=priority_level cluster_type.
+DESCRIPTIVES VARIABLES=accessibility_score vulnerability_score improvement_priority_score hospital_distance_m pharmacy_distance_m welfare_distance_m bus_stop_distance_m.
+CORRELATIONS /VARIABLES=accessibility_score vulnerability_score improvement_priority_score hospital_distance_m pharmacy_distance_m welfare_distance_m bus_stop_distance_m slope_score_1_5 sidewalk_width_m.
+REGRESSION /DEPENDENT improvement_priority_score /METHOD=ENTER hospital_distance_m pharmacy_distance_m welfare_distance_m bus_stop_distance_m slope_score_1_5 sidewalk_width_m solitary_elderly_count.
+QUICK CLUSTER facility_score distance_score environment_score vulnerability_score /CRITERIA=CLUSTER(4) MXITER(10) /SAVE CLUSTER.
+GRAPH /SCATTERPLOT(BIVAR)=x_m WITH y_m.
+GRAPH /SCATTERPLOT(BIVAR)=accessibility_score WITH vulnerability_score.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

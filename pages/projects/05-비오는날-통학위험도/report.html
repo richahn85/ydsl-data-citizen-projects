@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>비오는날 통학위험도 - 보고서 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="비오는날-통학위험도---보고서">비오는날 통학위험도 - 보고서</h1>
+<p>상위 노트: <a href="05-%EB%B9%84%EC%98%A4%EB%8A%94%EB%82%A0-%ED%86%B5%ED%95%99%EC%9C%84%ED%97%98%EB%8F%84.html">비오는날 통학위험도</a></p>
+<p>원본 문서: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">05_report.docx</span></p>
+<p>비 오는 날 통학 위험도 분석 용문고 주변 우천 시 통학 안전·지각 위험 예측과 개선 제안</p>
+<p>프로젝트 05 | 학생 제출용 완성 보고서 | 데이터는 공식 공공데이터 구조를 반영한 시범용 가상 데이터</p>
+<h2 id="1-프로젝트-개요">1. 프로젝트 개요</h2>
+<p>본 프로젝트는 비 오는 날 학생들의 통학 안전과 지각 가능성이 어떻게 달라지는지를 데이터로 분석한다. 문제의 핵심은 “날씨가 통학 안전과 지각률에 어떤 영향을 미치는가”이다. 비 오는 날은 보행 시야가 좁아지고, 우산으로 인해 학생 간 보행 충돌이 증가하며, 버스 지연과 차량 혼잡이 함께 발생한다. 따라서 이 주제는 개인의 조심성 문제가 아니라 보행환경, 교통운영, 날씨가 결합된 시스템 문제로 보아야 한다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>항목</th>
+<th>내용</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>문제의식</td>
+<td>날씨가 통학 안전과 지각률에 어떤 영향을 미치는가</td>
+</tr>
+<tr>
+<td>핵심 데이터</td>
+<td>강수량, 기온, 풍속, 버스 지연, 도로 속도, 보행자 사고, 학생 체감 위험 설문</td>
+</tr>
+<tr>
+<td>분석 방법</td>
+<td>날씨별 사고·지연 패턴 분석, 위험점수화, 회귀분석, 지도 시각화</td>
+</tr>
+<tr>
+<td>산출물</td>
+<td>우천 시 통학 안전 가이드, 위험지도, 우선 개선구간 제안서</td>
+</tr>
+<tr>
+<td>연결 전공</td>
+<td>환경공학, 데이터사이언스, 기후 리스크 분석, 교통공학, 공공정책</td>
+</tr>
+</tbody></table></div>
+<h2 id="2-문제-정의-카드">2. 문제 정의 카드</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>질문</th>
+<th>답변</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>내가 본 문제는 무엇인가?</td>
+<td>비 오는 날 등교 시간에 학생들이 좁은 보도에서 우산을 쓰고 이동하면서 시야가 가려지고, 버스가 늦어져 지각 가능성도 높아지는 문제를 보았다.</td>
+</tr>
+<tr>
+<td>왜 이 문제가 중요한가?</td>
+<td>비 오는 날의 위험은 학생 개인의 부주의만으로 설명되지 않는다. 보도 폭, 배수 상태, 차량 혼잡, 버스 지연이 결합되어 발생하는 구조적 위험이다.</td>
+</tr>
+<tr>
+<td>어떤 데이터를 사용할 것인가?</td>
+<td>기상청 강수량·기온·풍속, 서울시 버스도착·버스위치 정보, 도로 통행속도, 횡단보도·정류장 위치, TAAS 교통사고 GIS, 학생 체감 위험 설문을 사용한다.</td>
+</tr>
+<tr>
+<td>어떤 분석을 할 것인가?</td>
+<td>비 오는 날과 맑은 날의 버스 지연·지각시간·위험점수 차이를 비교하고, 강수량이 위험점수에 미치는 영향을 회귀분석으로 확인한다.</td>
+</tr>
+<tr>
+<td>누구에게 제안할 것인가?</td>
+<td>학교, 학생회, 학부모회, 성북구청 교통행정 부서, 경찰서 교통안전 담당 부서에 제안한다.</td>
+</tr>
+<tr>
+<td>전공 관심과 어떻게 연결되는가?</td>
+<td>기후 리스크와 도시교통 데이터를 결합하여 학생 안전을 개선하는 사람 중심 데이터사이언스 프로젝트로 확장할 수 있다.</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-데이터-설명">3. 데이터 설명</h2>
+<p>분석 단위는 학생×날짜×통학구간이다. 10개 통학구간을 5일 동안 관찰한 형태로 총 50행의 시범 데이터를 구성하였다. 실제 프로젝트에서는 공공데이터와 학생 현장조사를 결합하여 동일한 구조로 대체할 수 있다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>활용 변수</th>
+<th>확보 방식</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>기상청 단기예보 조회서비스</td>
+<td>기상청</td>
+<td>강수량, 기온, 풍속</td>
+<td>API, XML/JSON</td>
+</tr>
+<tr>
+<td>서울시 버스도착 정보 조회</td>
+<td>서울특별시</td>
+<td>도착예정시간, 현재위치, 지연시간</td>
+<td>API, 인증키 필요</td>
+</tr>
+<tr>
+<td>서울시 도로별 일자별 통행속도</td>
+<td>서울특별시</td>
+<td>도로별 평균 속도, 혼잡도</td>
+<td>OpenAPI/File</td>
+</tr>
+<tr>
+<td>서울시 횡단보도·정류장 위치정보</td>
+<td>서울특별시</td>
+<td>횡단보도 수, 정류장 수, 좌표</td>
+<td>파일/API</td>
+</tr>
+<tr>
+<td>TAAS 교통사고 GIS</td>
+<td>한국도로교통공단</td>
+<td>사고건수, 보행자 사고, 사고다발지역</td>
+<td>지도 조회 후 수작업 코딩</td>
+</tr>
+<tr>
+<td>학생 현장조사</td>
+<td>용문고 학생</td>
+<td>물웅덩이, 체감위험, 지각시간</td>
+<td>Google Form/관찰지</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-분석-방법">4. 분석 방법</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>빈도분석</td>
+<td>비 오는 날과 위험등급 분포 확인</td>
+<td>rain_dummy, risk_grade</td>
+<td>우천일 관찰값과 위험등급이 충분히 분포하는지 확인</td>
+</tr>
+<tr>
+<td>기술통계</td>
+<td>강수량·버스지연·지각시간의 평균 확인</td>
+<td>rainfall_mm, bus_delay_min, avg_late_min</td>
+<td>비 오는 날 평균 위험 수준 파악</td>
+</tr>
+<tr>
+<td>t검정</td>
+<td>비 오는 날과 아닌 날의 평균 차이 검정</td>
+<td>rain_dummy, bus_delay_min, avg_late_min, risk_score</td>
+<td>p값으로 우천 효과 확인</td>
+</tr>
+<tr>
+<td>상관분석</td>
+<td>강수량과 위험요인 관계 확인</td>
+<td>rainfall_mm, bus_delay_min, road_speed_kmh</td>
+<td>강수량이 증가할수록 버스지연과 위험점수가 증가하는지 확인</td>
+</tr>
+<tr>
+<td>회귀분석</td>
+<td>위험점수 예측 요인 파악</td>
+<td>rainfall_mm, drainage_risk, visibility_risk, bus_delay_min</td>
+<td>어떤 요인이 우천 위험을 가장 크게 설명하는지 확인</td>
+</tr>
+<tr>
+<td>지도 시각화</td>
+<td>위험구간 위치 표현</td>
+<td>x_m, y_m, total_rain_risk_score</td>
+<td>학교 기준 상대좌표로 우선 개선지점 표시</td>
+</tr>
+</tbody></table></div>
+<h2 id="5-시범-분석-결과">5. 시범 분석 결과</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>요일</th>
+<th>강수량(mm)</th>
+<th>평균 버스 지연(분)</th>
+<th>평균 지각시간(분)</th>
+<th>평균 위험점수</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>월</td>
+<td>0.0</td>
+<td>4.9</td>
+<td>3.8</td>
+<td>54.3</td>
+</tr>
+<tr>
+<td>화</td>
+<td>4.5</td>
+<td>6.8</td>
+<td>6.0</td>
+<td>67.0</td>
+</tr>
+<tr>
+<td>수</td>
+<td>12.0</td>
+<td>10.1</td>
+<td>9.2</td>
+<td>77.3</td>
+</tr>
+<tr>
+<td>목</td>
+<td>0.0</td>
+<td>4.2</td>
+<td>3.3</td>
+<td>52.2</td>
+</tr>
+<tr>
+<td>금</td>
+<td>22.5</td>
+<td>14.7</td>
+<td>13.3</td>
+<td>87.6</td>
+</tr>
+</tbody></table></div>
+<p>시범 데이터에서는 강수량이 12mm 이상인 수요일과 22.5mm인 금요일에 평균 버스 지연, 평균 지각시간, 우천 통학 위험점수가 모두 높아지는 경향이 나타났다. 특히 강수량이 큰 날에는 배수 불량, 시야 방해, 차량 혼잡이 함께 증가하였다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>순위</th>
+<th>구간ID</th>
+<th>구간명</th>
+<th>평균 위험점수</th>
+<th>해석</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>R03</td>
+<td>버스정류장 인접 구간</td>
+<td>81.6</td>
+<td>우선 개선 필요</td>
+</tr>
+<tr>
+<td>2</td>
+<td>R06</td>
+<td>학원가·상가 밀집 보행로</td>
+<td>78.3</td>
+<td>우선 개선 필요</td>
+</tr>
+<tr>
+<td>3</td>
+<td>R04</td>
+<td>대형 교차로 접근부</td>
+<td>76.8</td>
+<td>우선 개선 필요</td>
+</tr>
+<tr>
+<td>4</td>
+<td>R08</td>
+<td>무신호 횡단 지점</td>
+<td>69.8</td>
+<td>관찰 및 부분 개선</td>
+</tr>
+<tr>
+<td>5</td>
+<td>R02</td>
+<td>정문-큰길 연결 골목</td>
+<td>67.6</td>
+<td>관찰 및 부분 개선</td>
+</tr>
+<tr>
+<td>6</td>
+<td>R09</td>
+<td>보도 폭 협소 구간</td>
+<td>66.7</td>
+<td>관찰 및 부분 개선</td>
+</tr>
+<tr>
+<td>7</td>
+<td>R10</td>
+<td>주차 차량 많은 골목</td>
+<td>64.0</td>
+<td>관찰 및 부분 개선</td>
+</tr>
+<tr>
+<td>8</td>
+<td>R01</td>
+<td>정문 앞 횡단보도</td>
+<td>60.3</td>
+<td>관찰 및 부분 개선</td>
+</tr>
+<tr>
+<td>9</td>
+<td>R05</td>
+<td>이면도로 급경사 구간</td>
+<td>59.4</td>
+<td>관찰 및 부분 개선</td>
+</tr>
+<tr>
+<td>10</td>
+<td>R07</td>
+<td>아파트 단지 후문 통학로</td>
+<td>51.9</td>
+<td>관찰 및 부분 개선</td>
+</tr>
+</tbody></table></div>
+<p>그림 1. 요일별 강수량과 평균 지각시간</p>
+<p>그림 2. 우천 통학 위험점수 상위 10개 관찰값</p>
+<p>그림 3. 비 오는 날 통학 위험지도 시범 산점도</p>
+<h2 id="6-개선-제안서">6. 개선 제안서</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>제안 대상</th>
+<th>제안 내용</th>
+<th>근거 데이터</th>
+<th>기대 효과</th>
+<th>실행 난이도</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>학교</td>
+<td>비 예보 시 등교 안전 알림과 우산 보행 동선 안내</td>
+<td>강수량과 체감위험·지각시간 증가</td>
+<td>학생이 위험구간을 사전에 회피</td>
+<td>낮음</td>
+</tr>
+<tr>
+<td>성북구청</td>
+<td>상위 위험구간 배수 정비와 물웅덩이 제거</td>
+<td>drainage_risk, puddle_count, risk_score</td>
+<td>미끄럼과 차도 보행 감소</td>
+<td>중간</td>
+</tr>
+<tr>
+<td>경찰서/교통지도</td>
+<td>우천 시 정문·버스정류장 주변 교통지도 강화</td>
+<td>bus_delay, congestion, accident_score</td>
+<td>차량·보행자 충돌 위험 감소</td>
+<td>중간</td>
+</tr>
+<tr>
+<td>버스 운영기관</td>
+<td>강우 예보 시 등교시간 배차 간격 모니터링</td>
+<td>bus_delay_min, boarding data</td>
+<td>지각 가능성 완화</td>
+<td>중간~높음</td>
+</tr>
+<tr>
+<td>학생회</td>
+<td>비 오는 날 통학 위험 제보 캠페인 운영</td>
+<td>학생 체감위험 설문·현장사진</td>
+<td>학생 참여형 안전 데이터 축적</td>
+<td>낮음</td>
+</tr>
+</tbody></table></div>
+<h2 id="7-한계점과-후속-연구">7. 한계점과 후속 연구</h2>
+<p>본 데이터는 시범용 가상 데이터이므로 실제 정책 제안 전에는 공식 공공데이터와 현장 관찰 데이터로 교체해야 한다.</p>
+<p>우천 사고는 단순 사고건수만으로 파악하기 어렵기 때문에 사고 당시 기상 상태를 TAAS 또는 뉴스·현장 기록과 함께 수작업 코딩할 필요가 있다.</p>
+<p>후속 연구에서는 비 오는 날, 눈 오는 날, 폭염일 등 기후 조건별 통학 리스크를 비교할 수 있다.</p>
+<p>학생별 실제 GPS 경로를 수집할 경우 개인정보 보호와 익명화 원칙을 반드시 지켜야 한다.</p>
+<h2 id="8-나의-진로-전공-관심과의-연결">8. 나의 진로·전공 관심과의 연결</h2>
+<p>이 프로젝트는 환경공학, 데이터사이언스, 교통공학, 공공정책이 만나는 주제이다. 학생은 날씨 데이터를 단순히 “비가 온다”는 정보로 보는 것이 아니라, 강수량이 보행환경과 교통흐름, 지각 가능성, 사고위험에 어떤 영향을 미치는지 분석하게 된다. 이는 기후변화 시대에 필요한 도시 안전 데이터 분석 역량과 연결된다.</p>
+<h2 id="9-에세이형-성찰-문장">9. 에세이형 성찰 문장</h2>
+<p>처음에는 비 오는 날 지각이 학생 개인의 준비 부족 때문이라고 생각했다. 그러나 데이터를 보며 강수량이 많을수록 버스 지연, 보행 시야 방해, 물웅덩이, 체감위험이 함께 증가한다는 점을 확인했다. 이제 나는 지각과 안전을 개인 책임으로만 보지 않고, 학생이 매일 통과하는 교통·기후·보행 시스템의 결과로 바라보게 되었다.</p>
+<h2 id="10-주요-데이터-출처">10. 주요 데이터 출처</h2>
+<p>기상청_단기예보 조회서비스 - https://www.data.go.kr/data/15084084/openapi.do</p>
+<p>서울시 버스도착 정보 조회 - https://data.seoul.go.kr/dataList/OA-1091/L/1/datasetView.do</p>
+<p>서울시 버스위치 정보 조회 - https://data.seoul.go.kr/dataList/OA-1093/L/1/datasetView.do</p>
+<p>서울시 버스노선별 정류장별 시간대별 승하차 인원 정보 - https://data.seoul.go.kr/dataList/OA-12913/S/1/datasetView.do</p>
+<p>서울특별시 도로별 일자별 통행속도 - https://data.seoul.go.kr/dataList/OA-22817/L/1/datasetView.do</p>
+<p>서울시 대로변 횡단보도 위치정보 - https://data.seoul.go.kr/dataList/OA-21209/S/1/datasetView.do?tab=A</p>
+<p>서울시 자치구별 신호등 및 횡단보도 위치 및 현황 - https://data.seoul.go.kr/dataList/OA-22364/F/1/datasetView.do</p>
+<p>TAAS 교통사고 GIS 분석 시스템 - https://taas.koroad.or.kr/web/shp/sbm/initGisAnals.do?menuId=WEB_KMP_GIS_TAS</p>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

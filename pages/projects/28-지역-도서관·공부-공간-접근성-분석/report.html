@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>지역 도서관·공부 공간 접근성 분석 - 보고서 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="지역-도서관-공부-공간-접근성-분석---보고서">지역 도서관·공부 공간 접근성 분석 - 보고서</h1>
+<p>상위 노트: <a href="28-%EC%A7%80%EC%97%AD-%EB%8F%84%EC%84%9C%EA%B4%80%C2%B7%EA%B3%B5%EB%B6%80-%EA%B3%B5%EA%B0%84-%EC%A0%91%EA%B7%BC%EC%84%B1-%EB%B6%84%EC%84%9D.html">지역 도서관·공부 공간 접근성 분석</a></p>
+<p>원본 문서: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">28_report.docx</span></p>
+<p>지역 도서관·공부 공간 접근성 분석 보고서</p>
+<p>Project 28 | 지역 도서관·공부 공간 접근성 분석</p>
+<h2 id="1-핵심-요약">1. 핵심 요약</h2>
+<p>본 보고서는 용문고 학생들이 방과 후 안전하고 조용히 공부할 수 있는 공간에 충분히 접근하고 있는지를 데이터로 분석하는 시범 프로젝트이다. 분석의 초점은 단순히 도서관이나 스터디카페가 몇 개 있는지를 세는 데 있지 않다. 학생이 실제로 이용할 수 있는 시간, 비용 부담, 야간 귀가 안전, 대중교통 접근성, 가정학습 어려움까지 함께 고려해 생활권별 접근성 점수와 개선 우선순위를 산출한다.</p>
+<p>시범 분석 결과, 일부 생활권은 스터디카페 수는 많지만 비용 부담이 높고 공공 좌석 비율이 낮았다. 반대로 공공도서관이 가까운 생활권은 비용 부담은 낮았지만 야간 운영과 주말 운영 시간이 부족한 경우가 있었다. 따라서 청소년 학습공간 정책은 민간 공간의 수량보다 공공성, 안전성, 이용 가능 시간을 함께 보아야 한다.</p>
+<h2 id="2-문제의식과-프로젝트-구조">2. 문제의식과 프로젝트 구조</h2>
+<p>문제의식: 학생들이 방과 후 안전하고 조용히 공부할 공간에 충분히 접근하고 있는가?</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>단계</th>
+<th>내용</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>내 주변 불편함</td>
+<td>방과 후 공부할 곳이 부족하거나, 유료 공간의 비용이 부담되거나, 늦은 시간 귀가길이 불안함</td>
+</tr>
+<tr>
+<td>데이터로 측정 가능한 문제</td>
+<td>도서관·스터디카페·청소년센터 위치, 운영시간, 이용료, 좌석 수, 안전 점수, 학생 수요로 측정</td>
+</tr>
+<tr>
+<td>분석·예측·시각화</td>
+<td>접근성 점수, 비용 부담 점수, 안전 점수, 개선 우선순위 지도화</td>
+</tr>
+<tr>
+<td>제안 가능성</td>
+<td>학교 도서관 야간 개방, 공공도서관 연계, 청소년센터 학습실 확대, 안전 귀가 동선 개선</td>
+</tr>
+<tr>
+<td>전공 연결</td>
+<td>교육정책, 도시계획, 사회복지, 데이터사이언스</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-문제-정의-카드">3. 문제 정의 카드</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>질문</th>
+<th>답변</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>내가 본 문제는 무엇인가?</td>
+<td>학교 주변에는 유료 공부 공간은 있어도, 누구나 부담 없이 이용할 수 있는 조용하고 안전한 공공 학습공간은 충분하지 않을 수 있다.</td>
+</tr>
+<tr>
+<td>왜 중요한가?</td>
+<td>공부 공간 접근성은 개인의 의지만이 아니라 가정환경, 비용, 지역 인프라의 차이와 연결된다.</td>
+</tr>
+<tr>
+<td>어떤 데이터를 사용할 것인가?</td>
+<td>도서관 위치·운영시간, 스터디카페 위치·이용료, 청소년센터 위치, 대중교통 접근성, 학생 설문, 현장 안전 관찰 자료</td>
+</tr>
+<tr>
+<td>어떤 분석을 할 것인가?</td>
+<td>접근성 점수화, 비용 부담 분석, 안전 점수화, 우선순위 지도 시각화, 군집분석</td>
+</tr>
+<tr>
+<td>누구에게 제안할 것인가?</td>
+<td>학교, 학부모회, 동문회, 성북구청, 공공도서관, 청소년센터</td>
+</tr>
+<tr>
+<td>전공 관심과 어떻게 연결되는가?</td>
+<td>데이터사이언스와 도시·교육정책을 결합해 학생 친화형 학습공간 정책을 설계하는 경험이 된다.</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-데이터-설계">4. 데이터 설계</h2>
+<p>분석 단위는 생활권 또는 250~500m 격자 1개이다. 실제 분석에서는 공공데이터와 현장조사, 학생 설문을 결합한다. 이번 파일의 데이터는 공식 데이터 구조를 반영한 시범용 가상 데이터이다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수군</th>
+<th>핵심 변수</th>
+<th>분석 의미</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>공간 위치</td>
+<td>x_m, y_m, latitude, longitude, distance_from_school_m</td>
+<td>학교 주변 지도화와 거리 분석</td>
+</tr>
+<tr>
+<td>학습공간 공급</td>
+<td>public_library_count_1km, study_cafe_count_500m, youth_center_count_1km, public_seats_1km</td>
+<td>공공·민간 학습공간의 양적 공급</td>
+</tr>
+<tr>
+<td>비용 접근성</td>
+<td>avg_hourly_fee_won, avg_monthly_fee_won, free_space_ratio, cost_score</td>
+<td>유료 공간 의존으로 인한 비용 부담</td>
+</tr>
+<tr>
+<td>시간 접근성</td>
+<td>weekday_open_hours, weekend_open_hours, night_close_after_22</td>
+<td>방과 후와 주말 이용 가능성</td>
+</tr>
+<tr>
+<td>안전 접근성</td>
+<td>lighting_score, sidewalk_score, crime_safety_score, walking_slope_score</td>
+<td>야간 귀가와 보행환경 안전성</td>
+</tr>
+<tr>
+<td>수요·취약성</td>
+<td>afterschool_student_count, survey_need_score, home_study_difficulty</td>
+<td>학생의 실제 필요와 가정학습 환경 차이</td>
+</tr>
+<tr>
+<td>종합지표</td>
+<td>accessibility_score, priority_score, priority_level</td>
+<td>공간 접근성 진단과 개선 우선순위</td>
+</tr>
+</tbody></table></div>
+<h2 id="5-실제-데이터-확보-계획">5. 실제 데이터 확보 계획</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>활용 목적</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>서울시 공공도서관 현황정보</td>
+<td>서울특별시</td>
+<td>공공도서관 위치, 운영시간, 휴관일, 위치정보 활용</td>
+</tr>
+<tr>
+<td>서울시 도서관 이용시간 및 휴관일 정보</td>
+<td>서울특별시</td>
+<td>방과후·주말 이용 가능성 분석</td>
+</tr>
+<tr>
+<td>소상공인시장진흥공단 상가정보</td>
+<td>소상공인시장진흥공단</td>
+<td>스터디카페, 독서실 등 민간 학습공간 위치 추출</td>
+</tr>
+<tr>
+<td>서울시 시설물 정보</td>
+<td>서울특별시</td>
+<td>청소년문화정보도서관, 청소년센터 등 시설 보완</td>
+</tr>
+<tr>
+<td>서울시 버스정류소 위치정보</td>
+<td>서울특별시</td>
+<td>대중교통 접근성 분석</td>
+</tr>
+<tr>
+<td>학생 현장조사·설문</td>
+<td>학생 직접 조사</td>
+<td>이용료, 좌석 수, 조명, 귀가 안전, 학습공간 필요도 수집</td>
+</tr>
+</tbody></table></div>
+<h2 id="6-분석-방법">6. 분석 방법</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>목적</th>
+<th>SPSS 메뉴</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>기술통계</td>
+<td>접근성·비용·안전·수요 평균 확인</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+</tr>
+<tr>
+<td>상관분석</td>
+<td>접근성, 비용, 안전과 우선순위의 관계 확인</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+</tr>
+<tr>
+<td>일원배치 분산분석</td>
+<td>우선순위 등급별 접근성 차이 확인</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+</tr>
+<tr>
+<td>회귀분석</td>
+<td>우선순위 점수에 영향을 미치는 요인 파악</td>
+<td>분석 → 회귀분석 → 선형</td>
+</tr>
+<tr>
+<td>군집분석</td>
+<td>공공공간 부족형, 비용부담형, 안전취약형 등으로 분류</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+</tr>
+<tr>
+<td>지도 시각화</td>
+<td>취약 생활권을 지도형 산점도로 표현</td>
+<td>그래프 → 차트 작성기 → 산점도</td>
+</tr>
+</tbody></table></div>
+<h2 id="7-시범-분석-결과">7. 시범 분석 결과</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>순위</th>
+<th>구역 ID</th>
+<th>구역명</th>
+<th>우선순위 점수</th>
+<th>접근성 점수</th>
+<th>추천 개선안</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Z10-2</td>
+<td>Quiet Residential Block</td>
+<td>74.3</td>
+<td>34.6</td>
+<td>Open school library evening study room</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Z02-1</td>
+<td>Back Gate Alley</td>
+<td>73.7</td>
+<td>32.0</td>
+<td>Open school library evening study room</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Z02-5</td>
+<td>Back Gate Alley</td>
+<td>73.7</td>
+<td>40.0</td>
+<td>Open school library evening study room</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Z04-1</td>
+<td>Subway Approach Road</td>
+<td>73.5</td>
+<td>38.5</td>
+<td>Open school library evening study room</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Z04-3</td>
+<td>Subway Approach Road</td>
+<td>72.3</td>
+<td>44.8</td>
+<td>Open school library evening study room</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Z01-3</td>
+<td>Front Gate Main Street</td>
+<td>72.0</td>
+<td>46.4</td>
+<td>Open school library evening study room</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Z07-2</td>
+<td>Park-side Walkway</td>
+<td>71.2</td>
+<td>43.4</td>
+<td>Open school library evening study room</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Z01-1</td>
+<td>Front Gate Main Street</td>
+<td>70.5</td>
+<td>45.4</td>
+<td>Open school library evening study room</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Z04-5</td>
+<td>Subway Approach Road</td>
+<td>67.7</td>
+<td>46.0</td>
+<td>Partner with public library/youth center</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Z05-2</td>
+<td>Apartment Rear Path</td>
+<td>66.7</td>
+<td>49.3</td>
+<td>Partner with public library/youth center</td>
+</tr>
+</tbody></table></div>
+<p>시범 분석에서는 개선 우선순위가 높은 구간일수록 공공 좌석 수가 적고, 공공 학습공간까지의 거리가 멀며, 유료 공간 의존도가 높은 경향이 나타났다. 특히 일부 생활권은 스터디카페가 많아도 평균 이용료가 높아 실제 접근성은 낮게 평가되었다. 이는 공간 수의 문제보다 공공성·비용·운영시간·안전이 함께 작동한다는 점을 보여준다.</p>
+<p>[그림 1] 학교 주변 공부 공간 접근성 취약지역 지도</p>
+<p>[그림 2] 개선 우선순위 상위 10개 생활권</p>
+<p>[그림 3] 비용 부담과 접근성 점수의 관계</p>
+<h2 id="8-개선-제안서">8. 개선 제안서</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>제안 대상</th>
+<th>제안 내용</th>
+<th>근거 데이터</th>
+<th>기대 효과</th>
+<th>실행 난이도</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>학교</td>
+<td>학교 도서관 또는 빈 교실을 시험기간·평일 저녁에 예약형 학습실로 운영</td>
+<td>우선순위 높은 생활권의 공공 좌석 부족</td>
+<td>비용 부담 없이 공부할 공간 확대</td>
+<td>중</td>
+</tr>
+<tr>
+<td>성북구청·공공도서관</td>
+<td>청소년 방과후 학습시간대 좌석 예약제와 야간 운영일 확대</td>
+<td>도서관 거리·운영시간·학생 수요</td>
+<td>공공 학습공간 접근성 개선</td>
+<td>중</td>
+</tr>
+<tr>
+<td>청소년센터</td>
+<td>청소년 전용 조용한 학습실과 멘토링 시간을 함께 운영</td>
+<td>청소년센터 접근성·수요점수</td>
+<td>공부 공간과 진로 지원 결합</td>
+<td>중</td>
+</tr>
+<tr>
+<td>학부모회·동문회</td>
+<td>취약 생활권 학생 대상 스터디카페 이용권 또는 공공학습실 운영비 후원</td>
+<td>비용 부담 점수와 무료공간 비율</td>
+<td>학습공간 격차 완화</td>
+<td>하</td>
+</tr>
+<tr>
+<td>경찰서·구청</td>
+<td>야간 귀가 동선 조명·보행 안전 개선</td>
+<td>조명·보행 안전 점수</td>
+<td>안전한 학습공간 이용 가능</td>
+<td>중</td>
+</tr>
+</tbody></table></div>
+<h2 id="9-한계점과-후속-연구">9. 한계점과 후속 연구</h2>
+<p>본 시범 데이터는 실제 공공데이터 구조를 반영했지만, 수치는 가상으로 생성되었다. 실제 보고서에서는 공공도서관과 스터디카페 위치를 실제 좌표로 수집하고, 학생 설문과 현장 관찰을 결합해야 한다. 후속 연구에서는 Google My Maps 또는 QGIS를 활용해 실제 보행거리와 야간 안전 동선을 반영할 수 있다.</p>
+<h2 id="10-진로-전공-연결과-성찰">10. 진로·전공 연결과 성찰</h2>
+<p>이 프로젝트는 교육정책, 도시계획, 사회복지, 데이터사이언스를 연결한다. 학생의 학습 성과를 개인 의지만으로 판단하지 않고, 조용하고 안전한 공간에 접근할 수 있는 조건까지 함께 보는 People First 관점의 프로젝트이다.</p>
+<p>에세이형 성찰 문장: 나는 공부를 잘하는 학생과 그렇지 않은 학생의 차이를 노력의 차이로만 보았지만, 이 분석을 통해 공부할 수 있는 공간과 비용, 안전한 귀가길, 공공 인프라가 학생의 학습 기회에 영향을 줄 수 있음을 이해하게 되었다.</p>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

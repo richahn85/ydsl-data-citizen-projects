@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>고등학생 수면 부족과 학습 집중도 분석 - 보고서 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="고등학생-수면-부족과-학습-집중도-분석---보고서">고등학생 수면 부족과 학습 집중도 분석 - 보고서</h1>
+<p>상위 노트: <a href="06-%EA%B3%A0%EB%93%B1%ED%95%99%EC%83%9D-%EC%88%98%EB%A9%B4-%EB%B6%80%EC%A1%B1%EA%B3%BC-%ED%95%99%EC%8A%B5-%EC%A7%91%EC%A4%91%EB%8F%84-%EB%B6%84%EC%84%9D.html">고등학생 수면 부족과 학습 집중도 분석</a></p>
+<p>원본 문서: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">06_report.docx</span></p>
+<p>고등학생 수면 부족과 학습 집중도 분석 보고서</p>
+<p>수면 시간은 성실함의 문제가 아니라 학습 조건의 문제일 수 있는가</p>
+<h2 id="1-프로젝트-개요">1. 프로젝트 개요</h2>
+<p>본 프로젝트는 고등학생의 학습 집중도 차이가 단순히 공부 시간이나 의지의 문제가 아니라, 수면 시간·수면의 질·취침 전 스마트폰 사용·학원 시간·스트레스와 같은 생활 조건과 연결되어 있는지를 탐색한다. 분석 단위는 익명 학생 1명이며, 시범 데이터는 공식 통계의 변수 구조와 학교 설문 구조를 반영해 생성한 50행의 가상 데이터이다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>항목</th>
+<th>내용</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>문제의식</td>
+<td>학생들의 성적 차이는 공부 시간보다 수면 패턴과 더 관련이 있을 수 있는가</td>
+</tr>
+<tr>
+<td>핵심 데이터</td>
+<td>익명 설문, 평일·주말 수면 시간, 스마트폰 사용 시간, 집중도 자기평가, 스트레스, 학습 시간</td>
+</tr>
+<tr>
+<td>분석 방법</td>
+<td>기술통계, 상관분석, 집단 비교, 회귀분석, K-평균 군집분석</td>
+</tr>
+<tr>
+<td>산출물</td>
+<td>수면 유형별 학습 전략, 수면·집중도 관리 체크리스트, 학교 생활지도 제안서</td>
+</tr>
+<tr>
+<td>연결 전공</td>
+<td>심리학, 교육학, 보건학, 데이터사이언스</td>
+</tr>
+</tbody></table></div>
+<h2 id="2-문제-정의-카드">2. 문제 정의 카드</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>질문</th>
+<th>답변</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>내가 본 문제는 무엇인가?</td>
+<td>학생들이 수업 중 졸림을 느끼고 집중이 떨어지는 현상이 반복된다. 그러나 이를 단순히 의지 부족으로만 설명하기 어렵다.</td>
+</tr>
+<tr>
+<td>왜 중요한가?</td>
+<td>수면 부족은 학습 집중도, 스트레스, 건강, 학교생활 만족도와 연결된다. 학생의 삶의 조건을 보지 않고 결과만 평가하면 문제 해결이 어렵다.</td>
+</tr>
+<tr>
+<td>어떤 데이터를 사용할 것인가?</td>
+<td>익명 설문, 수면 시간, 취침 전 스마트폰 사용, 학습 시간, 학원 시간, 스트레스, 집중도 자기평가, 전국 청소년 수면 통계</td>
+</tr>
+<tr>
+<td>어떤 분석을 할 것인가?</td>
+<td>수면시간과 집중도의 상관분석, 수면 부족 집단 비교, 집중도 예측 회귀분석, 수면 유형 군집분석</td>
+</tr>
+<tr>
+<td>누구에게 제안할 것인가?</td>
+<td>학교, 담임교사, 보건교사, 학부모회, 학생자치회</td>
+</tr>
+<tr>
+<td>전공 관심과 어떻게 연결되는가?</td>
+<td>데이터사이언스와 심리·교육·보건 분야를 결합하여 학생을 성적이 아니라 생활 조건 속에서 이해하는 연구로 확장할 수 있다.</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-데이터-설명">3. 데이터 설명</h2>
+<p>본 시범 데이터는 50명의 익명 학생 응답을 가정했다. 실제 연구에서는 Google Forms 또는 Microsoft Forms로 설문을 수집하고, 청소년건강행태조사와 청소년통계 자료를 전국 기준 비교자료로 활용한다. 개인정보 보호를 위해 이름, 학번, 주소, 전화번호는 수집하지 않는다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수</th>
+<th>설명</th>
+<th>SPSS 측도</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>weekday_sleep_hours</td>
+<td>평일 평균 수면 시간</td>
+<td>척도</td>
+</tr>
+<tr>
+<td>smartphone_before_sleep_min</td>
+<td>취침 전 스마트폰 사용 시간</td>
+<td>척도</td>
+</tr>
+<tr>
+<td>sleep_quality</td>
+<td>수면의 질 자기평가(1~5)</td>
+<td>서열</td>
+</tr>
+<tr>
+<td>morning_sleepiness</td>
+<td>오전 수업 졸림 정도(1~5)</td>
+<td>서열</td>
+</tr>
+<tr>
+<td>stress_score</td>
+<td>스트레스 정도(1~5)</td>
+<td>서열</td>
+</tr>
+<tr>
+<td>concentration_score</td>
+<td>학습 집중도 점수(0~100)</td>
+<td>척도</td>
+</tr>
+<tr>
+<td>sleep_type</td>
+<td>수면 유형</td>
+<td>명목</td>
+</tr>
+<tr>
+<td>learning_risk_index</td>
+<td>학습 집중 위험지수(0~100)</td>
+<td>척도</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-실제-데이터-확보-계획">4. 실제 데이터 확보 계획</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>활용 방법</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>청소년건강행태조사</td>
+<td>질병관리청</td>
+<td>수면충분감, 스트레스, 신체활동, 스마트폰 사용 등 전국 기준 비교</td>
+</tr>
+<tr>
+<td>수면시간 및 활동시간</td>
+<td>한국청소년정책연구원 청소년통계</td>
+<td>주중·주말 수면시간과 신체활동 시간 추세 확인</td>
+</tr>
+<tr>
+<td>2025 청소년 통계</td>
+<td>여성가족부·통계청·한국청소년정책연구원</td>
+<td>청소년 건강·학습·생활시간 관련 배경자료</td>
+</tr>
+<tr>
+<td>학교 익명 설문</td>
+<td>용문고 자체 조사</td>
+<td>학생별 수면 패턴과 집중도 분석의 핵심 원자료</td>
+</tr>
+</tbody></table></div>
+<h2 id="5-분석-방법">5. 분석 방법</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>SPSS 메뉴</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>기술통계</td>
+<td>평균 수면시간, 평균 집중도, 스마트폰 사용시간 파악</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+</tr>
+<tr>
+<td>상관분석</td>
+<td>수면시간, 스마트폰 사용, 스트레스와 집중도의 관련성 확인</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+</tr>
+<tr>
+<td>집단 비교</td>
+<td>6시간 미만 수면집단과 6시간 이상 집단의 집중도 차이 검증</td>
+<td>분석 → 평균비교 → 독립표본 t 검정</td>
+</tr>
+<tr>
+<td>회귀분석</td>
+<td>집중도에 영향을 미치는 요인 탐색</td>
+<td>분석 → 회귀분석 → 선형</td>
+</tr>
+<tr>
+<td>군집분석</td>
+<td>학생을 수면 생활 유형별로 분류</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+</tr>
+<tr>
+<td>그래프</td>
+<td>수면시간-집중도 산점도, 유형별 집중도 막대그래프 작성</td>
+<td>그래프 → 차트 작성기</td>
+</tr>
+</tbody></table></div>
+<h2 id="6-시범-분석-결과">6. 시범 분석 결과</h2>
+<p>시범 데이터의 평일 평균 수면시간은 6.08시간, 평균 집중도 점수는 75.6점으로 나타났다. 6시간 미만 수면 학생 비율은 44.0%였고, 학습 집중 위험지수가 높은 학생 비율은 40.0%였다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>지표</th>
+<th>값</th>
+<th>해석</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>평일 평균 수면시간</td>
+<td>6.08</td>
+<td>시간</td>
+</tr>
+<tr>
+<td>평균 학습 집중도</td>
+<td>75.6</td>
+<td>점</td>
+</tr>
+<tr>
+<td>취침 전 스마트폰 평균 사용시간</td>
+<td>89.8</td>
+<td>분</td>
+</tr>
+<tr>
+<td>평균 스트레스</td>
+<td>3.7</td>
+<td>1~5점</td>
+</tr>
+<tr>
+<td>6시간 미만 수면 비율</td>
+<td>44.0</td>
+<td>%</td>
+</tr>
+<tr>
+<td>집중 위험지수 높음 비율</td>
+<td>40.0</td>
+<td>%</td>
+</tr>
+</tbody></table></div>
+<p>상관분석 결과, 평일 수면시간과 집중도 점수 간 상관계수는 r=0.866으로 나타났다. 반대로 취침 전 스마트폰 사용시간과 집중도는 r=-0.466, 스트레스와 집중도는 r=-0.360으로 나타났다. 이는 학습 집중도 저하가 의지 부족 하나로 설명되기 어렵고, 수면과 디지털 습관, 스트레스가 함께 작동할 수 있음을 보여준다.</p>
+<p>그림 1. 평일 수면시간과 학습 집중도 점수의 관계</p>
+<p>그림 2. 수면 유형별 평균 집중도 점수</p>
+<h2 id="7-수면-유형별-학습-전략">7. 수면 유형별 학습 전략</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>수면 유형</th>
+<th>특징</th>
+<th>추천 전략</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>균형수면형</td>
+<td>수면시간과 수면의 질이 안정적이고 집중도도 높음</td>
+<td>현재 생활 리듬 유지, 시험기간에도 취침·기상 시각 유지</td>
+</tr>
+<tr>
+<td>스마트폰야행형</td>
+<td>취침 전 스마트폰 사용시간이 길고 수면의 질이 낮음</td>
+<td>취침 1시간 전 알림 차단, 침대 밖 충전, 야간 사용 기록표 작성</td>
+</tr>
+<tr>
+<td>학습과부하형</td>
+<td>학습·학원 시간이 길고 평일 수면시간이 짧음</td>
+<td>공부시간 확대보다 집중시간 재설계, 50분 학습+10분 휴식, 과제 우선순위 조정</td>
+</tr>
+<tr>
+<td>주말보충형</td>
+<td>평일 부족 수면을 주말에 몰아서 보충함</td>
+<td>주말 늦잠보다 평일 수면 30분 확보, 기상시간 변동 1시간 이내 유지</td>
+</tr>
+<tr>
+<td>일반관리형</td>
+<td>위험은 높지 않으나 생활습관 변동이 있음</td>
+<td>수면·스마트폰·아침식사 체크리스트로 자기관리</td>
+</tr>
+</tbody></table></div>
+<h2 id="8-개선-제안서">8. 개선 제안서</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>제안 대상</th>
+<th>제안 내용</th>
+<th>근거 데이터</th>
+<th>기대 효과</th>
+<th>실행 난이도</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>학교</td>
+<td>시험기간 수면관리 캠페인 운영</td>
+<td>수면 부족 학생의 집중도 저하</td>
+<td>수업 집중도 향상</td>
+<td>중</td>
+</tr>
+<tr>
+<td>보건교사</td>
+<td>수면·스트레스 자기점검표 배포</td>
+<td>스트레스와 집중도의 음의 상관</td>
+<td>조기 위험 신호 발견</td>
+<td>하</td>
+</tr>
+<tr>
+<td>담임교사</td>
+<td>아침 조회 시간 1분 컨디션 체크</td>
+<td>오전 졸림 정도 변수</td>
+<td>학생 상태 이해 및 상담 연결</td>
+<td>하</td>
+</tr>
+<tr>
+<td>학부모회</td>
+<td>취침 전 스마트폰 사용 줄이기 가정 가이드 제공</td>
+<td>스마트폰 사용시간과 집중도의 음의 상관</td>
+<td>가정 내 수면환경 개선</td>
+<td>중</td>
+</tr>
+<tr>
+<td>학생자치회</td>
+<td>수면 챌린지와 디지털 디톡스 주간 운영</td>
+<td>수면 유형별 차이</td>
+<td>학생 참여 기반 생활 개선</td>
+<td>중</td>
+</tr>
+</tbody></table></div>
+<h2 id="9-한계점과-후속-연구">9. 한계점과 후속 연구</h2>
+<p>시범 데이터는 가상 데이터이므로 실제 학교 설문을 통해 검증해야 한다.</p>
+<p>성적 원자료 대신 학업 수행 자기평가를 사용했으므로 객관적 성취도와 차이가 있을 수 있다.</p>
+<p>수면시간은 자기보고 방식이므로 스마트워치나 수면 앱 기록과 비교하면 정확도를 높일 수 있다.</p>
+<p>후속 연구에서는 시험기간 전후 비교, 학년별 차이, 스마트폰 앱 유형별 차이를 추가 분석할 수 있다.</p>
+<h2 id="10-에세이형-성찰-문장">10. 에세이형 성찰 문장</h2>
+<p>나는 그동안 성실함을 공부 시간으로만 판단했지만, 데이터를 보며 인간의 집중력에는 한계가 있고 수면은 학습의 적이 아니라 학습을 가능하게 하는 조건이라는 점을 이해하게 되었다. 이 프로젝트는 학생을 성적 데이터로만 보지 않고, 생활 리듬과 건강, 감정 상태를 함께 보게 해주었다.</p>
+<h2 id="11-학생-에세이-질문">11. 학생 에세이 질문</h2>
+<p>나는 성실함을 공부 시간으로만 판단하고 있었는가?</p>
+<p>수면 데이터를 보며 인간의 한계를 어떻게 이해하게 되었는가?</p>
+<p>나의 스마트폰 사용 습관은 나의 수면과 집중도에 어떤 영향을 주고 있는가?</p>
+<p>학교는 학생에게 더 오래 공부하라고 말하기 전에 어떤 생활 조건을 살펴야 하는가?</p>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

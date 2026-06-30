@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>학교 주변 상권 변화 분석 - 보고서 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="학교-주변-상권-변화-분석---보고서">학교 주변 상권 변화 분석 - 보고서</h1>
+<p>상위 노트: <a href="26-%ED%95%99%EA%B5%90-%EC%A3%BC%EB%B3%80-%EC%83%81%EA%B6%8C-%EB%B3%80%ED%99%94-%EB%B6%84%EC%84%9D.html">학교 주변 상권 변화 분석</a></p>
+<p>원본 문서: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">26_report.docx</span></p>
+<p>26번 주제: 학교 주변 상권 변화 분석</p>
+<p>학생과 지역주민의 생활을 반영하는 청소년 친화형 지역상권 제안</p>
+<h2 id="1-프로젝트-개요">1. 프로젝트 개요</h2>
+<p>문제의식: 학교 주변 상권은 학생과 지역주민의 생활을 어떻게 반영하는가? 단순히 점포가 많고 매출이 높은 상권이 좋은 상권은 아니다. 학생이 안전하게 이용할 수 있고, 지역주민의 생활을 지탱하며, 소상공인이 지속가능하게 생존할 수 있는 상권인지 함께 보아야 한다.</p>
+<p>이 프로젝트는 점포 유형, 유동인구, 추정 매출, 개업·폐업 데이터, 학생 설문과 현장조사를 결합해 학교 주변 상권의 변화를 분석하고, 청소년 친화형 지역상권 제안을 만드는 것을 목표로 한다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>질문</th>
+<th>답변</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>내가 본 문제</td>
+<td>학교 주변에 학생이 자주 가는 분식·카페는 늘지만 문구점·생활 점포는 줄어드는 듯하다.</td>
+</tr>
+<tr>
+<td>왜 중요한가</td>
+<td>상권 변화는 학생 생활 편의, 지역경제, 안전한 방과후 공간과 연결된다.</td>
+</tr>
+<tr>
+<td>사용 데이터</td>
+<td>점포 유형, 개업·폐업, 추정매출, 유동인구, 학교와 거리, 학생 설문, 현장 관찰</td>
+</tr>
+<tr>
+<td>분석 방법</td>
+<td>상권 변화 시각화, 업종별 생존율 분석, 상관·회귀분석, 군집분석, 개선 우선순위 점수화</td>
+</tr>
+<tr>
+<td>제안 대상</td>
+<td>학교, 동문회, 지역상인회, 성북구청 지역경제과, 청소년 관련 부서</td>
+</tr>
+<tr>
+<td>전공 연결</td>
+<td>경영학, 경제학, 도시사회학, 데이터사이언스, 지역혁신</td>
+</tr>
+</tbody></table></div>
+<h2 id="2-데이터-설계">2. 데이터 설계</h2>
+<p>분석 단위는 “분기 × 학교 주변 상권 구역”이다. 10개 상권 구역을 5개 분기로 관찰한 50행의 시범 데이터를 만들었다. 실제 분석에서는 서울시 상권분석서비스, 소상공인시장진흥공단 상가업소정보, 학생 설문, 현장조사를 결합한다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>SPSS 측도</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>quarter</td>
+<td>관찰 분기</td>
+<td>분기</td>
+<td>명목</td>
+<td>2024Q1 형식</td>
+</tr>
+<tr>
+<td>area_id</td>
+<td>학교 주변 상권 구역 ID</td>
+<td>ID</td>
+<td>명목</td>
+<td>A01~A10</td>
+</tr>
+<tr>
+<td>area_name</td>
+<td>상권 구역명</td>
+<td>명칭</td>
+<td>명목</td>
+<td>학생 보고서용 별칭</td>
+</tr>
+<tr>
+<td>business_type</td>
+<td>주요 업종 유형</td>
+<td>범주</td>
+<td>명목</td>
+<td>업종분류</td>
+</tr>
+<tr>
+<td>location_type</td>
+<td>학교 기준 위치 유형</td>
+<td>범주</td>
+<td>명목</td>
+<td>정문, 후문, 역세권 등</td>
+</tr>
+<tr>
+<td>distance_to_school_m</td>
+<td>학교에서 상권까지 거리</td>
+<td>m</td>
+<td>척도</td>
+<td>지도거리</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>위도</td>
+<td>도</td>
+<td>척도</td>
+<td>지도 시각화</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>경도</td>
+<td>도</td>
+<td>척도</td>
+<td>지도 시각화</td>
+</tr>
+<tr>
+<td>store_count</td>
+<td>점포 수</td>
+<td>개</td>
+<td>척도</td>
+<td>상권 규모</td>
+</tr>
+<tr>
+<td>opening_count</td>
+<td>개업 점포 수</td>
+<td>개</td>
+<td>척도</td>
+<td>변화 정도</td>
+</tr>
+<tr>
+<td>closing_count</td>
+<td>폐업 점포 수</td>
+<td>개</td>
+<td>척도</td>
+<td>위험 정도</td>
+</tr>
+<tr>
+<td>survival_rate_pct</td>
+<td>점포 생존율</td>
+<td>%</td>
+<td>척도</td>
+<td>높을수록 안정</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-실제-데이터-확보-계획">3. 실제 데이터 확보 계획</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>파일 형식</th>
+<th>주요 변수</th>
+<th>실제 확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>서울시 상권분석서비스(점포-상권)</td>
+<td>서울특별시 열린데이터광장</td>
+<td>CSV/ZIP</td>
+<td>점포수, 개업점포수, 폐업점포수, 프랜차이즈 점포수</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 상권분석서비스(추정매출-상권)</td>
+<td>서울특별시 열린데이터광장</td>
+<td>ZIP/CSV</td>
+<td>분기, 상권코드, 서비스업종코드, 추정매출</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 상권분석서비스(상권영역)</td>
+<td>서울특별시/공공데이터포털</td>
+<td>CSV/SHP</td>
+<td>상권코드, 상권명, X좌표, Y좌표, 행정동, 면적</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 상권배후지 추정유동인구</td>
+<td>서울특별시 열린데이터광장</td>
+<td>CSV/API</td>
+<td>시간대별 추정 유동인구</td>
+<td>서비스 이전/신규서비스 확인 필요</td>
+</tr>
+<tr>
+<td>소상공인시장진흥공단 상가(상권)정보</td>
+<td>소상공인시장진흥공단/공공데이터포털</td>
+<td>CSV</td>
+<td>상호명, 업종코드, 업종명, 주소, 경도, 위도</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울 생활인구 데이터</td>
+<td>서울특별시 열린데이터광장</td>
+<td>CSV/API</td>
+<td>시간대별 생활인구, 행정동, 연령대</td>
+<td>회원가입/API 가능</td>
+</tr>
+<tr>
+<td>현장조사 및 학생 설문</td>
+<td>용문고 학생 조사</td>
+<td>XLSX/Google Form</td>
+<td>학생 방문 비중, 가격 부담, 안전 인식, 청소년 친화도</td>
+<td>학생 설문 필요</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-분석-방법">4. 분석 방법</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 입력</td>
+<td>분기별 상권 데이터를 SPSS로 불러오기</td>
+<td>quarter, area_id, business_type 등</td>
+<td>파일 → 열기 → 데이터</td>
+<td>문자 변수와 숫자 변수 측도 확인</td>
+</tr>
+<tr>
+<td>2. 기술통계</td>
+<td>상권의 평균 점포수·매출·유동인구 파악</td>
+<td>store_count, estimated_sales_million_krw, floating_population</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>평균과 표준편차가 큰 지점 확인</td>
+</tr>
+<tr>
+<td>3. 업종별 비교</td>
+<td>업종에 따라 생존율·청소년 친화성이 다른지 확인</td>
+<td>business_type, survival_rate_pct, youth_friendly_score</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>문구·학용품, 분식·카페, 학원가 차이 해석</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>유동인구·학생방문비중·매출·폐업위험의 관계 파악</td>
+<td>floating_population, student_visit_share_pct, estimated_sales_million_krw, vacancy_risk_score</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>상권 활성화와 폐업위험의 관계 해석</td>
+</tr>
+<tr>
+<td>5. 회귀분석</td>
+<td>상권 매출을 설명하는 요인 확인</td>
+<td>estimated_sales_million_krw, store_count, floating_population, student_visit_share_pct, rent_index</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>학생 방문 비중과 유동인구가 매출에 미치는 영향 해석</td>
+</tr>
+<tr>
+<td>6. 군집분석</td>
+<td>상권을 유형별로 분류</td>
+<td>survival_rate_pct, vacancy_risk_score, youth_friendly_score, resident_life_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>청소년친화 안정상권, 공실위험상권 등 명명</td>
+</tr>
+<tr>
+<td>7. 시각화</td>
+<td>상권 변화와 개선 우선순위 제시</td>
+<td>latitude, longitude, improvement_priority_score</td>
+<td>그래프 → 차트 작성기 / Google My Maps</td>
+<td>점 크기와 색으로 위험도 표현</td>
+</tr>
+</tbody></table></div>
+<h2 id="5-시범-분석-결과">5. 시범 분석 결과</h2>
+<p>시범 데이터 분석 결과, 학생 방문 비중이 높은 분식·카페와 편의점·간편식 상권은 청소년 친화 점수가 높게 나타났지만, 임대료 부담과 폐업 점수가 높은 구역에서는 개선 우선순위가 높게 나타났다. 이는 학교 주변 상권을 단순 소비공간이 아니라 학생 생활권과 지역경제가 만나는 공간으로 보아야 함을 보여준다.</p>
+<p>그림 1. 분기별 추정 매출 추이</p>
+<p>그림 2. 업종별 평균 생존율</p>
+<p>그림 3. 유동인구와 추정 매출의 관계</p>
+<p>그림 4. 개선 우선순위 상위 10개 구역</p>
+<p>2025Q1 기준 개선 우선순위가 높은 상권은 아래와 같다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>area_id</th>
+<th>area_name</th>
+<th>business_type</th>
+<th>store_count</th>
+<th>closing_count</th>
+<th>survival_rate_pct</th>
+<th>estimated_sales_million_krw</th>
+<th>youth_friendly_score</th>
+<th>improvement_priority_score</th>
+<th>commercial_type</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>A08</td>
+<td>Station Approach Zone</td>
+<td>카페·베이커리</td>
+<td>24</td>
+<td>2</td>
+<td>87.3</td>
+<td>222.9</td>
+<td>30.7</td>
+<td>42.2</td>
+<td>공실·폐업 위험상권</td>
+</tr>
+<tr>
+<td>A10</td>
+<td>Park Walkway Shops</td>
+<td>음식점·카페</td>
+<td>24</td>
+<td>2</td>
+<td>89.0</td>
+<td>249.3</td>
+<td>33.5</td>
+<td>40.6</td>
+<td>관찰필요 혼합상권</td>
+</tr>
+<tr>
+<td>A06</td>
+<td>Main Road Food Street</td>
+<td>음식점</td>
+<td>32</td>
+<td>2</td>
+<td>85.8</td>
+<td>311.9</td>
+<td>31.2</td>
+<td>35.7</td>
+<td>변화·성장상권</td>
+</tr>
+<tr>
+<td>A07</td>
+<td>Library Study Zone</td>
+<td>스터디공간</td>
+<td>14</td>
+<td>2</td>
+<td>90.9</td>
+<td>178.5</td>
+<td>61.5</td>
+<td>32.1</td>
+<td>관찰필요 혼합상권</td>
+</tr>
+<tr>
+<td>A09</td>
+<td>Back Gate Service Zone</td>
+<td>생활서비스</td>
+<td>18</td>
+<td>2</td>
+<td>92.3</td>
+<td>217.7</td>
+<td>48.3</td>
+<td>32.1</td>
+<td>변화·성장상권</td>
+</tr>
+</tbody></table></div>
+<h2 id="6-개선-제안서">6. 개선 제안서</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>제안 대상</th>
+<th>제안 내용</th>
+<th>근거 데이터</th>
+<th>기대 효과</th>
+<th>실행 난이도</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>학교</td>
+<td>학생 안전·가격·건강성을 고려한 청소년 친화 점포 지도 제작</td>
+<td>학생 방문 비중, 청소년 친화 점수</td>
+<td>학생의 안전한 방과후 이동과 소비 선택 지원</td>
+<td>중</td>
+</tr>
+<tr>
+<td>동문회</td>
+<td>동문 소상공인·지역상인 멘토링 프로그램 운영</td>
+<td>업종별 생존율, 폐업위험 점수</td>
+<td>지역경제와 진로교육 연결</td>
+<td>중</td>
+</tr>
+<tr>
+<td>성북구청</td>
+<td>공실 위험 구역에 청년·청소년 친화 창업 지원 연계</td>
+<td>폐업 수, 공실위험 점수, 유동인구</td>
+<td>상권 침체 예방과 지역 활력 회복</td>
+<td>상</td>
+</tr>
+<tr>
+<td>지역상인회</td>
+<td>학생 할인·건강 메뉴·안전 귀가 캠페인 공동 운영</td>
+<td>학생 방문 비중, 만족도 설문</td>
+<td>학생과 상인의 상생 관계 형성</td>
+<td>중</td>
+</tr>
+<tr>
+<td>학교·상인회 공동</td>
+<td>쓰레기·소음·혼잡을 줄이는 학생 소비문화 캠페인</td>
+<td>현장조사, 상권 이용 설문</td>
+<td>지역사회 갈등 감소와 시민성 교육</td>
+<td>하</td>
+</tr>
+</tbody></table></div>
+<h2 id="7-한계점과-후속-연구">7. 한계점과 후속 연구</h2>
+<p>본 데이터는 공식 데이터 구조를 반영한 시범용 가상 데이터이므로 실제 정책 제안에는 공식 자료 다운로드와 현장조사가 필요하다. 특히 학교 주변 상권은 카드매출, 유동인구, 임대료, 학생 체감 인식이 서로 다르게 나타날 수 있다. 후속 연구에서는 실제 학생 설문과 상인 인터뷰를 추가해 데이터가 포착하지 못한 생활의 맥락을 보완해야 한다.</p>
+<h2 id="8-진로-전공-관심과의-연결">8. 진로·전공 관심과의 연결</h2>
+<p>이 프로젝트는 경영학의 상권 분석, 경제학의 지역경제 이해, 도시사회학의 생활권 분석, 데이터사이언스의 예측과 시각화를 결합한다. 학생은 “어떤 가게가 돈을 많이 버는가”를 넘어서 “어떤 상권이 사람을 살리는가”라는 질문으로 나아갈 수 있다.</p>
+<h2 id="9-에세이형-성찰-질문">9. 에세이형 성찰 질문</h2>
+<p>나는 학교 주변 상권을 단순 소비공간으로만 보았는가?</p>
+<p>학생이 좋아하는 상권과 지역주민에게 필요한 상권은 같은가, 다른가?</p>
+<p>상권 변화가 누군가에게는 편리함이지만 다른 누군가에게는 배제가 될 수 있는가?</p>
+<p>내가 제안하는 청소년 친화형 상권은 누구의 삶을 더 낫게 만드는가?</p>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

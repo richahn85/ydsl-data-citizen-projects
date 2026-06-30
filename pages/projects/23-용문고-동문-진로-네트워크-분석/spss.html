@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>용문고 동문 진로 네트워크 분석 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="용문고-동문-진로-네트워크-분석---SPSS">용문고 동문 진로 네트워크 분석 - SPSS</h1>
+<p>상위 노트: <a href="23-%EC%9A%A9%EB%AC%B8%EA%B3%A0-%EB%8F%99%EB%AC%B8-%EC%A7%84%EB%A1%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EB%B6%84%EC%84%9D.html">용문고 동문 진로 네트워크 분석</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">23_spss_guide.docx</span></p>
+<p>23번 SPSS 분석 가이드: 용문고 동문 진로 네트워크 분석</p>
+<p>이 가이드는 23_dataset.csv 또는 23_dataset.xlsx의 Data 시트를 SPSS로 불러와 분석하는 절차를 설명한다.</p>
+<h2 id="1-데이터-불러오기">1. 데이터 불러오기</h2>
+<p>SPSS 실행 → 파일 → 열기 → 데이터 → 23_dataset.csv 선택</p>
+<p>첫 행을 변수 이름으로 읽기 선택</p>
+<p>문자형 변수(pair_id, student_id, alumni_id 등)는 명목, 점수형 변수는 척도로 설정</p>
+<p>recommended_pair는 0=비추천, 1=우선 추천으로 값 레이블 지정</p>
+<h2 id="2-변수-보기-설정">2. 변수 보기 설정</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수</th>
+<th>측도</th>
+<th>값 레이블/설명</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>industry_match</td>
+<td>명목</td>
+<td>0=불일치, 1=일치</td>
+</tr>
+<tr>
+<td>major_match</td>
+<td>명목</td>
+<td>0=불일치, 1=일치</td>
+</tr>
+<tr>
+<td>career_match</td>
+<td>명목</td>
+<td>0=불일치, 1=일치</td>
+</tr>
+<tr>
+<td>matching_score</td>
+<td>척도</td>
+<td>0~100점</td>
+</tr>
+<tr>
+<td>recommended_pair</td>
+<td>명목</td>
+<td>0=비추천, 1=우선 추천</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-권장-분석-절차">3. 권장 분석 절차</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>순서</th>
+<th>분석</th>
+<th>SPSS 메뉴</th>
+<th>핵심 해석</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>학생-동문 후보 매칭 데이터 확인</td>
+<td>파일 → 열기 → 데이터</td>
+<td>문자형 변수와 숫자형 변수를 구분한다.</td>
+</tr>
+<tr>
+<td>2. 빈도분석</td>
+<td>학생 관심 산업과 동문 산업의 분포 파악</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>관심 수요와 공급이 어떤 산업에 몰려 있는지 본다.</td>
+</tr>
+<tr>
+<td>3. 기술통계</td>
+<td>매칭점수와 관계강도 수준 확인</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>평균, 표준편차, 최대/최소로 매칭 품질을 진단한다.</td>
+</tr>
+<tr>
+<td>4. 교차분석</td>
+<td>관심 산업과 추천 방식의 관계 확인</td>
+<td>분석 → 기술통계량 → 교차분석</td>
+<td>특정 산업 관심 학생에게 어떤 지원 방식이 필요한지 본다.</td>
+</tr>
+<tr>
+<td>5. 상관분석</td>
+<td>매칭점수와 예상 도움 정도의 관련성 확인</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>매칭점수가 높을수록 예상 진로 도움도 커지는지 확인한다.</td>
+</tr>
+<tr>
+<td>6. 평균 비교</td>
+<td>추천 여부에 따른 매칭점수 차이 검증</td>
+<td>분석 → 평균비교 → 독립표본 t 검정</td>
+<td>추천 후보와 비추천 후보의 점수 차이가 충분히 큰지 확인한다.</td>
+</tr>
+<tr>
+<td>7. 회귀분석</td>
+<td>예상 진로 도움 정도를 설명하는 요인 탐색</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>무엇이 멘토링 효과를 높이는지 해석한다.</td>
+</tr>
+<tr>
+<td>8. 군집분석</td>
+<td>학생-멘토 매칭 유형 분류</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>고적합 1:1형, 그룹멘토링형, 정보세션형으로 분류한다.</td>
+</tr>
+<tr>
+<td>9. 그래프 작성</td>
+<td>네트워크형 산출물 제작</td>
+<td>그래프 → 차트 작성기</td>
+<td>상위 매칭쌍과 산업별 부족 분야를 시각화한다.</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-결과-해석-문장-예시">4. 결과 해석 문장 예시</h2>
+<p>추천 매칭쌍의 평균 매칭점수가 비추천 후보보다 높게 나타나면, 알고리즘이 학생-동문 적합도를 일정 부분 반영한다고 볼 수 있다.</p>
+<p>학생 관심 산업이 높은데 동문 공급이 낮은 분야는 동문회가 신규 멘토를 우선 확보해야 할 영역이다.</p>
+<p>mentor_network_degree와 expected_career_help가 양의 상관을 보이면 연결도가 높은 동문이 학생에게 더 넓은 진로 정보를 제공할 가능성이 있다.</p>
+<p>단, 멘토링은 사람이 사람을 만나는 과정이므로 수치만으로 최종 배정을 확정하지 않고 학생 희망과 동문 의사를 함께 확인해야 한다.</p>
+<h2 id="5-보고서에-넣을-표와-그래프">5. 보고서에 넣을 표와 그래프</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>산출물</th>
+<th>작성 방법</th>
+<th>보고서 해석</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>산업별 수요-공급 표</td>
+<td>Summary 시트 활용</td>
+<td>학생 관심과 동문 멘토 공급의 불균형 확인</td>
+</tr>
+<tr>
+<td>상위 매칭쌍 그래프</td>
+<td>matching_score 상위 10개 정렬</td>
+<td>우선 연결할 멘토 후보 제시</td>
+</tr>
+<tr>
+<td>추천 방식 빈도표</td>
+<td>recommended_action 빈도분석</td>
+<td>1:1/그룹/정보세션 비율 확인</td>
+</tr>
+<tr>
+<td>네트워크 지도</td>
+<td>학생-동문 추천쌍 선으로 연결</td>
+<td>동문 네트워크의 구조적 활용 가능성 제시</td>
+</tr>
+</tbody></table></div>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="23_spss_syntax-sps">23_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">23_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">* Project 23: Yongmoon Alumni Career Network Analysis.
+GET DATA
+  /TYPE=TXT
+  /FILE=&#x27;23_dataset.csv&#x27;
+  /ENCODING=&#x27;UTF8&#x27;
+  /DELCASE=LINE
+  /DELIMITERS=&#x27;,&#x27;
+  /QUALIFIER=&#x27;&quot;&#x27;
+  /ARRANGEMENT=DELIMITED
+  /FIRSTCASE=2
+  /VARIABLES=
+    pair_id A8 student_id A8 grade F1.0 desired_major A30 career_interest A30 industry_interest A30
+    career_clarity F1.0 mentoring_need F1.0 skill_ai F1.0 skill_data F1.0 skill_business F1.0 skill_communication F1.0
+    alumni_id A8 alumni_cohort F2.0 alumni_major A30 alumni_industry A30 alumni_job_field A30 mentoring_area A60
+    monthly_available_hours F2.0 online_possible F1.0 mentor_network_degree F2.0 industry_match F1.0 major_match F1.0 career_match F1.0
+    skill_match_score F5.1 availability_score F4.1 matching_score F5.1 tie_strength_score F5.1 expected_career_help F3.1
+    student_match_rank F1.0 recommended_pair F1.0 recommended_action A30.
+EXECUTE.
+
+VARIABLE LABELS
+ matching_score &#x27;Student-alumni matching fit score (0-100)&#x27;
+ tie_strength_score &#x27;Expected tie strength score (0-100)&#x27;
+ expected_career_help &#x27;Expected career help (1-5)&#x27;
+ recommended_pair &#x27;Priority recommended mentoring pair&#x27;.
+VALUE LABELS recommended_pair 0 &#x27;Not priority&#x27; 1 &#x27;Priority recommended&#x27;.
+VALUE LABELS online_possible 0 &#x27;No&#x27; 1 &#x27;Yes&#x27;.
+VALUE LABELS industry_match major_match career_match 0 &#x27;No match&#x27; 1 &#x27;Match&#x27;.
+
+FREQUENCIES VARIABLES=industry_interest alumni_industry recommended_action recommended_pair.
+DESCRIPTIVES VARIABLES=matching_score tie_strength_score expected_career_help mentor_network_degree mentoring_need.
+CROSSTABS /TABLES=industry_interest BY recommended_action /CELLS=COUNT ROW COLUMN.
+CORRELATIONS /VARIABLES=matching_score tie_strength_score expected_career_help mentor_network_degree mentoring_need career_clarity.
+T-TEST GROUPS=recommended_pair(0 1) /VARIABLES=matching_score expected_career_help tie_strength_score.
+REGRESSION /DEPENDENT expected_career_help /METHOD=ENTER matching_score mentor_network_degree career_clarity mentoring_need.
+QUICK CLUSTER matching_score tie_strength_score mentor_network_degree mentoring_need /CRITERIA=CLUSTER(3) MXITER(10) /SAVE CLUSTER.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

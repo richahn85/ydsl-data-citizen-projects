@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>진로 정보 격차 분석 - 보고서 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="진로-정보-격차-분석---보고서">진로 정보 격차 분석 - 보고서</h1>
+<p>상위 노트: <a href="21-%EC%A7%84%EB%A1%9C-%EC%A0%95%EB%B3%B4-%EA%B2%A9%EC%B0%A8-%EB%B6%84%EC%84%9D.html">진로 정보 격차 분석</a></p>
+<p>원본 문서: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">21_report.docx</span></p>
+<ol>
+<li>진로 정보 격차 분석</li>
+</ol>
+<p>학생들은 진로 선택에 필요한 정보를 충분히 얻고 있는가</p>
+<h2 id="1-연구-배경">1. 연구 배경</h2>
+<p>진로 선택은 개인의 흥미와 노력만으로 결정되지 않는다. 어떤 학생은 부모, 선배, 동문, 학원, 온라인 자료를 통해 풍부한 정보를 얻지만, 어떤 학생은 어디서부터 찾아야 하는지조차 모른다. 이 프로젝트는 진로 정보의 양과 질의 차이가 새로운 교육 격차가 될 수 있다는 문제의식에서 출발한다.</p>
+<p>PDF 기준에 따르면 이 주제의 문제의식은 “학생들은 진로 선택에 필요한 정보를 충분히 얻고 있는가”이며, 데이터는 희망 전공, 진로 상담 경험, 부모 직업 정보 접근성, 동문 멘토링 경험으로 구성된다. 분석 방법은 정보 접근성 지수 개발이고, 산출물은 동문 기반 진로 멘토링 플랫폼 제안이다.</p>
+<h2 id="2-문제-정의-카드">2. 문제 정의 카드</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>질문</th>
+<th>답변</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>내가 본 문제는 무엇인가?</td>
+<td>진로를 고민하는 학생들이 많지만, 전공·직업·대학 정보를 얻는 경로가 학생마다 크게 다르다.</td>
+</tr>
+<tr>
+<td>왜 이 문제가 중요한가?</td>
+<td>정보를 많이 가진 학생은 더 빠르게 선택하고 준비하지만, 정보가 부족한 학생은 자신의 가능성을 좁게 해석할 수 있다.</td>
+</tr>
+<tr>
+<td>어떤 데이터를 사용할 것인가?</td>
+<td>희망 전공, 진로상담 횟수, 부모 직업 정보 접근성, 동문 멘토링 경험, 커리어넷·워크넷 활용도, 진로 확신과 불안 설문.</td>
+</tr>
+<tr>
+<td>어떤 분석을 할 것인가?</td>
+<td>진로정보 접근성 지수와 격차 위험점수를 만들고, 상관분석·회귀분석·군집분석으로 정보취약 학생 유형을 찾는다.</td>
+</tr>
+<tr>
+<td>누구에게 제안할 것인가?</td>
+<td>학교 진로부, 학부모회, 동문회, 교육청, 지역 진로체험 기관.</td>
+</tr>
+<tr>
+<td>전공 관심과 어떻게 연결되는가?</td>
+<td>교육정책, 경영정보, HRD, 데이터사이언스를 결합해 공정한 진로탐색 시스템을 설계하는 문제로 확장된다.</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-데이터-설명">3. 데이터 설명</h2>
+<p>이번 시범 데이터는 50명의 익명 학생 설문을 가정한 가상 데이터이다. 실제 분석에서는 학교 설문 데이터와 커리어넷·워크넷의 공식 직업·학과 정보를 결합해 학생별 진로정보 접근성 지수를 만들 수 있다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터 구분</th>
+<th>내용</th>
+<th>활용</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>학생 설문</td>
+<td>진로상담 경험, 부모 정보 접근성, 동문 멘토링 경험, 진로 확신·불안</td>
+<td>핵심 분석 데이터</td>
+</tr>
+<tr>
+<td>공식 진로정보</td>
+<td>커리어넷 직업정보·학과정보·진로상담사례</td>
+<td>전공·직업별 정보 데이터베이스</td>
+</tr>
+<tr>
+<td>고용정보</td>
+<td>워크넷 직업정보·직업전망</td>
+<td>직업 전망과 필요 역량 비교</td>
+</tr>
+<tr>
+<td>학교 내부자료</td>
+<td>진로상담 프로그램, 동문 멘토링 가능 분야</td>
+<td>멘토링 플랫폼 설계</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-분석-방법">4. 분석 방법</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 방법</th>
+<th>목적</th>
+<th>핵심 변수</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>기술통계</td>
+<td>학생들의 평균 정보 접근성과 격차 위험 확인</td>
+<td>information_access_index, career_gap_risk_score</td>
+</tr>
+<tr>
+<td>독립표본 t검정</td>
+<td>동문 멘토링 경험 여부에 따른 진로 확신 차이 확인</td>
+<td>alumni_mentoring_experience, career_confidence</td>
+</tr>
+<tr>
+<td>상관분석</td>
+<td>정보 접근성, 진로 확신, 진로 불안의 관계 확인</td>
+<td>information_access_index, career_confidence, career_anxiety</td>
+</tr>
+<tr>
+<td>회귀분석</td>
+<td>진로 확신을 설명하는 핵심 요인 도출</td>
+<td>major_info_understanding, mentor_availability 등</td>
+</tr>
+<tr>
+<td>군집분석</td>
+<td>학생을 정보취약형·정보탐색형·고확신형으로 분류</td>
+<td>접근성, 확신, 불안, 멘토 접근성</td>
+</tr>
+</tbody></table></div>
+<h2 id="5-분석-결과-예시">5. 분석 결과 예시</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>지표</th>
+<th>값</th>
+<th>해석</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>평균 진로정보 접근성 지수</td>
+<td>100</td>
+<td>학생들이 진로정보를 얼마나 폭넓게 얻는지 보여줌</td>
+</tr>
+<tr>
+<td>평균 격차 위험점수</td>
+<td>14.6</td>
+<td>지원이 필요한 학생군의 규모를 판단</td>
+</tr>
+<tr>
+<td>고위험 학생 비율</td>
+<td>0.0%</td>
+<td>멘토링·상담 우선 대상</td>
+</tr>
+<tr>
+<td>평균 진로 확신</td>
+<td>2.7</td>
+<td>학생의 진로 선택 자신감</td>
+</tr>
+<tr>
+<td>평균 진로 불안</td>
+<td>3.4</td>
+<td>정보 부족으로 인한 불안 가능성</td>
+</tr>
+</tbody></table></div>
+<p>시범 데이터에서는 진로정보 접근성 지수가 낮은 학생일수록 진로 불안이 높고, 진로 확신이 낮은 경향을 보였다. 특히 동문 멘토 접근 가능성이 낮고 부모 직업 정보 접근성이 낮은 학생은 격차 위험점수가 높게 나타났다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>순위</th>
+<th>학생ID</th>
+<th>학년</th>
+<th>희망 전공</th>
+<th>정보접근성</th>
+<th>격차위험</th>
+<th>추천 지원</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>S004</td>
+<td>3</td>
+<td>예술·디자인</td>
+<td>100</td>
+<td>25</td>
+<td>전공 설명회</td>
+</tr>
+<tr>
+<td>2</td>
+<td>S028</td>
+<td>1</td>
+<td>경영·경제</td>
+<td>100</td>
+<td>25</td>
+<td>전공 설명회</td>
+</tr>
+<tr>
+<td>3</td>
+<td>S045</td>
+<td>2</td>
+<td>교육·심리</td>
+<td>100</td>
+<td>25</td>
+<td>커리어넷 활용 교육</td>
+</tr>
+<tr>
+<td>4</td>
+<td>S046</td>
+<td>3</td>
+<td>의학·보건</td>
+<td>100</td>
+<td>25</td>
+<td>전공 설명회</td>
+</tr>
+<tr>
+<td>5</td>
+<td>S026</td>
+<td>2</td>
+<td>공학·AI</td>
+<td>100</td>
+<td>22</td>
+<td>커리어넷 활용 교육</td>
+</tr>
+</tbody></table></div>
+<p>그림 해석: 왼쪽 아래 또는 오른쪽 위가 아니라, 정보 접근성이 낮을수록 격차 위험점수가 높아지는 반비례 구조가 나타난다. 이는 진로 정보 부족이 단순한 개인 의지 부족이 아니라 정보 접근 시스템의 차이일 수 있음을 보여준다.</p>
+<h2 id="6-개선-제안">6. 개선 제안</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>제안 대상</th>
+<th>제안 내용</th>
+<th>근거 데이터</th>
+<th>기대 효과</th>
+<th>실행 난이도</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>학교 진로부</td>
+<td>진로정보 접근성 지수 55점 미만 학생 대상 상담 주간 운영</td>
+<td>고위험 학생 비율과 상담 횟수 변수</td>
+<td>정보취약 학생 조기 발견</td>
+<td>중</td>
+</tr>
+<tr>
+<td>동문회</td>
+<td>전공·직업 분야별 동문 멘토 풀 구축 및 월 1회 온라인 멘토링</td>
+<td>mentor_availability, alumni_mentoring_count</td>
+<td>실제 직업 세계 정보 접근성 개선</td>
+<td>중</td>
+</tr>
+<tr>
+<td>학부모회</td>
+<td>부모 직업 정보 접근성이 낮은 학생을 위한 공개형 진로자료 제공</td>
+<td>parent_job_info_access</td>
+<td>가정 배경에 따른 정보격차 완화</td>
+<td>하</td>
+</tr>
+<tr>
+<td>교육청·지역기관</td>
+<td>커리어넷·워크넷 활용 워크숍 지원</td>
+<td>career_net_use, worknet_use</td>
+<td>공식 진로정보 활용 역량 강화</td>
+<td>하</td>
+</tr>
+</tbody></table></div>
+<h2 id="7-한계점과-후속-연구">7. 한계점과 후속 연구</h2>
+<p>이 데이터는 시범용 가상 데이터이므로 실제 학생의 개인정보를 포함하지 않는다. 실제 연구에서는 익명성과 동의 절차를 지키고, 부모 직업이나 가정 배경을 학생 평가에 사용하지 않도록 주의해야 한다. 후속 연구에서는 동문 멘토링 프로그램 전후의 진로 확신 변화를 비교하는 전후 분석으로 확장할 수 있다.</p>
+<h2 id="8-나의-진로-전공-관심과의-연결">8. 나의 진로·전공 관심과의 연결</h2>
+<p>이 프로젝트는 교육정책, 경영정보시스템, HRD, 데이터사이언스와 연결된다. 진로 정보 격차를 줄이는 일은 학생에게 더 많은 선택권을 제공하는 일이며, 이는 사람을 중심에 두는 데이터 분석의 좋은 예가 된다.</p>
+<p>에세이형 성찰 문장: 나는 진로 선택을 개인의 열정 문제로만 보았지만, 데이터를 통해 정보에 접근할 수 있는 환경 자체가 학생의 가능성을 넓히거나 좁힐 수 있음을 깨달았다.</p>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

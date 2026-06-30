@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>진로 정보 격차 분석 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="진로-정보-격차-분석---SPSS">진로 정보 격차 분석 - SPSS</h1>
+<p>상위 노트: <a href="21-%EC%A7%84%EB%A1%9C-%EC%A0%95%EB%B3%B4-%EA%B2%A9%EC%B0%A8-%EB%B6%84%EC%84%9D.html">진로 정보 격차 분석</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">21_spss_guide.docx</span></p>
+<p>SPSS 분석 가이드</p>
+<ol>
+<li>진로 정보 격차 분석</li>
+</ol>
+<h2 id="1-데이터-불러오기">1. 데이터 불러오기</h2>
+<p>SPSS에서 파일 → 열기 → 데이터를 선택한 뒤 21_dataset.xlsx의 Data 시트를 불러온다. 변수 보기에서 student_id, gender, desired_major_area 등은 명목, 1~5점 문항은 서열, 지수와 점수는 척도로 설정한다.</p>
+<h2 id="2-변수-계산">2. 변수 계산</h2>
+<p>진로정보 접근성 지수와 격차 위험점수는 이미 데이터셋에 포함되어 있으나, 실제 연구에서는 다음과 같이 여러 정보 접근성 변수를 표준화하거나 평균화하여 지수를 만들 수 있다.</p>
+<p>예: information_access_index = 공식 사이트 활용도, 전공 이해도, 직업 이해도, 상담 경험, 동문 멘토링 경험, 가정 지원감 등을 종합한 0~100점 지수</p>
+<h2 id="3-분석-절차">3. 분석 절차</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 빈도분석</td>
+<td>학년·희망 전공·정보 부족 유형의 분포 확인</td>
+<td>grade, desired_major_area, primary_gap_type</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>어느 전공·직업 분야에서 정보 부족이 집중되는지 확인</td>
+</tr>
+<tr>
+<td>2. 기술통계</td>
+<td>진로정보 접근성 지수와 격차 위험점수의 평균·표준편차 확인</td>
+<td>information_access_index, career_gap_risk_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>전체 학생의 정보 접근성 수준 진단</td>
+</tr>
+<tr>
+<td>3. 그룹 비교</td>
+<td>동문 멘토링 경험 여부에 따라 진로 확신이 다른지 검정</td>
+<td>alumni_mentoring_experience, career_confidence</td>
+<td>분석 → 평균비교 → 독립표본 t 검정</td>
+<td>멘토링 경험 학생의 진로 확신이 유의하게 높은지 확인</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>정보 접근성 요인과 진로 확신·불안의 관련성 확인</td>
+<td>information_access_index, career_confidence, career_anxiety</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>정보 접근성이 높을수록 진로 확신이 높고 불안이 낮은지 확인</td>
+</tr>
+<tr>
+<td>5. 회귀분석</td>
+<td>진로 확신을 설명하는 핵심 요인 파악</td>
+<td>career_confidence ~ mentor_availability, teacher_guidance_score, parent_job_info_access, major_info_understanding</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>전공 이해, 동문 멘토 접근성, 교사 지도 중 핵심 요인 도출</td>
+</tr>
+<tr>
+<td>6. 로지스틱 회귀</td>
+<td>고위험 정보격차 학생을 예측</td>
+<td>high_gap_yn ~ counseling_count, mentor_availability, parent_job_info_access, career_net_use</td>
+<td>분석 → 회귀분석 → 이분형 로지스틱</td>
+<td>지원이 필요한 학생 유형 예측</td>
+</tr>
+<tr>
+<td>7. K-평균 군집분석</td>
+<td>진로정보 이용 유형 분류</td>
+<td>information_access_index, career_confidence, career_anxiety, mentor_availability</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>정보취약형·정보탐색형·고확신형 등으로 구분</td>
+</tr>
+<tr>
+<td>8. 시각화</td>
+<td>격차 위험과 접근성의 관계 표현</td>
+<td>information_access_index, career_gap_risk_score</td>
+<td>그래프 → 차트 작성기</td>
+<td>위험 학생군을 직관적으로 제시</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-결과-해석-문장-예시">4. 결과 해석 문장 예시</h2>
+<p>상관분석 결과 진로정보 접근성 지수는 진로 확신과 정적 관계를 보이고, 진로 불안과는 부적 관계를 보이는 것으로 해석할 수 있다. 이는 정보를 충분히 얻는 학생일수록 진로 선택에 대한 심리적 안정감이 높을 가능성을 보여준다.</p>
+<h2 id="5-제출-산출물">5. 제출 산출물</h2>
+<p>학생은 분석 결과를 바탕으로 ① 진로정보 접근성 진단표, ② 정보취약 학생 유형 분류표, ③ 동문 기반 진로 멘토링 플랫폼 제안서, ④ 개인 성찰문을 제출한다.</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="21_spss_syntax-sps">21_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">21_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">* Project 21: Career information gap analysis.
+GET DATA /TYPE=XLSX
+  /FILE=&#x27;21_dataset.xlsx&#x27;
+  /SHEET=name &#x27;Data&#x27;
+  /READNAMES=on.
+EXECUTE.
+
+* Descriptive statistics.
+FREQUENCIES VARIABLES=grade desired_major_area primary_gap_type recommended_support.
+DESCRIPTIVES VARIABLES=information_access_index career_gap_risk_score career_confidence career_anxiety.
+
+* Group comparison: alumni mentoring experience and career confidence.
+T-TEST GROUPS=alumni_mentoring_experience(0 1)
+  /VARIABLES=career_confidence information_access_index career_gap_risk_score
+  /CRITERIA=CI(.95).
+
+* Correlation analysis.
+CORRELATIONS
+  /VARIABLES=information_access_index career_gap_risk_score career_confidence career_anxiety mentor_availability teacher_guidance_score parent_job_info_access
+  /PRINT=TWOTAIL NOSIG.
+
+* Multiple regression: factors predicting career confidence.
+REGRESSION
+  /DEPENDENT career_confidence
+  /METHOD=ENTER major_info_understanding job_info_understanding mentor_availability teacher_guidance_score parent_job_info_access career_net_use worknet_use.
+
+* Logistic regression: high career information gap risk.
+LOGISTIC REGRESSION VARIABLES high_gap_yn
+  /METHOD=ENTER career_counseling_count mentor_availability parent_job_info_access career_net_use teacher_guidance_score
+  /PRINT=CI(95).
+
+* K-means clustering.
+QUICK CLUSTER information_access_index career_confidence career_anxiety mentor_availability
+  /CRITERIA=CLUSTER(4) MXITER(10)
+  /SAVE CLUSTER.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

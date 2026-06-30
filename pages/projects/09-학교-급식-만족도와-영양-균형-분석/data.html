@@ -1,0 +1,1043 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>학교 급식 만족도와 영양 균형 분석 - 데이터 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="학교-급식-만족도와-영양-균형-분석---데이터">학교 급식 만족도와 영양 균형 분석 - 데이터</h1>
+<p>상위 노트: <a href="09-%ED%95%99%EA%B5%90-%EA%B8%89%EC%8B%9D-%EB%A7%8C%EC%A1%B1%EB%8F%84%EC%99%80-%EC%98%81%EC%96%91-%EA%B7%A0%ED%98%95-%EB%B6%84%EC%84%9D.html">학교 급식 만족도와 영양 균형 분석</a></p>
+<p>관련 개념: <a href="../../concepts/%EC%BD%94%EB%93%9C%EB%B6%81%EA%B3%BC%20%EB%B3%80%EC%88%98%20%EC%A0%95%EC%9D%98.html">concepts/코드북과 변수 정의</a>, <a href="../../concepts/%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EA%B8%B0%EB%B0%98%20%ED%83%90%EA%B5%AC.html">concepts/공공데이터 기반 탐구</a></p>
+<h2 id="코드북">코드북</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">09_codebook.xlsx</span></li>
+</ul>
+<h3 id="09_codebook-xlsx">09_codebook.xlsx</h3>
+<p>Codebook: 38행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>데이터 유형</th>
+<th>SPSS 측도</th>
+<th>실제 데이터 출처</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>student_id</td>
+<td>익명 학생 ID</td>
+<td>문자</td>
+<td>설문/응답자 식별</td>
+<td>명목</td>
+<td>시범용 가상 데이터</td>
+<td>개인정보 미포함</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>학년</td>
+<td>1/2/3</td>
+<td>학생 설문</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>1=1학년, 2=2학년, 3=3학년</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>성별</td>
+<td>남/여</td>
+<td>학생 설문</td>
+<td>명목</td>
+<td>학생 설문</td>
+<td>선택 문항</td>
+</tr>
+<tr>
+<td>meal_date</td>
+<td>급식일</td>
+<td>YYYY-MM-DD</td>
+<td>급식식단정보</td>
+<td>명목</td>
+<td>NEIS 급식식단정보</td>
+<td>날짜형으로 변환 가능</td>
+</tr>
+<tr>
+<td>weekday</td>
+<td>요일</td>
+<td>문자</td>
+<td>파생변수</td>
+<td>명목</td>
+<td>급식일에서 생성</td>
+<td>월~금</td>
+</tr>
+<tr>
+<td>menu_name</td>
+<td>식단명</td>
+<td>문자</td>
+<td>급식식단정보</td>
+<td>명목</td>
+<td>NEIS 급식식단정보</td>
+<td>요리명 조합</td>
+</tr>
+<tr>
+<td>menu_category</td>
+<td>메뉴 유형</td>
+<td>범주</td>
+<td>연구자 분류</td>
+<td>명목</td>
+<td>급식식단+연구자 코딩</td>
+<td>한식균형형 등</td>
+</tr>
+<tr>
+<td>energy_kcal</td>
+<td>열량</td>
+<td>kcal</td>
+<td>영양성분</td>
+<td>척도</td>
+<td>NEIS 급식식단정보</td>
+<td>CAL_INFO 참조</td>
+</tr>
+<tr>
+<td>carbohydrate_g</td>
+<td>탄수화물</td>
+<td>g</td>
+<td>영양성분</td>
+<td>척도</td>
+<td>NEIS 급식식단정보</td>
+<td>NTR_INFO 참조</td>
+</tr>
+<tr>
+<td>protein_g</td>
+<td>단백질</td>
+<td>g</td>
+<td>영양성분</td>
+<td>척도</td>
+<td>NEIS 급식식단정보</td>
+<td>NTR_INFO 참조</td>
+</tr>
+<tr>
+<td>fat_g</td>
+<td>지방</td>
+<td>g</td>
+<td>영양성분</td>
+<td>척도</td>
+<td>NEIS 급식식단정보</td>
+<td>NTR_INFO 참조</td>
+</tr>
+<tr>
+<td>sodium_mg</td>
+<td>나트륨</td>
+<td>mg</td>
+<td>영양성분</td>
+<td>척도</td>
+<td>NEIS 급식식단정보</td>
+<td>NTR_INFO 참조</td>
+</tr>
+<tr>
+<td>fiber_g</td>
+<td>식이섬유</td>
+<td>g</td>
+<td>영양성분</td>
+<td>척도</td>
+<td>NEIS/영양분석 보완</td>
+<td>시범 변수</td>
+</tr>
+<tr>
+<td>calcium_mg</td>
+<td>칼슘</td>
+<td>mg</td>
+<td>영양성분</td>
+<td>척도</td>
+<td>NEIS 급식식단정보</td>
+<td>NTR_INFO 참조</td>
+</tr>
+<tr>
+<td>iron_mg</td>
+<td>철</td>
+<td>mg</td>
+<td>영양성분</td>
+<td>척도</td>
+<td>NEIS 급식식단정보</td>
+<td>NTR_INFO 참조</td>
+</tr>
+<tr>
+<td>fruit_veg_servings</td>
+<td>과일·채소 제공량</td>
+<td>회/끼</td>
+<td>메뉴 코딩</td>
+<td>척도</td>
+<td>식단명 기반 코딩</td>
+<td>학생 분석용 보완변수</td>
+</tr>
+<tr>
+<td>allergy_item_count</td>
+<td>알레르기 표시 항목 수</td>
+<td>개</td>
+<td>급식식단정보</td>
+<td>척도</td>
+<td>NEIS 급식식단정보</td>
+<td>DDISH_NM 알레르기 번호</td>
+</tr>
+<tr>
+<td>spicy_level</td>
+<td>매운맛 수준</td>
+<td>1~5</td>
+<td>학생/연구자 코딩</td>
+<td>서열</td>
+<td>현장 조사</td>
+<td>1 낮음~5 높음</td>
+</tr>
+<tr>
+<td>processed_food_level</td>
+<td>가공식품 수준</td>
+<td>1~5</td>
+<td>연구자 코딩</td>
+<td>서열</td>
+<td>메뉴 분류</td>
+<td>1 낮음~5 높음</td>
+</tr>
+<tr>
+<td>taste_q</td>
+<td>맛 만족도</td>
+<td>1~5</td>
+<td>설문</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>1 전혀 그렇지 않다~5 매우 그렇다</td>
+</tr>
+<tr>
+<td>appearance_q</td>
+<td>보기 좋은 정도</td>
+<td>1~5</td>
+<td>설문</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>시각적 만족도</td>
+</tr>
+<tr>
+<td>freshness_q</td>
+<td>신선도 인식</td>
+<td>1~5</td>
+<td>설문</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>재료 신선도 인식</td>
+</tr>
+<tr>
+<td>portion_q</td>
+<td>양 만족도</td>
+<td>1~5</td>
+<td>설문</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>배부름/양</td>
+</tr>
+<tr>
+<td>variety_q</td>
+<td>메뉴 다양성</td>
+<td>1~5</td>
+<td>설문</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>반복 메뉴 불만 반영</td>
+</tr>
+<tr>
+<td>nutrition_info_q</td>
+<td>영양정보 인지</td>
+<td>1~5</td>
+<td>설문</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>급식표/영양표시 인지</td>
+</tr>
+<tr>
+<td>vegetable_accept_q</td>
+<td>채소 메뉴 수용도</td>
+<td>1~5</td>
+<td>설문</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>채소 섭취 수용성</td>
+</tr>
+<tr>
+<td>satiety_q</td>
+<td>포만감</td>
+<td>1~5</td>
+<td>설문</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>점심 후 포만감</td>
+</tr>
+<tr>
+<td>leftover_low_q</td>
+<td>잔반 적음 자기평가</td>
+<td>1~5</td>
+<td>설문</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>값이 높을수록 거의 남기지 않음</td>
+</tr>
+<tr>
+<td>recommend_q</td>
+<td>추천 의향</td>
+<td>1~5</td>
+<td>설문</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>친구에게 추천하고 싶은 정도</td>
+</tr>
+<tr>
+<td>satisfaction_score</td>
+<td>종합 급식 만족도</td>
+<td>1~5 평균</td>
+<td>파생변수</td>
+<td>척도</td>
+<td>설문 문항 평균</td>
+<td>맛·외관·신선도·양·다양성·추천의향 평균</td>
+</tr>
+<tr>
+<td>health_perception_score</td>
+<td>건강성 인식 점수</td>
+<td>1~5 평균</td>
+<td>파생변수</td>
+<td>척도</td>
+<td>설문 문항 평균</td>
+<td>신선도·영양정보·채소수용도 평균</td>
+</tr>
+<tr>
+<td>leftover_pct</td>
+<td>잔반율</td>
+<td>%</td>
+<td>설문/현장조사</td>
+<td>척도</td>
+<td>학생 자기보고 또는 잔반 조사</td>
+<td>0~100</td>
+</tr>
+<tr>
+<td>nutrition_balance_score</td>
+<td>영양균형 점수</td>
+<td>0~100</td>
+<td>파생변수</td>
+<td>척도</td>
+<td>영양관리기준+메뉴정보</td>
+<td>열량·영양비율·나트륨·채소 반영</td>
+</tr>
+<tr>
+<td>preference_score</td>
+<td>선호도 점수</td>
+<td>0~100</td>
+<td>파생변수</td>
+<td>척도</td>
+<td>만족도×20</td>
+<td>학생 선호도 환산</td>
+</tr>
+<tr>
+<td>preference_nutrition_gap</td>
+<td>선호-영양 차이</td>
+<td>점수 차</td>
+<td>파생변수</td>
+<td>척도</td>
+<td>preference_score - nutrition_balance_score</td>
+<td>양수이면 선호도가 영양균형보다 높음</td>
+</tr>
+<tr>
+<td>improvement_priority</td>
+<td>개선 우선순위</td>
+<td>0~100</td>
+<td>파생변수</td>
+<td>척도</td>
+<td>만족도·영양·잔반율 결합</td>
+<td>높을수록 개선 필요</td>
+</tr>
+<tr>
+<td>meal_profile</td>
+<td>메뉴 유형 진단</td>
+<td>문자</td>
+<td>파생분류</td>
+<td>명목</td>
+<td>점수 기반 분류</td>
+<td>건강·선호 균형형 등</td>
+</tr>
+</tbody></table></div>
+<h2 id="CSV-데이터셋">CSV 데이터셋</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">09_dataset.csv</span></li>
+</ul>
+<ul>
+<li>크기: 50행 x 37열</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>student_id</th>
+<th>grade</th>
+<th>gender</th>
+<th>meal_date</th>
+<th>weekday</th>
+<th>menu_name</th>
+<th>menu_category</th>
+<th>energy_kcal</th>
+<th>carbohydrate_g</th>
+<th>protein_g</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>S001</td>
+<td>1</td>
+<td>여</td>
+<td>2026-03-02</td>
+<td>월</td>
+<td>현미밥, 소고기무국, 닭갈비, 시금치나물, 배추김치, 사과</td>
+<td>한식균형형</td>
+<td>825.0</td>
+<td>112.2</td>
+<td>38.1</td>
+</tr>
+<tr>
+<td>S002</td>
+<td>3</td>
+<td>여</td>
+<td>2026-03-02</td>
+<td>월</td>
+<td>현미밥, 소고기무국, 닭갈비, 시금치나물, 배추김치, 사과</td>
+<td>한식균형형</td>
+<td>835.0</td>
+<td>112.7</td>
+<td>40.6</td>
+</tr>
+<tr>
+<td>S003</td>
+<td>2</td>
+<td>남</td>
+<td>2026-03-02</td>
+<td>월</td>
+<td>현미밥, 소고기무국, 닭갈비, 시금치나물, 배추김치, 사과</td>
+<td>한식균형형</td>
+<td>808.0</td>
+<td>111.7</td>
+<td>37.9</td>
+</tr>
+<tr>
+<td>S004</td>
+<td>3</td>
+<td>남</td>
+<td>2026-03-02</td>
+<td>월</td>
+<td>현미밥, 소고기무국, 닭갈비, 시금치나물, 배추김치, 사과</td>
+<td>한식균형형</td>
+<td>819.0</td>
+<td>112.2</td>
+<td>39.6</td>
+</tr>
+<tr>
+<td>S005</td>
+<td>1</td>
+<td>남</td>
+<td>2026-03-02</td>
+<td>월</td>
+<td>현미밥, 소고기무국, 닭갈비, 시금치나물, 배추김치, 사과</td>
+<td>한식균형형</td>
+<td>842.0</td>
+<td>110.0</td>
+<td>37.7</td>
+</tr>
+<tr>
+<td>S006</td>
+<td>3</td>
+<td>여</td>
+<td>2026-03-03</td>
+<td>화</td>
+<td>카레라이스, 돈가스, 양배추샐러드, 깍두기, 요구르트</td>
+<td>인기고열량형</td>
+<td>913.0</td>
+<td>123.8</td>
+<td>33.7</td>
+</tr>
+<tr>
+<td>S007</td>
+<td>3</td>
+<td>남</td>
+<td>2026-03-03</td>
+<td>화</td>
+<td>카레라이스, 돈가스, 양배추샐러드, 깍두기, 요구르트</td>
+<td>인기고열량형</td>
+<td>920.0</td>
+<td>126.6</td>
+<td>34.1</td>
+</tr>
+<tr>
+<td>S008</td>
+<td>1</td>
+<td>여</td>
+<td>2026-03-03</td>
+<td>화</td>
+<td>카레라이스, 돈가스, 양배추샐러드, 깍두기, 요구르트</td>
+<td>인기고열량형</td>
+<td>926.0</td>
+<td>116.1</td>
+<td>33.8</td>
+</tr>
+</tbody></table></div>
+<h2 id="엑셀-데이터셋-미리보기">엑셀 데이터셋 미리보기</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">09_dataset.xlsx</span></li>
+</ul>
+<h3 id="Data">Data</h3>
+<p>Data: 51행 x 37열 / 미리보기 10행 x 10열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>student_id</th>
+<th>grade</th>
+<th>gender</th>
+<th>meal_date</th>
+<th>weekday</th>
+<th>menu_name</th>
+<th>menu_category</th>
+<th>energy_kcal</th>
+<th>carbohydrate_g</th>
+<th>protein_g</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>S001</td>
+<td>1</td>
+<td>여</td>
+<td>2026-03-02</td>
+<td>월</td>
+<td>현미밥, 소고기무국, 닭갈비, 시금치나물, 배추김치, 사과</td>
+<td>한식균형형</td>
+<td>825</td>
+<td>112.2</td>
+<td>38.1</td>
+</tr>
+<tr>
+<td>S002</td>
+<td>3</td>
+<td>여</td>
+<td>2026-03-02</td>
+<td>월</td>
+<td>현미밥, 소고기무국, 닭갈비, 시금치나물, 배추김치, 사과</td>
+<td>한식균형형</td>
+<td>835</td>
+<td>112.7</td>
+<td>40.6</td>
+</tr>
+<tr>
+<td>S003</td>
+<td>2</td>
+<td>남</td>
+<td>2026-03-02</td>
+<td>월</td>
+<td>현미밥, 소고기무국, 닭갈비, 시금치나물, 배추김치, 사과</td>
+<td>한식균형형</td>
+<td>808</td>
+<td>111.7</td>
+<td>37.9</td>
+</tr>
+<tr>
+<td>S004</td>
+<td>3</td>
+<td>남</td>
+<td>2026-03-02</td>
+<td>월</td>
+<td>현미밥, 소고기무국, 닭갈비, 시금치나물, 배추김치, 사과</td>
+<td>한식균형형</td>
+<td>819</td>
+<td>112.2</td>
+<td>39.6</td>
+</tr>
+<tr>
+<td>S005</td>
+<td>1</td>
+<td>남</td>
+<td>2026-03-02</td>
+<td>월</td>
+<td>현미밥, 소고기무국, 닭갈비, 시금치나물, 배추김치, 사과</td>
+<td>한식균형형</td>
+<td>842</td>
+<td>110</td>
+<td>37.7</td>
+</tr>
+<tr>
+<td>S006</td>
+<td>3</td>
+<td>여</td>
+<td>2026-03-03</td>
+<td>화</td>
+<td>카레라이스, 돈가스, 양배추샐러드, 깍두기, 요구르트</td>
+<td>인기고열량형</td>
+<td>913</td>
+<td>123.8</td>
+<td>33.7</td>
+</tr>
+<tr>
+<td>S007</td>
+<td>3</td>
+<td>남</td>
+<td>2026-03-03</td>
+<td>화</td>
+<td>카레라이스, 돈가스, 양배추샐러드, 깍두기, 요구르트</td>
+<td>인기고열량형</td>
+<td>920</td>
+<td>126.6</td>
+<td>34.1</td>
+</tr>
+<tr>
+<td>S008</td>
+<td>1</td>
+<td>여</td>
+<td>2026-03-03</td>
+<td>화</td>
+<td>카레라이스, 돈가스, 양배추샐러드, 깍두기, 요구르트</td>
+<td>인기고열량형</td>
+<td>926</td>
+<td>116.1</td>
+<td>33.8</td>
+</tr>
+<tr>
+<td>S009</td>
+<td>1</td>
+<td>남</td>
+<td>2026-03-03</td>
+<td>화</td>
+<td>카레라이스, 돈가스, 양배추샐러드, 깍두기, 요구르트</td>
+<td>인기고열량형</td>
+<td>925</td>
+<td>125.4</td>
+<td>34.8</td>
+</tr>
+</tbody></table></div>
+<h3 id="Codebook">Codebook</h3>
+<p>Codebook: 38행 x 7열 / 미리보기 10행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>데이터 유형</th>
+<th>SPSS 측도</th>
+<th>실제 데이터 출처</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>student_id</td>
+<td>익명 학생 ID</td>
+<td>문자</td>
+<td>설문/응답자 식별</td>
+<td>명목</td>
+<td>시범용 가상 데이터</td>
+<td>개인정보 미포함</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>학년</td>
+<td>1/2/3</td>
+<td>학생 설문</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>1=1학년, 2=2학년, 3=3학년</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>성별</td>
+<td>남/여</td>
+<td>학생 설문</td>
+<td>명목</td>
+<td>학생 설문</td>
+<td>선택 문항</td>
+</tr>
+<tr>
+<td>meal_date</td>
+<td>급식일</td>
+<td>YYYY-MM-DD</td>
+<td>급식식단정보</td>
+<td>명목</td>
+<td>NEIS 급식식단정보</td>
+<td>날짜형으로 변환 가능</td>
+</tr>
+<tr>
+<td>weekday</td>
+<td>요일</td>
+<td>문자</td>
+<td>파생변수</td>
+<td>명목</td>
+<td>급식일에서 생성</td>
+<td>월~금</td>
+</tr>
+<tr>
+<td>menu_name</td>
+<td>식단명</td>
+<td>문자</td>
+<td>급식식단정보</td>
+<td>명목</td>
+<td>NEIS 급식식단정보</td>
+<td>요리명 조합</td>
+</tr>
+<tr>
+<td>menu_category</td>
+<td>메뉴 유형</td>
+<td>범주</td>
+<td>연구자 분류</td>
+<td>명목</td>
+<td>급식식단+연구자 코딩</td>
+<td>한식균형형 등</td>
+</tr>
+<tr>
+<td>energy_kcal</td>
+<td>열량</td>
+<td>kcal</td>
+<td>영양성분</td>
+<td>척도</td>
+<td>NEIS 급식식단정보</td>
+<td>CAL_INFO 참조</td>
+</tr>
+<tr>
+<td>carbohydrate_g</td>
+<td>탄수화물</td>
+<td>g</td>
+<td>영양성분</td>
+<td>척도</td>
+<td>NEIS 급식식단정보</td>
+<td>NTR_INFO 참조</td>
+</tr>
+</tbody></table></div>
+<h3 id="Survey_Items">Survey_Items</h3>
+<p>Survey_Items: 11행 x 4열 / 미리보기 10행 x 4열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>문항 변수명</th>
+<th>설문 문항</th>
+<th>척도/코딩</th>
+<th>측정 개념</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>taste_q</td>
+<td>오늘 급식의 맛에 만족한다.</td>
+<td>1=전혀 그렇지 않다 ~ 5=매우 그렇다</td>
+<td>만족도</td>
+</tr>
+<tr>
+<td>appearance_q</td>
+<td>오늘 급식은 보기 좋게 제공되었다.</td>
+<td>1~5 Likert</td>
+<td>만족도</td>
+</tr>
+<tr>
+<td>freshness_q</td>
+<td>오늘 급식 재료는 신선하다고 느꼈다.</td>
+<td>1~5 Likert</td>
+<td>건강성 인식</td>
+</tr>
+<tr>
+<td>portion_q</td>
+<td>오늘 급식의 양은 적절했다.</td>
+<td>1~5 Likert</td>
+<td>만족도</td>
+</tr>
+<tr>
+<td>variety_q</td>
+<td>최근 급식 메뉴는 다양하다고 느낀다.</td>
+<td>1~5 Likert</td>
+<td>메뉴 다양성</td>
+</tr>
+<tr>
+<td>nutrition_info_q</td>
+<td>나는 급식표의 영양정보를 확인하는 편이다.</td>
+<td>1~5 Likert</td>
+<td>영양 인식</td>
+</tr>
+<tr>
+<td>vegetable_accept_q</td>
+<td>채소 반찬이 포함되어도 급식을 잘 먹을 수 있다.</td>
+<td>1~5 Likert</td>
+<td>채소 수용성</td>
+</tr>
+<tr>
+<td>satiety_q</td>
+<td>급식 후 오후 수업까지 충분히 포만감을 느낀다.</td>
+<td>1~5 Likert</td>
+<td>포만감</td>
+</tr>
+<tr>
+<td>leftover_low_q</td>
+<td>오늘 급식은 거의 남기지 않았다.</td>
+<td>1~5 Likert</td>
+<td>잔반 적음</td>
+</tr>
+</tbody></table></div>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 8행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>다운로드/API 링크</th>
+<th>파일 형식</th>
+<th>주요 변수</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>NEIS 급식식단정보 Open API</td>
+<td>교육부·17개 시도교육청 / 나이스 교육정보 개방 포털</td>
+<td>https://open.neis.go.kr/portal/data/service/selectServicePage.do?infId=OPEN17320190722180924242823&amp;infSeq=2</td>
+<td>Open API / Sheet</td>
+<td>요리명, 원산지정보, 칼로리정보, 영양정보, 알레르기 유발 식재료</td>
+<td>학교별 급식 메뉴와 영양정보 수집</td>
+<td>API 활용 가능 / 인증키 사용 권장</td>
+</tr>
+<tr>
+<td>교육부_나이스(NEIS) 교육정보 개방 포털_급식식단정보</td>
+<td>공공데이터포털 / 교육부</td>
+<td>https://www.data.go.kr/data/15139198/openapi.do</td>
+<td>Open API / XML / JSON</td>
+<td>학교 급식식단, 영양량, 칼로리, 알레르기 정보</td>
+<td>API키 기반 자동 수집</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>학교급식의 영양관리기준 [별표 3]</td>
+<td>국가법령정보센터 / 교육부</td>
+<td>https://www.law.go.kr/flDownload.do?flNm=%5B%EB%B3%84%ED%91%9C+3%5D+%ED%95%99%EA%B5%90%EA%B8%89%EC%8B%9D%EC%9D%98+%EC%98%81%EC%96%91%EA%B4%80%EB%A6%AC%EA%B8%B0%EC%A4%80%28%EC%A0%9C5%EC%A1%B0%EC%A0%9C1%ED%95%AD%EA%B4%80%EB%A0%A8%29%0A&amp;flSeq=95407985</td>
+<td>PDF/HWP</td>
+<td>에너지 기준, 탄수화물·단백질·지방 에너지 비율, 비타민·무기질 기준</td>
+<td>영양균형 점수 산식 기준</td>
+<td>즉시 열람 가능</td>
+</tr>
+<tr>
+<td>청소년건강행태조사</td>
+<td>질병관리청</td>
+<td>https://www.kdca.go.kr/yhs/yhshmpg/main.do</td>
+<td>SPSS/SAS 원시자료, 통계집</td>
+<td>아침식사 결식, 과일·채소·패스트푸드·단맛음료 섭취 등</td>
+<td>전국/서울 청소년 식생활 비교 기준</td>
+<td>다운로드 동의 필요</td>
+</tr>
+<tr>
+<td>서울시 청소년 식생활 통계</td>
+<td>서울특별시 / 공공데이터포털</td>
+<td>https://www.data.go.kr/data/15047044/fileData.do</td>
+<td>HWP/통계자료</td>
+<td>아침식사결식률, 패스트푸드 섭취율, 탄산음료 섭취율 등</td>
+<td>지역사회 배경자료</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>학교 자체 급식 만족도 설문</td>
+<td>학생 직접 조사</td>
+<td>학교 Google Form 또는 종이 설문</td>
+<td>CSV/XLSX</td>
+<td>맛, 양, 다양성, 영양정보 인지, 채소 수용도, 잔반 자기평가</td>
+<td>본 프로젝트의 1차 데이터</td>
+<td>학생 설문 필요</td>
+</tr>
+<tr>
+<td>학교 잔반량 현장 조사</td>
+<td>학교 급식실 협조 또는 학생 관찰</td>
+<td>학교 내부자료 / 관찰기록</td>
+<td>XLSX</td>
+<td>일자별 잔반량, 메뉴별 잔반율, 식수 인원</td>
+<td>잔반율과 만족도/영양균형 비교</td>
+<td>학교 내부 협조 필요</td>
+</tr>
+</tbody></table></div>
+<h3 id="SPSS_Steps">SPSS_Steps</h3>
+<p>SPSS_Steps: 8행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>CSV/XLSX를 SPSS로 불러와 변수 보기에서 측도를 지정한다.</td>
+<td>전체 변수</td>
+<td>파일 → 열기 → 데이터</td>
+<td>날짜·범주·척도 변수 구분</td>
+</tr>
+<tr>
+<td>2. 기술통계</td>
+<td>만족도, 영양균형, 잔반율의 평균과 표준편차를 확인한다.</td>
+<td>satisfaction_score, nutrition_balance_score, leftover_pct</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>전체 급식 품질의 기본 수준 파악</td>
+</tr>
+<tr>
+<td>3. 메뉴유형별 평균 비교</td>
+<td>메뉴 유형별 만족도·영양균형·잔반율 차이를 비교한다.</td>
+<td>menu_category, satisfaction_score, nutrition_balance_score, leftover_pct</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>인기 메뉴와 균형 메뉴의 차이 확인</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>영양균형과 만족도, 잔반율 간 관계를 확인한다.</td>
+<td>satisfaction_score, nutrition_balance_score, leftover_pct, sodium_mg, fruit_veg_servings</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>학생 선호와 건강성의 일치/불일치 판단</td>
+</tr>
+<tr>
+<td>5. 회귀분석</td>
+<td>만족도를 설명하는 요인을 파악한다.</td>
+<td>종속: satisfaction_score / 독립: taste_q, freshness_q, portion_q, nutrition_balance_score, processed_food_level</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>무엇이 만족도를 가장 크게 높이는지 확인</td>
+</tr>
+<tr>
+<td>6. 군집분석</td>
+<td>메뉴를 선호도와 영양균형 기준으로 유형화한다.</td>
+<td>preference_score, nutrition_balance_score, leftover_pct</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>건강·선호 균형형, 선호 높음·영양 보완형 등 분류</td>
+</tr>
+<tr>
+<td>7. 시각화</td>
+<td>메뉴 유형별 결과와 선호-영양 차이를 그래프로 표현한다.</td>
+<td>menu_category, satisfaction_score, nutrition_balance_score, preference_nutrition_gap</td>
+<td>그래프 → 차트 작성기</td>
+<td>보고서용 핵심 시각화 생성</td>
+</tr>
+</tbody></table></div>
+<h3 id="Summary">Summary</h3>
+<p>Summary: 7행 x 2열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>항목</th>
+<th>값</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>응답 수</td>
+<td>50</td>
+</tr>
+<tr>
+<td>평균 만족도</td>
+<td>3.96</td>
+</tr>
+<tr>
+<td>평균 영양균형 점수</td>
+<td>83</td>
+</tr>
+<tr>
+<td>평균 잔반율(%)</td>
+<td>10.3</td>
+</tr>
+<tr>
+<td>선호-영양 차이 평균</td>
+<td>-3.7</td>
+</tr>
+<tr>
+<td>개선 우선순위 평균</td>
+<td>19.3</td>
+</tr>
+</tbody></table></div>
+<h2 id="데이터-출처">데이터 출처</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">09_data_sources.xlsx</span></li>
+</ul>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 8행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>다운로드/API 링크</th>
+<th>파일 형식</th>
+<th>주요 변수</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>NEIS 급식식단정보 Open API</td>
+<td>교육부·17개 시도교육청 / 나이스 교육정보 개방 포털</td>
+<td>https://open.neis.go.kr/portal/data/service/selectServicePage.do?infId=OPEN17320190722180924242823&amp;infSeq=2</td>
+<td>Open API / Sheet</td>
+<td>요리명, 원산지정보, 칼로리정보, 영양정보, 알레르기 유발 식재료</td>
+<td>학교별 급식 메뉴와 영양정보 수집</td>
+<td>API 활용 가능 / 인증키 사용 권장</td>
+</tr>
+<tr>
+<td>교육부_나이스(NEIS) 교육정보 개방 포털_급식식단정보</td>
+<td>공공데이터포털 / 교육부</td>
+<td>https://www.data.go.kr/data/15139198/openapi.do</td>
+<td>Open API / XML / JSON</td>
+<td>학교 급식식단, 영양량, 칼로리, 알레르기 정보</td>
+<td>API키 기반 자동 수집</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>학교급식의 영양관리기준 [별표 3]</td>
+<td>국가법령정보센터 / 교육부</td>
+<td>https://www.law.go.kr/flDownload.do?flNm=%5B%EB%B3%84%ED%91%9C+3%5D+%ED%95%99%EA%B5%90%EA%B8%89%EC%8B%9D%EC%9D%98+%EC%98%81%EC%96%91%EA%B4%80%EB%A6%AC%EA%B8%B0%EC%A4%80%28%EC%A0%9C5%EC%A1%B0%EC%A0%9C1%ED%95%AD%EA%B4%80%EB%A0%A8%29%0A&amp;flSeq=95407985</td>
+<td>PDF/HWP</td>
+<td>에너지 기준, 탄수화물·단백질·지방 에너지 비율, 비타민·무기질 기준</td>
+<td>영양균형 점수 산식 기준</td>
+<td>즉시 열람 가능</td>
+</tr>
+<tr>
+<td>청소년건강행태조사</td>
+<td>질병관리청</td>
+<td>https://www.kdca.go.kr/yhs/yhshmpg/main.do</td>
+<td>SPSS/SAS 원시자료, 통계집</td>
+<td>아침식사 결식, 과일·채소·패스트푸드·단맛음료 섭취 등</td>
+<td>전국/서울 청소년 식생활 비교 기준</td>
+<td>다운로드 동의 필요</td>
+</tr>
+<tr>
+<td>서울시 청소년 식생활 통계</td>
+<td>서울특별시 / 공공데이터포털</td>
+<td>https://www.data.go.kr/data/15047044/fileData.do</td>
+<td>HWP/통계자료</td>
+<td>아침식사결식률, 패스트푸드 섭취율, 탄산음료 섭취율 등</td>
+<td>지역사회 배경자료</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>학교 자체 급식 만족도 설문</td>
+<td>학생 직접 조사</td>
+<td>학교 Google Form 또는 종이 설문</td>
+<td>CSV/XLSX</td>
+<td>맛, 양, 다양성, 영양정보 인지, 채소 수용도, 잔반 자기평가</td>
+<td>본 프로젝트의 1차 데이터</td>
+<td>학생 설문 필요</td>
+</tr>
+<tr>
+<td>학교 잔반량 현장 조사</td>
+<td>학교 급식실 협조 또는 학생 관찰</td>
+<td>학교 내부자료 / 관찰기록</td>
+<td>XLSX</td>
+<td>일자별 잔반량, 메뉴별 잔반율, 식수 인원</td>
+<td>잔반율과 만족도/영양균형 비교</td>
+<td>학교 내부 협조 필요</td>
+</tr>
+</tbody></table></div>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

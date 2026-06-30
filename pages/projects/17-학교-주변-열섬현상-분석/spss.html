@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>학교 주변 열섬현상 분석 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="학교-주변-열섬현상-분석---SPSS">학교 주변 열섬현상 분석 - SPSS</h1>
+<p>상위 노트: <a href="17-%ED%95%99%EA%B5%90-%EC%A3%BC%EB%B3%80-%EC%97%B4%EC%84%AC%ED%98%84%EC%83%81-%EB%B6%84%EC%84%9D.html">학교 주변 열섬현상 분석</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">17_spss_guide.docx</span></p>
+<ol>
+<li>학교 주변 열섬현상 분석 SPSS 분석 가이드</li>
+</ol>
+<p>이 가이드는 17_dataset.xlsx 또는 17_dataset.csv를 SPSS에서 열어 분석하는 절차를 설명한다. 데이터는 시범용 가상 데이터이며 실제 분석 시 공공데이터와 현장조사 값으로 교체한다.</p>
+<h2 id="1-데이터-불러오기">1. 데이터 불러오기</h2>
+<p>SPSS 실행 → 파일 → 열기 → 데이터 → 17_dataset.xlsx 선택 → Data 시트 선택 → 첫 행에서 변수 이름 읽기 체크</p>
+<h2 id="2-변수-측도-설정">2. 변수 측도 설정</h2>
+<p>record_id, location_id, zone_type, surface_type은 명목으로 설정한다. shade_score, sky_view_score, heat_risk_grade, improvement_priority는 서열로 설정한다. 기온, 지표면 온도, 녹지율, 학생 보행량, 위험점수는 척도로 설정한다.</p>
+<h2 id="3-분석-절차">3. 분석 절차</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>데이터 불러오기</td>
+<td>Excel/CSV 데이터를 SPSS로 가져오기</td>
+<td>전체 변수</td>
+<td>파일 → 열기 → 데이터</td>
+<td>첫 행을 변수명으로 읽고 측도 설정</td>
+</tr>
+<tr>
+<td>기술통계</td>
+<td>기온, 지표온도, 녹지율, 위험점수의 평균과 범위 확인</td>
+<td>air_temp_c, surface_temp_c, green_ratio_pct, heat_risk_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>어느 변수가 평균적으로 높은지 확인</td>
+</tr>
+<tr>
+<td>빈도분석</td>
+<td>위험등급 분포와 공간 유형 분포 확인</td>
+<td>heat_risk_grade, zone_type, surface_type</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>매우 높음/높음 구간 비율 확인</td>
+</tr>
+<tr>
+<td>상관분석</td>
+<td>녹지율·불투수면·그늘과 위험점수 관계 확인</td>
+<td>green_ratio_pct, impervious_ratio_pct, shade_score, surface_temp_c, heat_risk_score</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>녹지율은 음의 상관, 불투수면은 양의 상관 예상</td>
+</tr>
+<tr>
+<td>회귀분석</td>
+<td>열섬 위험점수를 설명하는 주요 요인 파악</td>
+<td>heat_risk_score, green_ratio_pct, impervious_ratio_pct, building_density_pct, shade_score, student_flow_30min</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>어떤 요인이 통계적으로 크게 작용하는지 파악</td>
+</tr>
+<tr>
+<td>그룹 비교</td>
+<td>공간 유형별 평균 위험점수 차이 확인</td>
+<td>zone_type, heat_risk_score</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>상가밀집/버스정류장/정문 앞이 높은지 비교</td>
+</tr>
+<tr>
+<td>군집분석</td>
+<td>열섬 유형을 구분</td>
+<td>surface_temp_c, green_ratio_pct, impervious_ratio_pct, shade_score, student_flow_30min</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>고온·저녹지형, 보행노출형, 저위험 녹지형 등 명명</td>
+</tr>
+<tr>
+<td>지도 시각화</td>
+<td>학교 주변 열섬 위험지도 작성</td>
+<td>x_coord_m, y_coord_m, heat_risk_score, heat_risk_grade</td>
+<td>그래프 → 차트 작성기 → 산점도</td>
+<td>점 크기/색상으로 위험구간 표시</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-SPSS-Syntax-예시">4. SPSS Syntax 예시</h2>
+<p>GET DATA /TYPE=XLSX /FILE=&#x27;17_dataset.xlsx&#x27; /SHEET=name &#x27;Data&#x27; /READNAMES=on.</p>
+<p>EXECUTE.</p>
+<p>FREQUENCIES VARIABLES=heat_risk_grade zone_type surface_type.</p>
+<p>DESCRIPTIVES VARIABLES=air_temp_c surface_temp_c green_ratio_pct impervious_ratio_pct shade_score student_flow_30min heat_risk_score.</p>
+<p>CORRELATIONS /VARIABLES=surface_temp_c green_ratio_pct impervious_ratio_pct building_density_pct shade_score student_flow_30min heat_risk_score /PRINT=TWOTAIL NOSIG.</p>
+<p>REGRESSION /DEPENDENT heat_risk_score /METHOD=ENTER surface_temp_c green_ratio_pct impervious_ratio_pct building_density_pct shade_score student_flow_30min.</p>
+<p>ONEWAY heat_risk_score BY zone_type /STATISTICS DESCRIPTIVES.</p>
+<p>QUICK CLUSTER surface_temp_c green_ratio_pct impervious_ratio_pct shade_score student_flow_30min /CRITERIA=CLUSTER(3) MXITER(10).</p>
+<p>GRAPH /SCATTERPLOT(BIVAR)=x_coord_m WITH y_coord_m BY heat_risk_grade.</p>
+<h2 id="5-해석-체크포인트">5. 해석 체크포인트</h2>
+<p>녹지율이 낮을수록 위험점수가 높아지는지 확인한다.</p>
+<p>불투수면 비율과 건물 밀도가 지표면 온도 및 위험점수와 어떤 관계를 갖는지 본다.</p>
+<p>정문 앞, 버스정류장, 횡단보도 대기 공간처럼 학생 보행량이 많은 지점의 개선 우선순위를 확인한다.</p>
+<p>분석 결과는 반드시 그늘막, 가로수, 학교숲, 쿨페이브먼트, 우회통학로 안내 같은 실행 제안으로 연결한다.</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="17_spss_syntax-sps">17_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">17_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">GET DATA /TYPE=XLSX /FILE=&#x27;17_dataset.xlsx&#x27; /SHEET=name &#x27;Data&#x27; /READNAMES=on.
+EXECUTE.
+
+FREQUENCIES VARIABLES=heat_risk_grade zone_type surface_type.
+DESCRIPTIVES VARIABLES=air_temp_c surface_temp_c green_ratio_pct impervious_ratio_pct shade_score student_flow_30min heat_risk_score.
+CORRELATIONS /VARIABLES=surface_temp_c green_ratio_pct impervious_ratio_pct building_density_pct shade_score student_flow_30min heat_risk_score /PRINT=TWOTAIL NOSIG.
+REGRESSION /DEPENDENT heat_risk_score /METHOD=ENTER surface_temp_c green_ratio_pct impervious_ratio_pct building_density_pct shade_score student_flow_30min.
+ONEWAY heat_risk_score BY zone_type /STATISTICS DESCRIPTIVES.
+QUICK CLUSTER surface_temp_c green_ratio_pct impervious_ratio_pct shade_score student_flow_30min /CRITERIA=CLUSTER(3) MXITER(10).
+GRAPH /SCATTERPLOT(BIVAR)=x_coord_m WITH y_coord_m BY heat_risk_grade.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

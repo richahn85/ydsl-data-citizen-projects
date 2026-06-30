@@ -1,0 +1,1077 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 학습 도구 사용 격차 분석 - 데이터 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="AI-학습-도구-사용-격차-분석---데이터">AI 학습 도구 사용 격차 분석 - 데이터</h1>
+<p>상위 노트: <a href="19-AI-%ED%95%99%EC%8A%B5-%EB%8F%84%EA%B5%AC-%EC%82%AC%EC%9A%A9-%EA%B2%A9%EC%B0%A8-%EB%B6%84%EC%84%9D.html">AI 학습 도구 사용 격차 분석</a></p>
+<p>관련 개념: <a href="../../concepts/%EC%BD%94%EB%93%9C%EB%B6%81%EA%B3%BC%20%EB%B3%80%EC%88%98%20%EC%A0%95%EC%9D%98.html">concepts/코드북과 변수 정의</a>, <a href="../../concepts/%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EA%B8%B0%EB%B0%98%20%ED%83%90%EA%B5%AC.html">concepts/공공데이터 기반 탐구</a></p>
+<h2 id="코드북">코드북</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">19_codebook.xlsx</span></li>
+</ul>
+<h3 id="19_codebook-xlsx">19_codebook.xlsx</h3>
+<p>Codebook: 28행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위/코딩</th>
+<th>데이터 유형</th>
+<th>SPSS 측도</th>
+<th>실제 데이터 출처</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>student_id</td>
+<td>익명 학생 ID</td>
+<td>S001~S050</td>
+<td>문자</td>
+<td>명목</td>
+<td>학생 설문</td>
+<td>개인식별정보 제거</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>학년</td>
+<td>1=1학년, 2=2학년, 3=3학년</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>집단 비교 변수</td>
+</tr>
+<tr>
+<td>home_digital_env</td>
+<td>가정 디지털 환경 수준</td>
+<td>1=매우 낮음~5=매우 높음</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문/디지털정보격차 실태조사 참고</td>
+<td>접근성 지표</td>
+</tr>
+<tr>
+<td>device_access</td>
+<td>개인 학습기기 접근성</td>
+<td>1=낮음~5=높음</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>스마트폰·태블릿·노트북 보유 및 사용 가능성</td>
+</tr>
+<tr>
+<td>internet_stability</td>
+<td>인터넷 안정성</td>
+<td>1=불안정~5=안정</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>온라인 AI 도구 사용 조건</td>
+</tr>
+<tr>
+<td>private_study_space</td>
+<td>집중 가능한 학습공간</td>
+<td>1=없음~5=충분</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>가정 내 학습환경</td>
+</tr>
+<tr>
+<td>paid_ai_access</td>
+<td>유료 AI 도구 접근 여부</td>
+<td>0=없음, 1=있음</td>
+<td>정수</td>
+<td>명목</td>
+<td>학생 설문</td>
+<td>유료 기능 접근 격차</td>
+</tr>
+<tr>
+<td>ai_experience_months</td>
+<td>AI 학습 도구 사용 경험</td>
+<td>개월</td>
+<td>정수</td>
+<td>척도</td>
+<td>학생 설문</td>
+<td>사용 기간</td>
+</tr>
+<tr>
+<td>weekly_ai_sessions</td>
+<td>주간 AI 학습 도구 사용 횟수</td>
+<td>회/주</td>
+<td>정수</td>
+<td>척도</td>
+<td>학생 설문</td>
+<td>활용 빈도</td>
+</tr>
+<tr>
+<td>ai_tool_diversity</td>
+<td>활용하는 AI 도구 수</td>
+<td>개</td>
+<td>정수</td>
+<td>척도</td>
+<td>학생 설문</td>
+<td>도구 다양성</td>
+</tr>
+<tr>
+<td>ai1_access</td>
+<td>AI 도구 접근 용이성 문항</td>
+<td>1~5점</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>Likert</td>
+</tr>
+<tr>
+<td>ai2_use_frequency</td>
+<td>AI 학습 도구 사용 빈도 문항</td>
+<td>1~5점</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>Likert</td>
+</tr>
+<tr>
+<td>ai3_prompt_skill</td>
+<td>프롬프트 작성 역량 문항</td>
+<td>1~5점</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>Likert</td>
+</tr>
+<tr>
+<td>ai4_output_verification</td>
+<td>AI 답변 검증 습관 문항</td>
+<td>1~5점</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>Likert</td>
+</tr>
+<tr>
+<td>ai5_ethics_awareness</td>
+<td>AI 윤리 인식 문항</td>
+<td>1~5점</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>Likert</td>
+</tr>
+<tr>
+<td>ai6_confidence</td>
+<td>AI 활용 자신감 문항</td>
+<td>1~5점</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>Likert</td>
+</tr>
+<tr>
+<td>ai7_teacher_guidance</td>
+<td>교사의 AI 활용 안내 수준</td>
+<td>1~5점</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>Likert</td>
+</tr>
+<tr>
+<td>ai8_home_support</td>
+<td>가정 내 AI 활용 지원 수준</td>
+<td>1~5점</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>Likert</td>
+</tr>
+<tr>
+<td>ai9_peer_sharing</td>
+<td>친구와 AI 활용법 공유 수준</td>
+<td>1~5점</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>Likert</td>
+</tr>
+<tr>
+<td>ai10_learning_gain</td>
+<td>AI 활용 후 학습효과 자기평가</td>
+<td>1~5점</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>Likert</td>
+</tr>
+<tr>
+<td>ai11_overreliance_risk</td>
+<td>AI 의존 위험 자기평가</td>
+<td>1~5점</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>높을수록 의존 위험 높음</td>
+</tr>
+<tr>
+<td>ai12_future_interest</td>
+<td>AI 기반 학습 탐구 관심</td>
+<td>1~5점</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>Likert</td>
+</tr>
+<tr>
+<td>ai_literacy_score</td>
+<td>AI 리터러시 종합점수</td>
+<td>0~100점</td>
+<td>실수</td>
+<td>척도</td>
+<td>파생변수</td>
+<td>접근·활용·검증·윤리·자신감 결합</td>
+</tr>
+<tr>
+<td>learning_outcome_score</td>
+<td>학습 성과 자기평가 점수</td>
+<td>0~100점</td>
+<td>실수</td>
+<td>척도</td>
+<td>파생변수/학생 설문</td>
+<td>AI 사용의 학습효과</td>
+</tr>
+<tr>
+<td>gap_risk_score</td>
+<td>AI 학습 격차 위험점수</td>
+<td>0~100점</td>
+<td>실수</td>
+<td>척도</td>
+<td>파생변수</td>
+<td>높을수록 지원 필요</td>
+</tr>
+<tr>
+<td>user_type</td>
+<td>AI 학습 도구 사용 유형</td>
+<td>1=비사용·기초형,2=과제해결형,3=비판적검증형,4=고급활용형</td>
+<td>정수</td>
+<td>명목</td>
+<td>군집/분류 결과</td>
+<td>사용 유형 분류</td>
+</tr>
+<tr>
+<td>recommended_support</td>
+<td>추천 지원 방식</td>
+<td>1=기초교육,2=프롬프트워크숍,3=검증·윤리교육,4=동료멘토링,5=심화프로젝트</td>
+<td>정수</td>
+<td>명목</td>
+<td>분석 결과</td>
+<td>교육 프로그램 설계</td>
+</tr>
+</tbody></table></div>
+<h3 id="19_codebook-xlsx">19_codebook.xlsx</h3>
+<p>Survey_Items: 13행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>문항번호</th>
+<th>설문 문항</th>
+<th>척도/코딩</th>
+<th>연결 변수</th>
+<th>해석 방향</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>AI1</td>
+<td>나는 학교나 집에서 AI 학습 도구에 쉽게 접근할 수 있다.</td>
+<td>1=전혀 그렇지 않다~5=매우 그렇다</td>
+<td>ai1_access</td>
+<td>높을수록 접근성 높음</td>
+</tr>
+<tr>
+<td>AI2</td>
+<td>나는 학습 과정에서 AI 도구를 자주 사용한다.</td>
+<td>1~5점</td>
+<td>ai2_use_frequency</td>
+<td>높을수록 사용 빈도 높음</td>
+</tr>
+<tr>
+<td>AI3</td>
+<td>나는 AI에게 질문할 때 조건, 목적, 형식을 구체적으로 제시한다.</td>
+<td>1~5점</td>
+<td>ai3_prompt_skill</td>
+<td>높을수록 프롬프트 역량 높음</td>
+</tr>
+<tr>
+<td>AI4</td>
+<td>나는 AI 답변을 그대로 믿지 않고 다른 자료와 비교해 확인한다.</td>
+<td>1~5점</td>
+<td>ai4_output_verification</td>
+<td>높을수록 검증 습관 좋음</td>
+</tr>
+<tr>
+<td>AI5</td>
+<td>나는 AI 사용에서 표절, 개인정보, 편향 문제를 의식한다.</td>
+<td>1~5점</td>
+<td>ai5_ethics_awareness</td>
+<td>높을수록 윤리 인식 높음</td>
+</tr>
+<tr>
+<td>AI6</td>
+<td>나는 AI 도구를 활용해 스스로 학습 문제를 해결할 자신이 있다.</td>
+<td>1~5점</td>
+<td>ai6_confidence</td>
+<td>높을수록 자신감 높음</td>
+</tr>
+<tr>
+<td>AI7</td>
+<td>학교 수업이나 교사로부터 AI 학습 도구 활용 방법을 안내받았다.</td>
+<td>1~5점</td>
+<td>ai7_teacher_guidance</td>
+<td>높을수록 학교 지원 높음</td>
+</tr>
+<tr>
+<td>AI8</td>
+<td>가정에서 AI·디지털 학습 도구 사용에 필요한 도움을 받을 수 있다.</td>
+<td>1~5점</td>
+<td>ai8_home_support</td>
+<td>높을수록 가정 지원 높음</td>
+</tr>
+<tr>
+<td>AI9</td>
+<td>나는 친구들과 AI 활용법이나 좋은 질문 방법을 공유한다.</td>
+<td>1~5점</td>
+<td>ai9_peer_sharing</td>
+<td>높을수록 동료학습 높음</td>
+</tr>
+<tr>
+<td>AI10</td>
+<td>AI를 활용하면 어려운 개념을 이해하는 데 도움이 된다.</td>
+<td>1~5점</td>
+<td>ai10_learning_gain</td>
+<td>높을수록 학습효과 높음</td>
+</tr>
+<tr>
+<td>AI11</td>
+<td>나는 AI가 답을 대신해주면 스스로 생각하는 시간이 줄어든다.</td>
+<td>1~5점</td>
+<td>ai11_overreliance_risk</td>
+<td>높을수록 의존 위험 높음</td>
+</tr>
+<tr>
+<td>AI12</td>
+<td>앞으로 AI를 활용해 더 깊은 탐구 프로젝트를 해보고 싶다.</td>
+<td>1~5점</td>
+<td>ai12_future_interest</td>
+<td>높을수록 심화 관심 높음</td>
+</tr>
+</tbody></table></div>
+<h2 id="CSV-데이터셋">CSV 데이터셋</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">19_dataset.csv</span></li>
+</ul>
+<ul>
+<li>크기: 50행 x 27열</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>student_id</th>
+<th>grade</th>
+<th>home_digital_env</th>
+<th>device_access</th>
+<th>internet_stability</th>
+<th>private_study_space</th>
+<th>paid_ai_access</th>
+<th>ai_experience_months</th>
+<th>weekly_ai_sessions</th>
+<th>ai_tool_diversity</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>S001</td>
+<td>2</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>1</td>
+<td>20</td>
+<td>12</td>
+<td>5</td>
+</tr>
+<tr>
+<td>S002</td>
+<td>1</td>
+<td>3</td>
+<td>4</td>
+<td>2</td>
+<td>3</td>
+<td>1</td>
+<td>14</td>
+<td>7</td>
+<td>4</td>
+</tr>
+<tr>
+<td>S003</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>12</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>S004</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>1</td>
+<td>12</td>
+<td>9</td>
+<td>5</td>
+</tr>
+<tr>
+<td>S005</td>
+<td>1</td>
+<td>4</td>
+<td>5</td>
+<td>4</td>
+<td>5</td>
+<td>0</td>
+<td>19</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S006</td>
+<td>1</td>
+<td>4</td>
+<td>5</td>
+<td>3</td>
+<td>4</td>
+<td>1</td>
+<td>17</td>
+<td>10</td>
+<td>4</td>
+</tr>
+<tr>
+<td>S007</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>16</td>
+<td>8</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S008</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>12</td>
+<td>3</td>
+<td>2</td>
+</tr>
+</tbody></table></div>
+<h2 id="엑셀-데이터셋-미리보기">엑셀 데이터셋 미리보기</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">19_dataset.xlsx</span></li>
+</ul>
+<h3 id="Data">Data</h3>
+<p>Data: 51행 x 27열 / 미리보기 10행 x 10열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>student_id</th>
+<th>grade</th>
+<th>home_digital_env</th>
+<th>device_access</th>
+<th>internet_stability</th>
+<th>private_study_space</th>
+<th>paid_ai_access</th>
+<th>ai_experience_months</th>
+<th>weekly_ai_sessions</th>
+<th>ai_tool_diversity</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>S001</td>
+<td>2</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>1</td>
+<td>20</td>
+<td>12</td>
+<td>5</td>
+</tr>
+<tr>
+<td>S002</td>
+<td>1</td>
+<td>3</td>
+<td>4</td>
+<td>2</td>
+<td>3</td>
+<td>1</td>
+<td>14</td>
+<td>7</td>
+<td>4</td>
+</tr>
+<tr>
+<td>S003</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>12</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>S004</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>1</td>
+<td>12</td>
+<td>9</td>
+<td>5</td>
+</tr>
+<tr>
+<td>S005</td>
+<td>1</td>
+<td>4</td>
+<td>5</td>
+<td>4</td>
+<td>5</td>
+<td>0</td>
+<td>19</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S006</td>
+<td>1</td>
+<td>4</td>
+<td>5</td>
+<td>3</td>
+<td>4</td>
+<td>1</td>
+<td>17</td>
+<td>10</td>
+<td>4</td>
+</tr>
+<tr>
+<td>S007</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>16</td>
+<td>8</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S008</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>12</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>S009</td>
+<td>1</td>
+<td>4</td>
+<td>5</td>
+<td>3</td>
+<td>4</td>
+<td>0</td>
+<td>11</td>
+<td>10</td>
+<td>3</td>
+</tr>
+</tbody></table></div>
+<h3 id="Codebook">Codebook</h3>
+<p>Codebook: 28행 x 7열 / 미리보기 10행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위/코딩</th>
+<th>데이터 유형</th>
+<th>SPSS 측도</th>
+<th>실제 데이터 출처</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>student_id</td>
+<td>익명 학생 ID</td>
+<td>S001~S050</td>
+<td>문자</td>
+<td>명목</td>
+<td>학생 설문</td>
+<td>개인식별정보 제거</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>학년</td>
+<td>1=1학년, 2=2학년, 3=3학년</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>집단 비교 변수</td>
+</tr>
+<tr>
+<td>home_digital_env</td>
+<td>가정 디지털 환경 수준</td>
+<td>1=매우 낮음~5=매우 높음</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문/디지털정보격차 실태조사 참고</td>
+<td>접근성 지표</td>
+</tr>
+<tr>
+<td>device_access</td>
+<td>개인 학습기기 접근성</td>
+<td>1=낮음~5=높음</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>스마트폰·태블릿·노트북 보유 및 사용 가능성</td>
+</tr>
+<tr>
+<td>internet_stability</td>
+<td>인터넷 안정성</td>
+<td>1=불안정~5=안정</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>온라인 AI 도구 사용 조건</td>
+</tr>
+<tr>
+<td>private_study_space</td>
+<td>집중 가능한 학습공간</td>
+<td>1=없음~5=충분</td>
+<td>정수</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>가정 내 학습환경</td>
+</tr>
+<tr>
+<td>paid_ai_access</td>
+<td>유료 AI 도구 접근 여부</td>
+<td>0=없음, 1=있음</td>
+<td>정수</td>
+<td>명목</td>
+<td>학생 설문</td>
+<td>유료 기능 접근 격차</td>
+</tr>
+<tr>
+<td>ai_experience_months</td>
+<td>AI 학습 도구 사용 경험</td>
+<td>개월</td>
+<td>정수</td>
+<td>척도</td>
+<td>학생 설문</td>
+<td>사용 기간</td>
+</tr>
+<tr>
+<td>weekly_ai_sessions</td>
+<td>주간 AI 학습 도구 사용 횟수</td>
+<td>회/주</td>
+<td>정수</td>
+<td>척도</td>
+<td>학생 설문</td>
+<td>활용 빈도</td>
+</tr>
+</tbody></table></div>
+<h3 id="Survey_Items">Survey_Items</h3>
+<p>Survey_Items: 13행 x 5열 / 미리보기 10행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>문항번호</th>
+<th>설문 문항</th>
+<th>척도/코딩</th>
+<th>연결 변수</th>
+<th>해석 방향</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>AI1</td>
+<td>나는 학교나 집에서 AI 학습 도구에 쉽게 접근할 수 있다.</td>
+<td>1=전혀 그렇지 않다~5=매우 그렇다</td>
+<td>ai1_access</td>
+<td>높을수록 접근성 높음</td>
+</tr>
+<tr>
+<td>AI2</td>
+<td>나는 학습 과정에서 AI 도구를 자주 사용한다.</td>
+<td>1~5점</td>
+<td>ai2_use_frequency</td>
+<td>높을수록 사용 빈도 높음</td>
+</tr>
+<tr>
+<td>AI3</td>
+<td>나는 AI에게 질문할 때 조건, 목적, 형식을 구체적으로 제시한다.</td>
+<td>1~5점</td>
+<td>ai3_prompt_skill</td>
+<td>높을수록 프롬프트 역량 높음</td>
+</tr>
+<tr>
+<td>AI4</td>
+<td>나는 AI 답변을 그대로 믿지 않고 다른 자료와 비교해 확인한다.</td>
+<td>1~5점</td>
+<td>ai4_output_verification</td>
+<td>높을수록 검증 습관 좋음</td>
+</tr>
+<tr>
+<td>AI5</td>
+<td>나는 AI 사용에서 표절, 개인정보, 편향 문제를 의식한다.</td>
+<td>1~5점</td>
+<td>ai5_ethics_awareness</td>
+<td>높을수록 윤리 인식 높음</td>
+</tr>
+<tr>
+<td>AI6</td>
+<td>나는 AI 도구를 활용해 스스로 학습 문제를 해결할 자신이 있다.</td>
+<td>1~5점</td>
+<td>ai6_confidence</td>
+<td>높을수록 자신감 높음</td>
+</tr>
+<tr>
+<td>AI7</td>
+<td>학교 수업이나 교사로부터 AI 학습 도구 활용 방법을 안내받았다.</td>
+<td>1~5점</td>
+<td>ai7_teacher_guidance</td>
+<td>높을수록 학교 지원 높음</td>
+</tr>
+<tr>
+<td>AI8</td>
+<td>가정에서 AI·디지털 학습 도구 사용에 필요한 도움을 받을 수 있다.</td>
+<td>1~5점</td>
+<td>ai8_home_support</td>
+<td>높을수록 가정 지원 높음</td>
+</tr>
+<tr>
+<td>AI9</td>
+<td>나는 친구들과 AI 활용법이나 좋은 질문 방법을 공유한다.</td>
+<td>1~5점</td>
+<td>ai9_peer_sharing</td>
+<td>높을수록 동료학습 높음</td>
+</tr>
+</tbody></table></div>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 8행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>다운로드/API 링크</th>
+<th>파일 형식</th>
+<th>주요 변수</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>2024년 청소년 매체이용 및 유해환경 실태조사</td>
+<td>여성가족부/한국청소년정책연구원</td>
+<td>https://www.mogef.go.kr/nw/rpd/nw_rpd_s001d.do?bbtSn=710449&amp;mid=news405</td>
+<td>PDF/HWPX/보도자료</td>
+<td>청소년 매체 이용, 생성형 AI 사용 여부, 디지털 이용 행태</td>
+<td>청소년 AI 사용 배경자료</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>데이터로 본 학생과 교사의 AI·디지털 기술 활용 현황 및 인식</td>
+<td>한국교육개발원 교육정책네트워크</td>
+<td>https://edpolicy.kedi.re.kr/edpolicy/webzine/38/844819</td>
+<td>웹문서</td>
+<td>AI·디지털 기술 활용 현황, 학생·교사 인식</td>
+<td>연구 배경 및 비교 근거</td>
+<td>즉시 열람 가능</td>
+</tr>
+<tr>
+<td>2024 디지털정보격차 실태조사</td>
+<td>과학기술정보통신부/NIA</td>
+<td>https://www.msit.go.kr/publicinfo/detailList.do?formMode=L&amp;mId=63&amp;mPid=62&amp;publictListSeqNo=8&amp;publictSeqNo=347&amp;referKey=347&amp;sCode=user</td>
+<td>PDF/통계자료</td>
+<td>디지털 접근, 역량, 활용 수준</td>
+<td>가정 디지털 환경 격차 변수 설계</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>제7차 교육정보화 기본계획(2024~2028)</td>
+<td>교육부</td>
+<td>https://www.moe.go.kr/boardCnts/fileDown.do?fileSeq=a4054cf1fc2d89b074ea40f3a5293087&amp;m=0310&amp;s=moe</td>
+<td>PDF</td>
+<td>AI·디지털 교육 정책 방향, 학교 디지털 역량 강화</td>
+<td>학교 AI 리터러시 교육 제안 근거</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>Using digital resources for learning</td>
+<td>OECD</td>
+<td>https://www.oecd.org/en/publications/using-digital-resources-for-learning_eb9453f3-en.html</td>
+<td>웹/PDF</td>
+<td>학생·교사의 디지털 학습 자원 활용</td>
+<td>국제 비교 및 보고서 배경자료</td>
+<td>즉시 열람 가능</td>
+</tr>
+<tr>
+<td>청소년의 생성형 AI 활용 유형과 인공지능 리터러시</td>
+<td>KCI</td>
+<td>https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003323738</td>
+<td>논문 정보</td>
+<td>청소년 생성형 AI 활용 유형, AI 리터러시</td>
+<td>유형분류·잠재계층 분석 아이디어 참고</td>
+<td>초록 열람 가능</td>
+</tr>
+<tr>
+<td>학교 자체 익명 설문</td>
+<td>학생 조사</td>
+<td>학교 Google Form 또는 종이 설문</td>
+<td>CSV/XLSX</td>
+<td>AI 사용경험, AI 리터러시, 학습효과, 가정 디지털 환경</td>
+<td>핵심 분석 데이터</td>
+<td>학생 설문 필요</td>
+</tr>
+</tbody></table></div>
+<h3 id="SPSS_Steps">SPSS_Steps</h3>
+<p>SPSS_Steps: 10행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>CSV/XLSX 데이터를 SPSS로 가져오기</td>
+<td>전체 변수</td>
+<td>파일 → 열기 → 데이터</td>
+<td>변수 보기에서 명목/서열/척도 확인</td>
+</tr>
+<tr>
+<td>2. 빈도분석</td>
+<td>학년, 유료 AI 접근, 사용 유형 분포 파악</td>
+<td>grade, paid_ai_access, user_type, recommended_support</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>AI 접근성이 특정 집단에 치우치는지 확인</td>
+</tr>
+<tr>
+<td>3. 기술통계</td>
+<td>AI 리터러시·격차위험 평균과 분포 파악</td>
+<td>ai_literacy_score, gap_risk_score, learning_outcome_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>전체 평균과 표준편차로 격차 수준 해석</td>
+</tr>
+<tr>
+<td>4. 독립표본 t검정</td>
+<td>유료 AI 접근 여부에 따른 AI 리터러시 차이 검정</td>
+<td>paid_ai_access, ai_literacy_score</td>
+<td>분석 → 평균비교 → 독립표본 t 검정</td>
+<td>유료 도구 접근이 학습 격차와 관련 있는지 확인</td>
+</tr>
+<tr>
+<td>5. 일원배치 분산분석</td>
+<td>사용 유형별 AI 리터러시·학습효과 차이 검정</td>
+<td>user_type, ai_literacy_score, learning_outcome_score</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>고급활용형과 비사용형의 차이 확인</td>
+</tr>
+<tr>
+<td>6. 상관분석</td>
+<td>가정 디지털 환경·교사지도·검증습관과 AI 리터러시 관계 확인</td>
+<td>home_digital_env, ai7_teacher_guidance, ai4_output_verification, ai_literacy_score</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>환경과 역량의 관련성 확인</td>
+</tr>
+<tr>
+<td>7. 회귀분석</td>
+<td>AI 리터러시 점수를 예측하는 요인 파악</td>
+<td>home_digital_env, device_access, paid_ai_access, weekly_ai_sessions, ai3_prompt_skill, ai4_output_verification, ai7_teacher_guidance</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>어떤 요인이 AI 리터러시를 가장 잘 설명하는지 확인</td>
+</tr>
+<tr>
+<td>8. 군집분석</td>
+<td>학생을 AI 활용 유형별로 분류</td>
+<td>weekly_ai_sessions, ai3_prompt_skill, ai4_output_verification, ai5_ethics_awareness, ai_literacy_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>비사용형·과제해결형·비판적검증형·고급활용형 도출</td>
+</tr>
+<tr>
+<td>9. 그래프 작성</td>
+<td>격차와 유형을 시각화</td>
+<td>user_type, ai_literacy_score, home_digital_env, gap_risk_score</td>
+<td>그래프 → 차트 작성기</td>
+<td>정책 제안서에 들어갈 시각자료 제작</td>
+</tr>
+</tbody></table></div>
+<h3 id="Summary">Summary</h3>
+<p>Summary: 8행 x 2열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>항목</th>
+<th>내용</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>프로젝트명</td>
+<td>AI 학습 도구 사용 격차 분석</td>
+</tr>
+<tr>
+<td>문제의식</td>
+<td>생성형 AI 활용 능력의 차이가 새로운 교육 격차를 만들고 있는가</td>
+</tr>
+<tr>
+<td>분석 단위</td>
+<td>익명 학생 1명</td>
+</tr>
+<tr>
+<td>시범 데이터 행 수</td>
+<td>50행</td>
+</tr>
+<tr>
+<td>핵심 분석</td>
+<td>그룹 비교, 상관분석, 회귀분석, 사용 유형 분류</td>
+</tr>
+<tr>
+<td>핵심 산출물</td>
+<td>AI 학습 리터러시 교육안, 학생 유형별 지원 전략</td>
+</tr>
+<tr>
+<td>데이터 성격</td>
+<td>공식 조사 구조를 반영한 설문 기반 시범용 가상 데이터</td>
+</tr>
+</tbody></table></div>
+<h2 id="데이터-출처">데이터 출처</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">19_data_sources.xlsx</span></li>
+</ul>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 8행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>다운로드/API 링크</th>
+<th>파일 형식</th>
+<th>주요 변수</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>2024년 청소년 매체이용 및 유해환경 실태조사</td>
+<td>여성가족부/한국청소년정책연구원</td>
+<td>https://www.mogef.go.kr/nw/rpd/nw_rpd_s001d.do?bbtSn=710449&amp;mid=news405</td>
+<td>PDF/HWPX/보도자료</td>
+<td>청소년 매체 이용, 생성형 AI 사용 여부, 디지털 이용 행태</td>
+<td>청소년 AI 사용 배경자료</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>데이터로 본 학생과 교사의 AI·디지털 기술 활용 현황 및 인식</td>
+<td>한국교육개발원 교육정책네트워크</td>
+<td>https://edpolicy.kedi.re.kr/edpolicy/webzine/38/844819</td>
+<td>웹문서</td>
+<td>AI·디지털 기술 활용 현황, 학생·교사 인식</td>
+<td>연구 배경 및 비교 근거</td>
+<td>즉시 열람 가능</td>
+</tr>
+<tr>
+<td>2024 디지털정보격차 실태조사</td>
+<td>과학기술정보통신부/NIA</td>
+<td>https://www.msit.go.kr/publicinfo/detailList.do?formMode=L&amp;mId=63&amp;mPid=62&amp;publictListSeqNo=8&amp;publictSeqNo=347&amp;referKey=347&amp;sCode=user</td>
+<td>PDF/통계자료</td>
+<td>디지털 접근, 역량, 활용 수준</td>
+<td>가정 디지털 환경 격차 변수 설계</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>제7차 교육정보화 기본계획(2024~2028)</td>
+<td>교육부</td>
+<td>https://www.moe.go.kr/boardCnts/fileDown.do?fileSeq=a4054cf1fc2d89b074ea40f3a5293087&amp;m=0310&amp;s=moe</td>
+<td>PDF</td>
+<td>AI·디지털 교육 정책 방향, 학교 디지털 역량 강화</td>
+<td>학교 AI 리터러시 교육 제안 근거</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>Using digital resources for learning</td>
+<td>OECD</td>
+<td>https://www.oecd.org/en/publications/using-digital-resources-for-learning_eb9453f3-en.html</td>
+<td>웹/PDF</td>
+<td>학생·교사의 디지털 학습 자원 활용</td>
+<td>국제 비교 및 보고서 배경자료</td>
+<td>즉시 열람 가능</td>
+</tr>
+<tr>
+<td>청소년의 생성형 AI 활용 유형과 인공지능 리터러시</td>
+<td>KCI</td>
+<td>https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003323738</td>
+<td>논문 정보</td>
+<td>청소년 생성형 AI 활용 유형, AI 리터러시</td>
+<td>유형분류·잠재계층 분석 아이디어 참고</td>
+<td>초록 열람 가능</td>
+</tr>
+<tr>
+<td>학교 자체 익명 설문</td>
+<td>학생 조사</td>
+<td>학교 Google Form 또는 종이 설문</td>
+<td>CSV/XLSX</td>
+<td>AI 사용경험, AI 리터러시, 학습효과, 가정 디지털 환경</td>
+<td>핵심 분석 데이터</td>
+<td>학생 설문 필요</td>
+</tr>
+</tbody></table></div>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

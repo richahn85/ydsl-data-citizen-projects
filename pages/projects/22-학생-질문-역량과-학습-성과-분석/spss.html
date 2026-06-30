@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>학생 질문 역량과 학습 성과 분석 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="학생-질문-역량과-학습-성과-분석---SPSS">학생 질문 역량과 학습 성과 분석 - SPSS</h1>
+<p>상위 노트: <a href="22-%ED%95%99%EC%83%9D-%EC%A7%88%EB%AC%B8-%EC%97%AD%EB%9F%89%EA%B3%BC-%ED%95%99%EC%8A%B5-%EC%84%B1%EA%B3%BC-%EB%B6%84%EC%84%9D.html">학생 질문 역량과 학습 성과 분석</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">22_spss_guide.docx</span></p>
+<h2 id="22번-SPSS-분석-가이드-학생-질문-역량과-학습-성과-분석">22번 SPSS 분석 가이드: 학생 질문 역량과 학습 성과 분석</h2>
+<p>이 문서는 22_dataset.xlsx 또는 22_dataset.csv를 SPSS에서 불러와 질문 역량과 학습성과의 관계를 분석하는 절차를 안내한다.</p>
+<h3 id="1-데이터-불러오기">1. 데이터 불러오기</h3>
+<p>SPSS 실행 → 파일 → 열기 → 데이터 → 22_dataset.xlsx 또는 22_dataset.csv 선택 → 첫 행을 변수명으로 읽어오기 체크.</p>
+<h3 id="2-변수-보기-설정">2. 변수 보기 설정</h3>
+<p>student_id, class_id, question_profile은 명목, grade는 서열, 점수형 변수는 척도로 설정한다. high_performer는 0=보통/보완 필요, 1=고성과로 값 레이블을 지정한다.</p>
+<h3 id="3-분석-단계별-메뉴">3. 분석 단계별 메뉴</h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>단계</th>
+<th>메뉴</th>
+<th>투입 변수</th>
+<th>해석</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>빈도분석</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>grade, question_profile, high_performer</td>
+<td>질문 유형과 성과 집단 분포 확인</td>
+</tr>
+<tr>
+<td>기술통계</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>question_total, avg_question_depth, question_competency_score, learning_outcome_score</td>
+<td>평균과 표준편차 확인</td>
+</tr>
+<tr>
+<td>신뢰도 분석</td>
+<td>분석 → 척도 → 신뢰도 분석</td>
+<td>survey_q1~survey_q11</td>
+<td>설문 척도의 일관성 확인</td>
+</tr>
+<tr>
+<td>상관분석</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>question_competency_score, learning_outcome_score 등</td>
+<td>질문 역량과 성과 관계 확인</td>
+</tr>
+<tr>
+<td>회귀분석</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>종속: learning_outcome_score / 독립: question_total, avg_question_depth, diversity, reflection, effort</td>
+<td>학습성과 예측요인 확인</td>
+</tr>
+<tr>
+<td>ANOVA</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>question_profile, learning_outcome_score</td>
+<td>질문 유형별 평균 성과 비교</td>
+</tr>
+<tr>
+<td>K-평균 군집</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>question_total, avg_question_depth, diversity, reflection</td>
+<td>질문 패턴 유형화</td>
+</tr>
+</tbody></table></div>
+<h3 id="4-결과-해석-문장-예시">4. 결과 해석 문장 예시</h3>
+<p>상관분석 결과 질문 역량 종합점수와 학습성과 종합점수 간 정적 관계가 나타났다. 이는 질문을 많이 하는 것 자체보다 질문의 깊이, 다양성, 성찰 기록이 함께 작동할 때 학습성과가 높아질 수 있음을 시사한다.</p>
+<p>분산분석 결과 질문 유형별 학습성과 평균이 다르게 나타난다면, 침묵형 학생에게는 질문 시작 문장 카드가 필요하고, 사실확인형 학생에게는 분석·비판 질문으로 확장하는 훈련이 필요하다고 제안할 수 있다.</p>
+<h3 id="5-보고서-작성-팁">5. 보고서 작성 팁</h3>
+<p>결과를 “질문 많이 한 학생이 우수하다”로 단순화하지 않는다. 좋은 보고서는 질문의 양, 질, 다양성, 성찰을 구분하고 각 학생에게 필요한 지원 전략을 제안해야 한다.</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="22_spss_syntax-sps">22_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">22_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">* Project 22: Student Question Competency and Learning Outcomes.
+GET DATA /TYPE=XLSX /FILE=&#x27;22_dataset.xlsx&#x27; /SHEET=name &#x27;Data&#x27; /READNAMES=ON.
+EXECUTE.
+
+VARIABLE LABELS
+ question_total &#x27;수업 중 질문 총횟수&#x27;
+ avg_question_depth &#x27;평균 질문 깊이 1~5점&#x27;
+ question_diversity_index &#x27;질문 다양성 지수 0~100&#x27;
+ self_reflection_score &#x27;자기성찰 기록 점수&#x27;
+ question_competency_score &#x27;질문 역량 종합점수&#x27;
+ learning_outcome_score &#x27;학습성과 종합점수&#x27;
+ high_performer &#x27;고성과 여부&#x27;.
+VALUE LABELS high_performer 0 &#x27;보통/보완 필요&#x27; 1 &#x27;고성과&#x27;.
+EXECUTE.
+
+FREQUENCIES VARIABLES=grade question_profile high_performer.
+DESCRIPTIVES VARIABLES=question_total avg_question_depth question_diversity_index self_reflection_score question_competency_score learning_outcome_score.
+
+RELIABILITY
+ /VARIABLES=survey_q1_ask_frequency survey_q2_clarify survey_q3_analyze survey_q4_connect survey_q5_challenge survey_q6_meta survey_q7_listen survey_q8_feedback survey_q9_reflection survey_q10_confidence survey_q11_ai_prompt
+ /SCALE(&#x27;Question Competency Survey&#x27;) ALL
+ /MODEL=ALPHA.
+
+CORRELATIONS
+ /VARIABLES=question_total avg_question_depth question_diversity_index self_reflection_score question_competency_score learning_outcome_score
+ /PRINT=TWOTAIL NOSIG.
+
+REGRESSION
+ /DEPENDENT learning_outcome_score
+ /METHOD=ENTER question_total avg_question_depth question_diversity_index self_reflection_score study_effort_score teacher_feedback_score.
+
+ONEWAY learning_outcome_score BY question_profile
+ /STATISTICS DESCRIPTIVES
+ /POSTHOC=TUKEY ALPHA(0.05).
+
+QUICK CLUSTER question_total avg_question_depth question_diversity_index self_reflection_score
+ /CRITERIA=CLUSTER(3) MXITER(10)
+ /SAVE CLUSTER.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

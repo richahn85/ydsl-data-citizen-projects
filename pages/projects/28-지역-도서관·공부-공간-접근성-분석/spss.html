@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>지역 도서관·공부 공간 접근성 분석 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="지역-도서관-공부-공간-접근성-분석---SPSS">지역 도서관·공부 공간 접근성 분석 - SPSS</h1>
+<p>상위 노트: <a href="28-%EC%A7%80%EC%97%AD-%EB%8F%84%EC%84%9C%EA%B4%80%C2%B7%EA%B3%B5%EB%B6%80-%EA%B3%B5%EA%B0%84-%EC%A0%91%EA%B7%BC%EC%84%B1-%EB%B6%84%EC%84%9D.html">지역 도서관·공부 공간 접근성 분석</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">28_spss_guide.docx</span></p>
+<p>SPSS 분석 가이드: 지역 도서관·공부 공간 접근성 분석</p>
+<p>Project 28 | 지역 도서관·공부 공간 접근성 분석</p>
+<h2 id="1-데이터-불러오기">1. 데이터 불러오기</h2>
+<p>SPSS에서 28_dataset.xlsx 또는 28_dataset.csv를 연다. Excel 파일을 사용할 때는 첫 행을 변수명으로 읽어오도록 설정한다. 변수 보기에 들어가 Codebook의 SPSS 측도에 맞게 명목, 서열, 척도를 지정한다.</p>
+<h2 id="2-주요-분석-절차">2. 주요 분석 절차</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석</th>
+<th>SPSS 메뉴</th>
+<th>핵심 해석</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>빈도분석</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>priority_level과 recommendation의 분포를 확인한다.</td>
+</tr>
+<tr>
+<td>기술통계</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>accessibility_score, cost_score, safety_score, priority_score의 평균과 표준편차를 확인한다.</td>
+</tr>
+<tr>
+<td>상관분석</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>공공좌석 수, 이용료, 거리와 우선순위 점수의 관계를 확인한다.</td>
+</tr>
+<tr>
+<td>분산분석</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>우선순위 등급별 접근성 차이가 통계적으로 의미 있는지 확인한다.</td>
+</tr>
+<tr>
+<td>회귀분석</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>priority_score를 종속변수로 두고 영향 요인을 분석한다.</td>
+</tr>
+<tr>
+<td>군집분석</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>생활권을 유형별로 묶고 정책명을 붙인다.</td>
+</tr>
+<tr>
+<td>산점도</td>
+<td>그래프 → 차트 작성기 → 산점도</td>
+<td>x_m, y_m을 이용해 지도형 그래프를 만든다.</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-SPSS-Syntax-예시">3. SPSS Syntax 예시</h2>
+<p>GET DATA /TYPE=XLSX /FILE=&#x27;28_dataset.xlsx&#x27; /SHEET=name &#x27;Data&#x27; /READNAMES=on.</p>
+<p>EXECUTE.</p>
+<p>FREQUENCIES VARIABLES=priority_level recommendation.</p>
+<p>DESCRIPTIVES VARIABLES=accessibility_score cost_score safety_score demand_score priority_score</p>
+<p>/STATISTICS=MEAN STDDEV MIN MAX.</p>
+<p>CORRELATIONS</p>
+<p>/VARIABLES=priority_score accessibility_score cost_score safety_score demand_score avg_hourly_fee_won public_seats_1km nearest_public_library_m</p>
+<p>/PRINT=TWOTAIL NOSIG.</p>
+<p>ONEWAY accessibility_score cost_score safety_score BY priority_level</p>
+<p>/STATISTICS DESCRIPTIVES.</p>
+<p>REGRESSION</p>
+<p>/DEPENDENT priority_score</p>
+<p>/METHOD=ENTER accessibility_score cost_score safety_score demand_score.</p>
+<p>QUICK CLUSTER accessibility_score cost_score safety_score demand_score</p>
+<p>/CRITERIA=CLUSTER(3) MXITER(10)</p>
+<p>/SAVE CLUSTER.</p>
+<h2 id="4-결과-해석-문장-예시">4. 결과 해석 문장 예시</h2>
+<p>분석 결과, 접근성 점수가 낮고 비용 부담이 높은 생활권일수록 개선 우선순위 점수가 높게 나타났다. 이는 청소년 학습공간의 문제를 단순한 시설 수가 아니라 공공성, 비용, 운영시간, 안전성의 결합 문제로 보아야 함을 의미한다.</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="28_spss_syntax-sps">28_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">28_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">GET DATA /TYPE=XLSX /FILE=&#x27;28_dataset.xlsx&#x27; /SHEET=name &#x27;Data&#x27; /READNAMES=on.
+EXECUTE.
+
+FREQUENCIES VARIABLES=priority_level recommendation.
+DESCRIPTIVES VARIABLES=accessibility_score cost_score safety_score demand_score priority_score
+ /STATISTICS=MEAN STDDEV MIN MAX.
+
+CORRELATIONS
+ /VARIABLES=priority_score accessibility_score cost_score safety_score demand_score avg_hourly_fee_won public_seats_1km nearest_public_library_m
+ /PRINT=TWOTAIL NOSIG.
+
+ONEWAY accessibility_score cost_score safety_score BY priority_level
+ /STATISTICS DESCRIPTIVES.
+
+REGRESSION
+ /DEPENDENT priority_score
+ /METHOD=ENTER accessibility_score cost_score safety_score demand_score.
+
+QUICK CLUSTER accessibility_score cost_score safety_score demand_score
+ /CRITERIA=CLUSTER(3) MXITER(10)
+ /SAVE CLUSTER.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

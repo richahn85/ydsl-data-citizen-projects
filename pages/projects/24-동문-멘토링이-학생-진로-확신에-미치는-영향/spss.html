@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>동문 멘토링이 학생 진로 확신에 미치는 영향 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="동문-멘토링이-학생-진로-확신에-미치는-영향---SPSS">동문 멘토링이 학생 진로 확신에 미치는 영향 - SPSS</h1>
+<p>상위 노트: <a href="24-%EB%8F%99%EB%AC%B8-%EB%A9%98%ED%86%A0%EB%A7%81%EC%9D%B4-%ED%95%99%EC%83%9D-%EC%A7%84%EB%A1%9C-%ED%99%95%EC%8B%A0%EC%97%90-%EB%AF%B8%EC%B9%98%EB%8A%94-%EC%98%81%ED%96%A5.html">동문 멘토링이 학생 진로 확신에 미치는 영향</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">24_spss_guide.docx</span></p>
+<p>24번 SPSS 분석 가이드: 동문 멘토링이 학생 진로 확신에 미치는 영향</p>
+<p>분석 목표: 멘토링 전후 학생의 진로 확신 변화가 유의한지 확인하고, 어떤 요인이 변화량을 설명하는지 분석한다.</p>
+<h2 id="1-데이터-불러오기와-변수-확인">1. 데이터 불러오기와 변수 확인</h2>
+<p>① SPSS 실행 → 파일 → 열기 → 데이터 → 24_dataset.xlsx 선택 → Data 시트 선택 → 첫 행에서 변수 이름 읽기 체크</p>
+<p>② 변수 보기에서 student_id, interest_field, participation_group, mentoring_type, recommendation_type은 명목, grade는 서열, 점수형 변수는 척도로 지정한다.</p>
+<h2 id="2-변수-계산">2. 변수 계산</h2>
+<p>변환 → 변수 계산에서 confidence_gain = post_career_confidence - pre_career_confidence를 만든다. 같은 방식으로 clarity_gain과 anxiety_reduction을 만든다.</p>
+<h2 id="3-분석-절차표">3. 분석 절차표</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>단계</th>
+<th>목적</th>
+<th>메뉴</th>
+<th>사용 변수</th>
+<th>해석</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>Excel/CSV 데이터를 SPSS로 불러오기</td>
+<td>파일 → 열기 → 데이터</td>
+<td>전체 변수</td>
+<td>첫 행을 변수명으로 읽고 측도를 확인한다.</td>
+</tr>
+<tr>
+<td>2. 변수계산</td>
+<td>confidence_gain, clarity_gain, anxiety_reduction 계산</td>
+<td>변환 → 변수 계산</td>
+<td>pre/post 변수</td>
+<td>사후-사전 변화량과 불안 감소량을 생성한다.</td>
+</tr>
+<tr>
+<td>3. 기술통계</td>
+<td>진로 확신·불안·만족도의 평균 파악</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>pre/post, gain, satisfaction</td>
+<td>평균 변화가 긍정적인지 확인한다.</td>
+</tr>
+<tr>
+<td>4. 대응표본 t검정</td>
+<td>멘토링 전후 진로 확신 변화 검정</td>
+<td>분석 → 평균비교 → 대응표본 t 검정</td>
+<td>pre_career_confidence, post_career_confidence</td>
+<td>사후 점수가 사전보다 유의하게 높아졌는지 본다.</td>
+</tr>
+<tr>
+<td>5. 독립표본 t검정</td>
+<td>참여집단과 비교집단의 변화량 비교</td>
+<td>분석 → 평균비교 → 독립표본 t 검정</td>
+<td>participation_group, confidence_gain</td>
+<td>멘토링 참여 여부에 따른 차이를 확인한다.</td>
+</tr>
+<tr>
+<td>6. 상관분석</td>
+<td>멘토링 횟수·일치도·만족도와 변화량 관계 확인</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>mentoring_count, mentor_field_match, satisfaction, confidence_gain</td>
+<td>횟수와 질적 매칭이 성과와 관련되는지 본다.</td>
+</tr>
+<tr>
+<td>7. 회귀분석</td>
+<td>진로 확신 변화 예측</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>confidence_gain, mentoring_count, mentor_field_match, satisfaction, reflection_score</td>
+<td>어떤 요인이 진로 확신 상승을 가장 잘 설명하는지 본다.</td>
+</tr>
+<tr>
+<td>8. 로지스틱 회귀분석</td>
+<td>고상승 학생 예측</td>
+<td>분석 → 회귀분석 → 이분형 로지스틱</td>
+<td>high_gain_yn, mentoring_count, mentor_field_match 등</td>
+<td>고효과 멘토링 조건을 도출한다.</td>
+</tr>
+<tr>
+<td>9. 그래프 작성</td>
+<td>전후 변화, 유형별 차이 시각화</td>
+<td>그래프 → 차트 작성기</td>
+<td>pre/post, mentoring_type, confidence_gain</td>
+<td>보고서용 핵심 그래프를 만든다.</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-보고서-해석-문장-예시">4. 보고서 해석 문장 예시</h2>
+<p>대응표본 t검정 결과 사후 진로 확신 평균이 사전 진로 확신 평균보다 높게 나타났다면, “동문 멘토링 후 학생들의 진로 확신은 향상된 것으로 해석할 수 있다”라고 서술한다.</p>
+<p>회귀분석에서 mentoring_count와 mentor_field_match가 유의하다면, “멘토링의 양뿐 아니라 학생 관심 분야와 동문 전문성의 일치도가 중요하다”라고 해석한다.</p>
+<h2 id="5-학생-실습-체크리스트">5. 학생 실습 체크리스트</h2>
+<p>□ 결측값 확인</p>
+<p>□ 변수 측도 확인</p>
+<p>□ 전후 변화량 계산</p>
+<p>□ 대응표본 t검정 실행</p>
+<p>□ 참여/비교집단 차이 분석</p>
+<p>□ 상관분석 실행</p>
+<p>□ 회귀분석 실행</p>
+<p>□ 그래프 2개 이상 작성</p>
+<p>□ 개선 제안서 작성</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="24_spss_syntax-sps">24_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">24_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">* Project 24: Alumni mentoring and career confidence.
+GET DATA /TYPE=XLSX /FILE=&#x27;24_dataset.xlsx&#x27; /SHEET=name &#x27;Data&#x27; /READNAMES=ON.
+EXECUTE.
+
+VARIABLE LEVEL grade(ORDINAL) mentoring_count(SCALE) mentoring_total_minutes(SCALE)
+ pre_career_confidence(SCALE) post_career_confidence(SCALE) confidence_gain(SCALE)
+ pre_major_clarity(SCALE) post_major_clarity(SCALE) clarity_gain(SCALE)
+ pre_career_anxiety(SCALE) post_career_anxiety(SCALE) anxiety_reduction(SCALE)
+ mentoring_satisfaction(SCALE) career_action_plan_score(SCALE) reflection_score(SCALE)
+ portfolio_update_yn(NOMINAL) major_change_yn(NOMINAL) high_gain_yn(NOMINAL).
+
+* If needed, recompute change variables.
+COMPUTE confidence_gain = post_career_confidence - pre_career_confidence.
+COMPUTE clarity_gain = post_major_clarity - pre_major_clarity.
+COMPUTE anxiety_reduction = pre_career_anxiety - post_career_anxiety.
+IF (confidence_gain &gt;= .8) high_gain_yn = 1.
+IF (confidence_gain &lt; .8) high_gain_yn = 0.
+EXECUTE.
+
+DESCRIPTIVES VARIABLES=pre_career_confidence post_career_confidence confidence_gain mentoring_count mentor_field_match mentoring_satisfaction.
+
+T-TEST PAIRS=pre_career_confidence WITH post_career_confidence (PAIRED).
+T-TEST GROUPS=participation_group(&#x27;참여&#x27; &#x27;비교&#x27;) /VARIABLES=confidence_gain.
+
+CORRELATIONS /VARIABLES=mentoring_count mentor_field_match mentoring_satisfaction reflection_score confidence_gain.
+
+REGRESSION /DEPENDENT confidence_gain /METHOD=ENTER mentoring_count mentor_field_match mentoring_satisfaction reflection_score pre_career_confidence.
+
+LOGISTIC REGRESSION VARIABLES high_gain_yn /METHOD=ENTER mentoring_count mentor_field_match mentoring_satisfaction reflection_score.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

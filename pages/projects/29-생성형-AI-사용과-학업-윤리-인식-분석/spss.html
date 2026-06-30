@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>생성형 AI 사용과 학업 윤리 인식 분석 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="생성형-AI-사용과-학업-윤리-인식-분석---SPSS">생성형 AI 사용과 학업 윤리 인식 분석 - SPSS</h1>
+<p>상위 노트: <a href="29-%EC%83%9D%EC%84%B1%ED%98%95-AI-%EC%82%AC%EC%9A%A9%EA%B3%BC-%ED%95%99%EC%97%85-%EC%9C%A4%EB%A6%AC-%EC%9D%B8%EC%8B%9D-%EB%B6%84%EC%84%9D.html">생성형 AI 사용과 학업 윤리 인식 분석</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">29_spss_guide.docx</span></p>
+<p>29번 SPSS 분석 가이드 생성형 AI 사용과 학업 윤리 인식 분석</p>
+<p>이 문서는 29_dataset.xlsx 또는 29_dataset.csv를 SPSS에서 불러와 분석하는 절차를 안내한다. 모든 데이터는 시범용 가상 데이터이며, 실제 수업에서는 익명 설문으로 교체한다.</p>
+<h2 id="1-SPSS-데이터-불러오기">1. SPSS 데이터 불러오기</h2>
+<p>1) SPSS 실행 → 파일 → 열기 → 데이터 → 29_dataset.xlsx 선택</p>
+<p>2) Excel 파일 읽기 창에서 ‘데이터 첫 행에서 변수 이름 읽어오기’를 체크한다.</p>
+<p>3) 변수 보기에서 student_id와 ai_use_type은 명목, Likert 문항은 서열, 점수 변수는 척도로 설정한다.</p>
+<h2 id="2-변수-계산">2. 변수 계산</h2>
+<p>윤리적 AI 사용 점수와 학업 윤리 인식 점수, 오남용 위험점수는 데이터셋에 이미 포함되어 있다. 실제 설문에서 직접 계산하려면 아래 Syntax를 참고한다.</p>
+<p>COMPUTE ethical_use_score = MEAN(disclosure_intention, citation_habit, fact_check_habit, privacy_awareness, plagiarism_awareness). COMPUTE academic_integrity_score = 20<em>(0.25</em>disclosure_intention + 0.25<em>citation_habit + 0.20</em>fact_check_habit + 0.15<em>privacy_awareness + 0.15</em>plagiarism_awareness). COMPUTE misuse_risk_score = 8<em>boundary_confusion + 6</em>assignment_pressure + 5<em>peer_ai_norm + 2.2</em>genai_use_freq_week + 8*(5-ethical_use_score) - 16. IF (misuse_risk_score &lt; 0) misuse_risk_score = 0. IF (misuse_risk_score &gt; 100) misuse_risk_score = 100. IF (misuse_risk_score &gt;= 55) high_misuse_risk = 1. IF (misuse_risk_score &lt; 55) high_misuse_risk = 0. EXECUTE.</p>
+<h2 id="3-분석-절차">3. 분석 절차</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>Excel/CSV를 SPSS로 불러와 변수 측도 확인</td>
+<td>전체 변수</td>
+<td>파일 → 열기 → 데이터</td>
+<td>문자형 ID와 명목/서열/척도 구분을 확인</td>
+</tr>
+<tr>
+<td>2. 빈도분석</td>
+<td>AI 사용 유형과 고위험 여부 분포 확인</td>
+<td>ai_use_type, high_misuse_risk, main_ai_purpose</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>어떤 유형 학생이 많은지 파악</td>
+</tr>
+<tr>
+<td>3. 기술통계</td>
+<td>윤리점수와 오남용 위험점수의 평균 수준 확인</td>
+<td>ethical_use_score, academic_integrity_score, misuse_risk_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>평균, 표준편차, 최소·최대값 확인</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>AI 윤리 인식과 오남용 위험의 관계 확인</td>
+<td>teacher_rule_clarity, citation_habit, fact_check_habit, boundary_confusion, misuse_risk_score</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>규칙 명확성·검증 습관이 높을수록 위험이 낮은지 해석</td>
+</tr>
+<tr>
+<td>5. 집단비교</td>
+<td>AI 사용 유형별 윤리점수 차이 확인</td>
+<td>ai_use_type, academic_integrity_score</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>Ethical active user와 Boundary-confused user 차이 확인</td>
+</tr>
+<tr>
+<td>6. 회귀분석</td>
+<td>오남용 위험점수 예측 요인 확인</td>
+<td>misuse_risk_score, teacher_rule_clarity, ai_guidance_experience, citation_habit, fact_check_habit, assignment_pressure</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>오남용 위험을 낮추는 핵심 요인 도출</td>
+</tr>
+<tr>
+<td>7. 로지스틱 회귀</td>
+<td>고위험 학생 여부 예측</td>
+<td>high_misuse_risk와 주요 예측변수</td>
+<td>분석 → 회귀분석 → 이분형 로지스틱</td>
+<td>고위험 가능성을 높이는 요인 해석</td>
+</tr>
+<tr>
+<td>8. 군집분석</td>
+<td>AI 사용·윤리 인식 유형 분류</td>
+<td>genai_use_freq_week, teacher_rule_clarity, citation_habit, fact_check_habit, boundary_confusion</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>학생 유형별 맞춤 교육안 설계</td>
+</tr>
+<tr>
+<td>9. 시각화</td>
+<td>AI 윤리 격차를 그래프로 설명</td>
+<td>academic_integrity_score, misuse_risk_score, ai_use_type</td>
+<td>그래프 → 차트 작성기</td>
+<td>산점도와 막대그래프로 결과 전달</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-핵심-해석-기준">4. 핵심 해석 기준</h2>
+<p>• teacher_rule_clarity와 ai_guidance_experience가 높을수록 misuse_risk_score가 낮아지는지 확인한다.</p>
+<p>• disclosure_intention, citation_habit, fact_check_habit이 academic_integrity_score를 높이는지 확인한다.</p>
+<p>• high_misuse_risk가 1인 학생이 어떤 조건에서 많이 나타나는지 로지스틱 회귀분석으로 확인한다.</p>
+<p>• AI 사용 빈도 자체보다 사용 방식과 학교 안내의 명확성이 더 중요한지 해석한다.</p>
+<h2 id="5-보고서-작성-문장-예시">5. 보고서 작성 문장 예시</h2>
+<p>생성형 AI 사용과 학업 윤리 인식 간의 관계를 분석한 결과, AI 사용 빈도 자체보다 AI 사용 과정 공개, 출처 기록, 사실 검증 습관이 학업 윤리 인식과 더 밀접하게 연결되어 있었다. 이는 학교 AI 윤리 교육이 단순 금지보다 ‘어떻게 책임 있게 사용할 것인가’를 중심으로 설계되어야 함을 시사한다.</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="29_spss_syntax-sps">29_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">29_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">* Project 29: Generative AI Use and Academic Integrity Perception.
+GET DATA
+  /TYPE=XLSX
+  /FILE=&#x27;29_dataset.xlsx&#x27;
+  /SHEET=name &#x27;Data&#x27;
+  /READNAMES=ON.
+EXECUTE.
+
+VARIABLE LEVEL student_id gender main_ai_purpose ai_use_type (NOMINAL).
+VARIABLE LEVEL grade home_digital_access teacher_rule_clarity ai_guidance_experience disclosure_intention citation_habit fact_check_habit privacy_awareness plagiarism_awareness boundary_confusion ai_detector_trust assignment_pressure peer_ai_norm learning_gain_self_eval (ORDINAL).
+VARIABLE LEVEL genai_use_freq_week ethical_use_score academic_integrity_score misuse_risk_score (SCALE).
+
+FREQUENCIES VARIABLES=main_ai_purpose ai_use_type high_misuse_risk.
+DESCRIPTIVES VARIABLES=genai_use_freq_week ethical_use_score academic_integrity_score misuse_risk_score.
+
+CORRELATIONS
+  /VARIABLES=teacher_rule_clarity ai_guidance_experience citation_habit fact_check_habit boundary_confusion assignment_pressure peer_ai_norm academic_integrity_score misuse_risk_score
+  /PRINT=TWOTAIL NOSIG.
+
+ONEWAY academic_integrity_score misuse_risk_score BY ai_use_type
+  /STATISTICS DESCRIPTIVES
+  /POSTHOC=TUKEY ALPHA(.05).
+
+REGRESSION
+  /DEPENDENT misuse_risk_score
+  /METHOD=ENTER genai_use_freq_week teacher_rule_clarity ai_guidance_experience citation_habit fact_check_habit boundary_confusion assignment_pressure peer_ai_norm.
+
+LOGISTIC REGRESSION VARIABLES high_misuse_risk
+  /METHOD=ENTER genai_use_freq_week teacher_rule_clarity ai_guidance_experience citation_habit fact_check_habit boundary_confusion assignment_pressure peer_ai_norm
+  /PRINT=CI(95).
+
+QUICK CLUSTER genai_use_freq_week teacher_rule_clarity citation_habit fact_check_habit boundary_confusion
+  /CRITERIA=CLUSTER(3) MXITER(10)
+  /SAVE CLUSTER.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

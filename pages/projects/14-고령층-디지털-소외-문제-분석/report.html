@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>고령층 디지털 소외 문제 분석 - 보고서 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="고령층-디지털-소외-문제-분석---보고서">고령층 디지털 소외 문제 분석 - 보고서</h1>
+<p>상위 노트: <a href="14-%EA%B3%A0%EB%A0%B9%EC%B8%B5-%EB%94%94%EC%A7%80%ED%84%B8-%EC%86%8C%EC%99%B8-%EB%AC%B8%EC%A0%9C-%EB%B6%84%EC%84%9D.html">고령층 디지털 소외 문제 분석</a></p>
+<p>원본 문서: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">14_report.docx</span></p>
+<ol>
+<li>고령층 디지털 소외 문제 분석</li>
+</ol>
+<p>키오스크와 모바일 앱 중심 사회에서 노인은 어떤 불편을 겪는가</p>
+<h2 id="1-프로젝트-개요">1. 프로젝트 개요</h2>
+<p>본 프로젝트는 키오스크, 모바일 앱, 온라인 예약, 모바일뱅킹, 공공서비스가 일상화되는 과정에서 고령층이 겪는 디지털 소외를 데이터로 측정하고, 지역사회가 어떤 지원 프로그램을 마련해야 하는지 제안하는 분석이다. 단순히 “어르신이 기계를 못 쓴다”는 식의 판단이 아니라, 접근 가능한 교육장, 주변 도움, 배리어프리 키오스크, 서비스 실패 경험, 디지털 자신감이라는 구조적 조건을 함께 본다.</p>
+<p>이 주제의 핵심은 기술 발전이 모두에게 같은 기회로 작동하지 않을 수 있다는 점이다. 디지털 전환은 편리함을 만들지만, 누군가에게는 음식 주문, 병원 예약, 은행 업무, 교통 이용 같은 기본 생활서비스 접근의 장벽이 될 수 있다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>구분</th>
+<th>내용</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>문제의식</td>
+<td>키오스크와 모바일 앱 중심 사회에서 노인은 어떤 불편을 겪는가</td>
+</tr>
+<tr>
+<td>데이터</td>
+<td>고령층 설문, 키오스크 설치 매장, 고령인구 비율, 디지털 교육기관 위치</td>
+</tr>
+<tr>
+<td>분석 방법</td>
+<td>설문 분석, 접근성 분석, 상관분석, 집단 비교, 회귀분석, 군집분석</td>
+</tr>
+<tr>
+<td>산출물</td>
+<td>고령층 디지털 지원 프로그램 제안</td>
+</tr>
+<tr>
+<td>연결 전공</td>
+<td>경영정보, 사회복지, HCI, 교육공학</td>
+</tr>
+</tbody></table></div>
+<h2 id="2-문제-정의-카드">2. 문제 정의 카드</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>질문</th>
+<th>답변</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>내가 본 문제는 무엇인가?</td>
+<td>키오스크 주문, 앱 예약, 모바일 결제처럼 생활서비스가 디지털 중심으로 바뀌면서 일부 고령층이 일상적 선택에서 배제되는 문제를 보았다.</td>
+</tr>
+<tr>
+<td>왜 중요한가?</td>
+<td>디지털 소외는 불편을 넘어 병원 예약, 금융, 교통, 행정 서비스 접근권과 연결된다.</td>
+</tr>
+<tr>
+<td>어떤 데이터를 사용할 것인가?</td>
+<td>고령층 익명 설문, 디지털정보격차 통계자료, 디지털배움터 위치, 고령인구 통계, 배리어프리 키오스크 위치, 현장 관찰 자료를 사용한다.</td>
+</tr>
+<tr>
+<td>어떤 분석을 할 것인가?</td>
+<td>소외 위험점수 개발, 교육 경험별 차이 분석, 연령대별 비교, 상관분석, 회귀분석, 군집분석을 수행한다.</td>
+</tr>
+<tr>
+<td>누구에게 제안할 것인가?</td>
+<td>학교 봉사동아리, 동주민센터, 복지관, 구청 디지털포용 담당 부서, 서울시 디지털 안내사 사업 담당 부서에 제안한다.</td>
+</tr>
+<tr>
+<td>전공 관심과 어떻게 연결되는가?</td>
+<td>경영정보시스템, 사회복지, HCI, 교육공학을 결합해 사람 중심의 디지털 서비스 설계를 고민할 수 있다.</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-데이터-설계">3. 데이터 설계</h2>
+<p>분석 단위는 익명 고령자 1명이다. 시범 데이터는 50명 응답을 가정했으며, 실제 프로젝트에서는 복지관·동주민센터·경로당 설문과 공공데이터를 결합한다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>설명</th>
+<th>SPSS 측도</th>
+<th>활용</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>respondent_id</td>
+<td>익명 응답자 ID</td>
+<td>명목</td>
+<td>시범용 익명 ID</td>
+</tr>
+<tr>
+<td>district</td>
+<td>자치구</td>
+<td>명목</td>
+<td>분석 지역</td>
+</tr>
+<tr>
+<td>dong</td>
+<td>행정동</td>
+<td>명목</td>
+<td>지역별 취약성 비교</td>
+</tr>
+<tr>
+<td>age</td>
+<td>나이</td>
+<td>척도</td>
+<td>응답자 연령</td>
+</tr>
+<tr>
+<td>age_group</td>
+<td>연령대</td>
+<td>서열</td>
+<td>집단 비교</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>성별</td>
+<td>명목</td>
+<td>집단 특성</td>
+</tr>
+<tr>
+<td>living_alone</td>
+<td>독거 여부</td>
+<td>명목</td>
+<td>사회적 지원 취약성</td>
+</tr>
+<tr>
+<td>education_level</td>
+<td>학력수준</td>
+<td>서열</td>
+<td>디지털 학습 배경</td>
+</tr>
+<tr>
+<td>smartphone_own</td>
+<td>스마트폰 보유 여부</td>
+<td>명목</td>
+<td>디지털 접근성</td>
+</tr>
+<tr>
+<td>kiosk_use_freq_month</td>
+<td>월 키오스크 사용 횟수</td>
+<td>척도</td>
+<td>키오스크 이용 경험</td>
+</tr>
+<tr>
+<td>mobile_app_use_freq_month</td>
+<td>월 모바일앱 사용 횟수</td>
+<td>척도</td>
+<td>모바일 서비스 활용</td>
+</tr>
+<tr>
+<td>kiosk_difficulty</td>
+<td>키오스크 사용 어려움</td>
+<td>서열</td>
+<td>핵심 어려움 변수</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-실제-데이터-확보-계획">4. 실제 데이터 확보 계획</h2>
+<p>실제 분석에서는 공공데이터와 현장 설문을 결합한다. 공공데이터는 지역별 고령층 규모와 교육 인프라, 배리어프리 키오스크의 위치를 제공하고, 설문은 실제 불편 경험과 심리적 장벽을 측정한다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>형식</th>
+<th>활용 목적</th>
+<th>확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>2024년 디지털정보격차 실태조사 보고서</td>
+<td>과학기술정보통신부</td>
+<td>보고서/PDF</td>
+<td>전국 기준 비교·배경지표</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>한국지능정보사회진흥원_디지털정보격차실태조사 통계자료</td>
+<td>공공데이터포털/NIA</td>
+<td>CSV/XLSX 파일자료</td>
+<td>디지털 역량 지표 설계</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>디지털배움터 교육장 현황</td>
+<td>공공데이터포털/NIA</td>
+<td>CSV/XLSX 파일자료</td>
+<td>교육 인프라 접근성 분석</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 고령자현황 통계</td>
+<td>서울 열린데이터광장</td>
+<td>통계/CSV</td>
+<td>지역별 교육 수요 추정</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울디지털동행플라자 시설현황정보</td>
+<td>서울 열린데이터광장</td>
+<td>CSV/API</td>
+<td>서울형 디지털 지원 거점 분석</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>배리어프리 키오스크 위치 정보 조회 데이터</td>
+<td>공공데이터포털/NIA</td>
+<td>OpenAPI/JSON</td>
+<td>접근 가능한 키오스크 분포 분석</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>서울시 디지털 안내사 사업 보도자료</td>
+<td>서울특별시</td>
+<td>웹/보도자료</td>
+<td>지원 프로그램 제안 근거</td>
+<td>웹 조회 가능</td>
+</tr>
+</tbody></table></div>
+<h2 id="5-분석-방법">5. 분석 방법</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>CSV 또는 XLSX 파일을 SPSS로 불러온다.</td>
+<td>respondent_id~support_priority_rank</td>
+<td>파일 → 열기 → 데이터</td>
+<td>첫 행을 변수명으로 읽고 측도를 확인한다.</td>
+</tr>
+<tr>
+<td>2. 빈도분석</td>
+<td>응답자 특성과 위험등급 분포를 확인한다.</td>
+<td>age_group, gender, living_alone, exclusion_level</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>고위험 집단이 어느 연령대·독거 여부에 집중되는지 확인한다.</td>
+</tr>
+<tr>
+<td>3. 기술통계</td>
+<td>핵심 변수의 평균과 분산을 파악한다.</td>
+<td>kiosk_difficulty, app_difficulty, digital_literacy_score, digital_exclusion_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>평균 소외점수와 변수별 차이를 확인한다.</td>
+</tr>
+<tr>
+<td>4. 교육 경험별 차이 분석</td>
+<td>디지털 교육 경험이 소외점수 차이와 관련되는지 본다.</td>
+<td>digital_education_experience, digital_exclusion_score</td>
+<td>분석 → 평균비교 → 독립표본 t 검정</td>
+<td>교육 경험이 있는 집단의 위험점수가 낮은지 해석한다.</td>
+</tr>
+<tr>
+<td>5. 연령대별 차이 분석</td>
+<td>연령대별 디지털 소외 위험 차이를 검증한다.</td>
+<td>age_group, digital_exclusion_score</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>80세 이상 집단의 위험점수가 유의하게 높은지 확인한다.</td>
+</tr>
+<tr>
+<td>6. 상관분석</td>
+<td>디지털 소외와 관련된 주요 요인을 탐색한다.</td>
+<td>kiosk_difficulty, app_difficulty, digital_confidence, nearest_digital_center_min, digital_exclusion_score</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>어려움·두려움은 양의 상관, 자신감·도움 가능성은 음의 상관이 예상된다.</td>
+</tr>
+</tbody></table></div>
+<h2 id="6-시범-분석-결과">6. 시범 분석 결과</h2>
+<p>시범 데이터 50명 분석 결과, 평균 디지털 소외 위험점수는 55.0점이며, 고위험 등급은 18.0%로 나타났다. 특히 75세 이상, 독거, 디지털 교육 경험이 없는 응답자에게 위험이 집중되는 구조가 확인되었다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>연령대</th>
+<th>표본수</th>
+<th>평균 디지털 소외점수</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>60-64세</td>
+<td>11</td>
+<td>49.6</td>
+</tr>
+<tr>
+<td>65-69세</td>
+<td>8</td>
+<td>46.8</td>
+</tr>
+<tr>
+<td>70-74세</td>
+<td>11</td>
+<td>57.2</td>
+</tr>
+<tr>
+<td>75-79세</td>
+<td>13</td>
+<td>58.2</td>
+</tr>
+<tr>
+<td>80세 이상</td>
+<td>7</td>
+<td>63.4</td>
+</tr>
+</tbody></table></div>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>교육 경험 여부</th>
+<th>표본수</th>
+<th>평균 디지털 소외점수</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>교육 경험 없음</td>
+<td>29</td>
+<td>59.9</td>
+</tr>
+<tr>
+<td>교육 경험 있음</td>
+<td>21</td>
+<td>48.1</td>
+</tr>
+</tbody></table></div>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>관련 요인</th>
+<th>상관계수</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>키오스크 어려움</td>
+<td>0.548</td>
+</tr>
+<tr>
+<td>앱 사용 어려움</td>
+<td>0.679</td>
+</tr>
+<tr>
+<td>디지털 자신감</td>
+<td>-0.41</td>
+</tr>
+<tr>
+<td>교육장 접근시간</td>
+<td>0.137</td>
+</tr>
+<tr>
+<td>도움 가능성</td>
+<td>-0.568</td>
+</tr>
+</tbody></table></div>
+<p>시범 결과는 디지털 소외가 단지 기기 보유 여부의 문제가 아니라, 키오스크 사용 어려움, 모바일 앱 불안, 교육장 접근시간, 주변 도움 가능성, 반복교육 경험의 결합으로 나타나는 문제임을 보여준다.</p>
+<h2 id="7-개선-제안서">7. 개선 제안서</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>제안 대상</th>
+<th>제안 내용</th>
+<th>근거 데이터</th>
+<th>기대 효과</th>
+<th>실행 난이도</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>동주민센터</td>
+<td>주 1회 키오스크·모바일앱 기초반 운영</td>
+<td>교육 경험 없는 집단의 소외점수 높음</td>
+<td>생활서비스 포기 경험 감소</td>
+<td>중</td>
+</tr>
+<tr>
+<td>복지관</td>
+<td>식당·병원·은행 앱을 주제로 반복 실습반 운영</td>
+<td>키오스크·앱 어려움과 소외점수 상관 높음</td>
+<td>실제 생활 문제 해결</td>
+<td>중</td>
+</tr>
+<tr>
+<td>구청</td>
+<td>고위험 생활권에 디지털 안내사 순회 배치</td>
+<td>교육장 접근시간과 위험점수 관계</td>
+<td>방문형 지원 강화</td>
+<td>상</td>
+</tr>
+<tr>
+<td>지역 상권</td>
+<td>고령친화 키오스크 안내문과 대면 주문 창구 유지</td>
+<td>두려움 점수와 포기 경험</td>
+<td>소비 접근권 보장</td>
+<td>중</td>
+</tr>
+<tr>
+<td>학교 봉사동아리</td>
+<td>학생-어르신 1:1 디지털 동행 프로그램</td>
+<td>주변 도움 가능성이 낮은 응답자의 위험 높음</td>
+<td>세대 간 디지털 연대</td>
+<td>중</td>
+</tr>
+</tbody></table></div>
+<h2 id="8-한계점과-후속-연구">8. 한계점과 후속 연구</h2>
+<p>본 자료는 시범용 가상 데이터이므로 실제 지역의 고령층 전체를 대표하지 않는다. 후속 연구에서는 동주민센터, 복지관, 경로당과 협력해 실제 설문을 수집하고, 디지털배움터 및 배리어프리 키오스크의 실제 좌표를 결합해야 한다. 또한 교육 전후 비교를 통해 프로그램 효과를 검증할 필요가 있다.</p>
+<h2 id="9-진로-전공-관심과의-연결">9. 진로·전공 관심과의 연결</h2>
+<p>이 프로젝트는 경영정보시스템의 서비스 설계, 사회복지의 취약계층 지원, HCI의 사용자 경험 설계, 교육공학의 반복 학습 프로그램 설계가 결합된 주제다. 디지털 전환을 단순한 기술 혁신이 아니라 사람의 생활권을 넓히는 과정으로 이해하게 한다.</p>
+<h2 id="10-에세이형-성찰-문장">10. 에세이형 성찰 문장</h2>
+<p>AI 시대의 진보가 모두에게 같은 속도로 다가오는 것은 아니었다. 누군가에게 키오스크는 편리한 기계이지만, 누군가에게는 점심 한 끼를 주문하기 어렵게 만드는 벽이 될 수 있었다. 데이터는 그 벽의 위치를 보여주었고, 나는 기술이 사람을 앞서가지 않도록 돕는 일이 왜 중요한지 알게 되었다.</p>
+<h2 id="11-학생-에세이-질문">11. 학생 에세이 질문</h2>
+<p>나는 디지털 소외를 개인의 능력 부족으로 보았는가, 아니면 사회적 지원의 부족으로 보았는가?</p>
+<p>키오스크와 모바일 앱은 누구에게 편리하고 누구에게 장벽이 되는가?</p>
+<p>AI 시대의 진보가 누구에게는 배제가 될 수 있음을 어떻게 설명할 수 있는가?</p>
+<p>내가 제안하는 디지털 지원 프로그램은 어르신의 자존감과 생활권을 어떻게 회복시킬 수 있는가?</p>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>청소년 소비 패턴과 지역상권 기여도 분석 - 보고서 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="청소년-소비-패턴과-지역상권-기여도-분석---보고서">청소년 소비 패턴과 지역상권 기여도 분석 - 보고서</h1>
+<p>상위 노트: <a href="27-%EC%B2%AD%EC%86%8C%EB%85%84-%EC%86%8C%EB%B9%84-%ED%8C%A8%ED%84%B4%EA%B3%BC-%EC%A7%80%EC%97%AD%EC%83%81%EA%B6%8C-%EA%B8%B0%EC%97%AC%EB%8F%84-%EB%B6%84%EC%84%9D.html">청소년 소비 패턴과 지역상권 기여도 분석</a></p>
+<p>원본 문서: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">27_report.docx</span></p>
+<ol>
+<li>청소년 소비 패턴과 지역상권 기여도 분석 보고서</li>
+</ol>
+<p>학생의 소비는 지역상권에 어떤 영향을 미치는가</p>
+<p>본 보고서는 용문고 학생의 소비 패턴을 익명 설문과 학교 주변 상권 자료로 분석하여, 학생 소비가 지역 상권에 어떤 방식으로 기여하는지 파악하고 청소년과 지역상권이 함께 성장할 수 있는 상생 방안을 제안하기 위한 시범 프로젝트이다.</p>
+<h2 id="1-프로젝트-개요">1. 프로젝트 개요</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>항목</th>
+<th>내용</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>문제의식</td>
+<td>학생들의 소비는 지역 상권에 어떤 영향을 미치는가</td>
+</tr>
+<tr>
+<td>핵심 데이터</td>
+<td>익명 소비 설문, 업종별 이용 빈도, 시간대별 방문 패턴, 상권 매출·점포 자료</td>
+</tr>
+<tr>
+<td>분석 방법</td>
+<td>소비 세그먼트 분석, 상관분석, 분산분석, 회귀분석, 지도형 시각화</td>
+</tr>
+<tr>
+<td>산출물</td>
+<td>학생·지역상권 상생 제안, 청소년 친화 상권 프로그램</td>
+</tr>
+<tr>
+<td>연결 전공</td>
+<td>마케팅, 경영분석, 지역경제, 데이터사이언스</td>
+</tr>
+</tbody></table></div>
+<h2 id="2-문제-정의-카드">2. 문제 정의 카드</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>질문</th>
+<th>답변</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>내가 본 문제는 무엇인가?</td>
+<td>학교 주변 상권은 학생이 자주 이용하지만, 학생 소비가 지역경제에 어떤 의미를 갖는지는 잘 드러나지 않는다.</td>
+</tr>
+<tr>
+<td>왜 중요한가?</td>
+<td>학생 소비를 단순한 용돈 사용이 아니라 지역경제와 청소년 생활환경을 연결하는 데이터로 볼 수 있다.</td>
+</tr>
+<tr>
+<td>어떤 데이터를 사용할 것인가?</td>
+<td>용돈, 주간 지역 소비액, 업종별 이용 빈도, 시간대별 방문, 상권 매출·점포 데이터, 생활인구 데이터</td>
+</tr>
+<tr>
+<td>어떤 분석을 할 것인가?</td>
+<td>학생 소비 유형을 분류하고, 지역 소비비중과 상권 기여점수의 관계를 분석한다.</td>
+</tr>
+<tr>
+<td>누구에게 제안할 것인가?</td>
+<td>학교, 동문회, 지역상인회, 성북구청, 청소년 정책 담당 부서</td>
+</tr>
+<tr>
+<td>전공 관심과의 연결</td>
+<td>마케팅·경영분석 관점에서 청소년 소비 데이터를 지역상권 상생 전략으로 전환한다.</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-데이터-설계와-실제-데이터-확보">3. 데이터 설계와 실제 데이터 확보</h2>
+<p>분석 단위는 익명 학생 1명이다. 실제 연구에서는 학생 설문을 기본으로 하고, 공공 상권 데이터를 배경자료로 결합한다. 이번 파일의 데이터는 공식 데이터 구조를 반영한 시범용 가상 데이터이다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>설명</th>
+<th>SPSS 측도</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>weekly_local_spend_krw</td>
+<td>학교 주변 상권 주간 소비액</td>
+<td>척도</td>
+</tr>
+<tr>
+<td>local_spend_share_pct</td>
+<td>총 소비 중 지역상권 소비비중</td>
+<td>척도</td>
+</tr>
+<tr>
+<td>convenience_freq_wk</td>
+<td>편의점 이용 빈도</td>
+<td>척도</td>
+</tr>
+<tr>
+<td>cafe_freq_wk</td>
+<td>카페 이용 빈도</td>
+<td>척도</td>
+</tr>
+<tr>
+<td>local_contribution_score</td>
+<td>지역상권 기여점수</td>
+<td>척도</td>
+</tr>
+<tr>
+<td>consumer_segment_label</td>
+<td>소비 세그먼트명</td>
+<td>명목</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-분석-방법">4. 분석 방법</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>SPSS 메뉴</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>빈도분석</td>
+<td>소비 유형 분포 확인</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+</tr>
+<tr>
+<td>상관분석</td>
+<td>지역 소비비중과 기여점수 관계 확인</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+</tr>
+<tr>
+<td>분산분석</td>
+<td>소비 유형별 기여점수 차이 검증</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+</tr>
+<tr>
+<td>회귀분석</td>
+<td>지역상권 기여점수 예측 요인 탐색</td>
+<td>분석 → 회귀분석 → 선형</td>
+</tr>
+<tr>
+<td>군집분석</td>
+<td>학생 소비 패턴 유형화</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+</tr>
+</tbody></table></div>
+<h2 id="5-시범-분석-결과">5. 시범 분석 결과</h2>
+<p>시범 데이터에서는 지역 소비비중이 높고 방과 후 방문 빈도가 높은 학생일수록 지역상권 기여점수가 높게 나타났다. 다만 온라인 중심형 학생도 지역상권 쿠폰, 픽업 서비스, 청소년 친화 매장 정보가 제공되면 지역상권으로 유입될 가능성이 있는 집단으로 해석된다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>소비 유형</th>
+<th>응답 수</th>
+<th>평균 지역소비액</th>
+<th>평균 지역상권 기여점수</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>학습공간 활용형</td>
+<td>9</td>
+<td>68,992</td>
+<td>85.5</td>
+</tr>
+<tr>
+<td>편의점·간식 중심형</td>
+<td>8</td>
+<td>74,248</td>
+<td>85.4</td>
+</tr>
+<tr>
+<td>카페·친구모임형</td>
+<td>11</td>
+<td>67,267</td>
+<td>81.7</td>
+</tr>
+<tr>
+<td>실속형 지역소비자</td>
+<td>9</td>
+<td>46,871</td>
+<td>77.6</td>
+</tr>
+<tr>
+<td>온라인 중심형</td>
+<td>13</td>
+<td>42,535</td>
+<td>60.8</td>
+</tr>
+</tbody></table></div>
+<p>그림 1. 소비 유형별 평균 지역상권 기여점수</p>
+<p>그림 2. 지역 소비비중과 지역상권 기여점수</p>
+<p>그림 3. 학교 주변 구역별 평균 소비액</p>
+<p>그림 4. 추천 상생 프로그램 유형</p>
+<h2 id="6-학생-지역상권-상생-제안">6. 학생·지역상권 상생 제안</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>제안 대상</th>
+<th>제안 내용</th>
+<th>근거 데이터</th>
+<th>기대 효과</th>
+<th>실행 난이도</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>학교</td>
+<td>청소년 친화 상권 지도 제작</td>
+<td>구역별 소비액·친화도</td>
+<td>안전하고 합리적인 소비 유도</td>
+<td>중</td>
+</tr>
+<tr>
+<td>지역상인회</td>
+<td>학생 메뉴·소액 할인·건강 간식 프로그램</td>
+<td>할인 필요도·업종별 이용 빈도</td>
+<td>학생 재방문과 상권 이미지 개선</td>
+<td>중</td>
+</tr>
+<tr>
+<td>성북구청</td>
+<td>청소년 상권 상생 시범거리 운영</td>
+<td>상권 기여점수·생활인구</td>
+<td>지역경제와 청소년 생활환경 개선</td>
+<td>상</td>
+</tr>
+<tr>
+<td>동문회</td>
+<td>동문 상인·지역가게 멘토링 연결</td>
+<td>상권 제안 참여의향</td>
+<td>진로·창업 교육과 지역상권 연결</td>
+<td>중</td>
+</tr>
+<tr>
+<td>학생회</td>
+<td>소비 예절·분리배출·상권 감사 캠페인</td>
+<td>이용 빈도·방문 시간대</td>
+<td>지역상권과 학생 간 신뢰 형성</td>
+<td>하</td>
+</tr>
+</tbody></table></div>
+<h2 id="7-한계점과-후속-연구">7. 한계점과 후속 연구</h2>
+<p>시범 데이터이므로 실제 학생 설문과 상권 매출 자료로 교체해야 한다.</p>
+<p>학생 소비는 개인정보와 연결될 수 있으므로 익명화와 자발적 동의가 필요하다.</p>
+<p>향후 실제 상권 매출 변화와 학생 방문 시간대 데이터를 결합하면 상권 기여도를 더 정밀하게 추정할 수 있다.</p>
+<h2 id="8-에세이형-성찰-문장">8. 에세이형 성찰 문장</h2>
+<p>나는 학생의 소비를 개인의 용돈 사용으로만 보았다. 그러나 데이터를 통해 학생 소비가 학교 주변 가게의 생존, 청소년 생활공간의 질, 지역경제의 활력과 연결되어 있음을 이해하게 되었다. 이 프로젝트는 소비를 비난하거나 단순히 절약만 강조하는 것이 아니라, 학생과 지역사회가 함께 성장할 수 있는 방법을 찾는 과정이다.</p>
+<h2 id="9-참고-데이터-출처">9. 참고 데이터 출처</h2>
+<ul>
+<li>서울시 상권분석서비스(추정매출-상권): https://data.seoul.go.kr/dataList/OA-15572/S/1/datasetView.do</li>
+</ul>
+<ul>
+<li>서울시 상권분석서비스(점포-상권): https://data.seoul.go.kr/dataList/OA-15577/S/1/datasetView.do</li>
+</ul>
+<ul>
+<li>서울시 상권분석서비스(길단위인구-상권): https://data.seoul.go.kr/dataList/OA-15568/S/1/datasetView.do</li>
+</ul>
+<ul>
+<li>서울시 상권분석서비스(영역-상권): https://data.seoul.go.kr/dataList/OA-15560/S/1/datasetView.do</li>
+</ul>
+<ul>
+<li>소상공인시장진흥공단 상가(상권)정보: https://www.data.go.kr/data/15083033/fileData.do</li>
+</ul>
+<ul>
+<li>2025 청소년 통계: https://www.mogef.go.kr/nw/rpd/nw_rpd_s001d.do?bbtSn=710528&amp;mid=news405</li>
+</ul>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

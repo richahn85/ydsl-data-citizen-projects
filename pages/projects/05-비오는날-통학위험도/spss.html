@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>비오는날 통학위험도 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="비오는날-통학위험도---SPSS">비오는날 통학위험도 - SPSS</h1>
+<p>상위 노트: <a href="05-%EB%B9%84%EC%98%A4%EB%8A%94%EB%82%A0-%ED%86%B5%ED%95%99%EC%9C%84%ED%97%98%EB%8F%84.html">비오는날 통학위험도</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">05_spss_guide.docx</span></p>
+<p>SPSS 분석 가이드 비 오는 날 통학 위험도 분석</p>
+<p>이 가이드는 05_dataset.xlsx 또는 05_dataset.csv를 SPSS에 불러와 우천 시 통학 위험을 분석하는 절차를 설명한다.</p>
+<h2 id="1-데이터-불러오기">1. 데이터 불러오기</h2>
+<p>SPSS 실행 → 파일 → 열기 → 데이터 선택</p>
+<p>파일 유형을 Excel 또는 CSV로 선택하고 05_dataset 파일을 연다.</p>
+<p>변수 보기에서 obs_id, date, day, route_id, route_name, risk_grade는 명목 또는 서열로 지정한다.</p>
+<p>rainfall_mm, bus_delay_min, avg_late_min, total_rain_risk_score 등은 척도로 지정한다.</p>
+<h2 id="2-분석-절차-요약">2. 분석 절차 요약</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>시범 데이터 또는 실제 결합 데이터를 SPSS로 불러오기</td>
+<td>05_dataset.csv 또는 05_dataset.xlsx</td>
+<td>파일 → 열기 → 데이터</td>
+<td>변수 보기에서 명목·서열·척도 측도 확인</td>
+</tr>
+<tr>
+<td>2. 빈도분석</td>
+<td>위험등급과 비 여부 분포 확인</td>
+<td>rain_dummy, risk_grade</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>비 오는 날과 아닌 날의 관찰값 수 확인</td>
+</tr>
+<tr>
+<td>3. 기술통계</td>
+<td>강수량, 버스지연, 지각시간, 위험점수의 평균·최대값 확인</td>
+<td>rainfall_mm, bus_delay_min, avg_late_min, total_rain_risk_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>우천일 평균 위험 수준과 극단값 확인</td>
+</tr>
+<tr>
+<td>4. 독립표본 t검정</td>
+<td>비 오는 날과 비 안 오는 날의 평균 차이 검정</td>
+<td>집단: rain_dummy / 검정변수: bus_delay_min, avg_late_min, total_rain_risk_score</td>
+<td>분석 → 평균비교 → 독립표본 t 검정</td>
+<td>p&lt;.05이면 날씨에 따른 차이가 통계적으로 유의</td>
+</tr>
+<tr>
+<td>5. 상관분석</td>
+<td>강수량과 통학 위험 요인의 관계 확인</td>
+<td>rainfall_mm, bus_delay_min, road_speed_kmh, avg_late_min, total_rain_risk_score</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>강수량이 높을수록 버스지연과 위험점수가 증가하는지 확인</td>
+</tr>
+<tr>
+<td>6. 회귀분석</td>
+<td>우천 통학 위험점수를 예측하는 핵심 요인 파악</td>
+<td>종속: total_rain_risk_score / 독립: rainfall_mm, bus_delay_min, sidewalk_width_m, drainage_risk_1_5, visibility_risk_1_5, traffic_congestion_1_5</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>표준화계수 β로 영향력이 큰 요인 확인</td>
+</tr>
+<tr>
+<td>7. 군집분석</td>
+<td>통학구간을 위험 유형별로 분류</td>
+<td>weather_risk_score, environment_risk_score, commute_risk_score, exposure_score, accident_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>우천교통지연형, 배수·시야위험형, 저위험형 등으로 명명</td>
+</tr>
+<tr>
+<td>8. 지도 시각화</td>
+<td>학교 주변 위험구간을 산점도로 표시</td>
+<td>x_m, y_m, total_rain_risk_score, risk_grade</td>
+<td>그래프 → 차트 작성기 → 산점도</td>
+<td>점 크기와 색으로 위험도를 표현하고 구간 ID 표시</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-주요-해석-문장-예시">3. 주요 해석 문장 예시</h2>
+<p>비 오는 날의 평균 버스 지연시간이 비가 오지 않는 날보다 높게 나타나면, 우천이 교통운영 위험을 높인다고 해석할 수 있다.</p>
+<p>강수량과 총 위험점수 간 상관이 양(+)의 방향이면, 강수량 증가가 통학 위험 증가와 관련 있음을 의미한다.</p>
+<p>회귀분석에서 drainage_risk_1_5 또는 visibility_risk_1_5의 영향이 크면 배수 정비와 시야 확보가 주요 개선 과제가 된다.</p>
+<p>위험지도에서 학교 정문, 버스정류장, 무신호 횡단지점 주변이 크게 표시되면 우천 시 교통지도 우선 배치 대상이다.</p>
+<h2 id="4-SPSS-Syntax-예시">4. SPSS Syntax 예시</h2>
+<p>별도 제공된 05_spss_syntax.sps 파일을 열어 실행할 수 있다. 파일 경로는 SPSS 환경에 맞게 수정해야 한다.</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="05_spss_syntax-sps">05_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">05_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">* Project 05: Rainy day commuting risk analysis.
+* Change FILE path to your local file path before running.
+
+GET DATA
+  /TYPE=TXT
+  /FILE=&#x27;05_dataset.csv&#x27;
+  /ENCODING=&#x27;UTF8&#x27;
+  /DELCASE=LINE
+  /DELIMITERS=&#x27;,&#x27;
+  /ARRANGEMENT=DELIMITED
+  /FIRSTCASE=2
+  /VARIABLES=
+    obs_id A8 date A10 day A2 route_id A4 route_name A40 latitude F10.6 longitude F10.6 x_m F8.0 y_m F8.0
+    distance_school_m F8.0 rainfall_mm F8.1 rain_dummy F1.0 temp_c F8.1 wind_speed_ms F8.1 student_flow_2h F8.0
+    crosswalk_count_100m F2.0 bus_stop_count_100m F2.0 sidewalk_width_m F8.1 slope_risk_1_5 F1.0 drainage_risk_1_5 F1.0
+    visibility_risk_1_5 F1.0 puddle_count F2.0 traffic_congestion_1_5 F1.0 bus_delay_min F8.1 road_speed_kmh F8.1
+    accident_count_3yr F3.0 ped_accident_3yr F3.0 rain_accident_3yr F3.0 avg_late_min F8.1 perceived_risk_1_5 F1.0
+    weather_risk_score F8.1 environment_risk_score F8.1 commute_risk_score F8.1 exposure_score F8.1 accident_score F8.1
+    total_rain_risk_score F8.1 risk_grade A12 recommended_action A80 priority_rank F3.0.
+EXECUTE.
+
+VALUE LABELS rain_dummy 0 &#x27;비 안 옴&#x27; 1 &#x27;비 옴&#x27;.
+
+FREQUENCIES VARIABLES=rain_dummy risk_grade.
+DESCRIPTIVES VARIABLES=rainfall_mm bus_delay_min avg_late_min total_rain_risk_score.
+
+T-TEST GROUPS=rain_dummy(0 1)
+  /VARIABLES=bus_delay_min avg_late_min total_rain_risk_score
+  /MISSING=ANALYSIS.
+
+CORRELATIONS
+  /VARIABLES=rainfall_mm bus_delay_min road_speed_kmh avg_late_min total_rain_risk_score
+  /PRINT=TWOTAIL NOSIG
+  /MISSING=PAIRWISE.
+
+REGRESSION
+  /DEPENDENT total_rain_risk_score
+  /METHOD=ENTER rainfall_mm bus_delay_min sidewalk_width_m drainage_risk_1_5 visibility_risk_1_5 traffic_congestion_1_5.
+
+QUICK CLUSTER weather_risk_score environment_risk_score commute_risk_score exposure_score accident_score
+  /CRITERIA=CLUSTER(3) MXITER(10)
+  /SAVE CLUSTER.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

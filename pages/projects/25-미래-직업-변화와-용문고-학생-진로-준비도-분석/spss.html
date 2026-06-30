@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>미래 직업 변화와 용문고 학생 진로 준비도 분석 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="미래-직업-변화와-용문고-학생-진로-준비도-분석---SPSS">미래 직업 변화와 용문고 학생 진로 준비도 분석 - SPSS</h1>
+<p>상위 노트: <a href="25-%EB%AF%B8%EB%9E%98-%EC%A7%81%EC%97%85-%EB%B3%80%ED%99%94%EC%99%80-%EC%9A%A9%EB%AC%B8%EA%B3%A0-%ED%95%99%EC%83%9D-%EC%A7%84%EB%A1%9C-%EC%A4%80%EB%B9%84%EB%8F%84-%EB%B6%84%EC%84%9D.html">미래 직업 변화와 용문고 학생 진로 준비도 분석</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">25_spss_guide.docx</span></p>
+<p>25번 SPSS 분석 가이드 미래 직업 변화와 Career Readiness 분석</p>
+<h2 id="1-데이터-불러오기">1. 데이터 불러오기</h2>
+<p>SPSS에서 파일 → 열기 → 데이터 → 25_dataset.xlsx 또는 25_dataset.csv를 선택한다. Excel 파일을 사용할 경우 첫 행을 변수명으로 읽어오도록 설정한다.</p>
+<h2 id="2-변수-보기-설정">2. 변수 보기 설정</h2>
+<p>student_id, hope_job, job_family, hope_major, gap_level, roadmap_recommendation은 명목 또는 서열로, 각 점수형 변수는 척도로 설정한다.</p>
+<h2 id="3-권장-분석-순서">3. 권장 분석 순서</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 빈도분석</td>
+<td>희망 직업·직업군 분포 확인</td>
+<td>hope_job, job_family, gap_level</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>학생들이 어떤 직업군에 몰려 있는지 확인</td>
+</tr>
+<tr>
+<td>2. 기술통계</td>
+<td>Career Readiness와 역량 갭 평균 확인</td>
+<td>career_readiness_score, skill_gap_score, ai_era_fit_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>평균·표준편차·최댓값·최솟값 확인</td>
+</tr>
+<tr>
+<td>3. 교차분석</td>
+<td>직업군별 역량 갭 등급 차이 확인</td>
+<td>job_family × gap_level</td>
+<td>분석 → 기술통계량 → 교차분석</td>
+<td>고위험 갭이 많은 직업군 파악</td>
+</tr>
+<tr>
+<td>4. 일원배치 분산분석</td>
+<td>직업군별 평균 준비도 차이 검증</td>
+<td>job_family, career_readiness_score</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>직업군에 따라 준비도 차이가 있는지 확인</td>
+</tr>
+<tr>
+<td>5. 상관분석</td>
+<td>AI 노출도·준비도·갭 간 관계 확인</td>
+<td>ai_exposure_score, career_readiness_score, skill_gap_score</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>AI 노출도가 높을수록 갭이 커지는지 탐색</td>
+</tr>
+<tr>
+<td>6. 회귀분석</td>
+<td>AI-Era Fit Score 예측 요인 확인</td>
+<td>ai_era_fit_score ← AI·데이터·포트폴리오·정보접근성</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>어떤 역량이 적합도에 큰 영향을 주는지 해석</td>
+</tr>
+<tr>
+<td>7. 군집분석</td>
+<td>학생 진로 준비 유형 분류</td>
+<td>ai_literacy_score, data_literacy_score, portfolio_score, skill_gap_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>AI준비형, 정보탐색형, 포트폴리오보완형 등으로 명명</td>
+</tr>
+<tr>
+<td>8. 그래프</td>
+<td>로드맵과 역량 갭 시각화</td>
+<td>job_family, skill_gap_score, roadmap_recommendation</td>
+<td>그래프 → 차트 작성기</td>
+<td>보고서용 핵심 시각화 작성</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-결과-해석-문장-예시">4. 결과 해석 문장 예시</h2>
+<p>직업군별 역량 갭의 평균을 비교한 결과, 특정 직업군에서 AI·데이터 역량 보완 필요성이 높게 나타났다.</p>
+<p>AI 노출도가 높은 직업을 희망하는 학생이라도 AI 리터러시와 포트폴리오 수준이 높으면 AI-Era Fit Score는 높게 나타날 수 있다.</p>
+<p>따라서 진로지도는 직업명 중심이 아니라 필요한 역량과 학생의 현재 준비도 사이의 차이를 줄이는 방향으로 설계되어야 한다.</p>
+<h2 id="5-제출-산출물">5. 제출 산출물</h2>
+<p>Career Readiness 요약표</p>
+<p>직업군별 역량 갭 그래프</p>
+<p>AI 노출도-Career Readiness 산점도</p>
+<p>개인별 AI 시대 진로 준비 로드맵</p>
+<p>학교 진로부·동문회 제안서</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="25_spss_syntax-sps">25_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">25_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">* Project 25: 미래 직업 변화와 용문고 학생 Career Readiness 분석.
+* CSV 파일을 SPSS에서 불러온 뒤 변수 측도를 설정한다.
+
+GET DATA
+  /TYPE=TXT
+  /FILE=&#x27;25_dataset.csv&#x27;
+  /ENCODING=&#x27;UTF8&#x27;
+  /DELCASE=LINE
+  /DELIMITERS=&quot;,&quot;
+  /ARRANGEMENT=DELIMITED
+  /FIRSTCASE=2
+  /VARIABLES=
+  student_id A8
+  grade F1.0
+  hope_job A30
+  job_family A30
+  hope_major A30
+  future_growth_score F8.1
+  ai_exposure_score F8.1
+  skill_requirement_score F8.1
+  human_centricity_score F8.1
+  ai_literacy_score F8.1
+  data_literacy_score F8.1
+  creativity_score F8.1
+  communication_score F8.1
+  problem_solving_score F8.1
+  adaptability_score F8.1
+  career_info_access_score F8.1
+  project_experience_count F8.0
+  portfolio_score F8.1
+  english_global_score F8.1
+  career_anxiety_score F8.1
+  career_readiness_score F8.1
+  skill_gap_score F8.1
+  ai_era_fit_score F8.1
+  gap_level A10
+  roadmap_recommendation A40.
+EXECUTE.
+
+FREQUENCIES VARIABLES=hope_job job_family gap_level roadmap_recommendation.
+DESCRIPTIVES VARIABLES=career_readiness_score skill_gap_score ai_era_fit_score ai_exposure_score future_growth_score.
+CROSSTABS /TABLES=job_family BY gap_level /CELLS=COUNT ROW.
+ONEWAY career_readiness_score BY job_family /STATISTICS DESCRIPTIVES.
+CORRELATIONS /VARIABLES=ai_exposure_score future_growth_score career_readiness_score skill_gap_score ai_era_fit_score
+  /PRINT=TWOTAIL NOSIG.
+REGRESSION
+  /DEPENDENT ai_era_fit_score
+  /METHOD=ENTER ai_literacy_score data_literacy_score problem_solving_score communication_score portfolio_score english_global_score career_info_access_score.
+QUICK CLUSTER ai_literacy_score data_literacy_score portfolio_score skill_gap_score
+  /CRITERIA=CLUSTER(3) MXITER(10)
+  /SAVE CLUSTER.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

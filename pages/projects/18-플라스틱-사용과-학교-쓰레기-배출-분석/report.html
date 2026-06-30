@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>플라스틱 사용과 학교 쓰레기 배출 분석 - 보고서 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="플라스틱-사용과-학교-쓰레기-배출-분석---보고서">플라스틱 사용과 학교 쓰레기 배출 분석 - 보고서</h1>
+<p>상위 노트: <a href="18-%ED%94%8C%EB%9D%BC%EC%8A%A4%ED%8B%B1-%EC%82%AC%EC%9A%A9%EA%B3%BC-%ED%95%99%EA%B5%90-%EC%93%B0%EB%A0%88%EA%B8%B0-%EB%B0%B0%EC%B6%9C-%EB%B6%84%EC%84%9D.html">플라스틱 사용과 학교 쓰레기 배출 분석</a></p>
+<p>원본 문서: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">18_report.docx</span></p>
+<ol>
+<li>플라스틱 사용과 학교 쓰레기 배출 분석</li>
+</ol>
+<p>학교에서 가장 많이 발생하는 플라스틱 쓰레기는 무엇인가</p>
+<h2 id="1-프로젝트-개요">1. 프로젝트 개요</h2>
+<p>본 프로젝트는 학교생활 속에서 학생들이 실제로 마주하는 플라스틱 쓰레기 문제를 데이터로 측정하고, 품목별 배출량과 감축 가능성을 분석하여 학교 플라스틱 감축 캠페인을 설계하는 데이터 기반 문제해결 보고서이다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>구분</th>
+<th>내용</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>문제의식</td>
+<td>학교에서 가장 많이 발생하는 플라스틱 쓰레기는 무엇이며, 어디에서 집중적으로 발생하는가</td>
+</tr>
+<tr>
+<td>데이터</td>
+<td>쓰레기 분류 조사, 매점·급식 관련 데이터, 학생 설문, 현장 관찰 기록</td>
+</tr>
+<tr>
+<td>분석 방법</td>
+<td>품목별 배출량 분석, 장소별 비교, 상관분석, 회귀분석, 군집분석, 감축 시나리오</td>
+</tr>
+<tr>
+<td>산출물</td>
+<td>학교 플라스틱 감축 캠페인, 감축 우선순위표, 분리배출 개선 제안</td>
+</tr>
+<tr>
+<td>연결 전공</td>
+<td>환경정책, 경영학, 지속가능성, 데이터사이언스</td>
+</tr>
+</tbody></table></div>
+<h2 id="2-문제-정의-카드">2. 문제 정의 카드</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>질문</th>
+<th>답변</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>내가 본 문제는 무엇인가?</td>
+<td>점심시간과 쉬는 시간 이후 매점 앞, 급식실 퇴식구, 교실 복도에 플라스틱 병·컵·포장재가 집중적으로 쌓인다.</td>
+</tr>
+<tr>
+<td>왜 이 문제가 나에게 중요한가?</td>
+<td>쓰레기는 단순히 청소 담당자의 일이 아니라 학교 공동체의 생활습관과 지속가능성의 문제이기 때문이다.</td>
+</tr>
+<tr>
+<td>어떤 데이터를 사용할 것인가?</td>
+<td>품목별 플라스틱 개수, 추정 무게, 분리배출 정확도, 다회용기 사용률, 매점 이용, 학생 인식 설문, 급식 메뉴 자료를 사용한다.</td>
+</tr>
+<tr>
+<td>어떤 분석을 할 것인가?</td>
+<td>장소별 배출량 비교, 품목별 비중 분석, 다회용기 사용률과 배출량의 상관분석, 감축 가능성 점수화를 수행한다.</td>
+</tr>
+<tr>
+<td>누구에게 제안할 것인가?</td>
+<td>학교, 학생회, 환경동아리, 학부모회, 매점 운영자, 급식실, 성북구 자원순환 담당 부서에 제안한다.</td>
+</tr>
+<tr>
+<td>전공 관심과의 연결</td>
+<td>환경정책과 경영학 관점에서 학교라는 작은 조직의 자원순환 시스템을 설계하는 경험으로 확장된다.</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-데이터-설계">3. 데이터 설계</h2>
+<p>분석 단위는 ‘날짜 × 학교 공간 × 관찰 사례’이다. 시범 데이터는 10개 학교 공간을 5일 동안 관찰한 50행으로 구성했다. 실제 조사에서는 학생들이 같은 기준으로 품목을 세고, 설문과 급식·매점 자료를 결합하면 된다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>설명</th>
+<th>SPSS 측도</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>total_plastic_items</td>
+<td>관찰 시간 동안 발생한 플라스틱 품목 총수</td>
+<td>척도</td>
+</tr>
+<tr>
+<td>plastic_weight_g</td>
+<td>플라스틱 쓰레기 추정 무게</td>
+<td>척도</td>
+</tr>
+<tr>
+<td>separation_accuracy_pct</td>
+<td>분리배출 정확도</td>
+<td>척도</td>
+</tr>
+<tr>
+<td>reusable_bottle_rate_pct</td>
+<td>텀블러·다회용기 사용률</td>
+<td>척도</td>
+</tr>
+<tr>
+<td>student_awareness_score</td>
+<td>환경 인식 점수(1~5)</td>
+<td>서열</td>
+</tr>
+<tr>
+<td>waste_score</td>
+<td>쓰레기 배출 위험점수(0~100)</td>
+<td>척도</td>
+</tr>
+<tr>
+<td>reduction_potential_score</td>
+<td>감축 가능성 점수(0~100)</td>
+<td>척도</td>
+</tr>
+<tr>
+<td>priority_level</td>
+<td>개선 우선순위 등급</td>
+<td>서열</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-실제-데이터-확보-계획">4. 실제 데이터 확보 계획</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>파일 형식</th>
+<th>활용 목적</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>서울시 생활계폐기물 발생량 및 처리현황(2020년 이후) 통계</td>
+<td>서울특별시</td>
+<td>API/Sheet/통계</td>
+<td>성북구 쓰레기 배출 배경자료</td>
+</tr>
+<tr>
+<td>서울시 폐기물 재활용 현황(2020년 이후) 통계</td>
+<td>서울특별시</td>
+<td>통계/Sheet</td>
+<td>플라스틱·재활용률 비교 기준</td>
+</tr>
+<tr>
+<td>서울시 주민 1인당 생활계폐기물(쓰레기) 배출량 통계</td>
+<td>서울특별시</td>
+<td>통계/Sheet</td>
+<td>학생 배출량과 지역 평균 비교</td>
+</tr>
+<tr>
+<td>서울시 음식물류 폐기물 발생원별 발생량 통계</td>
+<td>서울특별시</td>
+<td>통계/Sheet</td>
+<td>급식 잔반량 분석 보조</td>
+</tr>
+<tr>
+<td>전국폐기물 발생 및 처리현황</td>
+<td>환경부/한국환경공단 자원순환정보시스템</td>
+<td>통계/보고서</td>
+<td>국가 비교 배경자료</td>
+</tr>
+<tr>
+<td>NEIS 급식식단정보 Open API</td>
+<td>교육부·시도교육청</td>
+<td>Open API/JSON/XML</td>
+<td>급식 메뉴와 잔반·포장재 분석 연결</td>
+</tr>
+</tbody></table></div>
+<p>실제 공공데이터는 지역 단위의 비교 기준을 만들고, 학교 내부 데이터는 학생의 생활공간에서 발생하는 쓰레기를 직접 측정하는 핵심 자료로 사용한다. 공공데이터만으로 학교 내부 플라스틱 품목별 배출량을 알 수 없으므로 현장조사와 학생 설문이 반드시 필요하다.</p>
+<h2 id="5-시범-데이터-분석-결과">5. 시범 데이터 분석 결과</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>지표</th>
+<th>시범 분석 결과</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>전체 플라스틱 품목 수</td>
+<td>1,867개</td>
+</tr>
+<tr>
+<td>관찰 1건당 평균 플라스틱 품목 수</td>
+<td>37.3개</td>
+</tr>
+<tr>
+<td>평균 분리배출 정확도</td>
+<td>69.3%</td>
+</tr>
+<tr>
+<td>평균 다회용기 사용률</td>
+<td>28.2%</td>
+</tr>
+<tr>
+<td>평균 감축 가능성 점수</td>
+<td>41.3점</td>
+</tr>
+<tr>
+<td>감축 우선 장소</td>
+<td>매점 앞 (평균 감축 가능성 62.0점, 평균 배출량 92.2개)</td>
+</tr>
+</tbody></table></div>
+<p>시범 분석에서는 매점 앞과 급식실 퇴식구, 정문 주변에서 플라스틱 병·컵·간식 포장재가 집중적으로 나타났다. 특히 다회용기 사용률이 낮고 분리수거함 접근성이 낮은 공간일수록 감축 가능성 점수가 높았다. 이는 플라스틱 쓰레기 문제를 개인의 부주의만으로 볼 것이 아니라 구매 환경, 분리배출 인프라, 캠페인 설계의 문제로 함께 보아야 함을 보여준다.</p>
+<p>그림 1. 장소별 평균 플라스틱 쓰레기 배출량</p>
+<p>그림 2. 다회용기 사용률과 플라스틱 배출량</p>
+<p>그림 3. 플라스틱 감축 우선순위 상위 10개 사례</p>
+<h2 id="6-SPSS-분석-절차">6. SPSS 분석 절차</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>단계</th>
+<th>분석 목적</th>
+<th>SPSS 메뉴</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>Excel/CSV 데이터를 SPSS로 불러온다.</td>
+<td>파일 → 열기 → 데이터</td>
+</tr>
+<tr>
+<td>2. 빈도분석</td>
+<td>요일, 장소유형, 우선순위 등 범주형 변수 분포를 확인한다.</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+</tr>
+<tr>
+<td>3. 기술통계</td>
+<td>플라스틱 품목별 평균·최대값을 확인한다.</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+</tr>
+<tr>
+<td>4. 장소유형별 차이</td>
+<td>공간 유형별 플라스틱 배출량 차이를 비교한다.</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+</tr>
+<tr>
+<td>5. 상관분석</td>
+<td>분리수거 환경과 배출량·감축 가능성의 관계를 본다.</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+</tr>
+<tr>
+<td>6. 회귀분석</td>
+<td>플라스틱 배출량을 설명하는 요인을 검증한다.</td>
+<td>분석 → 회귀분석 → 선형</td>
+</tr>
+</tbody></table></div>
+<h2 id="7-개선-제안서">7. 개선 제안서</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>제안 대상</th>
+<th>제안 내용</th>
+<th>근거 데이터</th>
+<th>기대 효과</th>
+<th>실행 난이도</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>학교·학생회</td>
+<td>매점 앞과 급식실 퇴식구를 플라스틱 감축 우선구역으로 지정</td>
+<td>장소별 배출량, 감축 가능성 점수</td>
+<td>학생이 바로 체감하는 배출량 감소</td>
+<td>중</td>
+</tr>
+<tr>
+<td>매점 운영자</td>
+<td>일회용 컵·비닐 사용을 줄이고 다회용 컵 할인 또는 보증금제 시범 운영</td>
+<td>single_use_purchase_count, plastic_cup_count</td>
+<td>구매 단계에서 발생량 감소</td>
+<td>중</td>
+</tr>
+<tr>
+<td>환경동아리</td>
+<td>요일별 쓰레기 계량판과 분리배출 안내판 운영</td>
+<td>요일별 배출량, 분리배출 정확도</td>
+<td>학생 참여형 행동 변화</td>
+<td>하</td>
+</tr>
+<tr>
+<td>급식실</td>
+<td>퇴식구 주변 분리배출 동선 개선 및 잔반·용기 동시 점검</td>
+<td>food_waste_kg, meal_container_count</td>
+<td>급식 관련 쓰레기 감소</td>
+<td>중</td>
+</tr>
+<tr>
+<td>성북구 자원순환 부서</td>
+<td>학교 주변 청소년 참여형 자원순환 캠페인과 교육자료 지원</td>
+<td>서울시 폐기물 통계, 학교 현장조사</td>
+<td>지역사회 연계형 환경교육</td>
+<td>중</td>
+</tr>
+</tbody></table></div>
+<h2 id="8-한계점과-후속-연구">8. 한계점과 후속 연구</h2>
+<p>시범 데이터는 실제 학교 데이터를 반영한 것이 아니라 분석 구조를 보여주기 위한 가상 데이터이다. 실제 프로젝트에서는 최소 2주 이상 같은 시간대와 같은 기준으로 관찰해야 하며, 관찰자 간 기준 차이를 줄이기 위해 사진 예시와 품목 분류 기준표를 만들어야 한다.</p>
+<p>후속 연구로는 다회용기 캠페인 전후 비교, 매점 포장 방식 변경 실험, 급식 메뉴와 잔반량의 관계, 플라스틱 배출량과 학생 인식 변화의 매개효과 분석을 수행할 수 있다.</p>
+<h2 id="9-진로-전공-연결-성찰">9. 진로·전공 연결 성찰</h2>
+<p>이 프로젝트를 통해 나는 쓰레기가 단순히 버려지는 물건이 아니라 학교의 소비 습관, 공간 배치, 제도 설계가 만들어낸 결과라는 점을 이해했다. 데이터는 누군가를 비난하기 위한 도구가 아니라, 더 나은 공동체 행동을 설계하기 위한 근거가 될 수 있다.</p>
+<p>에세이 질문: 나는 학교에서 가장 많이 버려지는 플라스틱을 보며 무엇을 불편하다고 느꼈는가? 데이터는 나의 직관과 같았는가, 달랐는가? 나는 이 문제를 개인의 무관심으로 볼 것인가, 학교 시스템의 설계 문제로 볼 것인가?</p>
+<h2 id="10-참고-데이터-출처">10. 참고 데이터 출처</h2>
+<ul>
+<li>서울시 생활계폐기물 발생량 및 처리현황(2020년 이후) 통계 (서울특별시): https://data.seoul.go.kr/dataList/OA-22880/S/1/datasetView.do</li>
+</ul>
+<ul>
+<li>서울시 폐기물 재활용 현황(2020년 이후) 통계 (서울특별시): https://data.seoul.go.kr/dataList/DT201004O1200152020/S/2/datasetView.do</li>
+</ul>
+<ul>
+<li>서울시 주민 1인당 생활계폐기물(쓰레기) 배출량 통계 (서울특별시): https://data.seoul.go.kr/dataList/10761/S/2/datasetView.do</li>
+</ul>
+<ul>
+<li>서울시 음식물류 폐기물 발생원별 발생량 통계 (서울특별시): https://data.seoul.go.kr/dataList/11055/S/2/datasetView.do</li>
+</ul>
+<ul>
+<li>전국폐기물 발생 및 처리현황 (환경부/한국환경공단 자원순환정보시스템): https://www.recycling-info.or.kr/rrs/stat/envStatList.do?menuNo=M13020201</li>
+</ul>
+<ul>
+<li>NEIS 급식식단정보 Open API (교육부·시도교육청): https://open.neis.go.kr/portal/data/service/selectServicePage.do?infId=OPEN17320190722180924242823&amp;infSeq=2&amp;page=1&amp;rows=10&amp;sortColumn=&amp;sortDirection=</li>
+</ul>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

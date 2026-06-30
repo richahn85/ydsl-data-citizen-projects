@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>청소년 소비 패턴과 지역상권 기여도 분석 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="청소년-소비-패턴과-지역상권-기여도-분석---SPSS">청소년 소비 패턴과 지역상권 기여도 분석 - SPSS</h1>
+<p>상위 노트: <a href="27-%EC%B2%AD%EC%86%8C%EB%85%84-%EC%86%8C%EB%B9%84-%ED%8C%A8%ED%84%B4%EA%B3%BC-%EC%A7%80%EC%97%AD%EC%83%81%EA%B6%8C-%EA%B8%B0%EC%97%AC%EB%8F%84-%EB%B6%84%EC%84%9D.html">청소년 소비 패턴과 지역상권 기여도 분석</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">27_spss_guide.docx</span></p>
+<p>SPSS 분석 가이드</p>
+<ol>
+<li>청소년 소비 패턴과 지역상권 기여도 분석</li>
+</ol>
+<p>이 가이드는 27_dataset.xlsx 또는 27_dataset.csv를 SPSS에서 불러와 분석하는 절차를 설명한다. Data 시트의 한 행은 익명 학생 1명의 소비 패턴을 의미한다.</p>
+<h2 id="1-데이터-불러오기">1. 데이터 불러오기</h2>
+<p>SPSS 실행 → 파일 → 열기 → 데이터</p>
+<p>파일 유형을 Excel 또는 CSV로 선택</p>
+<p>Excel의 경우 첫 행에서 변수 이름 읽어오기를 체크</p>
+<p>변수 보기에서 명목·서열·척도 측도를 Codebook 시트와 동일하게 설정</p>
+<h2 id="2-변수-코딩">2. 변수 코딩</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수</th>
+<th>권장 측도</th>
+<th>해석</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>consumer_segment_label</td>
+<td>명목</td>
+<td>소비 유형 분류</td>
+</tr>
+<tr>
+<td>weekly_local_spend_krw</td>
+<td>척도</td>
+<td>주간 지역 소비액</td>
+</tr>
+<tr>
+<td>local_spend_share_pct</td>
+<td>척도</td>
+<td>지역상권 소비비중</td>
+</tr>
+<tr>
+<td>local_contribution_score</td>
+<td>척도</td>
+<td>지역상권 기여도</td>
+</tr>
+<tr>
+<td>teen_discount_need_1_5</td>
+<td>서열</td>
+<td>청소년 할인 필요도</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-권장-분석-절차">3. 권장 분석 절차</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>SPSS 메뉴</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 빈도분석</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>어떤 학생 소비 유형이 많은지 확인한다.</td>
+</tr>
+<tr>
+<td>2. 기술통계</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>지역상권 기여 수준의 평균과 차이를 본다.</td>
+</tr>
+<tr>
+<td>3. 상관분석</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>지역 소비비중이 높을수록 기여점수가 높아지는지 해석한다.</td>
+</tr>
+<tr>
+<td>4. 일원배치 분산분석</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>소비 유형별 평균 차이가 통계적으로 유의한지 확인한다.</td>
+</tr>
+<tr>
+<td>5. 회귀분석</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>방문빈도·지역 소비비중·참여의향 중 중요한 요인을 파악한다.</td>
+</tr>
+<tr>
+<td>6. 군집분석</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>실속형, 카페형, 온라인형 등 군집명을 붙이고 맞춤 제안을 만든다.</td>
+</tr>
+<tr>
+<td>7. 시각화</td>
+<td>그래프 → 차트 작성기 → 산점도</td>
+<td>학교 주변 어느 구역에서 학생 소비 기여도가 높은지 지도처럼 표현한다.</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-결과-해석-예시">4. 결과 해석 예시</h2>
+<p>소비 유형별 평균 지역상권 기여점수를 비교했을 때, 지역 소비비중과 방문 빈도가 높은 유형은 지역상권 기여점수가 높게 나타날 가능성이 크다. 온라인 중심형 학생은 지역상권 기여점수가 낮더라도 쿠폰, 픽업, 학생 친화 정보 제공을 통해 지역 상권으로 유입될 수 있다.</p>
+<h2 id="5-SPSS-Syntax-예시">5. SPSS Syntax 예시</h2>
+<p>GET DATA /TYPE=XLSX /FILE=&quot;27_dataset.xlsx&quot; /SHEET=name &quot;Data&quot; /READNAMES=ON. EXECUTE. FREQUENCIES VARIABLES=consumer_segment_label recommendation. DESCRIPTIVES VARIABLES=weekly_local_spend_krw local_spend_share_pct local_contribution_score. CORRELATIONS /VARIABLES=local_spend_share_pct weekly_local_spend_krw after_school_visit_wk local_contribution_score. ONEWAY local_contribution_score BY consumer_segment_label /STATISTICS DESCRIPTIVES. REGRESSION /DEPENDENT local_contribution_score /METHOD=ENTER local_spend_share_pct weekly_local_spend_krw after_school_visit_wk teen_discount_need_1_5 co_creation_intention_1_5. QUICK CLUSTER convenience_freq_wk cafe_freq_wk snack_freq_wk study_space_freq_mo local_spend_share_pct /CRITERIA=CLUSTER(5) MXITER(10).</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="27_spss_syntax-sps">27_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">27_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">GET DATA /TYPE=XLSX /FILE=&quot;27_dataset.xlsx&quot; /SHEET=name &quot;Data&quot; /READNAMES=ON.
+EXECUTE.
+FREQUENCIES VARIABLES=consumer_segment_label recommendation.
+DESCRIPTIVES VARIABLES=weekly_local_spend_krw local_spend_share_pct local_contribution_score.
+CORRELATIONS /VARIABLES=local_spend_share_pct weekly_local_spend_krw after_school_visit_wk local_contribution_score.
+ONEWAY local_contribution_score BY consumer_segment_label /STATISTICS DESCRIPTIVES.
+REGRESSION /DEPENDENT local_contribution_score /METHOD=ENTER local_spend_share_pct weekly_local_spend_krw after_school_visit_wk teen_discount_need_1_5 co_creation_intention_1_5.
+QUICK CLUSTER convenience_freq_wk cafe_freq_wk snack_freq_wk study_space_freq_mo local_spend_share_pct /CRITERIA=CLUSTER(5) MXITER(10).</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

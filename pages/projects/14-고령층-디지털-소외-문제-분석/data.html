@@ -1,0 +1,1173 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>고령층 디지털 소외 문제 분석 - 데이터 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="고령층-디지털-소외-문제-분석---데이터">고령층 디지털 소외 문제 분석 - 데이터</h1>
+<p>상위 노트: <a href="14-%EA%B3%A0%EB%A0%B9%EC%B8%B5-%EB%94%94%EC%A7%80%ED%84%B8-%EC%86%8C%EC%99%B8-%EB%AC%B8%EC%A0%9C-%EB%B6%84%EC%84%9D.html">고령층 디지털 소외 문제 분석</a></p>
+<p>관련 개념: <a href="../../concepts/%EC%BD%94%EB%93%9C%EB%B6%81%EA%B3%BC%20%EB%B3%80%EC%88%98%20%EC%A0%95%EC%9D%98.html">concepts/코드북과 변수 정의</a>, <a href="../../concepts/%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EA%B8%B0%EB%B0%98%20%ED%83%90%EA%B5%AC.html">concepts/공공데이터 기반 탐구</a></p>
+<h2 id="코드북">코드북</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">14_codebook.xlsx</span></li>
+</ul>
+<h3 id="14_codebook-xlsx">14_codebook.xlsx</h3>
+<p>Codebook: 30행 x 6열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>SPSS 측도</th>
+<th>코딩 방식</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>respondent_id</td>
+<td>익명 응답자 ID</td>
+<td>문자</td>
+<td>명목</td>
+<td>E001~E050</td>
+<td>시범용 익명 ID</td>
+</tr>
+<tr>
+<td>district</td>
+<td>자치구</td>
+<td>문자</td>
+<td>명목</td>
+<td>성북구</td>
+<td>분석 지역</td>
+</tr>
+<tr>
+<td>dong</td>
+<td>행정동</td>
+<td>문자</td>
+<td>명목</td>
+<td>돈암1동 등</td>
+<td>지역별 취약성 비교</td>
+</tr>
+<tr>
+<td>age</td>
+<td>나이</td>
+<td>세</td>
+<td>척도</td>
+<td>60~86</td>
+<td>응답자 연령</td>
+</tr>
+<tr>
+<td>age_group</td>
+<td>연령대</td>
+<td>범주</td>
+<td>서열</td>
+<td>60-64세~80세 이상</td>
+<td>집단 비교</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>성별</td>
+<td>범주</td>
+<td>명목</td>
+<td>남/여</td>
+<td>집단 특성</td>
+</tr>
+<tr>
+<td>living_alone</td>
+<td>독거 여부</td>
+<td>0/1</td>
+<td>명목</td>
+<td>0=아니오, 1=예</td>
+<td>사회적 지원 취약성</td>
+</tr>
+<tr>
+<td>education_level</td>
+<td>학력수준</td>
+<td>1~4</td>
+<td>서열</td>
+<td>1=초졸 이하,2=중졸,3=고졸,4=대졸 이상</td>
+<td>디지털 학습 배경</td>
+</tr>
+<tr>
+<td>smartphone_own</td>
+<td>스마트폰 보유 여부</td>
+<td>0/1</td>
+<td>명목</td>
+<td>0=없음, 1=있음</td>
+<td>디지털 접근성</td>
+</tr>
+<tr>
+<td>kiosk_use_freq_month</td>
+<td>월 키오스크 사용 횟수</td>
+<td>회/월</td>
+<td>척도</td>
+<td>0~12</td>
+<td>키오스크 이용 경험</td>
+</tr>
+<tr>
+<td>mobile_app_use_freq_month</td>
+<td>월 모바일앱 사용 횟수</td>
+<td>회/월</td>
+<td>척도</td>
+<td>0~20</td>
+<td>모바일 서비스 활용</td>
+</tr>
+<tr>
+<td>kiosk_difficulty</td>
+<td>키오스크 사용 어려움</td>
+<td>1~5</td>
+<td>서열</td>
+<td>1=매우 쉬움, 5=매우 어려움</td>
+<td>핵심 어려움 변수</td>
+</tr>
+<tr>
+<td>app_difficulty</td>
+<td>모바일앱 사용 어려움</td>
+<td>1~5</td>
+<td>서열</td>
+<td>1=매우 쉬움, 5=매우 어려움</td>
+<td>핵심 어려움 변수</td>
+</tr>
+<tr>
+<td>online_reservation_difficulty</td>
+<td>온라인 예약 어려움</td>
+<td>1~5</td>
+<td>서열</td>
+<td>1=매우 쉬움, 5=매우 어려움</td>
+<td>생활서비스 접근성</td>
+</tr>
+<tr>
+<td>digital_confidence</td>
+<td>디지털 자신감</td>
+<td>1~5</td>
+<td>서열</td>
+<td>1=매우 낮음, 5=매우 높음</td>
+<td>자기효능감</td>
+</tr>
+<tr>
+<td>digital_literacy_score</td>
+<td>디지털 역량 점수</td>
+<td>0~100</td>
+<td>척도</td>
+<td>0~100</td>
+<td>종합 역량 추정</td>
+</tr>
+<tr>
+<td>digital_education_experience</td>
+<td>디지털 교육 경험</td>
+<td>0/1</td>
+<td>명목</td>
+<td>0=없음, 1=있음</td>
+<td>교육 효과 비교</td>
+</tr>
+<tr>
+<td>help_available_score</td>
+<td>주변 도움 가능성</td>
+<td>1~5</td>
+<td>서열</td>
+<td>1=전혀 없음, 5=매우 많음</td>
+<td>가족·이웃 지원</td>
+</tr>
+<tr>
+<td>fear_score</td>
+<td>디지털 사용 두려움</td>
+<td>1~5</td>
+<td>서열</td>
+<td>1=없음, 5=매우 큼</td>
+<td>심리적 장벽</td>
+</tr>
+<tr>
+<td>unmet_need_count</td>
+<td>디지털 서비스 이용 실패 경험 수</td>
+<td>개</td>
+<td>척도</td>
+<td>0~6</td>
+<td>미충족 생활서비스</td>
+</tr>
+<tr>
+<td>nearest_digital_center_min</td>
+<td>가장 가까운 교육장 접근 시간</td>
+<td>분</td>
+<td>척도</td>
+<td>4~45</td>
+<td>접근성 분석</td>
+</tr>
+<tr>
+<td>kiosk_count_500m</td>
+<td>500m 내 키오스크 수</td>
+<td>개</td>
+<td>척도</td>
+<td>0~18</td>
+<td>노출환경</td>
+</tr>
+<tr>
+<td>barrierfree_kiosk_count_500m</td>
+<td>500m 내 배리어프리 키오스크 수</td>
+<td>개</td>
+<td>척도</td>
+<td>0~18</td>
+<td>접근성 지원환경</td>
+</tr>
+<tr>
+<td>senior_population_ratio</td>
+<td>행정동 고령인구 비율</td>
+<td>%</td>
+<td>척도</td>
+<td>17~35</td>
+<td>지역 수요</td>
+</tr>
+<tr>
+<td>access_gap_score</td>
+<td>디지털 교육·시설 접근 격차 점수</td>
+<td>0~100</td>
+<td>척도</td>
+<td>높을수록 접근 취약</td>
+<td>교육장·배리어프리 키오스크·도움 가능성 반영</td>
+</tr>
+<tr>
+<td>digital_exclusion_score</td>
+<td>디지털 소외 위험점수</td>
+<td>0~100</td>
+<td>척도</td>
+<td>높을수록 위험</td>
+<td>종합 위험지수</td>
+</tr>
+<tr>
+<td>exclusion_level</td>
+<td>디지털 소외 위험등급</td>
+<td>범주</td>
+<td>서열</td>
+<td>낮음/중간/높음</td>
+<td>지원 우선순위 분류</td>
+</tr>
+<tr>
+<td>recommended_support</td>
+<td>추천 지원 방식</td>
+<td>문자</td>
+<td>명목</td>
+<td>방문상담 등</td>
+<td>맞춤형 프로그램 제안</td>
+</tr>
+<tr>
+<td>support_priority_rank</td>
+<td>지원 우선순위</td>
+<td>순위</td>
+<td>서열</td>
+<td>1=최우선</td>
+<td>점수 기준 우선순위</td>
+</tr>
+</tbody></table></div>
+<h3 id="14_codebook-xlsx">14_codebook.xlsx</h3>
+<p>Survey_Items: 13행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>문항번호</th>
+<th>설문 문항</th>
+<th>척도</th>
+<th>코딩 방법</th>
+<th>연결 변수</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Q1</td>
+<td>나는 키오스크로 음식이나 음료를 주문하는 것이 어렵다.</td>
+<td>1~5 리커트</td>
+<td>1=전혀 그렇지 않다, 5=매우 그렇다</td>
+<td>kiosk_difficulty</td>
+</tr>
+<tr>
+<td>Q2</td>
+<td>나는 병원 예약이나 진료 접수를 모바일 앱으로 하는 것이 어렵다.</td>
+<td>1~5 리커트</td>
+<td>1=전혀 그렇지 않다, 5=매우 그렇다</td>
+<td>online_reservation_difficulty</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>나는 모바일뱅킹이나 간편결제를 사용하는 것이 어렵다.</td>
+<td>1~5 리커트</td>
+<td>1=전혀 그렇지 않다, 5=매우 그렇다</td>
+<td>app_difficulty</td>
+</tr>
+<tr>
+<td>Q4</td>
+<td>나는 버스·지하철 앱으로 길찾기나 도착시간 확인을 할 수 있다.</td>
+<td>1~5 리커트</td>
+<td>역코딩 가능: 높을수록 자신감</td>
+<td>digital_confidence</td>
+</tr>
+<tr>
+<td>Q5</td>
+<td>나는 정부24, 복지로 같은 공공서비스를 혼자 이용하기 어렵다.</td>
+<td>1~5 리커트</td>
+<td>높을수록 어려움</td>
+<td>app_difficulty</td>
+</tr>
+<tr>
+<td>Q6</td>
+<td>나는 새로운 앱을 설치하거나 회원가입을 하는 것이 두렵다.</td>
+<td>1~5 리커트</td>
+<td>높을수록 두려움</td>
+<td>fear_score</td>
+</tr>
+<tr>
+<td>Q7</td>
+<td>디지털기기를 사용할 때 주변에 도움을 요청할 사람이 있다.</td>
+<td>1~5 리커트</td>
+<td>높을수록 지원 가능성 높음</td>
+<td>help_available_score</td>
+</tr>
+<tr>
+<td>Q8</td>
+<td>나는 디지털 교육을 받은 경험이 있다.</td>
+<td>0/1</td>
+<td>0=없음, 1=있음</td>
+<td>digital_education_experience</td>
+</tr>
+<tr>
+<td>Q9</td>
+<td>나는 집 근처에 디지털 교육을 받을 수 있는 곳이 충분하다고 느낀다.</td>
+<td>1~5 리커트</td>
+<td>낮을수록 접근 취약</td>
+<td>access_gap_score</td>
+</tr>
+<tr>
+<td>Q10</td>
+<td>키오스크나 앱 때문에 원하는 서비스를 포기한 적이 있다.</td>
+<td>1~5 리커트</td>
+<td>높을수록 미충족 경험 높음</td>
+<td>unmet_need_count</td>
+</tr>
+<tr>
+<td>Q11</td>
+<td>나는 앞으로 키오스크 체험교육에 참여할 의향이 있다.</td>
+<td>1~5 리커트</td>
+<td>지원 프로그램 수요</td>
+<td>recommended_support</td>
+</tr>
+<tr>
+<td>Q12</td>
+<td>나는 1:1 방식의 반복 교육이 가장 필요하다고 느낀다.</td>
+<td>1~5 리커트</td>
+<td>맞춤 지원 수요</td>
+<td>recommended_support</td>
+</tr>
+</tbody></table></div>
+<h2 id="CSV-데이터셋">CSV 데이터셋</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">14_dataset.csv</span></li>
+</ul>
+<ul>
+<li>크기: 50행 x 29열</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>respondent_id</th>
+<th>district</th>
+<th>dong</th>
+<th>age</th>
+<th>age_group</th>
+<th>gender</th>
+<th>living_alone</th>
+<th>education_level</th>
+<th>smartphone_own</th>
+<th>kiosk_use_freq_month</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>E001</td>
+<td>성북구</td>
+<td>돈암2동</td>
+<td>62</td>
+<td>60-64세</td>
+<td>남</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E002</td>
+<td>성북구</td>
+<td>돈암1동</td>
+<td>84</td>
+<td>80세 이상</td>
+<td>남</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>6</td>
+</tr>
+<tr>
+<td>E003</td>
+<td>성북구</td>
+<td>월곡1동</td>
+<td>81</td>
+<td>80세 이상</td>
+<td>여</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E004</td>
+<td>성북구</td>
+<td>장위1동</td>
+<td>65</td>
+<td>65-69세</td>
+<td>남</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>5</td>
+</tr>
+<tr>
+<td>E005</td>
+<td>성북구</td>
+<td>장위2동</td>
+<td>65</td>
+<td>65-69세</td>
+<td>여</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>E006</td>
+<td>성북구</td>
+<td>정릉2동</td>
+<td>75</td>
+<td>75-79세</td>
+<td>남</td>
+<td>1</td>
+<td>4</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E007</td>
+<td>성북구</td>
+<td>보문동</td>
+<td>76</td>
+<td>75-79세</td>
+<td>남</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>E008</td>
+<td>성북구</td>
+<td>보문동</td>
+<td>78</td>
+<td>75-79세</td>
+<td>여</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>4</td>
+</tr>
+</tbody></table></div>
+<h2 id="엑셀-데이터셋-미리보기">엑셀 데이터셋 미리보기</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">14_dataset.xlsx</span></li>
+</ul>
+<h3 id="Data">Data</h3>
+<p>Data: 51행 x 29열 / 미리보기 10행 x 10열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>respondent_id</th>
+<th>district</th>
+<th>dong</th>
+<th>age</th>
+<th>age_group</th>
+<th>gender</th>
+<th>living_alone</th>
+<th>education_level</th>
+<th>smartphone_own</th>
+<th>kiosk_use_freq_month</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>E001</td>
+<td>성북구</td>
+<td>돈암2동</td>
+<td>62</td>
+<td>60-64세</td>
+<td>남</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E002</td>
+<td>성북구</td>
+<td>돈암1동</td>
+<td>84</td>
+<td>80세 이상</td>
+<td>남</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>6</td>
+</tr>
+<tr>
+<td>E003</td>
+<td>성북구</td>
+<td>월곡1동</td>
+<td>81</td>
+<td>80세 이상</td>
+<td>여</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E004</td>
+<td>성북구</td>
+<td>장위1동</td>
+<td>65</td>
+<td>65-69세</td>
+<td>남</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>5</td>
+</tr>
+<tr>
+<td>E005</td>
+<td>성북구</td>
+<td>장위2동</td>
+<td>65</td>
+<td>65-69세</td>
+<td>여</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>E006</td>
+<td>성북구</td>
+<td>정릉2동</td>
+<td>75</td>
+<td>75-79세</td>
+<td>남</td>
+<td>1</td>
+<td>4</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E007</td>
+<td>성북구</td>
+<td>보문동</td>
+<td>76</td>
+<td>75-79세</td>
+<td>남</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>E008</td>
+<td>성북구</td>
+<td>보문동</td>
+<td>78</td>
+<td>75-79세</td>
+<td>여</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>E009</td>
+<td>성북구</td>
+<td>안암동</td>
+<td>71</td>
+<td>70-74세</td>
+<td>여</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+</tr>
+</tbody></table></div>
+<h3 id="Codebook">Codebook</h3>
+<p>Codebook: 30행 x 6열 / 미리보기 10행 x 6열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>SPSS 측도</th>
+<th>코딩 방식</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>respondent_id</td>
+<td>익명 응답자 ID</td>
+<td>문자</td>
+<td>명목</td>
+<td>E001~E050</td>
+<td>시범용 익명 ID</td>
+</tr>
+<tr>
+<td>district</td>
+<td>자치구</td>
+<td>문자</td>
+<td>명목</td>
+<td>성북구</td>
+<td>분석 지역</td>
+</tr>
+<tr>
+<td>dong</td>
+<td>행정동</td>
+<td>문자</td>
+<td>명목</td>
+<td>돈암1동 등</td>
+<td>지역별 취약성 비교</td>
+</tr>
+<tr>
+<td>age</td>
+<td>나이</td>
+<td>세</td>
+<td>척도</td>
+<td>60~86</td>
+<td>응답자 연령</td>
+</tr>
+<tr>
+<td>age_group</td>
+<td>연령대</td>
+<td>범주</td>
+<td>서열</td>
+<td>60-64세~80세 이상</td>
+<td>집단 비교</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>성별</td>
+<td>범주</td>
+<td>명목</td>
+<td>남/여</td>
+<td>집단 특성</td>
+</tr>
+<tr>
+<td>living_alone</td>
+<td>독거 여부</td>
+<td>0/1</td>
+<td>명목</td>
+<td>0=아니오, 1=예</td>
+<td>사회적 지원 취약성</td>
+</tr>
+<tr>
+<td>education_level</td>
+<td>학력수준</td>
+<td>1~4</td>
+<td>서열</td>
+<td>1=초졸 이하,2=중졸,3=고졸,4=대졸 이상</td>
+<td>디지털 학습 배경</td>
+</tr>
+<tr>
+<td>smartphone_own</td>
+<td>스마트폰 보유 여부</td>
+<td>0/1</td>
+<td>명목</td>
+<td>0=없음, 1=있음</td>
+<td>디지털 접근성</td>
+</tr>
+</tbody></table></div>
+<h3 id="Survey_Items">Survey_Items</h3>
+<p>Survey_Items: 13행 x 5열 / 미리보기 10행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>문항번호</th>
+<th>설문 문항</th>
+<th>척도</th>
+<th>코딩 방법</th>
+<th>연결 변수</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Q1</td>
+<td>나는 키오스크로 음식이나 음료를 주문하는 것이 어렵다.</td>
+<td>1~5 리커트</td>
+<td>1=전혀 그렇지 않다, 5=매우 그렇다</td>
+<td>kiosk_difficulty</td>
+</tr>
+<tr>
+<td>Q2</td>
+<td>나는 병원 예약이나 진료 접수를 모바일 앱으로 하는 것이 어렵다.</td>
+<td>1~5 리커트</td>
+<td>1=전혀 그렇지 않다, 5=매우 그렇다</td>
+<td>online_reservation_difficulty</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>나는 모바일뱅킹이나 간편결제를 사용하는 것이 어렵다.</td>
+<td>1~5 리커트</td>
+<td>1=전혀 그렇지 않다, 5=매우 그렇다</td>
+<td>app_difficulty</td>
+</tr>
+<tr>
+<td>Q4</td>
+<td>나는 버스·지하철 앱으로 길찾기나 도착시간 확인을 할 수 있다.</td>
+<td>1~5 리커트</td>
+<td>역코딩 가능: 높을수록 자신감</td>
+<td>digital_confidence</td>
+</tr>
+<tr>
+<td>Q5</td>
+<td>나는 정부24, 복지로 같은 공공서비스를 혼자 이용하기 어렵다.</td>
+<td>1~5 리커트</td>
+<td>높을수록 어려움</td>
+<td>app_difficulty</td>
+</tr>
+<tr>
+<td>Q6</td>
+<td>나는 새로운 앱을 설치하거나 회원가입을 하는 것이 두렵다.</td>
+<td>1~5 리커트</td>
+<td>높을수록 두려움</td>
+<td>fear_score</td>
+</tr>
+<tr>
+<td>Q7</td>
+<td>디지털기기를 사용할 때 주변에 도움을 요청할 사람이 있다.</td>
+<td>1~5 리커트</td>
+<td>높을수록 지원 가능성 높음</td>
+<td>help_available_score</td>
+</tr>
+<tr>
+<td>Q8</td>
+<td>나는 디지털 교육을 받은 경험이 있다.</td>
+<td>0/1</td>
+<td>0=없음, 1=있음</td>
+<td>digital_education_experience</td>
+</tr>
+<tr>
+<td>Q9</td>
+<td>나는 집 근처에 디지털 교육을 받을 수 있는 곳이 충분하다고 느낀다.</td>
+<td>1~5 리커트</td>
+<td>낮을수록 접근 취약</td>
+<td>access_gap_score</td>
+</tr>
+</tbody></table></div>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 10행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>다운로드/API 링크</th>
+<th>파일 형식</th>
+<th>주요 변수</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>2024년 디지털정보격차 실태조사 보고서</td>
+<td>과학기술정보통신부</td>
+<td>https://www.msit.go.kr/publicinfo/detailList.do?formMode=L&amp;mId=63&amp;mPid=62&amp;publictListSeqNo=8&amp;publictSeqNo=347&amp;referKey=347&amp;sCode=user</td>
+<td>보고서/PDF</td>
+<td>디지털 접근·역량·활용 수준, 고령층 조사결과</td>
+<td>전국 기준 비교·배경지표</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>한국지능정보사회진흥원_디지털정보격차실태조사 통계자료</td>
+<td>공공데이터포털/NIA</td>
+<td>https://www.data.go.kr/data/15038422/fileData.do</td>
+<td>CSV/XLSX 파일자료</td>
+<td>디지털기기 보유율, 이용능력, 효능감, 정보화교육 수요</td>
+<td>디지털 역량 지표 설계</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>디지털배움터 교육장 현황</td>
+<td>공공데이터포털/NIA</td>
+<td>https://www.data.go.kr/data/15134509/fileData.do</td>
+<td>CSV/XLSX 파일자료</td>
+<td>관리지역, 시군구, 배움터명, 주소, 유형, 이용정원</td>
+<td>교육 인프라 접근성 분석</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 고령자현황 통계</td>
+<td>서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/10020/S/2/datasetView.do</td>
+<td>통계/CSV</td>
+<td>동별 65세 이상 인구</td>
+<td>지역별 교육 수요 추정</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울디지털동행플라자 시설현황정보</td>
+<td>서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-22862/S/1/datasetView.do</td>
+<td>CSV/API</td>
+<td>시니어 디지털 체험·상담 공간 정보</td>
+<td>서울형 디지털 지원 거점 분석</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>배리어프리 키오스크 위치 정보 조회 데이터</td>
+<td>공공데이터포털/NIA</td>
+<td>https://www.data.go.kr/data/15157403/openapi.do</td>
+<td>OpenAPI/JSON</td>
+<td>키오스크 위치, 기기 유형, 접근성 지원 기능, 주소, 좌표</td>
+<td>접근 가능한 키오스크 분포 분석</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>서울시 디지털 안내사 사업 보도자료</td>
+<td>서울특별시</td>
+<td>https://news.seoul.go.kr/gov/archives/569297</td>
+<td>웹/보도자료</td>
+<td>디지털 안내사 활동 장소, 지원 대상, 만족도, 지원 규모</td>
+<td>지원 프로그램 제안 근거</td>
+<td>웹 조회 가능</td>
+</tr>
+<tr>
+<td>서울교통공사 편의시설 현황</td>
+<td>서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-22523/F/1/datasetView.do</td>
+<td>CSV/XLSX</td>
+<td>역사 내 무인민원발급기, 환전키오스크 등 편의시설</td>
+<td>공공 키오스크 노출환경 보조분석</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>학생/지역 현장조사 설문</td>
+<td>직접 수집</td>
+<td>학교·복지관·동주민센터 현장 설문</td>
+<td>설문/XLSX</td>
+<td>키오스크 어려움, 앱 어려움, 도움 가능성, 교육 수요</td>
+<td>핵심 분석 데이터</td>
+<td>학생 설문 필요</td>
+</tr>
+</tbody></table></div>
+<h3 id="SPSS_Steps">SPSS_Steps</h3>
+<p>SPSS_Steps: 10행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>CSV 또는 XLSX 파일을 SPSS로 불러온다.</td>
+<td>respondent_id~support_priority_rank</td>
+<td>파일 → 열기 → 데이터</td>
+<td>첫 행을 변수명으로 읽고 측도를 확인한다.</td>
+</tr>
+<tr>
+<td>2. 빈도분석</td>
+<td>응답자 특성과 위험등급 분포를 확인한다.</td>
+<td>age_group, gender, living_alone, exclusion_level</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>고위험 집단이 어느 연령대·독거 여부에 집중되는지 확인한다.</td>
+</tr>
+<tr>
+<td>3. 기술통계</td>
+<td>핵심 변수의 평균과 분산을 파악한다.</td>
+<td>kiosk_difficulty, app_difficulty, digital_literacy_score, digital_exclusion_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>평균 소외점수와 변수별 차이를 확인한다.</td>
+</tr>
+<tr>
+<td>4. 교육 경험별 차이 분석</td>
+<td>디지털 교육 경험이 소외점수 차이와 관련되는지 본다.</td>
+<td>digital_education_experience, digital_exclusion_score</td>
+<td>분석 → 평균비교 → 독립표본 t 검정</td>
+<td>교육 경험이 있는 집단의 위험점수가 낮은지 해석한다.</td>
+</tr>
+<tr>
+<td>5. 연령대별 차이 분석</td>
+<td>연령대별 디지털 소외 위험 차이를 검증한다.</td>
+<td>age_group, digital_exclusion_score</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>80세 이상 집단의 위험점수가 유의하게 높은지 확인한다.</td>
+</tr>
+<tr>
+<td>6. 상관분석</td>
+<td>디지털 소외와 관련된 주요 요인을 탐색한다.</td>
+<td>kiosk_difficulty, app_difficulty, digital_confidence, nearest_digital_center_min, digital_exclusion_score</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>어려움·두려움은 양의 상관, 자신감·도움 가능성은 음의 상관이 예상된다.</td>
+</tr>
+<tr>
+<td>7. 회귀분석</td>
+<td>소외점수를 예측하는 핵심 변수를 파악한다.</td>
+<td>digital_exclusion_score, age, kiosk_difficulty, app_difficulty, education_experience, help_available_score</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>가장 영향력이 큰 변수를 찾아 프로그램 설계 근거로 사용한다.</td>
+</tr>
+<tr>
+<td>8. 군집분석</td>
+<td>고령층을 지원유형별로 분류한다.</td>
+<td>kiosk_difficulty, app_difficulty, digital_confidence, access_gap_score, digital_literacy_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>방문상담형·체험교육형·자립보완형 등으로 해석한다.</td>
+</tr>
+<tr>
+<td>9. 시각화</td>
+<td>위험집단과 교육 인프라 취약성을 그림으로 보여준다.</td>
+<td>digital_exclusion_score, nearest_digital_center_min, access_gap_score</td>
+<td>그래프 → 차트 작성기</td>
+<td>지원 우선지역·우선대상을 직관적으로 제시한다.</td>
+</tr>
+</tbody></table></div>
+<h3 id="Summary">Summary</h3>
+<p>Summary: 10행 x 3열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>프로젝트 요약</th>
+<th>내용</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>주제</td>
+<td>고령층 디지털 소외 문제 분석</td>
+<td>고령층 디지털 격차와 생활서비스 접근성</td>
+</tr>
+<tr>
+<td>분석단위</td>
+<td>익명 고령자 1명</td>
+<td>50행 시범 데이터</td>
+</tr>
+<tr>
+<td>핵심 산출물</td>
+<td>고령층 디지털 지원 프로그램 제안</td>
+<td>방문상담/체험교육/기초반/반복 실습반</td>
+</tr>
+<tr>
+<td>항목</td>
+<td>값</td>
+<td>해석</td>
+</tr>
+<tr>
+<td>평균 디지털 소외 위험점수</td>
+<td>55</td>
+<td>50점 이상이면 구조적 지원 검토 필요</td>
+</tr>
+<tr>
+<td>고위험 응답자 비율(%)</td>
+<td>18</td>
+<td>높음 등급 비율</td>
+</tr>
+<tr>
+<td>최고 위험 응답자</td>
+<td>E042</td>
+<td>점수 80.1, 추천지원 디지털 안내사 방문상담</td>
+</tr>
+<tr>
+<td>교육 경험 없는 집단 평균</td>
+<td>59.9</td>
+<td>교육 경험 여부별 차이 비교</td>
+</tr>
+<tr>
+<td>교육 경험 있는 집단 평균</td>
+<td>48.1</td>
+<td>교육 경험이 있는 집단은 위험점수가 낮게 설계됨</td>
+</tr>
+</tbody></table></div>
+<h3 id="Age_Group_Summary">Age_Group_Summary</h3>
+<p>Age_Group_Summary: 6행 x 3열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>연령대</th>
+<th>표본수</th>
+<th>평균 디지털 소외점수</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>60-64세</td>
+<td>11</td>
+<td>49.6</td>
+</tr>
+<tr>
+<td>65-69세</td>
+<td>8</td>
+<td>46.8</td>
+</tr>
+<tr>
+<td>70-74세</td>
+<td>11</td>
+<td>57.2</td>
+</tr>
+<tr>
+<td>75-79세</td>
+<td>13</td>
+<td>58.2</td>
+</tr>
+<tr>
+<td>80세 이상</td>
+<td>7</td>
+<td>63.4</td>
+</tr>
+</tbody></table></div>
+<h3 id="Correlation_Summary">Correlation_Summary</h3>
+<p>Correlation_Summary: 6행 x 2열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수</th>
+<th>디지털 소외점수와의 상관계수</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>키오스크 어려움</td>
+<td>0.548</td>
+</tr>
+<tr>
+<td>앱 사용 어려움</td>
+<td>0.679</td>
+</tr>
+<tr>
+<td>디지털 자신감</td>
+<td>-0.41</td>
+</tr>
+<tr>
+<td>교육장 접근시간</td>
+<td>0.137</td>
+</tr>
+<tr>
+<td>도움 가능성</td>
+<td>-0.568</td>
+</tr>
+</tbody></table></div>
+<h2 id="데이터-출처">데이터 출처</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">14_data_sources.xlsx</span></li>
+</ul>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 10행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>다운로드/API 링크</th>
+<th>파일 형식</th>
+<th>주요 변수</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>2024년 디지털정보격차 실태조사 보고서</td>
+<td>과학기술정보통신부</td>
+<td>https://www.msit.go.kr/publicinfo/detailList.do?formMode=L&amp;mId=63&amp;mPid=62&amp;publictListSeqNo=8&amp;publictSeqNo=347&amp;referKey=347&amp;sCode=user</td>
+<td>보고서/PDF</td>
+<td>디지털 접근·역량·활용 수준, 고령층 조사결과</td>
+<td>전국 기준 비교·배경지표</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>한국지능정보사회진흥원_디지털정보격차실태조사 통계자료</td>
+<td>공공데이터포털/NIA</td>
+<td>https://www.data.go.kr/data/15038422/fileData.do</td>
+<td>CSV/XLSX 파일자료</td>
+<td>디지털기기 보유율, 이용능력, 효능감, 정보화교육 수요</td>
+<td>디지털 역량 지표 설계</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>디지털배움터 교육장 현황</td>
+<td>공공데이터포털/NIA</td>
+<td>https://www.data.go.kr/data/15134509/fileData.do</td>
+<td>CSV/XLSX 파일자료</td>
+<td>관리지역, 시군구, 배움터명, 주소, 유형, 이용정원</td>
+<td>교육 인프라 접근성 분석</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 고령자현황 통계</td>
+<td>서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/10020/S/2/datasetView.do</td>
+<td>통계/CSV</td>
+<td>동별 65세 이상 인구</td>
+<td>지역별 교육 수요 추정</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울디지털동행플라자 시설현황정보</td>
+<td>서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-22862/S/1/datasetView.do</td>
+<td>CSV/API</td>
+<td>시니어 디지털 체험·상담 공간 정보</td>
+<td>서울형 디지털 지원 거점 분석</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>배리어프리 키오스크 위치 정보 조회 데이터</td>
+<td>공공데이터포털/NIA</td>
+<td>https://www.data.go.kr/data/15157403/openapi.do</td>
+<td>OpenAPI/JSON</td>
+<td>키오스크 위치, 기기 유형, 접근성 지원 기능, 주소, 좌표</td>
+<td>접근 가능한 키오스크 분포 분석</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>서울시 디지털 안내사 사업 보도자료</td>
+<td>서울특별시</td>
+<td>https://news.seoul.go.kr/gov/archives/569297</td>
+<td>웹/보도자료</td>
+<td>디지털 안내사 활동 장소, 지원 대상, 만족도, 지원 규모</td>
+<td>지원 프로그램 제안 근거</td>
+<td>웹 조회 가능</td>
+</tr>
+<tr>
+<td>서울교통공사 편의시설 현황</td>
+<td>서울 열린데이터광장</td>
+<td>https://data.seoul.go.kr/dataList/OA-22523/F/1/datasetView.do</td>
+<td>CSV/XLSX</td>
+<td>역사 내 무인민원발급기, 환전키오스크 등 편의시설</td>
+<td>공공 키오스크 노출환경 보조분석</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>학생/지역 현장조사 설문</td>
+<td>직접 수집</td>
+<td>학교·복지관·동주민센터 현장 설문</td>
+<td>설문/XLSX</td>
+<td>키오스크 어려움, 앱 어려움, 도움 가능성, 교육 수요</td>
+<td>핵심 분석 데이터</td>
+<td>학생 설문 필요</td>
+</tr>
+</tbody></table></div>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

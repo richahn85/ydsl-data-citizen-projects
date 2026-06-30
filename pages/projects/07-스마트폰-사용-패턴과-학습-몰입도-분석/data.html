@@ -1,0 +1,1124 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>스마트폰 사용 패턴과 학습 몰입도 분석 - 데이터 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="스마트폰-사용-패턴과-학습-몰입도-분석---데이터">스마트폰 사용 패턴과 학습 몰입도 분석 - 데이터</h1>
+<p>상위 노트: <a href="07-%EC%8A%A4%EB%A7%88%ED%8A%B8%ED%8F%B0-%EC%82%AC%EC%9A%A9-%ED%8C%A8%ED%84%B4%EA%B3%BC-%ED%95%99%EC%8A%B5-%EB%AA%B0%EC%9E%85%EB%8F%84-%EB%B6%84%EC%84%9D.html">스마트폰 사용 패턴과 학습 몰입도 분석</a></p>
+<p>관련 개념: <a href="../../concepts/%EC%BD%94%EB%93%9C%EB%B6%81%EA%B3%BC%20%EB%B3%80%EC%88%98%20%EC%A0%95%EC%9D%98.html">concepts/코드북과 변수 정의</a>, <a href="../../concepts/%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EA%B8%B0%EB%B0%98%20%ED%83%90%EA%B5%AC.html">concepts/공공데이터 기반 탐구</a></p>
+<h2 id="코드북">코드북</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">07_codebook.xlsx</span></li>
+</ul>
+<h3 id="07_codebook-xlsx">07_codebook.xlsx</h3>
+<p>Codebook: 29행 x 6열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Codebook</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr></thead>
+<tbody>
+<tr>
+<td>변수명</td>
+<td>변수 설명</td>
+<td>측정 단위</td>
+<td>SPSS 측도</td>
+<td>코딩/값</td>
+<td>비고</td>
+</tr>
+<tr>
+<td>student_id</td>
+<td>익명 학생 ID</td>
+<td>문자</td>
+<td>명목</td>
+<td>S001~S050</td>
+<td>개인 식별이 불가능한 익명 코드</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>학년</td>
+<td>1/2/3</td>
+<td>서열</td>
+<td>1=1학년, 2=2학년, 3=3학년</td>
+<td>학년별 차이 분석</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>성별</td>
+<td>남/여</td>
+<td>명목</td>
+<td>남, 여</td>
+<td>인구통계학적 변수</td>
+</tr>
+<tr>
+<td>weekday_phone_min</td>
+<td>평일 하루 스마트폰 총 사용시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>자기보고 또는 스크린타임 기록</td>
+</tr>
+<tr>
+<td>weekend_phone_min</td>
+<td>주말 하루 스마트폰 총 사용시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>평일 대비 사용량 비교</td>
+</tr>
+<tr>
+<td>study_app_min</td>
+<td>학습 앱/검색/강의 사용시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>생산적 사용 지표</td>
+</tr>
+<tr>
+<td>sns_min</td>
+<td>SNS 사용시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>사회적 사용 지표</td>
+</tr>
+<tr>
+<td>shortform_min</td>
+<td>숏폼 영상 사용시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>주의분산 가능성 지표</td>
+</tr>
+<tr>
+<td>game_min</td>
+<td>모바일 게임 사용시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>오락 사용 지표</td>
+</tr>
+<tr>
+<td>messenger_min</td>
+<td>메신저 사용시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>친구 소통 사용 지표</td>
+</tr>
+<tr>
+<td>info_search_min</td>
+<td>정보검색 사용시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>학습·정보 탐색 보조</td>
+</tr>
+<tr>
+<td>bedtime_phone_min</td>
+<td>취침 전 스마트폰 사용시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>수면 및 다음날 집중도 영향</td>
+</tr>
+<tr>
+<td>night_check_freq</td>
+<td>밤중 스마트폰 확인 횟수</td>
+<td>회</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>수면 방해 가능성 지표</td>
+</tr>
+<tr>
+<td>notification_off</td>
+<td>공부 중 알림 차단 여부</td>
+<td>0/1</td>
+<td>명목</td>
+<td>0=아니오, 1=예</td>
+<td>자기통제 행동</td>
+</tr>
+<tr>
+<td>app_switch_count</td>
+<td>공부 중 앱 전환 횟수</td>
+<td>회</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>주의 전환 빈도</td>
+</tr>
+<tr>
+<td>learning_time_min</td>
+<td>하루 자기주도 학습시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>학습 투입시간</td>
+</tr>
+<tr>
+<td>sleep_hours</td>
+<td>평일 평균 수면시간</td>
+<td>시간</td>
+<td>척도</td>
+<td>소수 1자리</td>
+<td>통제변수</td>
+</tr>
+<tr>
+<td>study_app_ratio</td>
+<td>학습 앱 사용 비율</td>
+<td>비율</td>
+<td>척도</td>
+<td>study_app_min / weekday_phone_min</td>
+<td>사용 방식 핵심 지표</td>
+</tr>
+<tr>
+<td>distraction_score</td>
+<td>주의분산 점수</td>
+<td>0~100</td>
+<td>척도</td>
+<td>높을수록 분산 큼</td>
+<td>종속/매개 변수</td>
+</tr>
+<tr>
+<td>self_control_score</td>
+<td>디지털 자기조절 점수</td>
+<td>0~100</td>
+<td>척도</td>
+<td>높을수록 자기조절 높음</td>
+<td>핵심 예측 변수</td>
+</tr>
+<tr>
+<td>concentration_score</td>
+<td>학습 집중도 점수</td>
+<td>0~100</td>
+<td>척도</td>
+<td>높을수록 집중도 높음</td>
+<td>주요 종속변수</td>
+</tr>
+<tr>
+<td>flow_score</td>
+<td>학습 몰입도 점수</td>
+<td>0~100</td>
+<td>척도</td>
+<td>높을수록 몰입도 높음</td>
+<td>주요 종속변수</td>
+</tr>
+<tr>
+<td>assignment_delay_score</td>
+<td>과제 지연 정도</td>
+<td>1~5</td>
+<td>서열</td>
+<td>1=낮음, 5=높음</td>
+<td>학습행동 결과</td>
+</tr>
+<tr>
+<td>overuse_risk_score</td>
+<td>스마트폰 과의존 위험점수</td>
+<td>0~100</td>
+<td>척도</td>
+<td>높을수록 위험 높음</td>
+<td>위험군 분류 보조</td>
+</tr>
+<tr>
+<td>phone_type_code</td>
+<td>스마트폰 사용 유형 코드</td>
+<td>1~5</td>
+<td>명목</td>
+<td>1=학습도구형,2=균형형,3=SNS·숏폼형,4=게임형,5=고위험분산형</td>
+<td>군집/분류 결과</td>
+</tr>
+<tr>
+<td>phone_type</td>
+<td>스마트폰 사용 유형</td>
+<td>문자</td>
+<td>명목</td>
+<td>학습도구형 등</td>
+<td>보고서 해석용</td>
+</tr>
+<tr>
+<td>high_immersion</td>
+<td>고몰입 여부</td>
+<td>0/1</td>
+<td>명목</td>
+<td>0=보통 이하, 1=고몰입</td>
+<td>로지스틱 회귀 종속변수</td>
+</tr>
+</tbody></table></div>
+<h3 id="07_codebook-xlsx">07_codebook.xlsx</h3>
+<p>Survey_Items: 17행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Survey_Items</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr></thead>
+<tbody>
+<tr>
+<td>문항</td>
+<td>설문 문항</td>
+<td>응답 형식</td>
+<td>SPSS 측도</td>
+<td>연결 변수/비고</td>
+</tr>
+<tr>
+<td>Q1</td>
+<td>평일 하루 스마트폰 사용시간은 평균 몇 분입니까?</td>
+<td>분 단위 직접 입력</td>
+<td>척도</td>
+<td>예: 260</td>
+</tr>
+<tr>
+<td>Q2</td>
+<td>주말 하루 스마트폰 사용시간은 평균 몇 분입니까?</td>
+<td>분 단위 직접 입력</td>
+<td>척도</td>
+<td>예: 420</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>스마트폰을 학습 앱, 강의, 검색 등에 사용하는 시간은 하루 평균 몇 분입니까?</td>
+<td>분 단위 직접 입력</td>
+<td>척도</td>
+<td>study_app_min</td>
+</tr>
+<tr>
+<td>Q4</td>
+<td>SNS 사용 시간은 하루 평균 몇 분입니까?</td>
+<td>분 단위 직접 입력</td>
+<td>척도</td>
+<td>sns_min</td>
+</tr>
+<tr>
+<td>Q5</td>
+<td>숏폼 영상 사용 시간은 하루 평균 몇 분입니까?</td>
+<td>분 단위 직접 입력</td>
+<td>척도</td>
+<td>shortform_min</td>
+</tr>
+<tr>
+<td>Q6</td>
+<td>모바일 게임 사용 시간은 하루 평균 몇 분입니까?</td>
+<td>분 단위 직접 입력</td>
+<td>척도</td>
+<td>game_min</td>
+</tr>
+<tr>
+<td>Q7</td>
+<td>잠들기 전 침대에서 스마트폰을 사용하는 시간은 평균 몇 분입니까?</td>
+<td>분 단위 직접 입력</td>
+<td>척도</td>
+<td>bedtime_phone_min</td>
+</tr>
+<tr>
+<td>Q8</td>
+<td>밤중에 스마트폰 알림이나 메시지를 확인하는 횟수는 평균 몇 회입니까?</td>
+<td>회수 직접 입력</td>
+<td>척도</td>
+<td>night_check_freq</td>
+</tr>
+<tr>
+<td>Q9</td>
+<td>공부할 때 스마트폰 알림을 꺼두거나 방해금지 모드를 사용합니까?</td>
+<td>0/1</td>
+<td>명목</td>
+<td>0=아니오, 1=예</td>
+</tr>
+<tr>
+<td>Q10</td>
+<td>공부 중 앱을 자주 전환한다고 느낍니까?</td>
+<td>1~5 리커트</td>
+<td>서열</td>
+<td>1=전혀 그렇지 않다~5=매우 그렇다</td>
+</tr>
+<tr>
+<td>Q11</td>
+<td>수업 또는 자습 중 스마트폰 생각 때문에 집중이 흐트러지는 편입니까?</td>
+<td>1~5 리커트</td>
+<td>서열</td>
+<td>주의분산 문항</td>
+</tr>
+<tr>
+<td>Q12</td>
+<td>스마트폰을 학습 계획 관리에 활용한다고 느낍니까?</td>
+<td>1~5 리커트</td>
+<td>서열</td>
+<td>학습도구 문항</td>
+</tr>
+<tr>
+<td>Q13</td>
+<td>스마트폰 사용 후 과제 시작이 늦어지는 경우가 많습니까?</td>
+<td>1~5 리커트</td>
+<td>서열</td>
+<td>assignment_delay_score</td>
+</tr>
+<tr>
+<td>Q14</td>
+<td>평일 평균 수면시간은 몇 시간입니까?</td>
+<td>시간 단위 직접 입력</td>
+<td>척도</td>
+<td>sleep_hours</td>
+</tr>
+<tr>
+<td>Q15</td>
+<td>오늘 또는 최근 일주일의 학습 집중도는 몇 점입니까?</td>
+<td>0~100 점수</td>
+<td>척도</td>
+<td>concentration_score</td>
+</tr>
+</tbody></table></div>
+<h2 id="CSV-데이터셋">CSV 데이터셋</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">07_dataset.csv</span></li>
+</ul>
+<ul>
+<li>크기: 50행 x 27열</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>student_id</th>
+<th>grade</th>
+<th>gender</th>
+<th>weekday_phone_min</th>
+<th>weekend_phone_min</th>
+<th>study_app_min</th>
+<th>sns_min</th>
+<th>shortform_min</th>
+<th>game_min</th>
+<th>messenger_min</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>S001</td>
+<td>2</td>
+<td>남</td>
+<td>309</td>
+<td>316</td>
+<td>29</td>
+<td>118</td>
+<td>60</td>
+<td>60</td>
+<td>13</td>
+</tr>
+<tr>
+<td>S002</td>
+<td>1</td>
+<td>남</td>
+<td>317</td>
+<td>368</td>
+<td>40</td>
+<td>100</td>
+<td>110</td>
+<td>0</td>
+<td>36</td>
+</tr>
+<tr>
+<td>S003</td>
+<td>2</td>
+<td>남</td>
+<td>361</td>
+<td>512</td>
+<td>42</td>
+<td>67</td>
+<td>129</td>
+<td>24</td>
+<td>29</td>
+</tr>
+<tr>
+<td>S004</td>
+<td>3</td>
+<td>여</td>
+<td>363</td>
+<td>523</td>
+<td>80</td>
+<td>87</td>
+<td>98</td>
+<td>47</td>
+<td>36</td>
+</tr>
+<tr>
+<td>S005</td>
+<td>3</td>
+<td>여</td>
+<td>350</td>
+<td>409</td>
+<td>28</td>
+<td>69</td>
+<td>85</td>
+<td>58</td>
+<td>49</td>
+</tr>
+<tr>
+<td>S006</td>
+<td>2</td>
+<td>남</td>
+<td>295</td>
+<td>380</td>
+<td>50</td>
+<td>98</td>
+<td>60</td>
+<td>54</td>
+<td>10</td>
+</tr>
+<tr>
+<td>S007</td>
+<td>1</td>
+<td>남</td>
+<td>416</td>
+<td>435</td>
+<td>5</td>
+<td>142</td>
+<td>133</td>
+<td>30</td>
+<td>69</td>
+</tr>
+<tr>
+<td>S008</td>
+<td>3</td>
+<td>남</td>
+<td>368</td>
+<td>245</td>
+<td>94</td>
+<td>98</td>
+<td>60</td>
+<td>40</td>
+<td>42</td>
+</tr>
+</tbody></table></div>
+<h2 id="엑셀-데이터셋-미리보기">엑셀 데이터셋 미리보기</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">07_dataset.xlsx</span></li>
+</ul>
+<h3 id="Data">Data</h3>
+<p>Data: 52행 x 27열 / 미리보기 10행 x 10열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>07 스마트폰 사용 패턴과 학습 몰입도 분석 - Data</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr></thead>
+<tbody>
+<tr>
+<td>student_id</td>
+<td>grade</td>
+<td>gender</td>
+<td>weekday_phone_min</td>
+<td>weekend_phone_min</td>
+<td>study_app_min</td>
+<td>sns_min</td>
+<td>shortform_min</td>
+<td>game_min</td>
+<td>messenger_min</td>
+</tr>
+<tr>
+<td>S001</td>
+<td>2</td>
+<td>남</td>
+<td>309</td>
+<td>316</td>
+<td>29</td>
+<td>118</td>
+<td>60</td>
+<td>60</td>
+<td>13</td>
+</tr>
+<tr>
+<td>S002</td>
+<td>1</td>
+<td>남</td>
+<td>317</td>
+<td>368</td>
+<td>40</td>
+<td>100</td>
+<td>110</td>
+<td>0</td>
+<td>36</td>
+</tr>
+<tr>
+<td>S003</td>
+<td>2</td>
+<td>남</td>
+<td>361</td>
+<td>512</td>
+<td>42</td>
+<td>67</td>
+<td>129</td>
+<td>24</td>
+<td>29</td>
+</tr>
+<tr>
+<td>S004</td>
+<td>3</td>
+<td>여</td>
+<td>363</td>
+<td>523</td>
+<td>80</td>
+<td>87</td>
+<td>98</td>
+<td>47</td>
+<td>36</td>
+</tr>
+<tr>
+<td>S005</td>
+<td>3</td>
+<td>여</td>
+<td>350</td>
+<td>409</td>
+<td>28</td>
+<td>69</td>
+<td>85</td>
+<td>58</td>
+<td>49</td>
+</tr>
+<tr>
+<td>S006</td>
+<td>2</td>
+<td>남</td>
+<td>295</td>
+<td>380</td>
+<td>50</td>
+<td>98</td>
+<td>60</td>
+<td>54</td>
+<td>10</td>
+</tr>
+<tr>
+<td>S007</td>
+<td>1</td>
+<td>남</td>
+<td>416</td>
+<td>435</td>
+<td>5</td>
+<td>142</td>
+<td>133</td>
+<td>30</td>
+<td>69</td>
+</tr>
+<tr>
+<td>S008</td>
+<td>3</td>
+<td>남</td>
+<td>368</td>
+<td>245</td>
+<td>94</td>
+<td>98</td>
+<td>60</td>
+<td>40</td>
+<td>42</td>
+</tr>
+</tbody></table></div>
+<h3 id="Codebook">Codebook</h3>
+<p>Codebook: 29행 x 6열 / 미리보기 10행 x 6열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Codebook</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr></thead>
+<tbody>
+<tr>
+<td>변수명</td>
+<td>변수 설명</td>
+<td>측정 단위</td>
+<td>SPSS 측도</td>
+<td>코딩/값</td>
+<td>비고</td>
+</tr>
+<tr>
+<td>student_id</td>
+<td>익명 학생 ID</td>
+<td>문자</td>
+<td>명목</td>
+<td>S001~S050</td>
+<td>개인 식별이 불가능한 익명 코드</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>학년</td>
+<td>1/2/3</td>
+<td>서열</td>
+<td>1=1학년, 2=2학년, 3=3학년</td>
+<td>학년별 차이 분석</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>성별</td>
+<td>남/여</td>
+<td>명목</td>
+<td>남, 여</td>
+<td>인구통계학적 변수</td>
+</tr>
+<tr>
+<td>weekday_phone_min</td>
+<td>평일 하루 스마트폰 총 사용시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>자기보고 또는 스크린타임 기록</td>
+</tr>
+<tr>
+<td>weekend_phone_min</td>
+<td>주말 하루 스마트폰 총 사용시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>평일 대비 사용량 비교</td>
+</tr>
+<tr>
+<td>study_app_min</td>
+<td>학습 앱/검색/강의 사용시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>생산적 사용 지표</td>
+</tr>
+<tr>
+<td>sns_min</td>
+<td>SNS 사용시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>사회적 사용 지표</td>
+</tr>
+<tr>
+<td>shortform_min</td>
+<td>숏폼 영상 사용시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>주의분산 가능성 지표</td>
+</tr>
+</tbody></table></div>
+<h3 id="Survey_Items">Survey_Items</h3>
+<p>Survey_Items: 17행 x 5열 / 미리보기 10행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Survey Items</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr></thead>
+<tbody>
+<tr>
+<td>문항</td>
+<td>설문 문항</td>
+<td>응답 형식</td>
+<td>SPSS 측도</td>
+<td>연결 변수/비고</td>
+</tr>
+<tr>
+<td>Q1</td>
+<td>평일 하루 스마트폰 사용시간은 평균 몇 분입니까?</td>
+<td>분 단위 직접 입력</td>
+<td>척도</td>
+<td>예: 260</td>
+</tr>
+<tr>
+<td>Q2</td>
+<td>주말 하루 스마트폰 사용시간은 평균 몇 분입니까?</td>
+<td>분 단위 직접 입력</td>
+<td>척도</td>
+<td>예: 420</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>스마트폰을 학습 앱, 강의, 검색 등에 사용하는 시간은 하루 평균 몇 분입니까?</td>
+<td>분 단위 직접 입력</td>
+<td>척도</td>
+<td>study_app_min</td>
+</tr>
+<tr>
+<td>Q4</td>
+<td>SNS 사용 시간은 하루 평균 몇 분입니까?</td>
+<td>분 단위 직접 입력</td>
+<td>척도</td>
+<td>sns_min</td>
+</tr>
+<tr>
+<td>Q5</td>
+<td>숏폼 영상 사용 시간은 하루 평균 몇 분입니까?</td>
+<td>분 단위 직접 입력</td>
+<td>척도</td>
+<td>shortform_min</td>
+</tr>
+<tr>
+<td>Q6</td>
+<td>모바일 게임 사용 시간은 하루 평균 몇 분입니까?</td>
+<td>분 단위 직접 입력</td>
+<td>척도</td>
+<td>game_min</td>
+</tr>
+<tr>
+<td>Q7</td>
+<td>잠들기 전 침대에서 스마트폰을 사용하는 시간은 평균 몇 분입니까?</td>
+<td>분 단위 직접 입력</td>
+<td>척도</td>
+<td>bedtime_phone_min</td>
+</tr>
+<tr>
+<td>Q8</td>
+<td>밤중에 스마트폰 알림이나 메시지를 확인하는 횟수는 평균 몇 회입니까?</td>
+<td>회수 직접 입력</td>
+<td>척도</td>
+<td>night_check_freq</td>
+</tr>
+</tbody></table></div>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 8행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Data Sources</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr></thead>
+<tbody>
+<tr>
+<td>데이터명</td>
+<td>제공기관</td>
+<td>다운로드/API 링크</td>
+<td>파일 형식</td>
+<td>주요 변수</td>
+<td>활용 목적</td>
+<td>실제 확보 가능성</td>
+</tr>
+<tr>
+<td>2024년 청소년 매체이용 및 유해환경 실태조사</td>
+<td>여성가족부</td>
+<td>https://www.mogef.go.kr/nw/enw/nw_enw_s001d.do?bbtSn=712554&amp;mid=mda700</td>
+<td>HTML/PDF 보도자료</td>
+<td>청소년 매체이용률, 숏폼, 생성형 AI 등</td>
+<td>청소년 매체 이용 배경 자료</td>
+<td>즉시 조회 가능</td>
+</tr>
+<tr>
+<td>청소년건강행태조사 2025 주요결과</td>
+<td>질병관리청</td>
+<td>https://www.kdca.go.kr/bbs/kdca/42/240794/download.do</td>
+<td>PDF/통계집/원시자료</td>
+<td>수면시간, 스마트폰 사용시간, 스트레스 등</td>
+<td>전국 비교 기준과 배경 통계</td>
+<td>통계집/원시자료 공개</td>
+</tr>
+<tr>
+<td>청소년건강행태조사 누리집</td>
+<td>질병관리청</td>
+<td>https://www.kdca.go.kr/yhs/</td>
+<td>웹/원시자료</td>
+<td>조사개요, 통계집, 원시자료</td>
+<td>실제 대규모 데이터 연계 가능</td>
+<td>원시자료 다운로드 절차 필요</td>
+</tr>
+<tr>
+<td>스마트폰 과의존 실태조사</td>
+<td>한국지능정보사회진흥원(NIA)</td>
+<td>https://www.nia.or.kr/site/nia_kor/ex/bbs/List.do?cbIdx=65914</td>
+<td>PDF/통계자료</td>
+<td>과의존 위험군, 이용시간, 이용행태</td>
+<td>과의존 지표와 설문 문항 참고</td>
+<td>즉시 조회 또는 다운로드 가능</td>
+</tr>
+<tr>
+<td>스마트쉼센터 과의존 진단/예방교육</td>
+<td>한국지능정보사회진흥원 스마트쉼센터</td>
+<td>https://www.iapc.or.kr</td>
+<td>웹/자가진단/교육자료</td>
+<td>청소년 스마트폰 과의존 척도, 예방 콘텐츠</td>
+<td>교육안과 개선 프로그램 설계</td>
+<td>웹 조회 가능</td>
+</tr>
+<tr>
+<td>학교 자체 익명 설문</td>
+<td>용문고 학생 조사</td>
+<td>Google Forms 또는 학교 설문</td>
+<td>XLSX/CSV</td>
+<td>사용시간, 앱 유형, 집중도, 수면, 자기조절</td>
+<td>본 프로젝트의 핵심 분석 데이터</td>
+<td>학생 설문 필요</td>
+</tr>
+</tbody></table></div>
+<h3 id="SPSS_Steps">SPSS_Steps</h3>
+<p>SPSS_Steps: 11행 x 5열 / 미리보기 10행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>SPSS Analysis Steps</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr></thead>
+<tbody>
+<tr>
+<td>분석 단계</td>
+<td>분석 목적</td>
+<td>사용 변수</td>
+<td>SPSS 메뉴 경로</td>
+<td>해석 포인트</td>
+</tr>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>CSV/XLSX를 SPSS로 불러오기</td>
+<td>전체 변수</td>
+<td>파일 → 열기 → 데이터</td>
+<td>문자형/수치형 변수와 측도 확인</td>
+</tr>
+<tr>
+<td>2. 빈도분석</td>
+<td>성별·학년·사용 유형 분포 확인</td>
+<td>grade, gender, phone_type_code</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>표본 구성과 유형별 빈도 확인</td>
+</tr>
+<tr>
+<td>3. 기술통계</td>
+<td>사용시간·집중도·자기조절 평균 확인</td>
+<td>weekday_phone_min, shortform_min, bedtime_phone_min, concentration_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>평균, 표준편차, 최대/최소값 확인</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>사용 방식과 집중도의 관련성 탐색</td>
+<td>study_app_ratio, shortform_min, bedtime_phone_min, sleep_hours, concentration_score</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>전체 사용시간보다 사용 방식이 더 중요한지 확인</td>
+</tr>
+<tr>
+<td>5. 회귀분석</td>
+<td>학습 집중도 예측 요인 분석</td>
+<td>종속: concentration_score / 독립: study_app_ratio, shortform_min, bedtime_phone_min, sleep_hours, self_control_score</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>어떤 요인이 집중도를 설명하는지 확인</td>
+</tr>
+<tr>
+<td>6. 군집분석</td>
+<td>학생의 스마트폰 사용 유형 분류</td>
+<td>study_app_ratio, sns_min, shortform_min, game_min, bedtime_phone_min, self_control_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>학습도구형, 균형형, SNS·숏폼형, 게임형, 고위험분산형 도출</td>
+</tr>
+<tr>
+<td>7. 분산분석</td>
+<td>사용 유형별 집중도 차이 검증</td>
+<td>독립: phone_type_code / 종속: concentration_score, flow_score</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>유형별 평균 차이가 유의한지 확인</td>
+</tr>
+<tr>
+<td>8. 로지스틱 회귀</td>
+<td>고몰입 여부 예측</td>
+<td>종속: high_immersion / 독립: 사용 방식 변수</td>
+<td>분석 → 회귀분석 → 이분형 로지스틱</td>
+<td>고몰입 가능성을 높이는 요인 확인</td>
+</tr>
+</tbody></table></div>
+<h3 id="Summary">Summary</h3>
+<p>Summary: 10행 x 2열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Summary</th>
+<th></th>
+</tr></thead>
+<tbody>
+<tr>
+<td>항목</td>
+<td>값</td>
+</tr>
+<tr>
+<td>평일 스마트폰 평균 사용시간(분)</td>
+<td>356.9</td>
+</tr>
+<tr>
+<td>취침 전 스마트폰 평균 사용시간(분)</td>
+<td>65.9</td>
+</tr>
+<tr>
+<td>평균 학습 앱 사용 비율</td>
+<td>0.164</td>
+</tr>
+<tr>
+<td>평균 학습 집중도 점수</td>
+<td>69.5</td>
+</tr>
+<tr>
+<td>평균 주의분산 점수</td>
+<td>83.6</td>
+</tr>
+<tr>
+<td>평균 스마트폰 과의존 위험점수</td>
+<td>89.9</td>
+</tr>
+<tr>
+<td>고몰입 학생 수</td>
+<td>16</td>
+</tr>
+<tr>
+<td>분석 결론</td>
+<td>총 사용시간보다 학습 앱 비율, 취침 전 사용시간, 자기조절 점수가 집중도 차이를 더 잘 설명하는 구조로 설계됨</td>
+</tr>
+</tbody></table></div>
+<h3 id="Type_Summary">Type_Summary</h3>
+<p>Type_Summary: 4행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Type Summary</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr></thead>
+<tbody>
+<tr>
+<td>phone_type</td>
+<td>n</td>
+<td>avg_weekday_phone_min</td>
+<td>avg_study_app_ratio</td>
+<td>avg_concentration_score</td>
+<td>avg_distraction_score</td>
+<td>avg_overuse_risk_score</td>
+</tr>
+<tr>
+<td>고위험분산형</td>
+<td>44</td>
+<td>365.5</td>
+<td>0.134</td>
+<td>67.4</td>
+<td>87.7</td>
+<td>94.2</td>
+</tr>
+<tr>
+<td>학습도구형</td>
+<td>6</td>
+<td>294.3</td>
+<td>0.382</td>
+<td>85.2</td>
+<td>53.8</td>
+<td>58.3</td>
+</tr>
+</tbody></table></div>
+<h2 id="데이터-출처">데이터 출처</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">07_data_sources.xlsx</span></li>
+</ul>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 8행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Sources</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr></thead>
+<tbody>
+<tr>
+<td>데이터명</td>
+<td>제공기관</td>
+<td>다운로드/API 링크</td>
+<td>파일 형식</td>
+<td>주요 변수</td>
+<td>활용 목적</td>
+<td>실제 확보 가능성</td>
+</tr>
+<tr>
+<td>2024년 청소년 매체이용 및 유해환경 실태조사</td>
+<td>여성가족부</td>
+<td>https://www.mogef.go.kr/nw/enw/nw_enw_s001d.do?bbtSn=712554&amp;mid=mda700</td>
+<td>HTML/PDF 보도자료</td>
+<td>청소년 매체이용률, 숏폼, 생성형 AI 등</td>
+<td>청소년 매체 이용 배경 자료</td>
+<td>즉시 조회 가능</td>
+</tr>
+<tr>
+<td>청소년건강행태조사 2025 주요결과</td>
+<td>질병관리청</td>
+<td>https://www.kdca.go.kr/bbs/kdca/42/240794/download.do</td>
+<td>PDF/통계집/원시자료</td>
+<td>수면시간, 스마트폰 사용시간, 스트레스 등</td>
+<td>전국 비교 기준과 배경 통계</td>
+<td>통계집/원시자료 공개</td>
+</tr>
+<tr>
+<td>청소년건강행태조사 누리집</td>
+<td>질병관리청</td>
+<td>https://www.kdca.go.kr/yhs/</td>
+<td>웹/원시자료</td>
+<td>조사개요, 통계집, 원시자료</td>
+<td>실제 대규모 데이터 연계 가능</td>
+<td>원시자료 다운로드 절차 필요</td>
+</tr>
+<tr>
+<td>스마트폰 과의존 실태조사</td>
+<td>한국지능정보사회진흥원(NIA)</td>
+<td>https://www.nia.or.kr/site/nia_kor/ex/bbs/List.do?cbIdx=65914</td>
+<td>PDF/통계자료</td>
+<td>과의존 위험군, 이용시간, 이용행태</td>
+<td>과의존 지표와 설문 문항 참고</td>
+<td>즉시 조회 또는 다운로드 가능</td>
+</tr>
+<tr>
+<td>스마트쉼센터 과의존 진단/예방교육</td>
+<td>한국지능정보사회진흥원 스마트쉼센터</td>
+<td>https://www.iapc.or.kr</td>
+<td>웹/자가진단/교육자료</td>
+<td>청소년 스마트폰 과의존 척도, 예방 콘텐츠</td>
+<td>교육안과 개선 프로그램 설계</td>
+<td>웹 조회 가능</td>
+</tr>
+<tr>
+<td>학교 자체 익명 설문</td>
+<td>용문고 학생 조사</td>
+<td>Google Forms 또는 학교 설문</td>
+<td>XLSX/CSV</td>
+<td>사용시간, 앱 유형, 집중도, 수면, 자기조절</td>
+<td>본 프로젝트의 핵심 분석 데이터</td>
+<td>학생 설문 필요</td>
+</tr>
+</tbody></table></div>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

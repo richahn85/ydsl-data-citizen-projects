@@ -1,0 +1,1055 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>학교 주변 열섬현상 분석 - 데이터 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="학교-주변-열섬현상-분석---데이터">학교 주변 열섬현상 분석 - 데이터</h1>
+<p>상위 노트: <a href="17-%ED%95%99%EA%B5%90-%EC%A3%BC%EB%B3%80-%EC%97%B4%EC%84%AC%ED%98%84%EC%83%81-%EB%B6%84%EC%84%9D.html">학교 주변 열섬현상 분석</a></p>
+<p>관련 개념: <a href="../../concepts/%EC%BD%94%EB%93%9C%EB%B6%81%EA%B3%BC%20%EB%B3%80%EC%88%98%20%EC%A0%95%EC%9D%98.html">concepts/코드북과 변수 정의</a>, <a href="../../concepts/%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EA%B8%B0%EB%B0%98%20%ED%83%90%EA%B5%AC.html">concepts/공공데이터 기반 탐구</a></p>
+<h2 id="코드북">코드북</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">17_codebook.xlsx</span></li>
+</ul>
+<h3 id="17_codebook-xlsx">17_codebook.xlsx</h3>
+<p>Codebook: 33행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>데이터 유형</th>
+<th>SPSS 측도</th>
+<th>실제 데이터 출처</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>record_id</td>
+<td>관측 ID</td>
+<td>텍스트</td>
+<td>문자</td>
+<td>명목</td>
+<td>시범용 생성</td>
+<td>열섬 관측 1건</td>
+</tr>
+<tr>
+<td>date</td>
+<td>관측일</td>
+<td>YYYY-MM-DD</td>
+<td>날짜</td>
+<td>명목</td>
+<td>기상청/현장조사</td>
+<td>SPSS 날짜형 변환 가능</td>
+</tr>
+<tr>
+<td>time_slot</td>
+<td>관측 시간대</td>
+<td>시각</td>
+<td>문자</td>
+<td>명목</td>
+<td>현장조사</td>
+<td>등교/점심/하교 시간 비교</td>
+</tr>
+<tr>
+<td>location_id</td>
+<td>학교 주변 관측 지점 ID</td>
+<td>텍스트</td>
+<td>문자</td>
+<td>명목</td>
+<td>현장조사/GIS</td>
+<td>지도 시각화 단위</td>
+</tr>
+<tr>
+<td>location_name</td>
+<td>관측 지점명</td>
+<td>텍스트</td>
+<td>문자</td>
+<td>명목</td>
+<td>현장조사</td>
+<td>학생이 이해할 수 있는 장소명</td>
+</tr>
+<tr>
+<td>zone_type</td>
+<td>공간 유형</td>
+<td>범주</td>
+<td>문자</td>
+<td>명목</td>
+<td>현장조사</td>
+<td>school_gate, bus_stop 등</td>
+</tr>
+<tr>
+<td>surface_type</td>
+<td>주요 지표면 유형</td>
+<td>범주</td>
+<td>문자</td>
+<td>명목</td>
+<td>토지피복/현장조사</td>
+<td>asphalt, concrete, mixed 등</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>위도</td>
+<td>도</td>
+<td>숫자</td>
+<td>척도</td>
+<td>학교 위치/GIS</td>
+<td>Google My Maps, QGIS 활용</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>경도</td>
+<td>도</td>
+<td>숫자</td>
+<td>척도</td>
+<td>학교 위치/GIS</td>
+<td>Google My Maps, QGIS 활용</td>
+</tr>
+<tr>
+<td>x_coord_m</td>
+<td>학교 기준 상대 X좌표</td>
+<td>m</td>
+<td>숫자</td>
+<td>척도</td>
+<td>시범용 생성/GIS 변환</td>
+<td>SPSS 산점도 X축</td>
+</tr>
+<tr>
+<td>y_coord_m</td>
+<td>학교 기준 상대 Y좌표</td>
+<td>m</td>
+<td>숫자</td>
+<td>척도</td>
+<td>시범용 생성/GIS 변환</td>
+<td>SPSS 산점도 Y축</td>
+</tr>
+<tr>
+<td>max_air_temp_c</td>
+<td>해당일 최고기온</td>
+<td>℃</td>
+<td>숫자</td>
+<td>척도</td>
+<td>기상청 ASOS/단기예보</td>
+<td>폭염일 판단</td>
+</tr>
+<tr>
+<td>air_temp_c</td>
+<td>관측 지점 기온</td>
+<td>℃</td>
+<td>숫자</td>
+<td>척도</td>
+<td>S-DoT/현장 온도계</td>
+<td>지역별 미세 기온 차이</td>
+</tr>
+<tr>
+<td>surface_temp_c</td>
+<td>지표면 온도</td>
+<td>℃</td>
+<td>숫자</td>
+<td>척도</td>
+<td>열화상/위성/현장조사</td>
+<td>열섬 핵심 종속변수</td>
+</tr>
+<tr>
+<td>humidity_pct</td>
+<td>습도</td>
+<td>%</td>
+<td>숫자</td>
+<td>척도</td>
+<td>S-DoT/기상청</td>
+<td>체감온도 보정</td>
+</tr>
+<tr>
+<td>wind_speed_ms</td>
+<td>풍속</td>
+<td>m/s</td>
+<td>숫자</td>
+<td>척도</td>
+<td>기상청</td>
+<td>바람이 적을수록 체감열 증가</td>
+</tr>
+<tr>
+<td>green_ratio_pct</td>
+<td>녹지율</td>
+<td>%</td>
+<td>숫자</td>
+<td>척도</td>
+<td>서울시 녹지현황/토지피복</td>
+<td>낮을수록 위험 증가</td>
+</tr>
+<tr>
+<td>tree_canopy_pct</td>
+<td>수관 피복률</td>
+<td>%</td>
+<td>숫자</td>
+<td>척도</td>
+<td>현장조사/위성지도</td>
+<td>그늘 형성 정도</td>
+</tr>
+<tr>
+<td>impervious_ratio_pct</td>
+<td>불투수면 비율</td>
+<td>%</td>
+<td>숫자</td>
+<td>척도</td>
+<td>토지피복지도</td>
+<td>아스팔트/콘크리트 비율</td>
+</tr>
+<tr>
+<td>building_density_pct</td>
+<td>건물 밀도</td>
+<td>%</td>
+<td>숫자</td>
+<td>척도</td>
+<td>건축물 공간정보/현장추정</td>
+<td>복사열 및 바람길 영향</td>
+</tr>
+<tr>
+<td>shade_score</td>
+<td>그늘 수준</td>
+<td>1~5점</td>
+<td>숫자</td>
+<td>서열</td>
+<td>현장조사</td>
+<td>1 낮음, 5 높음</td>
+</tr>
+<tr>
+<td>sky_view_score</td>
+<td>하늘 노출도</td>
+<td>1~5점</td>
+<td>숫자</td>
+<td>서열</td>
+<td>현장조사</td>
+<td>5는 직사광 노출 큼</td>
+</tr>
+<tr>
+<td>traffic_volume_30min</td>
+<td>30분 차량 통행량</td>
+<td>대</td>
+<td>숫자</td>
+<td>척도</td>
+<td>현장조사/교통량</td>
+<td>복사열·배기가스 보조요인</td>
+</tr>
+<tr>
+<td>student_flow_30min</td>
+<td>30분 학생 보행량</td>
+<td>명</td>
+<td>숫자</td>
+<td>척도</td>
+<td>현장조사</td>
+<td>학생 노출 정도</td>
+</tr>
+<tr>
+<td>distance_to_green_m</td>
+<td>가장 가까운 녹지까지 거리</td>
+<td>m</td>
+<td>숫자</td>
+<td>척도</td>
+<td>GIS 거리분석</td>
+<td>멀수록 완충 효과 낮음</td>
+</tr>
+<tr>
+<td>sidewalk_width_m</td>
+<td>보도 폭</td>
+<td>m</td>
+<td>숫자</td>
+<td>척도</td>
+<td>현장조사/보도통계</td>
+<td>좁은 보도는 대기 열노출 증가</td>
+</tr>
+<tr>
+<td>heat_alert_dummy</td>
+<td>폭염주의보 조건 여부</td>
+<td>0/1</td>
+<td>숫자</td>
+<td>명목</td>
+<td>기상청</td>
+<td>1=폭염 조건일</td>
+</tr>
+<tr>
+<td>perceived_temp_c</td>
+<td>학생 체감온도 추정</td>
+<td>℃</td>
+<td>숫자</td>
+<td>척도</td>
+<td>계산변수</td>
+<td>기온+습도+지표열+그늘 보정</td>
+</tr>
+<tr>
+<td>heat_risk_score</td>
+<td>열섬 위험점수</td>
+<td>0~100</td>
+<td>숫자</td>
+<td>척도</td>
+<td>계산변수</td>
+<td>높을수록 개선 우선</td>
+</tr>
+<tr>
+<td>heat_risk_grade</td>
+<td>열섬 위험등급</td>
+<td>낮음/보통/높음/매우 높음</td>
+<td>문자</td>
+<td>서열</td>
+<td>계산변수</td>
+<td>보고서용 등급</td>
+</tr>
+<tr>
+<td>improvement_priority</td>
+<td>개선 우선순위</td>
+<td>순위</td>
+<td>숫자</td>
+<td>서열</td>
+<td>계산변수</td>
+<td>1위가 최우선</td>
+</tr>
+<tr>
+<td>recommended_action</td>
+<td>권장 개선안</td>
+<td>텍스트</td>
+<td>문자</td>
+<td>명목</td>
+<td>계산/해석</td>
+<td>그늘막·녹지·쿨페이브먼트 등</td>
+</tr>
+</tbody></table></div>
+<h2 id="CSV-데이터셋">CSV 데이터셋</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">17_dataset.csv</span></li>
+</ul>
+<ul>
+<li>크기: 50행 x 32열</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>record_id</th>
+<th>date</th>
+<th>time_slot</th>
+<th>location_id</th>
+<th>location_name</th>
+<th>zone_type</th>
+<th>surface_type</th>
+<th>latitude</th>
+<th>longitude</th>
+<th>x_coord_m</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>H17_001</td>
+<td>2026-07-13</td>
+<td>08:00</td>
+<td>L01</td>
+<td>정문 앞 아스팔트 보행로</td>
+<td>school_gate</td>
+<td>asphalt</td>
+<td>37.588307</td>
+<td>127.028757</td>
+<td>-48</td>
+</tr>
+<tr>
+<td>H17_002</td>
+<td>2026-07-13</td>
+<td>12:30</td>
+<td>L02</td>
+<td>후문 골목 콘크리트 구간</td>
+<td>back_gate</td>
+<td>concrete</td>
+<td>37.588755</td>
+<td>127.029445</td>
+<td>12</td>
+</tr>
+<tr>
+<td>H17_003</td>
+<td>2026-07-13</td>
+<td>15:30</td>
+<td>L03</td>
+<td>운동장 가장자리</td>
+<td>schoolyard</td>
+<td>bare_ground</td>
+<td>37.588554</td>
+<td>127.028382</td>
+<td>-71</td>
+</tr>
+<tr>
+<td>H17_004</td>
+<td>2026-07-13</td>
+<td>17:00</td>
+<td>L04</td>
+<td>큰길 버스정류장 주변</td>
+<td>bus_stop</td>
+<td>asphalt</td>
+<td>37.587852</td>
+<td>127.02987</td>
+<td>109</td>
+</tr>
+<tr>
+<td>H17_005</td>
+<td>2026-07-13</td>
+<td>18:30</td>
+<td>L05</td>
+<td>공원 방향 산책로</td>
+<td>park_edge</td>
+<td>permeable</td>
+<td>37.589198</td>
+<td>127.027917</td>
+<td>-127</td>
+</tr>
+<tr>
+<td>H17_006</td>
+<td>2026-07-13</td>
+<td>08:00</td>
+<td>L06</td>
+<td>상가 밀집 보행로</td>
+<td>commercial</td>
+<td>concrete</td>
+<td>37.587625</td>
+<td>127.028895</td>
+<td>28</td>
+</tr>
+<tr>
+<td>H17_007</td>
+<td>2026-07-13</td>
+<td>12:30</td>
+<td>L07</td>
+<td>아파트 단지 옆 보행로</td>
+<td>apartment_edge</td>
+<td>mixed</td>
+<td>37.588996</td>
+<td>127.029112</td>
+<td>66</td>
+</tr>
+<tr>
+<td>H17_008</td>
+<td>2026-07-13</td>
+<td>15:30</td>
+<td>L08</td>
+<td>학교 담장 남측 보행로</td>
+<td>wall_side</td>
+<td>concrete</td>
+<td>37.588058</td>
+<td>127.028408</td>
+<td>-93</td>
+</tr>
+</tbody></table></div>
+<h2 id="엑셀-데이터셋-미리보기">엑셀 데이터셋 미리보기</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">17_dataset.xlsx</span></li>
+</ul>
+<h3 id="Data">Data</h3>
+<p>Data: 51행 x 32열 / 미리보기 10행 x 10열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>record_id</th>
+<th>date</th>
+<th>time_slot</th>
+<th>location_id</th>
+<th>location_name</th>
+<th>zone_type</th>
+<th>surface_type</th>
+<th>latitude</th>
+<th>longitude</th>
+<th>x_coord_m</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>H17_001</td>
+<td>2026-07-13</td>
+<td>08:00</td>
+<td>L01</td>
+<td>정문 앞 아스팔트 보행로</td>
+<td>school_gate</td>
+<td>asphalt</td>
+<td>37.588307</td>
+<td>127.028757</td>
+<td>-48</td>
+</tr>
+<tr>
+<td>H17_002</td>
+<td>2026-07-13</td>
+<td>12:30</td>
+<td>L02</td>
+<td>후문 골목 콘크리트 구간</td>
+<td>back_gate</td>
+<td>concrete</td>
+<td>37.588755</td>
+<td>127.029445</td>
+<td>12</td>
+</tr>
+<tr>
+<td>H17_003</td>
+<td>2026-07-13</td>
+<td>15:30</td>
+<td>L03</td>
+<td>운동장 가장자리</td>
+<td>schoolyard</td>
+<td>bare_ground</td>
+<td>37.588554</td>
+<td>127.028382</td>
+<td>-71</td>
+</tr>
+<tr>
+<td>H17_004</td>
+<td>2026-07-13</td>
+<td>17:00</td>
+<td>L04</td>
+<td>큰길 버스정류장 주변</td>
+<td>bus_stop</td>
+<td>asphalt</td>
+<td>37.587852</td>
+<td>127.02987</td>
+<td>109</td>
+</tr>
+<tr>
+<td>H17_005</td>
+<td>2026-07-13</td>
+<td>18:30</td>
+<td>L05</td>
+<td>공원 방향 산책로</td>
+<td>park_edge</td>
+<td>permeable</td>
+<td>37.589198</td>
+<td>127.027917</td>
+<td>-127</td>
+</tr>
+<tr>
+<td>H17_006</td>
+<td>2026-07-13</td>
+<td>08:00</td>
+<td>L06</td>
+<td>상가 밀집 보행로</td>
+<td>commercial</td>
+<td>concrete</td>
+<td>37.587625</td>
+<td>127.028895</td>
+<td>28</td>
+</tr>
+<tr>
+<td>H17_007</td>
+<td>2026-07-13</td>
+<td>12:30</td>
+<td>L07</td>
+<td>아파트 단지 옆 보행로</td>
+<td>apartment_edge</td>
+<td>mixed</td>
+<td>37.588996</td>
+<td>127.029112</td>
+<td>66</td>
+</tr>
+<tr>
+<td>H17_008</td>
+<td>2026-07-13</td>
+<td>15:30</td>
+<td>L08</td>
+<td>학교 담장 남측 보행로</td>
+<td>wall_side</td>
+<td>concrete</td>
+<td>37.588058</td>
+<td>127.028408</td>
+<td>-93</td>
+</tr>
+<tr>
+<td>H17_009</td>
+<td>2026-07-13</td>
+<td>17:00</td>
+<td>L09</td>
+<td>주택가 나무그늘 골목</td>
+<td>residential_shade</td>
+<td>mixed</td>
+<td>37.589316</td>
+<td>127.02853</td>
+<td>-31</td>
+</tr>
+</tbody></table></div>
+<h3 id="Codebook">Codebook</h3>
+<p>Codebook: 33행 x 7열 / 미리보기 10행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>데이터 유형</th>
+<th>SPSS 측도</th>
+<th>실제 데이터 출처</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>record_id</td>
+<td>관측 ID</td>
+<td>텍스트</td>
+<td>문자</td>
+<td>명목</td>
+<td>시범용 생성</td>
+<td>열섬 관측 1건</td>
+</tr>
+<tr>
+<td>date</td>
+<td>관측일</td>
+<td>YYYY-MM-DD</td>
+<td>날짜</td>
+<td>명목</td>
+<td>기상청/현장조사</td>
+<td>SPSS 날짜형 변환 가능</td>
+</tr>
+<tr>
+<td>time_slot</td>
+<td>관측 시간대</td>
+<td>시각</td>
+<td>문자</td>
+<td>명목</td>
+<td>현장조사</td>
+<td>등교/점심/하교 시간 비교</td>
+</tr>
+<tr>
+<td>location_id</td>
+<td>학교 주변 관측 지점 ID</td>
+<td>텍스트</td>
+<td>문자</td>
+<td>명목</td>
+<td>현장조사/GIS</td>
+<td>지도 시각화 단위</td>
+</tr>
+<tr>
+<td>location_name</td>
+<td>관측 지점명</td>
+<td>텍스트</td>
+<td>문자</td>
+<td>명목</td>
+<td>현장조사</td>
+<td>학생이 이해할 수 있는 장소명</td>
+</tr>
+<tr>
+<td>zone_type</td>
+<td>공간 유형</td>
+<td>범주</td>
+<td>문자</td>
+<td>명목</td>
+<td>현장조사</td>
+<td>school_gate, bus_stop 등</td>
+</tr>
+<tr>
+<td>surface_type</td>
+<td>주요 지표면 유형</td>
+<td>범주</td>
+<td>문자</td>
+<td>명목</td>
+<td>토지피복/현장조사</td>
+<td>asphalt, concrete, mixed 등</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>위도</td>
+<td>도</td>
+<td>숫자</td>
+<td>척도</td>
+<td>학교 위치/GIS</td>
+<td>Google My Maps, QGIS 활용</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>경도</td>
+<td>도</td>
+<td>숫자</td>
+<td>척도</td>
+<td>학교 위치/GIS</td>
+<td>Google My Maps, QGIS 활용</td>
+</tr>
+</tbody></table></div>
+<h3 id="Field_Checklist">Field_Checklist</h3>
+<p>Field_Checklist: 8행 x 4열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>항목</th>
+<th>기록 방법</th>
+<th>척도/단위</th>
+<th>주의사항</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>지표면 유형</td>
+<td>아스팔트/콘크리트/흙/잔디/혼합 중 선택</td>
+<td>명목</td>
+<td>관찰자가 임의로 바꾸지 않도록 사전 기준 통일</td>
+</tr>
+<tr>
+<td>그늘 수준</td>
+<td>1=전혀 없음, 5=충분함</td>
+<td>1~5점</td>
+<td>같은 시간대에 비교</td>
+</tr>
+<tr>
+<td>하늘 노출도</td>
+<td>1=거의 가려짐, 5=완전 노출</td>
+<td>1~5점</td>
+<td>스마트폰 어안 사진으로 보완 가능</td>
+</tr>
+<tr>
+<td>30분 학생 보행량</td>
+<td>등하교 시간 30분 동안 통과 인원 계수</td>
+<td>명</td>
+<td>2인 1조로 교차 확인</td>
+</tr>
+<tr>
+<td>지표면 온도</td>
+<td>비접촉 온도계 또는 열화상 카메라</td>
+<td>℃</td>
+<td>측정 높이와 방향 통일</td>
+</tr>
+<tr>
+<td>체감 불쾌감</td>
+<td>학생 관찰자 체감 1~5점</td>
+<td>1~5점</td>
+<td>건강정보 수집 없이 현장 느낌만 기록</td>
+</tr>
+<tr>
+<td>개선 아이디어</td>
+<td>그늘막/가로수/차양/쿨페이브먼트 등</td>
+<td>텍스트</td>
+<td>실행 가능한 제안 중심</td>
+</tr>
+</tbody></table></div>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 9행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>다운로드/API 링크</th>
+<th>파일 형식</th>
+<th>주요 변수</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>스마트서울 도시데이터 센서(S-DoT) 환경정보</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/OA-15969/S/1/datasetView.do</td>
+<td>CSV/API</td>
+<td>온도, 습도, 측정일시, 센서위치</td>
+<td>학교 주변 미세 기온 차이와 시간대별 열환경 파악</td>
+<td>즉시 다운로드 가능/API 가능</td>
+</tr>
+<tr>
+<td>스마트서울 도시데이터 센서(S_DoT) 환경정보 실시간</td>
+<td>서울특별시/공공데이터포털</td>
+<td>https://www.data.go.kr/data/15157504/openapi.do</td>
+<td>XML API</td>
+<td>온도, 습도 등 환경정보</td>
+<td>실시간 또는 최신 측정값 보완</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>서울시 녹지현황 통계</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/368/S/2/datasetView.do</td>
+<td>통계표</td>
+<td>시설녹지, 일반녹지, 자치구별 녹지 현황</td>
+<td>녹지율 배경자료 및 자치구 비교</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 아파트 및 학교녹지 현황 통계</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/10233/S/2/datasetView.do</td>
+<td>통계표</td>
+<td>학교녹지, 아파트녹지 현황</td>
+<td>학교녹지 개선 제안의 비교 근거</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 건물주변녹지 현황 통계</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/10232/S/2/datasetView.do</td>
+<td>통계표</td>
+<td>건물 주변 녹지 유형별 현황</td>
+<td>건물 주변 녹화·옥상공원화 제안 근거</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>토지피복지도</td>
+<td>환경부 환경공간정보서비스</td>
+<td>https://aid.mcee.go.kr/intro/land.do</td>
+<td>공간정보/SHP/지도API</td>
+<td>시가화지역, 녹지, 수역 등 토지피복 분류</td>
+<td>불투수면 비율과 녹지 비율 추정</td>
+<td>자료신청 또는 지도서비스 활용</td>
+</tr>
+<tr>
+<td>기상청 ASOS 일자료/폭염일수</td>
+<td>기상청 기상자료개방포털</td>
+<td>https://data.kma.go.kr/climate/heatWave/selectHeatWaveChart.do</td>
+<td>CSV/API</td>
+<td>일 최고기온, 폭염일수, 열대야 등</td>
+<td>폭염일 및 기상 배경자료</td>
+<td>회원가입/API 또는 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 연도별 학교 위도경도 데이터</td>
+<td>서울특별시교육청/공공데이터포털</td>
+<td>https://www.data.go.kr/data/15152021/fileData.do</td>
+<td>CSV/XLSX</td>
+<td>학교명, 주소, 위도, 경도, 학교급</td>
+<td>학교 위치 기준점 설정</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+</tbody></table></div>
+<h3 id="SPSS_Steps">SPSS_Steps</h3>
+<p>SPSS_Steps: 9행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>데이터 불러오기</td>
+<td>Excel/CSV 데이터를 SPSS로 가져오기</td>
+<td>전체 변수</td>
+<td>파일 → 열기 → 데이터</td>
+<td>첫 행을 변수명으로 읽고 측도 설정</td>
+</tr>
+<tr>
+<td>기술통계</td>
+<td>기온, 지표온도, 녹지율, 위험점수의 평균과 범위 확인</td>
+<td>air_temp_c, surface_temp_c, green_ratio_pct, heat_risk_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>어느 변수가 평균적으로 높은지 확인</td>
+</tr>
+<tr>
+<td>빈도분석</td>
+<td>위험등급 분포와 공간 유형 분포 확인</td>
+<td>heat_risk_grade, zone_type, surface_type</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>매우 높음/높음 구간 비율 확인</td>
+</tr>
+<tr>
+<td>상관분석</td>
+<td>녹지율·불투수면·그늘과 위험점수 관계 확인</td>
+<td>green_ratio_pct, impervious_ratio_pct, shade_score, surface_temp_c, heat_risk_score</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>녹지율은 음의 상관, 불투수면은 양의 상관 예상</td>
+</tr>
+<tr>
+<td>회귀분석</td>
+<td>열섬 위험점수를 설명하는 주요 요인 파악</td>
+<td>heat_risk_score, green_ratio_pct, impervious_ratio_pct, building_density_pct, shade_score, student_flow_30min</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>어떤 요인이 통계적으로 크게 작용하는지 파악</td>
+</tr>
+<tr>
+<td>그룹 비교</td>
+<td>공간 유형별 평균 위험점수 차이 확인</td>
+<td>zone_type, heat_risk_score</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>상가밀집/버스정류장/정문 앞이 높은지 비교</td>
+</tr>
+<tr>
+<td>군집분석</td>
+<td>열섬 유형을 구분</td>
+<td>surface_temp_c, green_ratio_pct, impervious_ratio_pct, shade_score, student_flow_30min</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>고온·저녹지형, 보행노출형, 저위험 녹지형 등 명명</td>
+</tr>
+<tr>
+<td>지도 시각화</td>
+<td>학교 주변 열섬 위험지도 작성</td>
+<td>x_coord_m, y_coord_m, heat_risk_score, heat_risk_grade</td>
+<td>그래프 → 차트 작성기 → 산점도</td>
+<td>점 크기/색상으로 위험구간 표시</td>
+</tr>
+</tbody></table></div>
+<h3 id="Summary">Summary</h3>
+<p>Summary: 20행 x 6열 / 미리보기 10행 x 6열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>구분</th>
+<th>값</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr></thead>
+<tbody>
+<tr>
+<td>관측 수</td>
+<td>50</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>평균 열섬 위험점수</td>
+<td>65.8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>평균 지표면 온도</td>
+<td>47.3</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>평균 녹지율</td>
+<td>16.4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>위험등급 높음 이상 건수</td>
+<td>37</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>최고 위험 지점</td>
+<td>큰길 버스정류장 주변</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>최고 위험점수</td>
+<td>94.8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>공간유형</td>
+<td>건수</td>
+<td>평균 위험점수</td>
+<td>평균 지표면온도</td>
+<td>평균 녹지율</td>
+<td>평균 학생 보행량</td>
+</tr>
+</tbody></table></div>
+<h2 id="데이터-출처">데이터 출처</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">17_data_sources.xlsx</span></li>
+</ul>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 9행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>다운로드/API 링크</th>
+<th>파일 형식</th>
+<th>주요 변수</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>스마트서울 도시데이터 센서(S-DoT) 환경정보</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/OA-15969/S/1/datasetView.do</td>
+<td>CSV/API</td>
+<td>온도, 습도, 측정일시, 센서위치</td>
+<td>학교 주변 미세 기온 차이와 시간대별 열환경 파악</td>
+<td>즉시 다운로드 가능/API 가능</td>
+</tr>
+<tr>
+<td>스마트서울 도시데이터 센서(S_DoT) 환경정보 실시간</td>
+<td>서울특별시/공공데이터포털</td>
+<td>https://www.data.go.kr/data/15157504/openapi.do</td>
+<td>XML API</td>
+<td>온도, 습도 등 환경정보</td>
+<td>실시간 또는 최신 측정값 보완</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>서울시 녹지현황 통계</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/368/S/2/datasetView.do</td>
+<td>통계표</td>
+<td>시설녹지, 일반녹지, 자치구별 녹지 현황</td>
+<td>녹지율 배경자료 및 자치구 비교</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 아파트 및 학교녹지 현황 통계</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/10233/S/2/datasetView.do</td>
+<td>통계표</td>
+<td>학교녹지, 아파트녹지 현황</td>
+<td>학교녹지 개선 제안의 비교 근거</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 건물주변녹지 현황 통계</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/10232/S/2/datasetView.do</td>
+<td>통계표</td>
+<td>건물 주변 녹지 유형별 현황</td>
+<td>건물 주변 녹화·옥상공원화 제안 근거</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>토지피복지도</td>
+<td>환경부 환경공간정보서비스</td>
+<td>https://aid.mcee.go.kr/intro/land.do</td>
+<td>공간정보/SHP/지도API</td>
+<td>시가화지역, 녹지, 수역 등 토지피복 분류</td>
+<td>불투수면 비율과 녹지 비율 추정</td>
+<td>자료신청 또는 지도서비스 활용</td>
+</tr>
+<tr>
+<td>기상청 ASOS 일자료/폭염일수</td>
+<td>기상청 기상자료개방포털</td>
+<td>https://data.kma.go.kr/climate/heatWave/selectHeatWaveChart.do</td>
+<td>CSV/API</td>
+<td>일 최고기온, 폭염일수, 열대야 등</td>
+<td>폭염일 및 기상 배경자료</td>
+<td>회원가입/API 또는 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 연도별 학교 위도경도 데이터</td>
+<td>서울특별시교육청/공공데이터포털</td>
+<td>https://www.data.go.kr/data/15152021/fileData.do</td>
+<td>CSV/XLSX</td>
+<td>학교명, 주소, 위도, 경도, 학교급</td>
+<td>학교 위치 기준점 설정</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+</tbody></table></div>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

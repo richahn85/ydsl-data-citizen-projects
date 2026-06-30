@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>동문 멘토링이 학생 진로 확신에 미치는 영향 - 보고서 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="동문-멘토링이-학생-진로-확신에-미치는-영향---보고서">동문 멘토링이 학생 진로 확신에 미치는 영향 - 보고서</h1>
+<p>상위 노트: <a href="24-%EB%8F%99%EB%AC%B8-%EB%A9%98%ED%86%A0%EB%A7%81%EC%9D%B4-%ED%95%99%EC%83%9D-%EC%A7%84%EB%A1%9C-%ED%99%95%EC%8B%A0%EC%97%90-%EB%AF%B8%EC%B9%98%EB%8A%94-%EC%98%81%ED%96%A5.html">동문 멘토링이 학생 진로 확신에 미치는 영향</a></p>
+<p>원본 문서: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">24_report.docx</span></p>
+<p>24번 주제: 동문 멘토링이 학생 진로 확신에 미치는 영향</p>
+<p>프로젝트 산출물: 용문고 진로 멘토링 개선안 / 분석 방법: 전후 비교, 만족도 분석, 회귀분석</p>
+<p>데이터 성격: 학교·동문회가 실제로 수집할 수 있는 학생 사전·사후 설문과 동문 멘토링 운영 기록을 반영한 시범용 가상 데이터</p>
+<h2 id="1-핵심-요약">1. 핵심 요약</h2>
+<p>이 프로젝트는 동문 멘토링 전후에 학생의 진로 확신, 전공 이해도, 진로 불안, 실행계획이 어떻게 변화하는지 분석한다. 단순히 멘토링을 많이 했는가가 아니라, 동문과 학생의 관심 분야가 얼마나 잘 맞았는지, 학생이 멘토링 이후 어떤 행동을 했는지를 함께 본다.</p>
+<p>시범 데이터에서 멘토링 참여집단의 평균 진로 확신 증가폭은 1.66점, 비교집단은 0.21점으로 나타났다. 이는 동문 멘토링이 정보 전달을 넘어 학생의 자기이해와 진로 실행계획 형성에 영향을 줄 수 있음을 보여준다.</p>
+<h2 id="2-문제의식">2. 문제의식</h2>
+<p>학생들은 진로를 선택하라고 요구받지만, 실제 직무와 전공의 삶을 가까이서 만날 기회는 충분하지 않다. 학교 설명회나 인터넷 정보는 도움이 되지만, “그 길을 먼저 걸어간 사람”이 들려주는 현실적 경험은 학생의 불안을 낮추고 진로 확신을 높일 수 있다.</p>
+<p>핵심 질문: 멘토링 전후 학생의 진로 확신은 어떻게 달라지는가? 어떤 멘토링 조건이 진로 확신 상승에 가장 큰 영향을 주는가?</p>
+<h2 id="3-문제-정의-카드">3. 문제 정의 카드</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>질문</th>
+<th>답변</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>내가 본 문제는 무엇인가?</td>
+<td>진로 정보는 많지만 학생마다 접근 수준과 실제 직무 이해도는 다르다.</td>
+</tr>
+<tr>
+<td>왜 중요한가?</td>
+<td>진로 선택은 입시 전략을 넘어 학생의 삶의 방향을 정하는 결정이기 때문이다.</td>
+</tr>
+<tr>
+<td>어떤 데이터를 사용할 것인가?</td>
+<td>사전·사후 진로 확신 설문, 멘토링 횟수, 분야 일치도, 만족도, 희망 전공 변화, 실행계획 점수</td>
+</tr>
+<tr>
+<td>어떤 분석을 할 것인가?</td>
+<td>대응표본 t검정, 참여/비교집단 차이분석, 상관분석, 회귀분석, 로지스틱 회귀분석</td>
+</tr>
+<tr>
+<td>누구에게 제안할 것인가?</td>
+<td>용문고, 동문회, 학부모회, 진로진학부, 용문포럼</td>
+</tr>
+<tr>
+<td>전공 관심과 어떻게 연결되는가?</td>
+<td>교육학·HRD·심리학·경영학 관점에서 사람의 성장과 네트워크 기반 학습을 분석한다.</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-데이터-설계">4. 데이터 설계</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>SPSS 측도</th>
+<th>활용</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>student_id</td>
+<td>익명 학생 ID</td>
+<td>명목</td>
+<td>개인정보 보호를 위해 익명 처리</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>학년</td>
+<td>서열</td>
+<td>학년별 진로 확신 변화 비교</td>
+</tr>
+<tr>
+<td>interest_field</td>
+<td>관심 전공/직무 분야</td>
+<td>명목</td>
+<td>동문 전공/직무와 매칭</td>
+</tr>
+<tr>
+<td>participation_group</td>
+<td>멘토링 참여 여부</td>
+<td>명목</td>
+<td>전후 비교 및 집단 비교</td>
+</tr>
+<tr>
+<td>mentoring_type</td>
+<td>멘토링 유형</td>
+<td>명목</td>
+<td>지원 방식별 효과 비교</td>
+</tr>
+<tr>
+<td>mentoring_count</td>
+<td>멘토링 횟수</td>
+<td>척도</td>
+<td>진로 확신 증가 예측 독립변수</td>
+</tr>
+<tr>
+<td>mentoring_total_minutes</td>
+<td>총 멘토링 시간</td>
+<td>척도</td>
+<td>멘토링 노출량</td>
+</tr>
+<tr>
+<td>mentor_field_match</td>
+<td>동문-학생 분야 일치도</td>
+<td>서열/척도</td>
+<td>매칭 품질 변수</td>
+</tr>
+<tr>
+<td>pre_career_confidence</td>
+<td>사전 진로 확신</td>
+<td>척도</td>
+<td>멘토링 전 측정</td>
+</tr>
+<tr>
+<td>post_career_confidence</td>
+<td>사후 진로 확신</td>
+<td>척도</td>
+<td>멘토링 후 측정</td>
+</tr>
+<tr>
+<td>confidence_gain</td>
+<td>진로 확신 변화량</td>
+<td>척도</td>
+<td>핵심 종속변수</td>
+</tr>
+<tr>
+<td>pre_major_clarity</td>
+<td>사전 전공 이해도</td>
+<td>척도</td>
+<td>전공 명확성 사전</td>
+</tr>
+</tbody></table></div>
+<p>전체 변수는 별도 코드북 파일에 정리하였다. 핵심 종속변수는 confidence_gain이며, 이는 post_career_confidence에서 pre_career_confidence를 뺀 값이다.</p>
+<h2 id="5-실제-데이터-확보-계획">5. 실제 데이터 확보 계획</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>파일/API</th>
+<th>활용 목적</th>
+<th>확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>2025 초·중등 진로교육 현황조사</td>
+<td>교육부·한국직업능력연구원/커리어넷</td>
+<td>PDF/기초통계표</td>
+<td>전국 비교 기준과 보고서 배경자료</td>
+<td>즉시 확인 가능</td>
+</tr>
+<tr>
+<td>커리어넷 Open API</td>
+<td>진로정보망 커리어넷</td>
+<td>API</td>
+<td>멘토링 전후 진로정보·전공정보 보조자료</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>워크넷 직업정보 API</td>
+<td>한국고용정보원/공공데이터포털</td>
+<td>XML API</td>
+<td>학생 관심 직무와 동문 직무 분류 표준화</td>
+<td>API키 필요</td>
+</tr>
+<tr>
+<td>워크넷 직업전망 API</td>
+<td>한국고용정보원/공공데이터포털</td>
+<td>XML API</td>
+<td>멘토링 내용의 직업전망 보강</td>
+<td>API키 필요</td>
+</tr>
+<tr>
+<td>학교알리미 학교기본정보·학생수</td>
+<td>교육부/공공데이터포털</td>
+<td>CSV/기관 다운로드</td>
+<td>학교 규모 및 분석 대상 배경 설명</td>
+<td>즉시 또는 기관 페이지 다운로드</td>
+</tr>
+<tr>
+<td>동문 멘토 설문</td>
+<td>학교·동문회 자체 수집</td>
+<td>XLSX/Google Form</td>
+<td>핵심 원자료</td>
+<td>학교 내부자료 필요</td>
+</tr>
+<tr>
+<td>학생 사전·사후 설문</td>
+<td>학교 자체 수집</td>
+<td>XLSX/Google Form</td>
+<td>핵심 분석자료</td>
+<td>학생 설문 필요</td>
+</tr>
+</tbody></table></div>
+<h2 id="6-분석-방법">6. 분석 방법</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>SPSS 메뉴</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>Excel/CSV 데이터를 SPSS로 불러오기</td>
+<td>파일 → 열기 → 데이터</td>
+<td>첫 행을 변수명으로 읽고 측도를 확인한다.</td>
+</tr>
+<tr>
+<td>2. 변수계산</td>
+<td>confidence_gain, clarity_gain, anxiety_reduction 계산</td>
+<td>변환 → 변수 계산</td>
+<td>사후-사전 변화량과 불안 감소량을 생성한다.</td>
+</tr>
+<tr>
+<td>3. 기술통계</td>
+<td>진로 확신·불안·만족도의 평균 파악</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>평균 변화가 긍정적인지 확인한다.</td>
+</tr>
+<tr>
+<td>4. 대응표본 t검정</td>
+<td>멘토링 전후 진로 확신 변화 검정</td>
+<td>분석 → 평균비교 → 대응표본 t 검정</td>
+<td>사후 점수가 사전보다 유의하게 높아졌는지 본다.</td>
+</tr>
+<tr>
+<td>5. 독립표본 t검정</td>
+<td>참여집단과 비교집단의 변화량 비교</td>
+<td>분석 → 평균비교 → 독립표본 t 검정</td>
+<td>멘토링 참여 여부에 따른 차이를 확인한다.</td>
+</tr>
+<tr>
+<td>6. 상관분석</td>
+<td>멘토링 횟수·일치도·만족도와 변화량 관계 확인</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>횟수와 질적 매칭이 성과와 관련되는지 본다.</td>
+</tr>
+<tr>
+<td>7. 회귀분석</td>
+<td>진로 확신 변화 예측</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>어떤 요인이 진로 확신 상승을 가장 잘 설명하는지 본다.</td>
+</tr>
+<tr>
+<td>8. 로지스틱 회귀분석</td>
+<td>고상승 학생 예측</td>
+<td>분석 → 회귀분석 → 이분형 로지스틱</td>
+<td>고효과 멘토링 조건을 도출한다.</td>
+</tr>
+<tr>
+<td>9. 그래프 작성</td>
+<td>전후 변화, 유형별 차이 시각화</td>
+<td>그래프 → 차트 작성기</td>
+<td>보고서용 핵심 그래프를 만든다.</td>
+</tr>
+</tbody></table></div>
+<h2 id="7-분석-결과-예시">7. 분석 결과 예시</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>집단</th>
+<th>N</th>
+<th>사전 평균</th>
+<th>사후 평균</th>
+<th>변화량</th>
+<th>만족도 평균</th>
+<th>실행계획 평균</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>참여</td>
+<td>40</td>
+<td>2.76</td>
+<td>4.41</td>
+<td>1.66</td>
+<td>4.45</td>
+<td>4.28</td>
+</tr>
+<tr>
+<td>비교</td>
+<td>10</td>
+<td>2.93</td>
+<td>3.14</td>
+<td>0.21</td>
+<td>0.0</td>
+<td>2.5</td>
+</tr>
+</tbody></table></div>
+<p>시범 데이터 기준으로 멘토링 참여집단은 비교집단보다 진로 확신 증가폭이 더 크게 나타났다. 특히 멘토링 횟수, 동문-학생 분야 일치도, 멘토링 만족도가 높을수록 confidence_gain도 높아지는 경향을 보였다.</p>
+<p>그림 1. 참여 여부별 평균 진로 확신 증가폭</p>
+<p>그림 2. 멘토링 횟수와 진로 확신 증가폭</p>
+<h2 id="8-개선-제안서">8. 개선 제안서</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>제안 대상</th>
+<th>제안 내용</th>
+<th>근거 데이터</th>
+<th>기대 효과</th>
+<th>실행 난이도</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>용문고 진로진학부</td>
+<td>사전·사후 진로 확신 설문을 정례화</td>
+<td>confidence_gain, clarity_gain</td>
+<td>프로그램 효과 측정 가능</td>
+<td>중</td>
+</tr>
+<tr>
+<td>동문회</td>
+<td>전공·직무별 멘토 풀 구축</td>
+<td>interest_field, mentor_field_match</td>
+<td>학생-동문 매칭 정확도 향상</td>
+<td>중</td>
+</tr>
+<tr>
+<td>학부모회</td>
+<td>멘토링 후 포트폴리오 피드백 세션 지원</td>
+<td>portfolio_update_yn</td>
+<td>멘토링을 행동 변화로 연결</td>
+<td>중</td>
+</tr>
+<tr>
+<td>용문포럼</td>
+<td>학기별 산업·직무 특강과 1:1 멘토링 결합</td>
+<td>mentoring_type, satisfaction</td>
+<td>정보 전달과 관계 기반 성장을 동시에 달성</td>
+<td>중</td>
+</tr>
+<tr>
+<td>학생회</td>
+<td>멘토링 후 자기성찰 기록 제출 캠페인</td>
+<td>reflection_score</td>
+<td>진로 경험을 에세이·보고서로 발전</td>
+<td>낮음</td>
+</tr>
+</tbody></table></div>
+<h2 id="9-한계점과-후속-연구">9. 한계점과 후속 연구</h2>
+<p>본 시범 데이터는 실제 학생과 동문의 응답이 아니라 분석 절차를 설명하기 위한 가상 데이터다. 실제 연구에서는 개인정보 보호 동의, 익명화, 멘토링 전후 동일 학생 매칭, 비교집단 설정이 필요하다.</p>
+<p>후속 연구에서는 동문 멘토의 산업·직무 다양성, 멘토링 지속기간, 학생의 포트폴리오 변화, 대학 전공 선택 결과까지 추적하면 더 강한 분석이 가능하다.</p>
+<h2 id="10-진로-전공-관심과의-연결">10. 진로·전공 관심과의 연결</h2>
+<p>이 프로젝트는 교육학과 HRD의 관점에서 멘토링이라는 학습 경험이 학생의 자기효능감과 진로 확신에 미치는 영향을 분석한다. 경영학적으로는 동문 네트워크라는 학교의 무형자산을 어떻게 후배 성장 시스템으로 전환할 수 있는지 탐구한다.</p>
+<h2 id="11-에세이형-성찰-문장">11. 에세이형 성찰 문장</h2>
+<p>나는 진로 확신이 단순히 정보를 많이 얻는다고 생기는 것이 아니라, 나와 비슷한 고민을 지나간 사람과의 대화를 통해 형성될 수 있음을 알게 되었다. 데이터는 멘토링의 효과가 감동적인 경험담에만 머무르지 않고 측정 가능한 변화로 나타날 수 있음을 보여주었다.</p>
+<h2 id="12-참고-데이터-출처">12. 참고 데이터 출처</h2>
+<ul>
+<li>2025 초·중등 진로교육 현황조사: https://www.career.go.kr/cloud/w/courseEdu/course2025</li>
+</ul>
+<ul>
+<li>커리어넷 Open API: https://www.career.go.kr/cnet/front/openapi/openApiMainCenter.do</li>
+</ul>
+<ul>
+<li>워크넷 직업정보 API: https://www.data.go.kr/data/3071087/openapi.do</li>
+</ul>
+<ul>
+<li>워크넷 직업전망 API: https://www.data.go.kr/data/3071367/openapi.do</li>
+</ul>
+<ul>
+<li>학교알리미 학교기본정보·학생수: https://www.data.go.kr/data/15106331/fileData.do</li>
+</ul>
+<ul>
+<li>동문 멘토 설문: 학교 내부 수집</li>
+</ul>
+<ul>
+<li>학생 사전·사후 설문: 학교 내부 수집</li>
+</ul>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

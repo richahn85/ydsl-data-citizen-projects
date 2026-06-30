@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>용문고 통학길 보행안전 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="용문고-통학길-보행안전---SPSS">용문고 통학길 보행안전 - SPSS</h1>
+<p>상위 노트: <a href="01-%EC%9A%A9%EB%AC%B8%EA%B3%A0-%ED%86%B5%ED%95%99%EA%B8%B8-%EB%B3%B4%ED%96%89%EC%95%88%EC%A0%84.html">용문고 통학길 보행안전</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">01_spss_guide.docx</span></p>
+<p>SPSS 분석 가이드 용문고 통학길 보행 안전 위험 예측 모델</p>
+<p>이 문서는 01_dataset.xlsx 또는 01_dataset.csv를 SPSS에서 불러와 위험점수 분석, 지도형 산점도, 군집분석까지 수행하기 위한 단계별 안내서입니다.</p>
+<p>주의: 본 데이터는 시범용 가상 데이터입니다. 실제 프로젝트에서는 공식 공공데이터와 학생 현장조사 데이터를 동일한 변수 구조로 입력해 분석합니다.</p>
+<h2 id="1-파일-불러오기">1. 파일 불러오기</h2>
+<p>1) SPSS 실행 → 파일 → 열기 → 데이터</p>
+<p>2) 파일 유형을 Excel 또는 CSV로 선택</p>
+<p>3) 01_dataset.xlsx의 Data 시트를 선택하고, ‘첫 행에서 변수 이름 읽어오기’를 체크</p>
+<p>4) 변수 보기에서 측도 설정: route_name, road_type, risk_grade는 명목/서열, risk_score와 사고·보행량 변수는 척도</p>
+<h2 id="2-변수-측도-점검">2. 변수 측도 점검</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>SPSS 측도</th>
+<th>해당 변수</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>명목</td>
+<td>obs_id, segment_id, route_name, district, road_type, time_slot, school_zone</td>
+</tr>
+<tr>
+<td>서열</td>
+<td>visibility_risk_1_5, slope_risk_1_5, student_flow_score_1_5, risk_grade, priority_group</td>
+</tr>
+<tr>
+<td>척도</td>
+<td>latitude, longitude, distance_m, accident_3yr, ped_accident_3yr, floating_pop_2h, sidewalk_width_m, risk_score</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-분석-절차-요약">3. 분석 절차 요약</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>XLSX 또는 CSV를 SPSS로 가져오기</td>
+<td>전체 변수</td>
+<td>파일 → 열기 → 데이터</td>
+<td>첫 행을 변수명으로 인식하고 변수보기에서 측도 확인</td>
+</tr>
+<tr>
+<td>2. 빈도분석</td>
+<td>위험등급·도로유형의 분포 확인</td>
+<td>risk_grade, road_type, time_slot</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>고위험 구간이 몇 개인지 파악</td>
+</tr>
+<tr>
+<td>3. 기술통계</td>
+<td>주요 위험요인의 평균·최댓값 확인</td>
+<td>accident_3yr, ped_accident_3yr, floating_pop_2h, sidewalk_width_m, risk_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>어떤 변수가 전체 위험을 높이는지 기초 진단</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>위험점수와 요인 간 관계 확인</td>
+<td>risk_score, accident_3yr, ped_accident_3yr, floating_pop_2h, illegal_parking_30min, sidewalk_width_m</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>위험점수와 가장 관련이 큰 변수를 찾음</td>
+</tr>
+<tr>
+<td>5. 회귀분석</td>
+<td>위험점수를 설명하는 핵심 요인 검증</td>
+<td>risk_score 종속변수 / 사고·보행량·정류장·보도폭·주정차 독립변수</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>위험점수에 유의한 영향을 주는 변수 확인</td>
+</tr>
+<tr>
+<td>6. 군집분석</td>
+<td>위험구간 유형 분류</td>
+<td>accident_score, exposure_score, environment_score, school_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>사고위험형, 노출위험형, 환경개선형 등으로 명명</td>
+</tr>
+<tr>
+<td>7. 지도형 산점도</td>
+<td>위험지도 시각화</td>
+<td>longitude, latitude, risk_score, risk_grade</td>
+<td>그래프 → 차트 작성기 → 산점도</td>
+<td>학교 주변의 위험점 분포를 시각적으로 설명</td>
+</tr>
+<tr>
+<td>8. 개선 우선순위 도출</td>
+<td>구간별 정책 제안 연결</td>
+<td>priority_group, risk_grade, cluster_suggestion</td>
+<td>데이터 → 케이스 정렬</td>
+<td>1순위 구간부터 학교·구청 제안서 작성</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-위험등급-빈도분석">4. 위험등급 빈도분석</h2>
+<p>메뉴: 분석 → 기술통계량 → 빈도분석</p>
+<p>변수: risk_grade, priority_group</p>
+<p>해석: 매우 높음 또는 높음 등급이 많으면 학교 주변 통학로 중 집중 관리 구간이 많다는 의미입니다.</p>
+<h2 id="5-기술통계">5. 기술통계</h2>
+<p>메뉴: 분석 → 기술통계량 → 기술통계</p>
+<p>변수: accident_3yr, ped_accident_3yr, floating_pop_2h, sidewalk_width_m, illegal_parking_30min, risk_score</p>
+<p>해석: 평균, 최솟값, 최댓값을 확인해 통학로 전체의 위험 수준과 극단적으로 위험한 구간을 파악합니다.</p>
+<h2 id="6-상관분석">6. 상관분석</h2>
+<p>메뉴: 분석 → 상관분석 → 이변량 상관계수</p>
+<p>변수: risk_score, accident_3yr, ped_accident_3yr, floating_pop_2h, illegal_parking_30min, sidewalk_width_m</p>
+<p>해석: risk_score와 양의 상관이 큰 변수는 위험을 높이는 요인입니다. sidewalk_width_m은 보도 폭이 넓을수록 위험이 낮아지는 음의 관계를 기대할 수 있습니다.</p>
+<h2 id="7-회귀분석">7. 회귀분석</h2>
+<p>메뉴: 분석 → 회귀분석 → 선형</p>
+<p>종속변수: risk_score</p>
+<p>독립변수: accident_3yr, ped_accident_3yr, floating_pop_2h, bus_stop_count_100m, crosswalk_count_100m, sidewalk_width_m, illegal_parking_30min</p>
+<p>해석: 유의확률 p &lt; .05인 변수는 위험점수를 설명하는 주요 변수입니다. 회귀계수가 양수이면 위험을 높이는 방향, 음수이면 위험을 낮추는 방향입니다.</p>
+<h2 id="8-K-평균-군집분석">8. K-평균 군집분석</h2>
+<p>메뉴: 분석 → 분류분석 → K-평균 군집분석</p>
+<p>변수: accident_score, exposure_score, environment_score, school_score</p>
+<p>군집 수: 3개 또는 4개로 설정</p>
+<p>해석: 군집 중심값을 보고 사고위험형, 보행량 집중형, 환경개선형, 저위험 관찰형 등으로 이름을 붙입니다.</p>
+<h2 id="9-지도형-산점도">9. 지도형 산점도</h2>
+<p>메뉴: 그래프 → 차트 작성기 → 산점도</p>
+<p>X축: longitude, Y축: latitude, 그룹/색상: risk_grade 또는 priority_group</p>
+<p>해석: 실제 지도는 아니지만 좌표 기반으로 위험 구간의 공간 분포를 확인할 수 있습니다. 최종 제출용은 Google My Maps 또는 QGIS로 제작하면 좋습니다.</p>
+<h2 id="10-SPSS-Syntax-예시">10. SPSS Syntax 예시</h2>
+<p>GET DATA /TYPE=XLSX /FILE=&#x27;01_dataset.xlsx&#x27; /SHEET=name &#x27;Data&#x27; /READNAMES=ON. EXECUTE.</p>
+<p>FREQUENCIES VARIABLES=risk_grade priority_group road_type.</p>
+<p>DESCRIPTIVES VARIABLES=accident_3yr ped_accident_3yr floating_pop_2h sidewalk_width_m illegal_parking_30min risk_score /STATISTICS=MEAN STDDEV MIN MAX.</p>
+<p>CORRELATIONS /VARIABLES=risk_score accident_3yr ped_accident_3yr floating_pop_2h illegal_parking_30min sidewalk_width_m /PRINT=TWOTAIL NOSIG /MISSING=PAIRWISE.</p>
+<p>REGRESSION /DEPENDENT risk_score /METHOD=ENTER accident_3yr ped_accident_3yr floating_pop_2h bus_stop_count_100m crosswalk_count_100m sidewalk_width_m illegal_parking_30min.</p>
+<p>QUICK CLUSTER accident_score exposure_score environment_score school_score /CRITERIA=CLUSTER(3) MXITER(10) /SAVE CLUSTER.</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="01_spss_syntax-sps">01_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">01_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">GET DATA
+  /TYPE=XLSX
+  /FILE=&#x27;01_dataset.xlsx&#x27;
+  /SHEET=name &#x27;Data&#x27;
+  /READNAMES=ON.
+EXECUTE.
+
+FREQUENCIES VARIABLES=risk_grade priority_group road_type.
+
+DESCRIPTIVES VARIABLES=accident_3yr ped_accident_3yr floating_pop_2h sidewalk_width_m illegal_parking_30min risk_score
+  /STATISTICS=MEAN STDDEV MIN MAX.
+
+CORRELATIONS
+  /VARIABLES=risk_score accident_3yr ped_accident_3yr floating_pop_2h illegal_parking_30min sidewalk_width_m
+  /PRINT=TWOTAIL NOSIG
+  /MISSING=PAIRWISE.
+
+REGRESSION
+  /DEPENDENT risk_score
+  /METHOD=ENTER accident_3yr ped_accident_3yr floating_pop_2h bus_stop_count_100m crosswalk_count_100m sidewalk_width_m illegal_parking_30min.
+
+QUICK CLUSTER accident_score exposure_score environment_score school_score
+  /CRITERIA=CLUSTER(3) MXITER(10)
+  /SAVE CLUSTER.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

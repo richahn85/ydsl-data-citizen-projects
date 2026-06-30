@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>사교육 의존도와 자기주도학습 역량 분석 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="사교육-의존도와-자기주도학습-역량-분석---SPSS">사교육 의존도와 자기주도학습 역량 분석 - SPSS</h1>
+<p>상위 노트: <a href="20-%EC%82%AC%EA%B5%90%EC%9C%A1-%EC%9D%98%EC%A1%B4%EB%8F%84%EC%99%80-%EC%9E%90%EA%B8%B0%EC%A3%BC%EB%8F%84%ED%95%99%EC%8A%B5-%EC%97%AD%EB%9F%89-%EB%B6%84%EC%84%9D.html">사교육 의존도와 자기주도학습 역량 분석</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">20_spss_guide.docx</span></p>
+<ol>
+<li>사교육 의존도와 자기주도학습 역량 분석 SPSS 가이드</li>
+</ol>
+<p>데이터 불러오기부터 상관분석·분산분석·회귀분석·군집분석까지</p>
+<h2 id="1-데이터-불러오기">1. 데이터 불러오기</h2>
+<p>SPSS를 실행한 뒤 파일 → 열기 → 데이터에서 20_dataset.xlsx 또는 20_dataset.csv를 불러온다. Excel 파일을 사용할 경우 첫 행을 변수명으로 읽어오도록 체크한다.</p>
+<h2 id="2-변수-보기-설정">2. 변수 보기 설정</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수</th>
+<th>SPSS 측도</th>
+<th>역할</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>student_id</td>
+<td>명목</td>
+<td>식별자</td>
+</tr>
+<tr>
+<td>grade, gender, learning_type</td>
+<td>명목/서열</td>
+<td>집단 변수</td>
+</tr>
+<tr>
+<td>private_hours_week, private_cost_month_10k, self_study_hours_week</td>
+<td>척도</td>
+<td>연속형 투입 변수</td>
+</tr>
+<tr>
+<td>goal_setting~private_stress_item</td>
+<td>서열</td>
+<td>설문 문항</td>
+</tr>
+<tr>
+<td>self_directed_score, dependency_score, academic_change_score</td>
+<td>척도</td>
+<td>핵심 분석 변수</td>
+</tr>
+<tr>
+<td>support_recommendation</td>
+<td>명목</td>
+<td>개선 제안 유형</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-분석-절차">3. 분석 절차</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 빈도분석</td>
+<td>학년, 성별, 학습 유형 분포 확인</td>
+<td>grade, gender, learning_type</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>특정 학년이나 유형에 응답이 치우쳤는지 확인</td>
+</tr>
+<tr>
+<td>2. 기술통계</td>
+<td>사교육 시간, 자기주도학습 점수, 의존도 점수의 평균과 표준편차 확인</td>
+<td>private_hours_week, self_study_hours_week, self_directed_score, dependency_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>사교육 시간이 높은 학생이 실제로 자기주도성이 높은지 첫 인상 확인</td>
+</tr>
+<tr>
+<td>3. 상관분석</td>
+<td>사교육 시간·의존도·자기주도학습·성적 변화의 관계 확인</td>
+<td>private_hours_week, dependency_score, self_directed_score, academic_change_score</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>단순 사교육 시간보다 의존도 점수가 더 중요한지 비교</td>
+</tr>
+<tr>
+<td>4. 일원분산분석</td>
+<td>학습 유형별 자기주도학습 점수 차이 검정</td>
+<td>learning_type, self_directed_score</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>유형별 평균 차이가 통계적으로 유의한지 확인</td>
+</tr>
+<tr>
+<td>5. 회귀분석</td>
+<td>자기주도학습 점수를 설명하는 요인 탐색</td>
+<td>self_directed_score, private_hours_week, dependency_score, career_clarity_item, sleep_hours, overall_stress</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>사교육 양보다 진로 명확성, 자율동기, 자기학습 시간이 더 설명력이 있는지 확인</td>
+</tr>
+<tr>
+<td>6. 군집분석</td>
+<td>학생을 학습지원 유형으로 분류</td>
+<td>private_hours_week, self_study_hours_week, dependency_score, self_directed_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>자기주도형, 균형형, 사교육의존형, 방치형을 도출</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-해석-예시">4. 해석 예시</h2>
+<p>상관분석에서 private_hours_week와 self_directed_score의 상관이 약하거나 음(-)의 방향이면, 사교육 시간이 많은 것이 곧 자기주도성이 높다는 뜻은 아님을 해석한다.</p>
+<p>dependency_score와 self_directed_score의 상관이 음(-)의 방향이면, 사교육 ‘양’보다 사교육에 의존하는 학습 방식이 자기주도성 저하와 더 관련이 있을 수 있음을 설명한다.</p>
+<p>분산분석에서는 자기주도형, 균형형, 사교육의존형, 방치형의 평균 자기주도점수를 비교한다. 평균 차이가 크면 학생별 맞춤 지원전략이 필요하다는 결론으로 연결한다.</p>
+<h2 id="5-그래프-작성">5. 그래프 작성</h2>
+<p>그래프 → 차트 작성기에서 산점도를 선택하고 X축에 private_hours_week 또는 dependency_score, Y축에 self_directed_score를 넣는다. 학습 유형별 차이는 막대그래프로 표현한다.</p>
+<h2 id="6-SPSS-Syntax-예시">6. SPSS Syntax 예시</h2>
+<p>GET DATA /TYPE=XLSX /FILE=&#x27;20_dataset.xlsx&#x27; /SHEET=name &#x27;Data&#x27; /READNAMES=ON.</p>
+<p>FREQUENCIES VARIABLES=grade gender learning_type support_recommendation.</p>
+<p>DESCRIPTIVES VARIABLES=private_hours_week private_cost_month_10k self_study_hours_week self_directed_score dependency_score academic_change_score.</p>
+<p>CORRELATIONS /VARIABLES=private_hours_week self_study_hours_week dependency_score self_directed_score academic_change_score career_clarity_item overall_stress /PRINT=TWOTAIL NOSIG.</p>
+<p>ONEWAY self_directed_score BY learning_type /STATISTICS DESCRIPTIVES /POSTHOC=TUKEY ALPHA(0.05).</p>
+<p>REGRESSION /DEPENDENT self_directed_score /METHOD=ENTER private_hours_week dependency_score self_study_hours_week career_clarity_item sleep_hours overall_stress.</p>
+<p>QUICK CLUSTER private_hours_week self_study_hours_week dependency_score self_directed_score /CRITERIA=CLUSTER(4) MXITER(10) /SAVE CLUSTER.</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="20_spss_syntax-sps">20_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">20_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">GET DATA /TYPE=XLSX
+  /FILE=&#x27;20_dataset.xlsx&#x27;
+  /SHEET=name &#x27;Data&#x27;
+  /READNAMES=ON.
+
+FREQUENCIES VARIABLES=grade gender learning_type support_recommendation.
+
+DESCRIPTIVES VARIABLES=private_hours_week private_cost_month_10k self_study_hours_week self_directed_score dependency_score academic_change_score.
+
+CORRELATIONS
+  /VARIABLES=private_hours_week self_study_hours_week dependency_score self_directed_score academic_change_score career_clarity_item overall_stress
+  /PRINT=TWOTAIL NOSIG.
+
+ONEWAY self_directed_score BY learning_type
+  /STATISTICS DESCRIPTIVES
+  /POSTHOC=TUKEY ALPHA(0.05).
+
+REGRESSION
+  /DEPENDENT self_directed_score
+  /METHOD=ENTER private_hours_week dependency_score self_study_hours_week career_clarity_item sleep_hours overall_stress.
+
+QUICK CLUSTER private_hours_week self_study_hours_week dependency_score self_directed_score
+  /CRITERIA=CLUSTER(4) MXITER(10)
+  /SAVE CLUSTER.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

@@ -1,0 +1,952 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 추천 알고리즘이 청소년 정보 편향에 미치는 영향 - 데이터 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="AI-추천-알고리즘이-청소년-정보-편향에-미치는-영향---데이터">AI 추천 알고리즘이 청소년 정보 편향에 미치는 영향 - 데이터</h1>
+<p>상위 노트: <a href="30-AI-%EC%B6%94%EC%B2%9C-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%B4-%EC%B2%AD%EC%86%8C%EB%85%84-%EC%A0%95%EB%B3%B4-%ED%8E%B8%ED%96%A5%EC%97%90-%EB%AF%B8%EC%B9%98%EB%8A%94-%EC%98%81%ED%96%A5.html">AI 추천 알고리즘이 청소년 정보 편향에 미치는 영향</a></p>
+<p>관련 개념: <a href="../../concepts/%EC%BD%94%EB%93%9C%EB%B6%81%EA%B3%BC%20%EB%B3%80%EC%88%98%20%EC%A0%95%EC%9D%98.html">concepts/코드북과 변수 정의</a>, <a href="../../concepts/%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EA%B8%B0%EB%B0%98%20%ED%83%90%EA%B5%AC.html">concepts/공공데이터 기반 탐구</a></p>
+<h2 id="코드북">코드북</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">30_codebook.xlsx</span></li>
+</ul>
+<h3 id="30_codebook-xlsx">30_codebook.xlsx</h3>
+<p>30_codebook: 29행 x 6열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>SPSS 측도</th>
+<th>코딩/값</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>student_id</td>
+<td>익명 학생 ID</td>
+<td>문자</td>
+<td>명목</td>
+<td>S001~S050</td>
+<td>개인 식별 불가한 익명 ID</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>학년</td>
+<td>1~3</td>
+<td>서열</td>
+<td>1=1학년, 2=2학년, 3=3학년</td>
+<td>학년별 차이 분석</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>성별</td>
+<td>남/여</td>
+<td>명목</td>
+<td>남, 여</td>
+<td>선택형 설문</td>
+</tr>
+<tr>
+<td>main_platform</td>
+<td>가장 많이 이용하는 플랫폼</td>
+<td>범주</td>
+<td>명목</td>
+<td>YouTube, TikTok, Instagram, Naver/News, Mixed</td>
+<td>주 이용 플랫폼</td>
+</tr>
+<tr>
+<td>interest_topic</td>
+<td>주 관심 콘텐츠 주제</td>
+<td>범주</td>
+<td>명목</td>
+<td>진로/교육, 정치사회, 게임/엔터 등</td>
+<td>추천 콘텐츠 분석 기준</td>
+</tr>
+<tr>
+<td>daily_youtube_min</td>
+<td>하루 유튜브 사용시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>자기보고식</td>
+</tr>
+<tr>
+<td>daily_sns_min</td>
+<td>하루 SNS 사용시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>자기보고식</td>
+</tr>
+<tr>
+<td>shortform_min</td>
+<td>하루 숏폼 시청시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>릴스/쇼츠/틱톡 포함</td>
+</tr>
+<tr>
+<td>news_min</td>
+<td>하루 뉴스·시사 콘텐츠 이용시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>시사정보 노출 정도</td>
+</tr>
+<tr>
+<td>news_source_diversity</td>
+<td>정보 출처 다양성</td>
+<td>개수</td>
+<td>척도</td>
+<td>1~6</td>
+<td>뉴스/친구/SNS/검색/공식기관 등</td>
+</tr>
+<tr>
+<td>content_category_diversity</td>
+<td>콘텐츠 카테고리 다양성</td>
+<td>개수</td>
+<td>척도</td>
+<td>1~6</td>
+<td>일주일 내 다른 카테고리 수</td>
+</tr>
+<tr>
+<td>recommended_same_topic_ratio</td>
+<td>추천 콘텐츠 중 동일 주제 비율</td>
+<td>%</td>
+<td>척도</td>
+<td>0~100</td>
+<td>필터버블 가능성 지표</td>
+</tr>
+<tr>
+<td>recommended_opposing_view_ratio</td>
+<td>반대 관점 콘텐츠 노출 비율</td>
+<td>%</td>
+<td>척도</td>
+<td>0~100</td>
+<td>다양한 관점 노출 정도</td>
+</tr>
+<tr>
+<td>recommendation_dependence</td>
+<td>추천 피드 의존도</td>
+<td>1~5</td>
+<td>서열</td>
+<td>1=낮음, 5=높음</td>
+<td>추천 알고리즘 의존 정도</td>
+</tr>
+<tr>
+<td>algorithm_awareness</td>
+<td>추천 알고리즘 이해도</td>
+<td>1~5</td>
+<td>서열</td>
+<td>1=전혀 모름, 5=잘 이해</td>
+<td>알고리즘 리터러시</td>
+</tr>
+<tr>
+<td>echo_chamber_awareness</td>
+<td>확증편향/에코챔버 인식</td>
+<td>1~5</td>
+<td>서열</td>
+<td>1=낮음, 5=높음</td>
+<td>정보 편향 인식</td>
+</tr>
+<tr>
+<td>fact_check_frequency</td>
+<td>팩트체크 빈도</td>
+<td>1~5</td>
+<td>서열</td>
+<td>1=거의 안 함, 5=자주 함</td>
+<td>비판적 정보 검증</td>
+</tr>
+<tr>
+<td>content_variety_behavior</td>
+<td>의도적 다양한 콘텐츠 탐색 행동</td>
+<td>1~5</td>
+<td>서열</td>
+<td>1=낮음, 5=높음</td>
+<td>관심사 확장 행동</td>
+</tr>
+<tr>
+<td>algorithm_trust</td>
+<td>추천 알고리즘 신뢰도</td>
+<td>1~5</td>
+<td>서열</td>
+<td>1=낮음, 5=높음</td>
+<td>추천 결과 신뢰 수준</td>
+</tr>
+<tr>
+<td>exposure_to_extreme_content</td>
+<td>극단·자극 콘텐츠 노출 경험</td>
+<td>1~5</td>
+<td>서열</td>
+<td>1=낮음, 5=높음</td>
+<td>위험 노출 변수</td>
+</tr>
+<tr>
+<td>misinformation_experience</td>
+<td>허위정보 경험 빈도</td>
+<td>1~5</td>
+<td>서열</td>
+<td>1=낮음, 5=높음</td>
+<td>정보 오염 경험</td>
+</tr>
+<tr>
+<td>discussion_with_others</td>
+<td>타인과 관점 토론 빈도</td>
+<td>1~5</td>
+<td>서열</td>
+<td>1=낮음, 5=높음</td>
+<td>사회적 검증 행동</td>
+</tr>
+<tr>
+<td>information_bias_perception</td>
+<td>정보 편향 체감도</td>
+<td>1~5</td>
+<td>서열</td>
+<td>1=낮음, 5=높음</td>
+<td>본인이 느끼는 편향</td>
+</tr>
+<tr>
+<td>digital_literacy_score</td>
+<td>디지털 리터러시 점수</td>
+<td>0~100</td>
+<td>척도</td>
+<td>높을수록 우수</td>
+<td>알고리즘 이해·검증·다양성 행동 종합</td>
+</tr>
+<tr>
+<td>content_bias_index</td>
+<td>콘텐츠 편향 지수</td>
+<td>0~100</td>
+<td>척도</td>
+<td>높을수록 편향 위험 큼</td>
+<td>동일주제 비율·추천 의존도·자극노출 기반</td>
+</tr>
+<tr>
+<td>algorithmic_bias_risk_score</td>
+<td>알고리즘 정보 편향 위험점수</td>
+<td>0~100</td>
+<td>척도</td>
+<td>70 이상 고위험</td>
+<td>최종 위험지표</td>
+</tr>
+<tr>
+<td>user_type</td>
+<td>정보 이용 유형</td>
+<td>범주</td>
+<td>명목</td>
+<td>균형탐색형, 숏폼몰입형 등</td>
+<td>군집/분류 결과</td>
+</tr>
+<tr>
+<td>recommended_education</td>
+<td>추천 교육 프로그램</td>
+<td>범주</td>
+<td>명목</td>
+<td>팩트체크 집중 교육 등</td>
+<td>개선 제안용</td>
+</tr>
+</tbody></table></div>
+<h2 id="CSV-데이터셋">CSV 데이터셋</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">30_dataset.csv</span></li>
+</ul>
+<ul>
+<li>크기: 50행 x 28열</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>student_id</th>
+<th>grade</th>
+<th>gender</th>
+<th>main_platform</th>
+<th>interest_topic</th>
+<th>daily_youtube_min</th>
+<th>daily_sns_min</th>
+<th>shortform_min</th>
+<th>news_min</th>
+<th>news_source_diversity</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>S001</td>
+<td>3</td>
+<td>남</td>
+<td>YouTube</td>
+<td>게임/엔터</td>
+<td>91</td>
+<td>89</td>
+<td>93</td>
+<td>20</td>
+<td>2</td>
+</tr>
+<tr>
+<td>S002</td>
+<td>1</td>
+<td>남</td>
+<td>YouTube</td>
+<td>진로/교육</td>
+<td>96</td>
+<td>27</td>
+<td>73</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>S003</td>
+<td>3</td>
+<td>남</td>
+<td>Instagram</td>
+<td>진로/교육</td>
+<td>57</td>
+<td>70</td>
+<td>71</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>S004</td>
+<td>1</td>
+<td>남</td>
+<td>YouTube</td>
+<td>스포츠</td>
+<td>115</td>
+<td>110</td>
+<td>46</td>
+<td>7</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S005</td>
+<td>3</td>
+<td>남</td>
+<td>Instagram</td>
+<td>과학기술</td>
+<td>52</td>
+<td>142</td>
+<td>52</td>
+<td>10</td>
+<td>2</td>
+</tr>
+<tr>
+<td>S006</td>
+<td>2</td>
+<td>남</td>
+<td>TikTok</td>
+<td>게임/엔터</td>
+<td>112</td>
+<td>120</td>
+<td>121</td>
+<td>10</td>
+<td>2</td>
+</tr>
+<tr>
+<td>S007</td>
+<td>1</td>
+<td>남</td>
+<td>Instagram</td>
+<td>게임/엔터</td>
+<td>50</td>
+<td>117</td>
+<td>47</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S008</td>
+<td>1</td>
+<td>남</td>
+<td>Mixed</td>
+<td>게임/엔터</td>
+<td>78</td>
+<td>78</td>
+<td>23</td>
+<td>10</td>
+<td>4</td>
+</tr>
+</tbody></table></div>
+<h2 id="엑셀-데이터셋-미리보기">엑셀 데이터셋 미리보기</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">30_dataset.xlsx</span></li>
+</ul>
+<h3 id="Data">Data</h3>
+<p>Data: 51행 x 28열 / 미리보기 10행 x 10열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>student_id</th>
+<th>grade</th>
+<th>gender</th>
+<th>main_platform</th>
+<th>interest_topic</th>
+<th>daily_youtube_min</th>
+<th>daily_sns_min</th>
+<th>shortform_min</th>
+<th>news_min</th>
+<th>news_source_diversity</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>S001</td>
+<td>3</td>
+<td>남</td>
+<td>YouTube</td>
+<td>게임/엔터</td>
+<td>91</td>
+<td>89</td>
+<td>93</td>
+<td>20</td>
+<td>2</td>
+</tr>
+<tr>
+<td>S002</td>
+<td>1</td>
+<td>남</td>
+<td>YouTube</td>
+<td>진로/교육</td>
+<td>96</td>
+<td>27</td>
+<td>73</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>S003</td>
+<td>3</td>
+<td>남</td>
+<td>Instagram</td>
+<td>진로/교육</td>
+<td>57</td>
+<td>70</td>
+<td>71</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>S004</td>
+<td>1</td>
+<td>남</td>
+<td>YouTube</td>
+<td>스포츠</td>
+<td>115</td>
+<td>110</td>
+<td>46</td>
+<td>7</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S005</td>
+<td>3</td>
+<td>남</td>
+<td>Instagram</td>
+<td>과학기술</td>
+<td>52</td>
+<td>142</td>
+<td>52</td>
+<td>10</td>
+<td>2</td>
+</tr>
+<tr>
+<td>S006</td>
+<td>2</td>
+<td>남</td>
+<td>TikTok</td>
+<td>게임/엔터</td>
+<td>112</td>
+<td>120</td>
+<td>121</td>
+<td>10</td>
+<td>2</td>
+</tr>
+<tr>
+<td>S007</td>
+<td>1</td>
+<td>남</td>
+<td>Instagram</td>
+<td>게임/엔터</td>
+<td>50</td>
+<td>117</td>
+<td>47</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S008</td>
+<td>1</td>
+<td>남</td>
+<td>Mixed</td>
+<td>게임/엔터</td>
+<td>78</td>
+<td>78</td>
+<td>23</td>
+<td>10</td>
+<td>4</td>
+</tr>
+<tr>
+<td>S009</td>
+<td>1</td>
+<td>여</td>
+<td>YouTube</td>
+<td>환경/기후</td>
+<td>76</td>
+<td>43</td>
+<td>73</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody></table></div>
+<h3 id="Codebook">Codebook</h3>
+<p>Codebook: 29행 x 6열 / 미리보기 10행 x 6열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>측정 단위</th>
+<th>SPSS 측도</th>
+<th>코딩/값</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>student_id</td>
+<td>익명 학생 ID</td>
+<td>문자</td>
+<td>명목</td>
+<td>S001~S050</td>
+<td>개인 식별 불가한 익명 ID</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>학년</td>
+<td>1~3</td>
+<td>서열</td>
+<td>1=1학년, 2=2학년, 3=3학년</td>
+<td>학년별 차이 분석</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>성별</td>
+<td>남/여</td>
+<td>명목</td>
+<td>남, 여</td>
+<td>선택형 설문</td>
+</tr>
+<tr>
+<td>main_platform</td>
+<td>가장 많이 이용하는 플랫폼</td>
+<td>범주</td>
+<td>명목</td>
+<td>YouTube, TikTok, Instagram, Naver/News, Mixed</td>
+<td>주 이용 플랫폼</td>
+</tr>
+<tr>
+<td>interest_topic</td>
+<td>주 관심 콘텐츠 주제</td>
+<td>범주</td>
+<td>명목</td>
+<td>진로/교육, 정치사회, 게임/엔터 등</td>
+<td>추천 콘텐츠 분석 기준</td>
+</tr>
+<tr>
+<td>daily_youtube_min</td>
+<td>하루 유튜브 사용시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>자기보고식</td>
+</tr>
+<tr>
+<td>daily_sns_min</td>
+<td>하루 SNS 사용시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>자기보고식</td>
+</tr>
+<tr>
+<td>shortform_min</td>
+<td>하루 숏폼 시청시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>릴스/쇼츠/틱톡 포함</td>
+</tr>
+<tr>
+<td>news_min</td>
+<td>하루 뉴스·시사 콘텐츠 이용시간</td>
+<td>분</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+<td>시사정보 노출 정도</td>
+</tr>
+</tbody></table></div>
+<h3 id="Survey_Items">Survey_Items</h3>
+<p>Survey_Items: 13행 x 4열 / 미리보기 10행 x 4열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>문항번호</th>
+<th>설문 문항</th>
+<th>척도/코딩</th>
+<th>연결 변수</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Q1</td>
+<td>나는 유튜브·SNS 추천 피드가 내가 볼 콘텐츠를 많이 결정한다고 느낀다.</td>
+<td>1=전혀 그렇지 않다 ~ 5=매우 그렇다</td>
+<td>recommendation_dependence</td>
+</tr>
+<tr>
+<td>Q2</td>
+<td>나는 추천 알고리즘이 어떤 기준으로 콘텐츠를 보여주는지 어느 정도 이해한다.</td>
+<td>1~5</td>
+<td>algorithm_awareness</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>나는 내가 좋아하는 관점과 다른 관점의 콘텐츠도 일부러 찾아본다.</td>
+<td>1~5</td>
+<td>content_variety_behavior</td>
+</tr>
+<tr>
+<td>Q4</td>
+<td>나는 온라인 콘텐츠를 보기 전에 출처와 근거를 확인한다.</td>
+<td>1~5</td>
+<td>fact_check_frequency</td>
+</tr>
+<tr>
+<td>Q5</td>
+<td>나는 같은 주제의 영상이 계속 추천되는 경험을 자주 한다.</td>
+<td>1~5</td>
+<td>information_bias_perception</td>
+</tr>
+<tr>
+<td>Q6</td>
+<td>나는 자극적이거나 극단적인 콘텐츠를 추천받은 경험이 있다.</td>
+<td>1~5</td>
+<td>exposure_to_extreme_content</td>
+</tr>
+<tr>
+<td>Q7</td>
+<td>나는 온라인에서 본 정보를 친구·가족·교사와 토론하거나 확인한다.</td>
+<td>1~5</td>
+<td>discussion_with_others</td>
+</tr>
+<tr>
+<td>Q8</td>
+<td>나는 온라인 정보가 내 생각을 한쪽으로 기울게 만들 수 있다고 생각한다.</td>
+<td>1~5</td>
+<td>echo_chamber_awareness</td>
+</tr>
+<tr>
+<td>Q9</td>
+<td>나는 추천 피드보다 검색·공식기관·다양한 언론 자료를 함께 활용한다.</td>
+<td>1~5</td>
+<td>news_source_diversity</td>
+</tr>
+</tbody></table></div>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 9행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>다운로드/API 링크</th>
+<th>파일 형식</th>
+<th>주요 변수/내용</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>2024년 청소년 매체이용 및 유해환경 실태조사</td>
+<td>여성가족부/한국청소년정책연구원</td>
+<td>https://www.nypi.re.kr/board/view?bbsId=BOARD00023&amp;menuKey=ppeX4WOS8Y&amp;regNo=FbIUfmTb8W</td>
+<td>보도자료/보고서</td>
+<td>청소년 매체 이용, 숏폼, 생성형 AI 사용, 유해환경</td>
+<td>청소년 미디어 이용 배경자료</td>
+<td>즉시 확인 가능</td>
+</tr>
+<tr>
+<td>2024년 한국미디어패널조사 주요 결과</td>
+<td>정보통신정책연구원 KISDI</td>
+<td>https://www.kisdi.re.kr/report/fileView.do?arrMasterId=4333447&amp;id=1817216&amp;key=m2101113025790</td>
+<td>PDF</td>
+<td>미디어 기기, OTT, SNS, 미디어 활용 현황</td>
+<td>학생 미디어 이용 시간 비교 기준</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>2024 소셜미디어 이용자 조사</td>
+<td>한국언론진흥재단</td>
+<td>https://www.kpf.or.kr/front/board/boardContentsView.do?board_id=246&amp;contents_id=940a3bc4be914ac2a065b8922021728e</td>
+<td>웹/보고서</td>
+<td>소셜미디어 뉴스 이용, 유튜브 이용, 시사정보 채널 인식</td>
+<td>정보 편향·시사정보 이용 배경자료</td>
+<td>즉시 확인 가능</td>
+</tr>
+<tr>
+<td>How’s Life for Children in the Digital Age?</td>
+<td>OECD</td>
+<td>https://www.oecd.org/en/publications/how-s-life-for-children-in-the-digital-age_0854b900-en.html</td>
+<td>보고서/웹</td>
+<td>아동·청소년 디지털 환경의 기회와 위험</td>
+<td>국제 비교·정책 배경자료</td>
+<td>즉시 확인 가능</td>
+</tr>
+<tr>
+<td>Children in the digital environment</td>
+<td>OECD</td>
+<td>https://www.oecd.org/en/topics/children-in-the-digital-environment.html</td>
+<td>웹</td>
+<td>아동 디지털 환경, 온라인 위험, 정책 권고</td>
+<td>디지털 안전 정책 배경</td>
+<td>즉시 확인 가능</td>
+</tr>
+<tr>
+<td>How can the digital world uphold children’s best interests?</td>
+<td>UNICEF Innocenti</td>
+<td>https://www.unicef.org/innocenti/stories/how-can-digital-world-uphold-childrens-best-interests</td>
+<td>웹</td>
+<td>추천 알고리즘, 아동 권리, 편향·유해 콘텐츠 위험</td>
+<td>알고리즘 책임성·아동 권리 관점</td>
+<td>즉시 확인 가능</td>
+</tr>
+<tr>
+<td>Guidance for generative AI in education and research</td>
+<td>UNESCO</td>
+<td>https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research</td>
+<td>웹/보고서</td>
+<td>인간 중심 AI, 교육 정책, 역량 개발, 윤리적 활용</td>
+<td>학교 디지털 리터러시 교육안 참고</td>
+<td>즉시 확인 가능</td>
+</tr>
+<tr>
+<td>Digital literacy for children: 10 things you need to know</td>
+<td>UNICEF Innocenti</td>
+<td>https://www.unicef.org/innocenti/documents/digital-literacy-children-10-things-you-need-know</td>
+<td>웹/보고서</td>
+<td>아동 디지털 리터러시 프레임워크</td>
+<td>교육 프로그램 설계 참고</td>
+<td>즉시 확인 가능</td>
+</tr>
+</tbody></table></div>
+<h3 id="SPSS_Steps">SPSS_Steps</h3>
+<p>SPSS_Steps: 9행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>CSV/XLSX를 SPSS로 불러와 변수 측도 확인</td>
+<td>전체 변수</td>
+<td>파일 → 열기 → 데이터</td>
+<td>문자형 ID와 명목형 변수는 명목, 점수형 변수는 척도로 설정</td>
+</tr>
+<tr>
+<td>2. 빈도분석</td>
+<td>주 이용 플랫폼과 정보 이용 유형 분포 확인</td>
+<td>main_platform, user_type</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>어떤 플랫폼과 유형이 많은지 파악</td>
+</tr>
+<tr>
+<td>3. 기술통계</td>
+<td>이용시간·편향지수·리터러시 평균 확인</td>
+<td>shortform_min, digital_literacy_score, content_bias_index, algorithmic_bias_risk_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>위험 평균과 분포 확인</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>추천 의존도·숏폼 시간·디지털 리터러시와 편향 위험 관계 확인</td>
+<td>recommendation_dependence, shortform_min, digital_literacy_score, algorithmic_bias_risk_score</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>위험을 높이거나 낮추는 요인 해석</td>
+</tr>
+<tr>
+<td>5. 일원배치 분산분석</td>
+<td>정보 이용 유형별 위험점수 차이 검증</td>
+<td>user_type → algorithmic_bias_risk_score</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>어떤 유형이 가장 위험한지 비교</td>
+</tr>
+<tr>
+<td>6. 회귀분석</td>
+<td>알고리즘 편향 위험을 예측하는 주요 변수 확인</td>
+<td>종속: algorithmic_bias_risk_score / 독립: shortform_min, recommendation_dependence, fact_check_frequency, content_category_diversity, digital_literacy_score</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>위험 예측 요인을 찾고 교육 우선순위 결정</td>
+</tr>
+<tr>
+<td>7. 군집분석</td>
+<td>학생의 정보 이용 유형 자동 분류</td>
+<td>shortform_min, source_diversity, fact_check_frequency, recommendation_dependence, digital_literacy_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>균형탐색형·알고리즘의존형 등 유형화</td>
+</tr>
+<tr>
+<td>8. 시각화</td>
+<td>위험점수와 리터러시의 관계 표시</td>
+<td>digital_literacy_score, algorithmic_bias_risk_score</td>
+<td>그래프 → 차트 작성기</td>
+<td>고위험 학생군과 교육 필요 지점 시각화</td>
+</tr>
+</tbody></table></div>
+<h3 id="Summary">Summary</h3>
+<p>Summary: 8행 x 2열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>항목</th>
+<th>내용</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>프로젝트 주제</td>
+<td>AI 추천 알고리즘이 청소년 정보 편향에 미치는 영향</td>
+</tr>
+<tr>
+<td>문제의식</td>
+<td>유튜브·SNS 추천 알고리즘은 학생들의 세계관을 좁히는가</td>
+</tr>
+<tr>
+<td>핵심 데이터</td>
+<td>익명 콘텐츠 이용 패턴, 관심 주제, 추천 콘텐츠 유형, 정보출처 다양성, 알고리즘 이해도</td>
+</tr>
+<tr>
+<td>분석 방법</td>
+<td>콘텐츠 카테고리 분석, 편향 지수 개발, 상관분석, 회귀분석, 군집분석</td>
+</tr>
+<tr>
+<td>산출물</td>
+<td>청소년 디지털 리터러시 교육안</td>
+</tr>
+<tr>
+<td>연결 전공</td>
+<td>컴퓨터과학, 미디어학, 사회학, AI윤리</td>
+</tr>
+<tr>
+<td>시범 데이터 성격</td>
+<td>설문 기반 시범용 가상 데이터 50행</td>
+</tr>
+</tbody></table></div>
+<h2 id="데이터-출처">데이터 출처</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">30_data_sources.xlsx</span></li>
+</ul>
+<h3 id="30_data_sources">30_data_sources</h3>
+<p>30_data_sources: 9행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>다운로드/API 링크</th>
+<th>파일 형식</th>
+<th>주요 변수/내용</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>2024년 청소년 매체이용 및 유해환경 실태조사</td>
+<td>여성가족부/한국청소년정책연구원</td>
+<td>https://www.nypi.re.kr/board/view?bbsId=BOARD00023&amp;menuKey=ppeX4WOS8Y&amp;regNo=FbIUfmTb8W</td>
+<td>보도자료/보고서</td>
+<td>청소년 매체 이용, 숏폼, 생성형 AI 사용, 유해환경</td>
+<td>청소년 미디어 이용 배경자료</td>
+<td>즉시 확인 가능</td>
+</tr>
+<tr>
+<td>2024년 한국미디어패널조사 주요 결과</td>
+<td>정보통신정책연구원 KISDI</td>
+<td>https://www.kisdi.re.kr/report/fileView.do?arrMasterId=4333447&amp;id=1817216&amp;key=m2101113025790</td>
+<td>PDF</td>
+<td>미디어 기기, OTT, SNS, 미디어 활용 현황</td>
+<td>학생 미디어 이용 시간 비교 기준</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>2024 소셜미디어 이용자 조사</td>
+<td>한국언론진흥재단</td>
+<td>https://www.kpf.or.kr/front/board/boardContentsView.do?board_id=246&amp;contents_id=940a3bc4be914ac2a065b8922021728e</td>
+<td>웹/보고서</td>
+<td>소셜미디어 뉴스 이용, 유튜브 이용, 시사정보 채널 인식</td>
+<td>정보 편향·시사정보 이용 배경자료</td>
+<td>즉시 확인 가능</td>
+</tr>
+<tr>
+<td>How’s Life for Children in the Digital Age?</td>
+<td>OECD</td>
+<td>https://www.oecd.org/en/publications/how-s-life-for-children-in-the-digital-age_0854b900-en.html</td>
+<td>보고서/웹</td>
+<td>아동·청소년 디지털 환경의 기회와 위험</td>
+<td>국제 비교·정책 배경자료</td>
+<td>즉시 확인 가능</td>
+</tr>
+<tr>
+<td>Children in the digital environment</td>
+<td>OECD</td>
+<td>https://www.oecd.org/en/topics/children-in-the-digital-environment.html</td>
+<td>웹</td>
+<td>아동 디지털 환경, 온라인 위험, 정책 권고</td>
+<td>디지털 안전 정책 배경</td>
+<td>즉시 확인 가능</td>
+</tr>
+<tr>
+<td>How can the digital world uphold children’s best interests?</td>
+<td>UNICEF Innocenti</td>
+<td>https://www.unicef.org/innocenti/stories/how-can-digital-world-uphold-childrens-best-interests</td>
+<td>웹</td>
+<td>추천 알고리즘, 아동 권리, 편향·유해 콘텐츠 위험</td>
+<td>알고리즘 책임성·아동 권리 관점</td>
+<td>즉시 확인 가능</td>
+</tr>
+<tr>
+<td>Guidance for generative AI in education and research</td>
+<td>UNESCO</td>
+<td>https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research</td>
+<td>웹/보고서</td>
+<td>인간 중심 AI, 교육 정책, 역량 개발, 윤리적 활용</td>
+<td>학교 디지털 리터러시 교육안 참고</td>
+<td>즉시 확인 가능</td>
+</tr>
+<tr>
+<td>Digital literacy for children: 10 things you need to know</td>
+<td>UNICEF Innocenti</td>
+<td>https://www.unicef.org/innocenti/documents/digital-literacy-children-10-things-you-need-know</td>
+<td>웹/보고서</td>
+<td>아동 디지털 리터러시 프레임워크</td>
+<td>교육 프로그램 설계 참고</td>
+<td>즉시 확인 가능</td>
+</tr>
+</tbody></table></div>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

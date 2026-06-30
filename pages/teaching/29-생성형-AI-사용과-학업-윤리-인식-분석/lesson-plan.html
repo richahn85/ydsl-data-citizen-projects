@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>29. 생성형 AI 사용과 학업 윤리 인식 분석 강의 교안 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="29-생성형-AI-사용과-학업-윤리-인식-분석-강의-교안">29. 생성형 AI 사용과 학업 윤리 인식 분석 강의 교안</h1>
+<p>상위 프로젝트: <a href="../../projects/29-%EC%83%9D%EC%84%B1%ED%98%95-AI-%EC%82%AC%EC%9A%A9%EA%B3%BC-%ED%95%99%EC%97%85-%EC%9C%A4%EB%A6%AC-%EC%9D%B8%EC%8B%9D-%EB%B6%84%EC%84%9D/29-%EC%83%9D%EC%84%B1%ED%98%95-AI-%EC%82%AC%EC%9A%A9%EA%B3%BC-%ED%95%99%EC%97%85-%EC%9C%A4%EB%A6%AC-%EC%9D%B8%EC%8B%9D-%EB%B6%84%EC%84%9D.html">생성형 AI 사용과 학업 윤리 인식 분석</a></p>
+<aside class="callout summary">수업 한 줄 설명 본 프로젝트는 용문고 학생들이 생성형 AI를 학습에 활용하는 과정에서 AI 활용과 부정행위의 경계를 어떻게 인식하는지 분석하는 데이터 기반 문제해결 과제이다. 단순히 AI 사용을 금지하거나 허용하는 문제가 아니라, 학생들이 AI를 어떤 목적으로 사용하고, 사용 사실을 밝히며, AI 답변을 검증하고, 출처와 과정을 기록하는지를 종합적으로 살펴본다.</aside>
+<h2 id="수업-목표">수업 목표</h2>
+<ul>
+<li>생활 속 문제를 데이터 기반 탐구 질문으로 바꿀 수 있다.</li>
+<li>코드북과 데이터셋에서 핵심 변수를 찾아 의미를 설명할 수 있다.</li>
+<li>보고서의 표와 시각화를 근거로 분석 결과를 해석할 수 있다.</li>
+<li>분석 결과를 학교 또는 지역사회 개선 제안으로 연결할 수 있다.</li>
+</ul>
+<h2 id="핵심-질문">핵심 질문</h2>
+<ul>
+<li>학습 격차나 윤리 인식은 어떤 데이터로 관찰할 수 있을까?</li>
+<li>AI 사용은 언제 학습 지원이고 언제 부정행위가 될까?</li>
+<li>분석 결과를 학교 규칙이나 학습 가이드로 어떻게 바꿀까?</li>
+</ul>
+<h2 id="준비-자료">준비 자료</h2>
+<ul>
+<li><a href="../../projects/29-%EC%83%9D%EC%84%B1%ED%98%95-AI-%EC%82%AC%EC%9A%A9%EA%B3%BC-%ED%95%99%EC%97%85-%EC%9C%A4%EB%A6%AC-%EC%9D%B8%EC%8B%9D-%EB%B6%84%EC%84%9D/29-%EC%83%9D%EC%84%B1%ED%98%95-AI-%EC%82%AC%EC%9A%A9%EA%B3%BC-%ED%95%99%EC%97%85-%EC%9C%A4%EB%A6%AC-%EC%9D%B8%EC%8B%9D-%EB%B6%84%EC%84%9D.html">프로젝트 개요</a></li>
+<li><a href="../../projects/29-%EC%83%9D%EC%84%B1%ED%98%95-AI-%EC%82%AC%EC%9A%A9%EA%B3%BC-%ED%95%99%EC%97%85-%EC%9C%A4%EB%A6%AC-%EC%9D%B8%EC%8B%9D-%EB%B6%84%EC%84%9D/report.html">보고서</a></li>
+<li><a href="../../projects/29-%EC%83%9D%EC%84%B1%ED%98%95-AI-%EC%82%AC%EC%9A%A9%EA%B3%BC-%ED%95%99%EC%97%85-%EC%9C%A4%EB%A6%AC-%EC%9D%B8%EC%8B%9D-%EB%B6%84%EC%84%9D/data.html">데이터</a></li>
+<li><a href="../../projects/29-%EC%83%9D%EC%84%B1%ED%98%95-AI-%EC%82%AC%EC%9A%A9%EA%B3%BC-%ED%95%99%EC%97%85-%EC%9C%A4%EB%A6%AC-%EC%9D%B8%EC%8B%9D-%EB%B6%84%EC%84%9D/spss.html">SPSS</a></li>
+<li><a href="../../projects/29-%EC%83%9D%EC%84%B1%ED%98%95-AI-%EC%82%AC%EC%9A%A9%EA%B3%BC-%ED%95%99%EC%97%85-%EC%9C%A4%EB%A6%AC-%EC%9D%B8%EC%8B%9D-%EB%B6%84%EC%84%9D/files.html">파일 목록</a></li>
+<li><a href="../../concepts/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EC%8B%9C%EB%AF%BC%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8.html">concepts/데이터 시민 프로젝트</a></li>
+<li><a href="../../concepts/%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EA%B8%B0%EB%B0%98%20%ED%83%90%EA%B5%AC.html">concepts/공공데이터 기반 탐구</a></li>
+<li><a href="../../concepts/%EC%BD%94%EB%93%9C%EB%B6%81%EA%B3%BC%20%EB%B3%80%EC%88%98%20%EC%A0%95%EC%9D%98.html">concepts/코드북과 변수 정의</a></li>
+<li><a href="../../concepts/%EC%8B%9C%EA%B0%81%ED%99%94%EC%99%80%20%EC%A7%80%EB%8F%84%20%ED%91%9C%ED%98%84.html">concepts/시각화와 지도 표현</a></li>
+<li><a href="../../concepts/%EA%B5%90%EC%9C%A1%20%EA%B2%A9%EC%B0%A8%EC%99%80%20AI%20%EC%9C%A4%EB%A6%AC.html">교육 격차와 AI 윤리</a></li>
+</ul>
+<h2 id="50분-수업-흐름">50분 수업 흐름</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>단계</th>
+<th>시간</th>
+<th>교사 활동</th>
+<th>학생 활동</th>
+<th>산출물</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>도입</td>
+<td>5분</td>
+<td>AI 도구 사용, 질문 역량, 사교육 의존처럼 학생들이 직접 체감하는 학습 격차를 토론 질문으로 꺼낸다.</td>
+<td>개인 경험이나 직관을 짧게 공유한다.</td>
+<td>문제 인식 문장</td>
+</tr>
+<tr>
+<td>문제 정의</td>
+<td>8분</td>
+<td>보고서의 프로젝트 개요와 문제 정의를 함께 읽고 핵심 문제를 칠판에 정리한다.</td>
+<td>문제를 데이터 질문으로 바꾸어 적는다.</td>
+<td>핵심 질문 1개</td>
+</tr>
+<tr>
+<td>데이터 이해</td>
+<td>12분</td>
+<td>사용 경험, 인식 척도, 학습 태도, 공개 여부, 검증 행동, 성과 지표를 함께 해석한다.</td>
+<td>데이터 노트에서 변수명, 측정 단위, 분석 단위를 찾는다.</td>
+<td>핵심 변수 3개</td>
+</tr>
+<tr>
+<td>분석 해석</td>
+<td>12분</td>
+<td>보고서의 표와 시각화가 어떤 주장을 뒷받침하는지 묻는다.</td>
+<td>그래프에서 패턴, 예외, 주의점을 찾는다.</td>
+<td>해석 문장 2개</td>
+</tr>
+<tr>
+<td>시민 제안</td>
+<td>10분</td>
+<td>분석 결과를 학교·지역사회·정책 제안으로 연결하도록 안내한다.</td>
+<td>AI/학습 데이터 해석 토론과 학교 가이드라인 초안 작성</td>
+<td>개선 제안 초안</td>
+</tr>
+<tr>
+<td>정리</td>
+<td>3분</td>
+<td>데이터 근거가 있는 학습 윤리 원칙 1개를 쓰게 한다.</td>
+<td>개별 exit ticket을 작성한다.</td>
+<td>퇴장 티켓</td>
+</tr>
+</tbody></table></div>
+<h2 id="학생-활동지-문항">학생 활동지 문항</h2>
+<ol>
+<li>이 프로젝트가 다루는 시민 문제를 한 문장으로 쓰세요.</li>
+<li>데이터 노트에서 가장 중요하다고 생각하는 변수 3개를 고르고 이유를 쓰세요.</li>
+<li>보고서의 그래프나 표 하나를 골라, 무엇을 보여주는지 근거와 함께 설명하세요.</li>
+<li>분석 결과를 바탕으로 학교, 지역사회, 또는 정책 담당자에게 제안할 개선안을 쓰세요.</li>
+<li>이 분석이 더 정확해지려면 어떤 데이터를 추가로 모아야 할지 쓰세요.</li>
+</ol>
+<h2 id="교사용-발문">교사용 발문</h2>
+<ul>
+<li>이 문제는 누구에게 가장 큰 영향을 줄까?</li>
+<li>이 데이터에서 직접 관찰한 사실과 우리가 추론한 해석은 어떻게 구분할 수 있을까?</li>
+<li>그래프가 설득력 있으려면 축, 단위, 비교 기준 중 무엇을 먼저 확인해야 할까?</li>
+<li>분석 결과가 실제 행동으로 이어지려면 누구에게 어떤 방식으로 전달해야 할까?</li>
+</ul>
+<h2 id="보고서-연결-섹션">보고서 연결 섹션</h2>
+<ul>
+<li>1. 프로젝트 개요</li>
+<li>2. 작업 지식 프레임 적용</li>
+<li>3. 문제 정의 카드</li>
+<li>4. 데이터 설명</li>
+<li>5. 실제 데이터 확보 계획</li>
+<li>6. 분석 방법</li>
+<li>7. 분석 결과 예시</li>
+<li>8. 개선 제안서</li>
+<li>9. 한계점과 후속 연구</li>
+<li>10. 나의 진로·전공 관심과의 연결</li>
+<li>11. 에세이형 성찰 문장</li>
+<li>12. 에세이 질문</li>
+</ul>
+<h2 id="수업에서-볼-시각화">수업에서 볼 시각화</h2>
+<p><figure><img src="../../../assets/29-%EC%83%9D%EC%84%B1%ED%98%95-AI-%EC%82%AC%EC%9A%A9%EA%B3%BC-%ED%95%99%EC%97%85-%EC%9C%A4%EB%A6%AC-%EC%9D%B8%EC%8B%9D-%EB%B6%84%EC%84%9D/project29_ai_ethics/29_ai_type_integrity_bar.png" alt="assets/29-생성형-AI-사용과-학업-윤리-인식-분석/project29_ai_ethics/29_ai_type_integrity_bar.png"><figcaption>assets/29-생성형-AI-사용과-학업-윤리-인식-분석/project29_ai_ethics/29_ai_type_integrity_bar.png</figcaption></figure> <figure><img src="../../../assets/29-%EC%83%9D%EC%84%B1%ED%98%95-AI-%EC%82%AC%EC%9A%A9%EA%B3%BC-%ED%95%99%EC%97%85-%EC%9C%A4%EB%A6%AC-%EC%9D%B8%EC%8B%9D-%EB%B6%84%EC%84%9D/project29_ai_ethics/29_boundary_confusion_risk_scatter.png" alt="assets/29-생성형-AI-사용과-학업-윤리-인식-분석/project29_ai_ethics/29_boundary_confusion_risk_scatter.png"><figcaption>assets/29-생성형-AI-사용과-학업-윤리-인식-분석/project29_ai_ethics/29_boundary_confusion_risk_scatter.png</figcaption></figure></p>
+<h2 id="평가-루브릭">평가 루브릭</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>기준</th>
+<th>상</th>
+<th>중</th>
+<th>보완</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>문제 정의</td>
+<td>생활 문제를 명확한 데이터 질문으로 바꾼다.</td>
+<td>문제와 데이터의 관련성을 대체로 설명한다.</td>
+<td>문제가 막연하거나 데이터 질문이 불명확하다.</td>
+</tr>
+<tr>
+<td>데이터 이해</td>
+<td>변수와 분석 단위를 근거 있게 설명한다.</td>
+<td>주요 변수를 찾지만 의미 설명이 일부 부족하다.</td>
+<td>변수명만 나열하고 해석하지 못한다.</td>
+</tr>
+<tr>
+<td>분석 해석</td>
+<td>그래프와 표를 근거로 조심스럽게 해석한다.</td>
+<td>패턴은 찾지만 근거 표현이 약하다.</td>
+<td>근거 없이 결론을 단정한다.</td>
+</tr>
+<tr>
+<td>시민 제안</td>
+<td>현실적인 개선안과 확인 지표를 함께 제시한다.</td>
+<td>개선안은 있으나 실행 조건이 부족하다.</td>
+<td>제안이 분석 결과와 잘 연결되지 않는다.</td>
+</tr>
+</tbody></table></div>
+<h2 id="확장-활동">확장 활동</h2>
+<ul>
+<li>같은 주제의 다른 프로젝트와 비교해 공통 변수와 차이 변수를 찾는다.</li>
+<li>원본 CSV를 열어 직접 정렬, 필터링, 간단한 평균 비교를 해본다.</li>
+<li>개선 제안을 3문장 정책 제안서 또는 1장 포스터로 바꾼다.</li>
+<li>후속 조사 계획을 세우고, 실제 수집 가능한 데이터와 민감한 데이터를 구분한다.</li>
+</ul>
+<h2 id="관련">관련</h2>
+<ul>
+<li><a href="../index.html">강의 교안 Index</a></li>
+<li><a href="../../synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">synthesis/30개 프로젝트 주제 지도</a></li>
+<li><a href="../../synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">synthesis/데이터 활용 패턴</a></li>
+</ul>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

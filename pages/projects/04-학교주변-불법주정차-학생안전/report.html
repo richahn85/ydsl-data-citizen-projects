@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>학교주변 불법주정차 학생안전 - 보고서 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="학교주변-불법주정차-학생안전---보고서">학교주변 불법주정차 학생안전 - 보고서</h1>
+<p>상위 노트: <a href="04-%ED%95%99%EA%B5%90%EC%A3%BC%EB%B3%80-%EB%B6%88%EB%B2%95%EC%A3%BC%EC%A0%95%EC%B0%A8-%ED%95%99%EC%83%9D%EC%95%88%EC%A0%84.html">학교주변 불법주정차 학생안전</a></p>
+<p>원본 문서: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">04_report.docx</span></p>
+<p>학교 주변 불법주정차가 학생 안전에 미치는 영향</p>
+<p>용문고 YDSL 데이터 기반 문제해결 프로젝트 04</p>
+<p>※ 본 보고서의 분석 데이터는 공식 공공데이터 구조를 반영한 시범용 가상 데이터입니다. 실제 제출 시에는 서울시 불법주정차 단속 정보, 횡단보도·버스정류소 위치정보, TAAS 사고자료, 학생 현장 관찰기록으로 교체해야 합니다.</p>
+<h2 id="1-프로젝트-개요">1. 프로젝트 개요</h2>
+<p>본 프로젝트는 학교 주변 불법주정차 차량이 학생들의 보행 안전에 어떤 영향을 미치는지 데이터로 확인하기 위한 분석이다. 불법주정차 차량은 횡단보도와 골목 입구에서 학생의 시야를 가리고, 운전자도 보행자를 늦게 발견하게 만든다. 이 문제는 학생 개인의 부주의가 아니라 통학 환경과 도로 관리 시스템의 문제로 볼 수 있다.</p>
+<p>핵심 질문은 다음과 같다. “불법주정차 차량이 학생들의 시야를 가리고 사고 위험을 높이는가?” 이 질문에 답하기 위해 불법주정차 단속 데이터, 교통사고 위치, 횡단보도 위치, 버스정류장 위치, 현장 관찰 기록을 결합한다.</p>
+<h2 id="2-작업-지식-프레임-적용">2. 작업 지식 프레임 적용</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>단계</th>
+<th>적용 내용</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>내 주변에서 발견한 불편함</td>
+<td>등하교 시간 횡단보도와 골목 입구에 정차된 차량 때문에 학생들이 차도 쪽으로 돌아 걷거나, 차량 사이로 길을 건너는 상황을 관찰했다.</td>
+</tr>
+<tr>
+<td>데이터로 측정 가능한 문제</td>
+<td>30분 관찰 불법주정차 차량 수, 최근 1년 단속 건수, 보행자 사고 건수, 시야 방해 점수, 학생 보행량으로 측정한다.</td>
+</tr>
+<tr>
+<td>분석·예측·시각화 가능</td>
+<td>위험점수화, 상관분석, 회귀분석, 군집분석, SPSS 산점도 지도화를 수행한다.</td>
+</tr>
+<tr>
+<td>학교·지역사회·공공기관에 제안 가능</td>
+<td>학교, 학부모회, 성북구청, 경찰서에 집중 단속구간, 노면표시, CCTV, 통학지도 인력 배치 등을 제안한다.</td>
+</tr>
+<tr>
+<td>나의 전공 관심과 연결 가능</td>
+<td>도시행정, 교통공학, 공공데이터 분석, 데이터사이언스, 안전정책과 연결된다.</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-문제-정의-카드">3. 문제 정의 카드</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>질문</th>
+<th>답변</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>내가 본 문제는 무엇인가?</td>
+<td>학교 주변 골목과 횡단보도 앞에 불법주정차 차량이 서 있어 학생 보행자의 시야가 가려지는 문제이다.</td>
+</tr>
+<tr>
+<td>왜 중요한가?</td>
+<td>학생은 매일 같은 시간 같은 길을 이용하므로 작은 시야 방해도 반복 노출되면 사고 위험으로 이어질 수 있다.</td>
+</tr>
+<tr>
+<td>어떤 데이터를 사용할 것인가?</td>
+<td>불법주정차 단속 정보, CCTV 위치, 횡단보도 위치, 버스정류장 위치, TAAS 사고자료, 학생 현장 관찰 기록이다.</td>
+</tr>
+<tr>
+<td>어떤 분석을 할 것인가?</td>
+<td>불법주정차 밀도와 사고 위치를 비교하고, 시야방해 점수와 학생 보행량을 결합해 종합 위험점수를 만든다.</td>
+</tr>
+<tr>
+<td>누구에게 제안할 것인가?</td>
+<td>학교, 성북구청 교통지도과, 관할 경찰서, 학부모회에 제안한다.</td>
+</tr>
+<tr>
+<td>전공 관심과 어떻게 연결되는가?</td>
+<td>공공데이터로 도시 안전 문제를 발견하고, 사람 중심의 보행환경 개선을 설계하는 경험으로 연결된다.</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-데이터-설계">4. 데이터 설계</h2>
+<p>분석 단위는 학교 주변의 도로 구간이다. 한 행은 하나의 관찰 구간을 의미한다. 시범 데이터는 50개 구간으로 구성했고, 학생들이 SPSS에서 바로 분석할 수 있도록 변수명을 영문으로 정리했다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>설명</th>
+<th>단위</th>
+<th>SPSS 측도</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>segment_id</td>
+<td>도로 구간 ID</td>
+<td>문자</td>
+<td>명목</td>
+<td>분석 단위. 한 행은 하나의 관찰 구간</td>
+</tr>
+<tr>
+<td>segment_name</td>
+<td>도로 구간명</td>
+<td>문자</td>
+<td>명목</td>
+<td>학생이 이해하기 쉬운 구간명</td>
+</tr>
+<tr>
+<td>road_type</td>
+<td>도로 유형</td>
+<td>범주</td>
+<td>명목</td>
+<td>school_gate, alley, bus_stop, arterial, commercial 등</td>
+</tr>
+<tr>
+<td>lat</td>
+<td>위도</td>
+<td>WGS84</td>
+<td>척도</td>
+<td>지도 시각화용 시범 좌표</td>
+</tr>
+<tr>
+<td>lon</td>
+<td>경도</td>
+<td>WGS84</td>
+<td>척도</td>
+<td>지도 시각화용 시범 좌표</td>
+</tr>
+<tr>
+<td>x_m</td>
+<td>학교 기준 X좌표</td>
+<td>m</td>
+<td>척도</td>
+<td>SPSS 산점도 지도용 상대좌표</td>
+</tr>
+<tr>
+<td>y_m</td>
+<td>학교 기준 Y좌표</td>
+<td>m</td>
+<td>척도</td>
+<td>SPSS 산점도 지도용 상대좌표</td>
+</tr>
+<tr>
+<td>distance_school_m</td>
+<td>학교와의 거리</td>
+<td>m</td>
+<td>척도</td>
+<td>학교에서 가까울수록 통학 노출도가 높다고 가정</td>
+</tr>
+<tr>
+<td>observation_time</td>
+<td>관찰 시간대</td>
+<td>범주</td>
+<td>명목</td>
+<td>등교/하교/혼합 관찰 구분</td>
+</tr>
+<tr>
+<td>observed_illegal_vehicles_30min</td>
+<td>30분 관찰 불법주정차 차량 수</td>
+<td>대</td>
+<td>척도</td>
+<td>학생 현장 관찰 또는 사진 기록으로 수집 가능</td>
+</tr>
+<tr>
+<td>enforcement_cases_1yr</td>
+<td>최근 1년 단속 건수</td>
+<td>건</td>
+<td>척도</td>
+<td>서울시 불법주정차 단속 정보 대체 변수</td>
+</tr>
+<tr>
+<td>fixed_cctv_100m</td>
+<td>반경 100m 단속 CCTV 여부</td>
+<td>0/1</td>
+<td>명목</td>
+<td>0=없음, 1=있음</td>
+</tr>
+<tr>
+<td>crosswalk_count_100m</td>
+<td>반경 100m 횡단보도 수</td>
+<td>개</td>
+<td>척도</td>
+<td>횡단보도 위치자료로 산출</td>
+</tr>
+<tr>
+<td>bus_stop_count_100m</td>
+<td>반경 100m 버스정류장 수</td>
+<td>개</td>
+<td>척도</td>
+<td>버스정류소 위치자료로 산출</td>
+</tr>
+<tr>
+<td>accident_count_3yr</td>
+<td>최근 3년 교통사고 건수</td>
+<td>건</td>
+<td>척도</td>
+<td>TAAS 사고조회 또는 시범용 값</td>
+</tr>
+</tbody></table></div>
+<p>※ 전체 변수 설명은 04_codebook.xlsx 파일에 수록되어 있다.</p>
+<h2 id="5-위험점수-산출-방식">5. 위험점수 산출 방식</h2>
+<p>종합 안전위험 점수는 100점 만점으로 산출한다. 점수는 불법주정차 밀도, 시야방해, 학생 노출, 사고 이력, 학교 근접성을 반영한다.</p>
+<p>safety_risk_score = 0.35×parking_density_score + 0.25×visibility_score + 0.20×exposure_score + 0.15×accident_score + 0.05×near_school_score</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>구성요소</th>
+<th>가중치</th>
+<th>반영 변수</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>불법주정차 밀도</td>
+<td>35%</td>
+<td>관찰 차량 수와 단속 건수</td>
+</tr>
+<tr>
+<td>시야방해 위험</td>
+<td>25%</td>
+<td>시야 방해 점수와 보도 폭 협소</td>
+</tr>
+<tr>
+<td>학생 노출</td>
+<td>20%</td>
+<td>학생 보행량, 버스정류장, 횡단보도 수</td>
+</tr>
+<tr>
+<td>사고 이력</td>
+<td>15%</td>
+<td>최근 3년 사고 및 보행자 사고</td>
+</tr>
+<tr>
+<td>학교 근접성</td>
+<td>5%</td>
+<td>학교와의 거리</td>
+</tr>
+</tbody></table></div>
+<h2 id="6-분석-결과-예시">6. 분석 결과 예시</h2>
+<p>시범 데이터 50개 구간의 평균 위험점수는 50.8점이며, 매우 높음 구간은 6개, 높음 구간은 10개로 나타났다. 위험 1순위 구간은 정문 앞 횡단보도 27이며, 위험점수는 80.1점이다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>순위</th>
+<th>ID</th>
+<th>구간명</th>
+<th>불법주정차</th>
+<th>시야방해</th>
+<th>학생보행량</th>
+<th>위험점수</th>
+<th>등급</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>P27</td>
+<td>정문 앞 횡단보도 27</td>
+<td>12</td>
+<td>5</td>
+<td>471</td>
+<td>80.1</td>
+<td>매우 높음</td>
+</tr>
+<tr>
+<td>2</td>
+<td>P43</td>
+<td>학원가·상가 밀집 구간 43</td>
+<td>12</td>
+<td>5</td>
+<td>395</td>
+<td>79.4</td>
+<td>매우 높음</td>
+</tr>
+<tr>
+<td>3</td>
+<td>P34</td>
+<td>시장·상가 앞 도로 34</td>
+<td>9</td>
+<td>5</td>
+<td>463</td>
+<td>78.8</td>
+<td>매우 높음</td>
+</tr>
+<tr>
+<td>4</td>
+<td>P47</td>
+<td>시장·상가 앞 도로 47</td>
+<td>15</td>
+<td>5</td>
+<td>302</td>
+<td>77.2</td>
+<td>매우 높음</td>
+</tr>
+<tr>
+<td>5</td>
+<td>P18</td>
+<td>시장·상가 앞 도로 18</td>
+<td>11</td>
+<td>5</td>
+<td>370</td>
+<td>76.2</td>
+<td>매우 높음</td>
+</tr>
+<tr>
+<td>6</td>
+<td>P05</td>
+<td>시장·상가 앞 도로 05</td>
+<td>13</td>
+<td>5</td>
+<td>335</td>
+<td>75.2</td>
+<td>매우 높음</td>
+</tr>
+<tr>
+<td>7</td>
+<td>P28</td>
+<td>버스정류장 인접 구간 28</td>
+<td>9</td>
+<td>4</td>
+<td>441</td>
+<td>69.3</td>
+<td>높음</td>
+</tr>
+<tr>
+<td>8</td>
+<td>P06</td>
+<td>버스정류장 인접 구간 06</td>
+<td>9</td>
+<td>4</td>
+<td>384</td>
+<td>67.3</td>
+<td>높음</td>
+</tr>
+</tbody></table></div>
+<p>해석: 위험점수가 높은 구간은 단순히 차량이 많이 주차된 곳이 아니라, 불법주정차 차량 수, 학생 보행량, 횡단보도 또는 버스정류장 인접성, 시야 방해가 동시에 높게 나타나는 구간이다. 따라서 단속만으로는 충분하지 않고 보행 동선, 노면표시, 시야확보 시설을 함께 개선해야 한다.</p>
+<p>그림 1. 불법주정차 안전위험 상위 10개 구간</p>
+<p>그림 2. 학교 기준 상대좌표 기반 불법주정차 안전지도</p>
+<p>그림 3. 불법주정차 밀도와 시야방해 위험의 관계</p>
+<h2 id="7-SPSS-분석-절차-요약">7. SPSS 분석 절차 요약</h2>
+<p>SPSS에서는 먼저 기술통계로 위험점수 분포를 확인하고, 상관분석으로 불법주정차와 시야방해·사고의 관계를 확인한다. 이후 선형회귀분석으로 위험점수에 영향을 주는 요인을 비교하고, K-평균 군집분석으로 위험구간 유형을 분류한다. 마지막으로 x_m, y_m을 사용해 산점도형 위험지도를 만든다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 확인</td>
+<td>결측치와 이상값 확인</td>
+<td>모든 변수</td>
+<td>분석 → 기술통계량 → 빈도분석/기술통계</td>
+<td>불법주정차 차량 수, 사고건수, 학생 보행량의 범위 확인</td>
+</tr>
+<tr>
+<td>2. 위험점수 기술통계</td>
+<td>전체 위험 수준 파악</td>
+<td>safety_risk_score, parking_density_score, visibility_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>평균, 표준편차, 최댓값으로 위험의 분산 확인</td>
+</tr>
+<tr>
+<td>3. 위험등급 빈도분석</td>
+<td>매우 높음/높음 구간 비율 확인</td>
+<td>risk_grade</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>우선 개선 대상 규모 파악</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>불법주정차와 시야방해·사고의 관계 확인</td>
+<td>observed_illegal_vehicles_30min, enforcement_cases_1yr, blind_spot_score, accident_count_3yr, safety_risk_score</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>불법주정차가 많을수록 위험점수가 증가하는지 확인</td>
+</tr>
+<tr>
+<td>5. 회귀분석</td>
+<td>종합 위험점수의 설명 요인 확인</td>
+<td>종속: safety_risk_score / 독립: observed_illegal_vehicles_30min, blind_spot_score, student_flow_30min, accident_count_3yr, sidewalk_width_m</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>어떤 요인이 위험점수를 가장 많이 설명하는지 비교</td>
+</tr>
+<tr>
+<td>6. 군집분석</td>
+<td>위험구간 유형 분류</td>
+<td>parking_density_score, visibility_score, exposure_score, accident_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>불법주정차·시야방해형, 학생노출형, 사고이력형 등으로 해석</td>
+</tr>
+<tr>
+<td>7. 지도 시각화</td>
+<td>위험구간 공간분포 표시</td>
+<td>x_m, y_m, safety_risk_score, risk_grade</td>
+<td>그래프 → 차트 작성기 → 산점도</td>
+<td>학교 기준 좌표 위에 위험점수를 점 크기로 표시</td>
+</tr>
+</tbody></table></div>
+<h2 id="8-개선-제안서">8. 개선 제안서</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>제안 대상</th>
+<th>제안 내용</th>
+<th>근거 데이터</th>
+<th>기대 효과</th>
+<th>난이도</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>학교</td>
+<td>등하교 시간 위험 상위 5개 구간에 교통지도 인력 배치</td>
+<td>위험점수·학생보행량·시야방해 점수</td>
+<td>학생의 우회보행과 차도 진입 감소</td>
+<td>중</td>
+</tr>
+<tr>
+<td>성북구청</td>
+<td>횡단보도 전후 5m 주정차 금지 노면표시 및 이동형 CCTV 단속</td>
+<td>불법주정차 차량 수·단속 건수</td>
+<td>시야 확보와 불법정차 억제</td>
+<td>중</td>
+</tr>
+<tr>
+<td>경찰서</td>
+<td>상위 위험구간 집중 단속 및 계도 기간 운영</td>
+<td>불법주정차 밀도·사고 이력</td>
+<td>운전자 경각심 강화</td>
+<td>중</td>
+</tr>
+<tr>
+<td>학부모회</td>
+<td>등하교 시간 자가용 정차 위치 분산 안내</td>
+<td>정문 앞 혼잡도·학생보행량</td>
+<td>정문 앞 병목과 임시정차 감소</td>
+<td>낮음</td>
+</tr>
+<tr>
+<td>학생회</td>
+<td>월 1회 안전 사진 조사와 위험지도 업데이트</td>
+<td>현장 관찰 사진·시야방해 점수</td>
+<td>학생 참여형 안전문화 형성</td>
+<td>낮음</td>
+</tr>
+</tbody></table></div>
+<h2 id="9-한계점과-후속-연구">9. 한계점과 후속 연구</h2>
+<p>본 시범 분석은 가상 데이터를 사용했기 때문에 실제 위험구간을 단정할 수 없다. 실제 프로젝트에서는 서울시 불법주정차 단속 정보와 TAAS 사고자료를 내려받아 학교 반경 500m 또는 1km 구간만 추출해야 한다. 또한 학생 현장 관찰은 조사자별 판단 차이가 있을 수 있으므로 같은 구간을 여러 학생이 반복 관찰하는 방식이 필요하다.</p>
+<p>후속 연구로는 비 오는 날, 등교 시간과 하교 시간, 시험기간과 평상시를 구분하여 불법주정차와 보행 안전의 변화를 비교할 수 있다. 더 발전시키면 Google My Maps 또는 QGIS를 활용해 사진이 포함된 위험지도 보고서를 만들 수 있다.</p>
+<h2 id="10-나의-진로-전공-관심과의-연결">10. 나의 진로·전공 관심과의 연결</h2>
+<p>이 프로젝트는 도시행정, 교통공학, 공공데이터 분석, 데이터사이언스와 연결된다. 학생은 단순히 “차가 불편하게 서 있다”고 말하는 데서 끝나지 않고, 데이터를 통해 어느 구간이 왜 위험한지 설명하고 개선안을 제안할 수 있다. 이것은 사람을 먼저 생각하는 도시와 학교를 만들기 위한 데이터 기반 시민 프로젝트다.</p>
+<h2 id="11-에세이형-성찰-문장">11. 에세이형 성찰 문장</h2>
+<p>처음에는 불법주정차를 단순한 운전자 개인의 문제로 생각했다. 그러나 데이터를 정리하면서 불법주정차는 학생 보행량, 횡단보도 위치, 정류장 혼잡, 도로 폭, 단속 사각지대가 함께 만든 구조적 문제라는 것을 알게 되었다. 이 분석을 통해 나는 안전이 개인의 조심성만으로 만들어지는 것이 아니라, 학교와 지역사회가 함께 설계해야 하는 공공의 책임이라는 점을 배웠다.</p>
+<h2 id="12-실제-데이터-출처">12. 실제 데이터 출처</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>형식</th>
+<th>확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>서울시 불법주정차 단속 정보</td>
+<td>서울특별시</td>
+<td>CSV/파일</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울특별시_불법주정차 단속 정보</td>
+<td>공공데이터포털/서울특별시</td>
+<td>CSV</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 불법주정차/전용차로 위반 단속 CCTV 위치정보</td>
+<td>서울특별시</td>
+<td>API/조회</td>
+<td>API 또는 조회 필요</td>
+</tr>
+<tr>
+<td>서울시 대로변 횡단보도 위치정보</td>
+<td>서울특별시</td>
+<td>API/CSV</td>
+<td>API 또는 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 자치구별 신호등 및 횡단보도 위치 및 현황</td>
+<td>서울특별시</td>
+<td>XLSX</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 버스정류소 위치정보</td>
+<td>서울특별시</td>
+<td>CSV/XLSX</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>TAAS 교통사고 GIS 분석시스템</td>
+<td>한국도로교통공단</td>
+<td>GIS/웹조회</td>
+<td>지도 조회 후 수작업 필요</td>
+</tr>
+<tr>
+<td>한국도로교통공단 보행자 교통사고 다발지역 API</td>
+<td>한국도로교통공단</td>
+<td>API/JSON/XML</td>
+<td>회원가입/API키 필요</td>
+</tr>
+<tr>
+<td>현장 관찰 기록지</td>
+<td>학생 직접 조사</td>
+<td>XLSX/Google Forms</td>
+<td>학생 설문/현장조사 필요</td>
+</tr>
+</tbody></table></div>
+<p>자세한 URL은 04_data_sources.xlsx 파일의 Sources 시트를 확인한다.</p>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

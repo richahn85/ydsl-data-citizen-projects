@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 추천 알고리즘이 청소년 정보 편향에 미치는 영향 - 보고서 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="AI-추천-알고리즘이-청소년-정보-편향에-미치는-영향---보고서">AI 추천 알고리즘이 청소년 정보 편향에 미치는 영향 - 보고서</h1>
+<p>상위 노트: <a href="30-AI-%EC%B6%94%EC%B2%9C-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%B4-%EC%B2%AD%EC%86%8C%EB%85%84-%EC%A0%95%EB%B3%B4-%ED%8E%B8%ED%96%A5%EC%97%90-%EB%AF%B8%EC%B9%98%EB%8A%94-%EC%98%81%ED%96%A5.html">AI 추천 알고리즘이 청소년 정보 편향에 미치는 영향</a></p>
+<p>원본 문서: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">30_report.docx</span></p>
+<p>AI 추천 알고리즘이 청소년 정보 편향에 미치는 영향</p>
+<p>청소년 디지털 리터러시 교육안 개발을 위한 데이터 기반 분석 보고서</p>
+<h2 id="1-프로젝트-개요">1. 프로젝트 개요</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>항목</th>
+<th>내용</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>문제의식</td>
+<td>유튜브·SNS 추천 알고리즘은 학생들의 세계관을 좁히는가</td>
+</tr>
+<tr>
+<td>왜 중요한가</td>
+<td>청소년은 추천 피드를 통해 정보를 접하는 비중이 크다. 정보가 반복적으로 한 방향으로 추천되면 세계관이 좁아지고, 사회적 쟁점에 대한 균형 잡힌 판단이 어려워질 수 있다.</td>
+</tr>
+<tr>
+<td>학생 경험과 연결</td>
+<td>학생들이 “알고리즘이 계속 비슷한 영상만 보여준다”는 경험을 실제 데이터로 측정하고, 정보 편향을 줄이는 행동 전략을 설계한다.</td>
+</tr>
+<tr>
+<td>분석 방법</td>
+<td>콘텐츠 카테고리 분석, 편향 지수 개발, 상관분석, 회귀분석, 군집분석</td>
+</tr>
+<tr>
+<td>산출물</td>
+<td>청소년 디지털 리터러시 교육안</td>
+</tr>
+<tr>
+<td>연결 전공</td>
+<td>컴퓨터과학, 미디어학, 사회학, AI윤리</td>
+</tr>
+</tbody></table></div>
+<h2 id="2-문제-정의-카드">2. 문제 정의 카드</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>항목</th>
+<th>내용</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>내가 본 문제는 무엇인가?</td>
+<td>학생들이 숏폼·SNS·유튜브를 통해 정보를 얻지만, 추천 피드가 비슷한 주제와 관점의 콘텐츠를 반복적으로 보여주는 현상이 있다.</td>
+</tr>
+<tr>
+<td>왜 이 문제가 나에게 중요한가?</td>
+<td>온라인 정보 소비는 단순한 취미가 아니라 진로, 사회 인식, 가치관 형성에 영향을 준다. 따라서 학생의 세계관을 넓히는 교육적 개입이 필요하다.</td>
+</tr>
+<tr>
+<td>어떤 데이터를 사용할 것인가?</td>
+<td>익명 콘텐츠 이용 패턴, 주 이용 플랫폼, 관심 주제, 추천 콘텐츠 유형, 정보 출처 다양성, 팩트체크 습관, 알고리즘 이해도 설문을 사용한다.</td>
+</tr>
+<tr>
+<td>어떤 분석을 할 것인가?</td>
+<td>동일 주제 추천 비율, 반대 관점 노출 비율, 콘텐츠 다양성, 추천 피드 의존도 등을 결합해 콘텐츠 편향 지수와 알고리즘 편향 위험점수를 산출한다.</td>
+</tr>
+<tr>
+<td>누구에게 제안할 것인가?</td>
+<td>학교, 정보·컴퓨터 교사, 진로부, 학생자치회, 학부모회에 디지털 리터러시 교육안을 제안한다.</td>
+</tr>
+<tr>
+<td>전공 관심과 어떻게 연결되는가?</td>
+<td>컴퓨터과학의 추천 시스템 원리, 미디어학의 정보 소비, 사회학의 확증편향, AI윤리의 책임 있는 알고리즘 문제를 함께 탐구한다.</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-데이터-설계">3. 데이터 설계</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>변수 설명</th>
+<th>SPSS 측도</th>
+<th>코딩/값</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>student_id</td>
+<td>익명 학생 ID</td>
+<td>명목</td>
+<td>S001~S050</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>학년</td>
+<td>서열</td>
+<td>1=1학년, 2=2학년, 3=3학년</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>성별</td>
+<td>명목</td>
+<td>남, 여</td>
+</tr>
+<tr>
+<td>main_platform</td>
+<td>가장 많이 이용하는 플랫폼</td>
+<td>명목</td>
+<td>YouTube, TikTok, Instagram, Naver/News, Mixed</td>
+</tr>
+<tr>
+<td>interest_topic</td>
+<td>주 관심 콘텐츠 주제</td>
+<td>명목</td>
+<td>진로/교육, 정치사회, 게임/엔터 등</td>
+</tr>
+<tr>
+<td>daily_youtube_min</td>
+<td>하루 유튜브 사용시간</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+</tr>
+<tr>
+<td>daily_sns_min</td>
+<td>하루 SNS 사용시간</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+</tr>
+<tr>
+<td>shortform_min</td>
+<td>하루 숏폼 시청시간</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+</tr>
+<tr>
+<td>news_min</td>
+<td>하루 뉴스·시사 콘텐츠 이용시간</td>
+<td>척도</td>
+<td>0 이상 정수</td>
+</tr>
+<tr>
+<td>news_source_diversity</td>
+<td>정보 출처 다양성</td>
+<td>척도</td>
+<td>1~6</td>
+</tr>
+<tr>
+<td>content_category_diversity</td>
+<td>콘텐츠 카테고리 다양성</td>
+<td>척도</td>
+<td>1~6</td>
+</tr>
+<tr>
+<td>recommended_same_topic_ratio</td>
+<td>추천 콘텐츠 중 동일 주제 비율</td>
+<td>척도</td>
+<td>0~100</td>
+</tr>
+<tr>
+<td>recommended_opposing_view_ratio</td>
+<td>반대 관점 콘텐츠 노출 비율</td>
+<td>척도</td>
+<td>0~100</td>
+</tr>
+<tr>
+<td>recommendation_dependence</td>
+<td>추천 피드 의존도</td>
+<td>서열</td>
+<td>1=낮음, 5=높음</td>
+</tr>
+</tbody></table></div>
+<p>전체 데이터셋은 50명의 익명 학생 응답으로 구성된 시범용 가상 데이터이다. 실제 조사에서는 학생 개인정보를 수집하지 않고, 콘텐츠 이용 패턴과 인식만 익명으로 수집해야 한다.</p>
+<h2 id="4-실제-데이터-확보-계획">4. 실제 데이터 확보 계획</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>데이터명</th>
+<th>제공기관</th>
+<th>파일 형식</th>
+<th>활용 목적</th>
+<th>실제 확보 가능성</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>2024년 청소년 매체이용 및 유해환경 실태조사</td>
+<td>여성가족부/한국청소년정책연구원</td>
+<td>보도자료/보고서</td>
+<td>청소년 미디어 이용 배경자료</td>
+<td>즉시 확인 가능</td>
+</tr>
+<tr>
+<td>2024년 한국미디어패널조사 주요 결과</td>
+<td>정보통신정책연구원 KISDI</td>
+<td>PDF</td>
+<td>학생 미디어 이용 시간 비교 기준</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>2024 소셜미디어 이용자 조사</td>
+<td>한국언론진흥재단</td>
+<td>웹/보고서</td>
+<td>정보 편향·시사정보 이용 배경자료</td>
+<td>즉시 확인 가능</td>
+</tr>
+<tr>
+<td>How’s Life for Children in the Digital Age?</td>
+<td>OECD</td>
+<td>보고서/웹</td>
+<td>국제 비교·정책 배경자료</td>
+<td>즉시 확인 가능</td>
+</tr>
+<tr>
+<td>Children in the digital environment</td>
+<td>OECD</td>
+<td>웹</td>
+<td>디지털 안전 정책 배경</td>
+<td>즉시 확인 가능</td>
+</tr>
+<tr>
+<td>How can the digital world uphold children’s best interests?</td>
+<td>UNICEF Innocenti</td>
+<td>웹</td>
+<td>알고리즘 책임성·아동 권리 관점</td>
+<td>즉시 확인 가능</td>
+</tr>
+<tr>
+<td>Guidance for generative AI in education and research</td>
+<td>UNESCO</td>
+<td>웹/보고서</td>
+<td>학교 디지털 리터러시 교육안 참고</td>
+<td>즉시 확인 가능</td>
+</tr>
+<tr>
+<td>Digital literacy for children: 10 things you need to know</td>
+<td>UNICEF Innocenti</td>
+<td>웹/보고서</td>
+<td>교육 프로그램 설계 참고</td>
+<td>즉시 확인 가능</td>
+</tr>
+</tbody></table></div>
+<h2 id="5-분석-방법">5. 분석 방법</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>CSV/XLSX를 SPSS로 불러와 변수 측도 확인</td>
+<td>파일 → 열기 → 데이터</td>
+<td>문자형 ID와 명목형 변수는 명목, 점수형 변수는 척도로 설정</td>
+</tr>
+<tr>
+<td>2. 빈도분석</td>
+<td>주 이용 플랫폼과 정보 이용 유형 분포 확인</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>어떤 플랫폼과 유형이 많은지 파악</td>
+</tr>
+<tr>
+<td>3. 기술통계</td>
+<td>이용시간·편향지수·리터러시 평균 확인</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>위험 평균과 분포 확인</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>추천 의존도·숏폼 시간·디지털 리터러시와 편향 위험 관계 확인</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>위험을 높이거나 낮추는 요인 해석</td>
+</tr>
+<tr>
+<td>5. 일원배치 분산분석</td>
+<td>정보 이용 유형별 위험점수 차이 검증</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>어떤 유형이 가장 위험한지 비교</td>
+</tr>
+<tr>
+<td>6. 회귀분석</td>
+<td>알고리즘 편향 위험을 예측하는 주요 변수 확인</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>위험 예측 요인을 찾고 교육 우선순위 결정</td>
+</tr>
+<tr>
+<td>7. 군집분석</td>
+<td>학생의 정보 이용 유형 자동 분류</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>균형탐색형·알고리즘의존형 등 유형화</td>
+</tr>
+<tr>
+<td>8. 시각화</td>
+<td>위험점수와 리터러시의 관계 표시</td>
+<td>그래프 → 차트 작성기</td>
+<td>고위험 학생군과 교육 필요 지점 시각화</td>
+</tr>
+</tbody></table></div>
+<h2 id="6-분석-결과-예시">6. 분석 결과 예시</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>핵심 지표</th>
+<th>값</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>평균 숏폼 시청시간</td>
+<td>74.2분</td>
+</tr>
+<tr>
+<td>평균 정보 출처 다양성</td>
+<td>2.3개</td>
+</tr>
+<tr>
+<td>평균 콘텐츠 편향 지수</td>
+<td>58.2점</td>
+</tr>
+<tr>
+<td>평균 알고리즘 편향 위험점수</td>
+<td>43.4점</td>
+</tr>
+<tr>
+<td>고위험 학생 비율(70점 이상)</td>
+<td>4.0%</td>
+</tr>
+</tbody></table></div>
+<p>시범 데이터에서는 숏폼 시청시간과 추천 피드 의존도가 높을수록 알고리즘 정보 편향 위험점수가 높아지는 경향이 나타났다. 반대로 정보 출처 다양성, 팩트체크 빈도, 의도적 다양한 콘텐츠 탐색 행동이 높은 학생은 위험점수가 낮았다. 이는 청소년의 정보 편향이 개인의 성향만이 아니라 플랫폼 구조, 추천 시스템, 미디어 리터러시 수준이 함께 만든 결과임을 보여준다.</p>
+<p>그림 1. 디지털 리터러시 점수와 알고리즘 편향 위험점수의 관계</p>
+<p>그림 2. 정보 이용 유형별 평균 알고리즘 편향 위험점수</p>
+<p>그림 3. 주 이용 플랫폼별 동일 주제 추천 비율</p>
+<h2 id="7-개선-제안서">7. 개선 제안서</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>제안 대상</th>
+<th>제안 내용</th>
+<th>근거 데이터</th>
+<th>기대 효과</th>
+<th>실행 난이도</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>학교</td>
+<td>1학년 공통 디지털 리터러시 수업에 “추천 알고리즘과 필터버블” 단원을 신설한다.</td>
+<td>알고리즘 이해도가 낮고 추천 피드 의존도가 높은 학생군의 위험점수 상승</td>
+<td>추천 시스템을 비판적으로 이해하고 정보 편향을 줄임</td>
+<td>중</td>
+</tr>
+<tr>
+<td>정보·컴퓨터 교사</td>
+<td>유튜브·SNS 추천 피드 관찰일지를 작성하게 하고, 동일 주제 반복 추천 비율을 직접 계산하게 한다.</td>
+<td>recommended_same_topic_ratio와 content_bias_index 활용</td>
+<td>학생이 자신의 정보 소비를 데이터로 성찰</td>
+<td>하</td>
+</tr>
+<tr>
+<td>진로부</td>
+<td>진로·사회 이슈 탐색 과제에서 최소 3개 출처와 반대 관점 1개를 포함하도록 안내한다.</td>
+<td>정보 출처 다양성이 높을수록 위험점수 감소</td>
+<td>진로 탐색의 폭과 사회적 판단력 확장</td>
+<td>하</td>
+</tr>
+<tr>
+<td>학생자치회</td>
+<td>“관심사 확장 주간”을 운영해 서로 다른 주제의 콘텐츠를 추천하고 토론한다.</td>
+<td>content_category_diversity가 낮은 학생군 존재</td>
+<td>관심사의 다양성과 토론 문화 강화</td>
+<td>중</td>
+</tr>
+<tr>
+<td>학부모회</td>
+<td>가정에서 알고리즘 추천·팩트체크·허위정보 대화를 돕는 안내문을 배포한다.</td>
+<td>토론 빈도와 팩트체크 빈도가 보호요인으로 작용</td>
+<td>가정 내 미디어 대화 문화 확산</td>
+<td>중</td>
+</tr>
+</tbody></table></div>
+<h2 id="8-한계점과-후속-연구">8. 한계점과 후속 연구</h2>
+<p>이 보고서는 시범용 가상 데이터에 기반한 분석 예시이므로 실제 학생의 미디어 이용 실태를 대표하지 않는다. 또한 추천 알고리즘의 내부 작동 원리를 직접 측정한 것이 아니라, 학생이 경험한 추천 콘텐츠와 인식 데이터를 기반으로 위험을 추정했다. 후속 연구에서는 학생들이 일정 기간 실제 추천 피드를 기록하고, 콘텐츠 카테고리를 직접 코딩하여 더 정밀한 알고리즘 편향 분석을 수행할 수 있다.</p>
+<h2 id="9-진로-전공-관심과의-연결">9. 진로·전공 관심과의 연결</h2>
+<p>이 프로젝트는 컴퓨터과학의 추천 시스템, 미디어학의 콘텐츠 소비, 사회학의 여론 형성과 확증편향, AI윤리의 책임 있는 알고리즘 설계를 통합한다. 학생은 단순히 AI를 사용하는 소비자가 아니라, AI가 인간의 사고와 사회적 판단에 어떤 영향을 주는지 질문하는 시민이 될 수 있다.</p>
+<h2 id="10-에세이형-성찰-문장">10. 에세이형 성찰 문장</h2>
+<p>나는 알고리즘이 내가 좋아할 만한 콘텐츠를 편리하게 보여주는 도구라고만 생각했다. 그러나 데이터를 분석하며 추천 알고리즘이 나의 관심사를 넓히기도 하지만, 동시에 나의 세계를 좁힐 수도 있다는 점을 보았다. 앞으로 나는 온라인에서 마주치는 정보가 우연히 주어진 것이 아니라 플랫폼의 선택과 나의 클릭이 함께 만든 결과임을 인식하고, 다양한 출처와 관점을 의도적으로 탐색하는 태도를 갖고 싶다.</p>
+<h2 id="11-에세이-질문">11. 에세이 질문</h2>
+<p>내가 자주 보는 추천 콘텐츠는 내 생각을 넓히는가, 좁히는가?</p>
+<p>내가 접하는 정보는 내가 선택한 것인가, 알고리즘이 선택한 것인가?</p>
+<p>정보 편향을 줄이기 위해 학생 개인, 학교, 플랫폼은 각각 무엇을 해야 하는가?</p>
+<p>AI 시대의 디지털 리터러시는 단순한 기기 활용 능력인가, 아니면 세계를 비판적으로 읽는 능력인가?</p>
+<h2 id="부록-설문-문항">부록. 설문 문항</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>문항번호</th>
+<th>설문 문항</th>
+<th>척도/코딩</th>
+<th>연결 변수</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Q1</td>
+<td>나는 유튜브·SNS 추천 피드가 내가 볼 콘텐츠를 많이 결정한다고 느낀다.</td>
+<td>1=전혀 그렇지 않다 ~ 5=매우 그렇다</td>
+<td>recommendation_dependence</td>
+</tr>
+<tr>
+<td>Q2</td>
+<td>나는 추천 알고리즘이 어떤 기준으로 콘텐츠를 보여주는지 어느 정도 이해한다.</td>
+<td>1~5</td>
+<td>algorithm_awareness</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>나는 내가 좋아하는 관점과 다른 관점의 콘텐츠도 일부러 찾아본다.</td>
+<td>1~5</td>
+<td>content_variety_behavior</td>
+</tr>
+<tr>
+<td>Q4</td>
+<td>나는 온라인 콘텐츠를 보기 전에 출처와 근거를 확인한다.</td>
+<td>1~5</td>
+<td>fact_check_frequency</td>
+</tr>
+<tr>
+<td>Q5</td>
+<td>나는 같은 주제의 영상이 계속 추천되는 경험을 자주 한다.</td>
+<td>1~5</td>
+<td>information_bias_perception</td>
+</tr>
+<tr>
+<td>Q6</td>
+<td>나는 자극적이거나 극단적인 콘텐츠를 추천받은 경험이 있다.</td>
+<td>1~5</td>
+<td>exposure_to_extreme_content</td>
+</tr>
+<tr>
+<td>Q7</td>
+<td>나는 온라인에서 본 정보를 친구·가족·교사와 토론하거나 확인한다.</td>
+<td>1~5</td>
+<td>discussion_with_others</td>
+</tr>
+<tr>
+<td>Q8</td>
+<td>나는 온라인 정보가 내 생각을 한쪽으로 기울게 만들 수 있다고 생각한다.</td>
+<td>1~5</td>
+<td>echo_chamber_awareness</td>
+</tr>
+<tr>
+<td>Q9</td>
+<td>나는 추천 피드보다 검색·공식기관·다양한 언론 자료를 함께 활용한다.</td>
+<td>1~5</td>
+<td>news_source_diversity</td>
+</tr>
+<tr>
+<td>Q10</td>
+<td>나는 추천 알고리즘이 보여주는 콘텐츠를 대체로 신뢰한다.</td>
+<td>1~5</td>
+<td>algorithm_trust</td>
+</tr>
+<tr>
+<td>Q11</td>
+<td>나는 허위정보 또는 과장된 정보를 본 뒤 나중에 틀렸다는 것을 알게 된 경험이 있다.</td>
+<td>1~5</td>
+<td>misinformation_experience</td>
+</tr>
+<tr>
+<td>Q12</td>
+<td>나는 앞으로 학교에서 알고리즘·팩트체크·정보 편향 교육이 필요하다고 생각한다.</td>
+<td>1~5</td>
+<td>교육 필요도 보조 문항</td>
+</tr>
+</tbody></table></div>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

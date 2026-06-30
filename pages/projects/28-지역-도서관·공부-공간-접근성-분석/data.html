@@ -1,0 +1,1114 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>지역 도서관·공부 공간 접근성 분석 - 데이터 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="지역-도서관-공부-공간-접근성-분석---데이터">지역 도서관·공부 공간 접근성 분석 - 데이터</h1>
+<p>상위 노트: <a href="28-%EC%A7%80%EC%97%AD-%EB%8F%84%EC%84%9C%EA%B4%80%C2%B7%EA%B3%B5%EB%B6%80-%EA%B3%B5%EA%B0%84-%EC%A0%91%EA%B7%BC%EC%84%B1-%EB%B6%84%EC%84%9D.html">지역 도서관·공부 공간 접근성 분석</a></p>
+<p>관련 개념: <a href="../../concepts/%EC%BD%94%EB%93%9C%EB%B6%81%EA%B3%BC%20%EB%B3%80%EC%88%98%20%EC%A0%95%EC%9D%98.html">concepts/코드북과 변수 정의</a>, <a href="../../concepts/%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EA%B8%B0%EB%B0%98%20%ED%83%90%EA%B5%AC.html">concepts/공공데이터 기반 탐구</a></p>
+<h2 id="코드북">코드북</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">28_codebook.xlsx</span></li>
+</ul>
+<h3 id="28_codebook-xlsx">28_codebook.xlsx</h3>
+<p>Codebook: 41행 x 6열 / 미리보기 40행 x 6열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Unit</th>
+<th>SPSS Measure</th>
+<th>Source</th>
+<th>Note</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>zone_id</td>
+<td>생활권/격자 ID</td>
+<td>문자</td>
+<td>명목</td>
+<td>시범 데이터</td>
+<td>각 행은 학교 주변 생활권 또는 격자 1개</td>
+</tr>
+<tr>
+<td>zone_name</td>
+<td>학교 주변 구역명</td>
+<td>문자</td>
+<td>명목</td>
+<td>현장 분류</td>
+<td>정문, 후문, 버스정류장, 공원 방향 등</td>
+</tr>
+<tr>
+<td>grid_no</td>
+<td>구역 내 세부 격자 번호</td>
+<td>번호</td>
+<td>명목</td>
+<td>생성</td>
+<td>1~5</td>
+</tr>
+<tr>
+<td>x_m</td>
+<td>학교 기준 상대 X좌표</td>
+<td>m</td>
+<td>척도</td>
+<td>GIS/현장</td>
+<td>SPSS 산점도 지도화에 활용</td>
+</tr>
+<tr>
+<td>y_m</td>
+<td>학교 기준 상대 Y좌표</td>
+<td>m</td>
+<td>척도</td>
+<td>GIS/현장</td>
+<td>SPSS 산점도 지도화에 활용</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>위도</td>
+<td>도</td>
+<td>척도</td>
+<td>지도/공공데이터</td>
+<td>실제 데이터 교체 시 WGS84 사용</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>경도</td>
+<td>도</td>
+<td>척도</td>
+<td>지도/공공데이터</td>
+<td>실제 데이터 교체 시 WGS84 사용</td>
+</tr>
+<tr>
+<td>distance_from_school_m</td>
+<td>학교와의 거리</td>
+<td>m</td>
+<td>척도</td>
+<td>GIS 계산</td>
+<td>직선거리 또는 보행거리로 대체 가능</td>
+</tr>
+<tr>
+<td>public_library_count_1km</td>
+<td>1km 내 공공도서관 수</td>
+<td>개</td>
+<td>척도</td>
+<td>서울시 공공도서관 현황정보</td>
+<td>공공 학습공간 공급 지표</td>
+</tr>
+<tr>
+<td>small_library_count_500m</td>
+<td>500m 내 작은도서관/독서실 수</td>
+<td>개</td>
+<td>척도</td>
+<td>도서관/구청 자료</td>
+<td>근거리 무료/저비용 공간 지표</td>
+</tr>
+<tr>
+<td>study_cafe_count_500m</td>
+<td>500m 내 스터디카페 수</td>
+<td>개</td>
+<td>척도</td>
+<td>소상공인 상가정보</td>
+<td>민간 유료 학습공간 공급 지표</td>
+</tr>
+<tr>
+<td>youth_center_count_1km</td>
+<td>1km 내 청소년센터/시설 수</td>
+<td>개</td>
+<td>척도</td>
+<td>서울시 시설물/청소년시설 자료</td>
+<td>청소년 지원 시설 접근성</td>
+</tr>
+<tr>
+<td>nearest_public_library_m</td>
+<td>가장 가까운 공공도서관 거리</td>
+<td>m</td>
+<td>척도</td>
+<td>GIS 계산</td>
+<td>접근성 점수 산정</td>
+</tr>
+<tr>
+<td>nearest_study_cafe_m</td>
+<td>가장 가까운 스터디카페 거리</td>
+<td>m</td>
+<td>척도</td>
+<td>GIS 계산</td>
+<td>민간 공간 접근성</td>
+</tr>
+<tr>
+<td>nearest_youth_center_m</td>
+<td>가장 가까운 청소년센터 거리</td>
+<td>m</td>
+<td>척도</td>
+<td>GIS 계산</td>
+<td>청소년 지원 공간 접근성</td>
+</tr>
+<tr>
+<td>nearest_bus_stop_m</td>
+<td>가장 가까운 버스정류장 거리</td>
+<td>m</td>
+<td>척도</td>
+<td>서울시 버스정류소 위치정보</td>
+<td>대중교통 접근성</td>
+</tr>
+<tr>
+<td>nearest_subway_m</td>
+<td>가장 가까운 지하철역 거리</td>
+<td>m</td>
+<td>척도</td>
+<td>서울교통공사 역사좌표</td>
+<td>광역 접근성</td>
+</tr>
+<tr>
+<td>public_seats_1km</td>
+<td>1km 내 공공 좌석 수 추정</td>
+<td>석</td>
+<td>척도</td>
+<td>도서관/청소년시설 자료</td>
+<td>무료 학습공간 용량</td>
+</tr>
+<tr>
+<td>paid_seats_500m</td>
+<td>500m 내 유료 좌석 수 추정</td>
+<td>석</td>
+<td>척도</td>
+<td>현장조사/상가정보</td>
+<td>스터디카페 등 좌석</td>
+</tr>
+<tr>
+<td>avg_hourly_fee_won</td>
+<td>평균 시간당 이용료</td>
+<td>원</td>
+<td>척도</td>
+<td>현장조사</td>
+<td>비용 접근성</td>
+</tr>
+<tr>
+<td>avg_monthly_fee_won</td>
+<td>평균 월 이용료</td>
+<td>원</td>
+<td>척도</td>
+<td>현장조사</td>
+<td>장기 이용 부담</td>
+</tr>
+<tr>
+<td>free_space_ratio</td>
+<td>무료/공공 좌석 비율</td>
+<td>%</td>
+<td>척도</td>
+<td>계산</td>
+<td>공공성 지표</td>
+</tr>
+<tr>
+<td>weekday_open_hours</td>
+<td>평일 운영시간</td>
+<td>시간</td>
+<td>척도</td>
+<td>도서관 이용시간/현장조사</td>
+<td>방과후 이용 가능성</td>
+</tr>
+<tr>
+<td>weekend_open_hours</td>
+<td>주말 운영시간</td>
+<td>시간</td>
+<td>척도</td>
+<td>도서관 이용시간/현장조사</td>
+<td>주말 학습공간 접근성</td>
+</tr>
+<tr>
+<td>night_close_after_22</td>
+<td>22시 이후 운영 여부</td>
+<td>0/1</td>
+<td>명목</td>
+<td>현장조사</td>
+<td>야간 학습 가능성</td>
+</tr>
+<tr>
+<td>lighting_score</td>
+<td>야간 조명 안전 점수</td>
+<td>1~5</td>
+<td>서열</td>
+<td>현장조사</td>
+<td>1=어두움, 5=매우 밝음</td>
+</tr>
+<tr>
+<td>sidewalk_score</td>
+<td>보행로 안전 점수</td>
+<td>1~5</td>
+<td>서열</td>
+<td>현장조사</td>
+<td>1=위험, 5=안전</td>
+</tr>
+<tr>
+<td>crime_safety_score</td>
+<td>체감 안전 점수</td>
+<td>1~5</td>
+<td>서열</td>
+<td>학생 설문/현장</td>
+<td>학습공간 이동 안전</td>
+</tr>
+<tr>
+<td>walking_slope_score</td>
+<td>보행 경사 편의 점수</td>
+<td>1~5</td>
+<td>서열</td>
+<td>현장조사/경사도</td>
+<td>1=가파름, 5=평탄</td>
+</tr>
+<tr>
+<td>afterschool_student_count</td>
+<td>방과후 학생 수요 추정</td>
+<td>명</td>
+<td>척도</td>
+<td>학생 설문/관찰</td>
+<td>공간 수요 지표</td>
+</tr>
+<tr>
+<td>survey_need_score</td>
+<td>학습공간 필요도</td>
+<td>1~5</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>1=낮음, 5=매우 높음</td>
+</tr>
+<tr>
+<td>home_study_difficulty</td>
+<td>가정학습 어려움</td>
+<td>1~5</td>
+<td>서열</td>
+<td>학생 설문</td>
+<td>가정 내 학습환경 격차</td>
+</tr>
+<tr>
+<td>accessibility_score</td>
+<td>접근성 종합점수</td>
+<td>0~100</td>
+<td>척도</td>
+<td>계산</td>
+<td>시설·시간·비용·안전 반영</td>
+</tr>
+<tr>
+<td>cost_score</td>
+<td>비용 접근성 점수</td>
+<td>0~100</td>
+<td>척도</td>
+<td>계산</td>
+<td>무료/저비용일수록 높음</td>
+</tr>
+<tr>
+<td>safety_score</td>
+<td>안전 접근성 점수</td>
+<td>0~100</td>
+<td>척도</td>
+<td>계산</td>
+<td>조명·보행·체감안전 반영</td>
+</tr>
+<tr>
+<td>demand_score</td>
+<td>학습공간 수요점수</td>
+<td>0~100</td>
+<td>척도</td>
+<td>계산</td>
+<td>학생 수요와 가정학습 어려움 반영</td>
+</tr>
+<tr>
+<td>deprivation_score</td>
+<td>접근성 취약점수</td>
+<td>0~100</td>
+<td>척도</td>
+<td>계산</td>
+<td>100-접근성 점수</td>
+</tr>
+<tr>
+<td>priority_score</td>
+<td>개선 우선순위 점수</td>
+<td>0~100</td>
+<td>척도</td>
+<td>계산</td>
+<td>높을수록 개선 우선</td>
+</tr>
+<tr>
+<td>priority_level</td>
+<td>개선 우선순위 등급</td>
+<td>문자</td>
+<td>서열</td>
+<td>계산</td>
+<td>Very High/High/Moderate/Low</td>
+</tr>
+</tbody></table></div>
+<h2 id="CSV-데이터셋">CSV 데이터셋</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">28_dataset.csv</span></li>
+</ul>
+<ul>
+<li>크기: 50행 x 40열</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>zone_id</th>
+<th>zone_name</th>
+<th>grid_no</th>
+<th>x_m</th>
+<th>y_m</th>
+<th>latitude</th>
+<th>longitude</th>
+<th>distance_from_school_m</th>
+<th>public_library_count_1km</th>
+<th>small_library_count_500m</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Z01-1</td>
+<td>Front Gate Main Street</td>
+<td>1</td>
+<td>-52</td>
+<td>144</td>
+<td>37.590297</td>
+<td>127.024409</td>
+<td>153</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Z01-2</td>
+<td>Front Gate Main Street</td>
+<td>2</td>
+<td>-169</td>
+<td>124</td>
+<td>37.590117</td>
+<td>127.023079</td>
+<td>209</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Z01-3</td>
+<td>Front Gate Main Street</td>
+<td>3</td>
+<td>-126</td>
+<td>124</td>
+<td>37.590117</td>
+<td>127.023567</td>
+<td>176</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Z01-4</td>
+<td>Front Gate Main Street</td>
+<td>4</td>
+<td>-79</td>
+<td>95</td>
+<td>37.589856</td>
+<td>127.024102</td>
+<td>123</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Z01-5</td>
+<td>Front Gate Main Street</td>
+<td>5</td>
+<td>-64</td>
+<td>84</td>
+<td>37.589757</td>
+<td>127.024272</td>
+<td>105</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Z02-1</td>
+<td>Back Gate Alley</td>
+<td>1</td>
+<td>48</td>
+<td>-119</td>
+<td>37.587928</td>
+<td>127.025546</td>
+<td>128</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Z02-2</td>
+<td>Back Gate Alley</td>
+<td>2</td>
+<td>37</td>
+<td>-212</td>
+<td>37.58709</td>
+<td>127.025421</td>
+<td>215</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Z02-3</td>
+<td>Back Gate Alley</td>
+<td>3</td>
+<td>136</td>
+<td>-179</td>
+<td>37.587387</td>
+<td>127.026546</td>
+<td>224</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody></table></div>
+<h2 id="엑셀-데이터셋-미리보기">엑셀 데이터셋 미리보기</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">28_dataset.xlsx</span></li>
+</ul>
+<h3 id="Summary">Summary</h3>
+<p>Summary: 19행 x 5열 / 미리보기 10행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Project 28: 지역 도서관·공부 공간 접근성 분석</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr></thead>
+<tbody>
+<tr>
+<td>핵심 질문</td>
+<td>학생들이 방과 후 안전하고 조용히 공부할 공간에 충분히 접근하고 있는가</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>분석 단위</td>
+<td>생활권/격자 1개 (시범 데이터 50행)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>시범 데이터 성격</td>
+<td>공식 공공데이터 구조를 반영한 시범용 가상 데이터</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Priority Level</td>
+<td>Count</td>
+<td>Avg Priority</td>
+<td>Avg Accessibility</td>
+<td>Avg Fee</td>
+</tr>
+<tr>
+<td>Very High</td>
+<td>8</td>
+<td>72.7</td>
+<td>40.6</td>
+<td>3638</td>
+</tr>
+<tr>
+<td>High</td>
+<td>24</td>
+<td>60.9</td>
+<td>58</td>
+<td>3329</td>
+</tr>
+<tr>
+<td>Moderate</td>
+<td>18</td>
+<td>49</td>
+<td>75.3</td>
+<td>2998</td>
+</tr>
+</tbody></table></div>
+<h3 id="Data">Data</h3>
+<p>Data: 51행 x 40열 / 미리보기 10행 x 10열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>zone_id</th>
+<th>zone_name</th>
+<th>grid_no</th>
+<th>x_m</th>
+<th>y_m</th>
+<th>latitude</th>
+<th>longitude</th>
+<th>distance_from_school_m</th>
+<th>public_library_count_1km</th>
+<th>small_library_count_500m</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Z01-1</td>
+<td>Front Gate Main Street</td>
+<td>1</td>
+<td>-52</td>
+<td>144</td>
+<td>37.590297</td>
+<td>127.024409</td>
+<td>153</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Z01-2</td>
+<td>Front Gate Main Street</td>
+<td>2</td>
+<td>-169</td>
+<td>124</td>
+<td>37.590117</td>
+<td>127.023079</td>
+<td>209</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Z01-3</td>
+<td>Front Gate Main Street</td>
+<td>3</td>
+<td>-126</td>
+<td>124</td>
+<td>37.590117</td>
+<td>127.023567</td>
+<td>176</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Z01-4</td>
+<td>Front Gate Main Street</td>
+<td>4</td>
+<td>-79</td>
+<td>95</td>
+<td>37.589856</td>
+<td>127.024102</td>
+<td>123</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Z01-5</td>
+<td>Front Gate Main Street</td>
+<td>5</td>
+<td>-64</td>
+<td>84</td>
+<td>37.589757</td>
+<td>127.024272</td>
+<td>105</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Z02-1</td>
+<td>Back Gate Alley</td>
+<td>1</td>
+<td>48</td>
+<td>-119</td>
+<td>37.587928</td>
+<td>127.025546</td>
+<td>128</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Z02-2</td>
+<td>Back Gate Alley</td>
+<td>2</td>
+<td>37</td>
+<td>-212</td>
+<td>37.58709</td>
+<td>127.025421</td>
+<td>215</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Z02-3</td>
+<td>Back Gate Alley</td>
+<td>3</td>
+<td>136</td>
+<td>-179</td>
+<td>37.587387</td>
+<td>127.026546</td>
+<td>224</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Z02-4</td>
+<td>Back Gate Alley</td>
+<td>4</td>
+<td>110</td>
+<td>-176</td>
+<td>37.587414</td>
+<td>127.026251</td>
+<td>207</td>
+<td>0</td>
+<td>2</td>
+</tr>
+</tbody></table></div>
+<h3 id="Codebook">Codebook</h3>
+<p>Codebook: 41행 x 6열 / 미리보기 10행 x 6열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Unit</th>
+<th>SPSS Measure</th>
+<th>Source</th>
+<th>Note</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>zone_id</td>
+<td>생활권/격자 ID</td>
+<td>문자</td>
+<td>명목</td>
+<td>시범 데이터</td>
+<td>각 행은 학교 주변 생활권 또는 격자 1개</td>
+</tr>
+<tr>
+<td>zone_name</td>
+<td>학교 주변 구역명</td>
+<td>문자</td>
+<td>명목</td>
+<td>현장 분류</td>
+<td>정문, 후문, 버스정류장, 공원 방향 등</td>
+</tr>
+<tr>
+<td>grid_no</td>
+<td>구역 내 세부 격자 번호</td>
+<td>번호</td>
+<td>명목</td>
+<td>생성</td>
+<td>1~5</td>
+</tr>
+<tr>
+<td>x_m</td>
+<td>학교 기준 상대 X좌표</td>
+<td>m</td>
+<td>척도</td>
+<td>GIS/현장</td>
+<td>SPSS 산점도 지도화에 활용</td>
+</tr>
+<tr>
+<td>y_m</td>
+<td>학교 기준 상대 Y좌표</td>
+<td>m</td>
+<td>척도</td>
+<td>GIS/현장</td>
+<td>SPSS 산점도 지도화에 활용</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>위도</td>
+<td>도</td>
+<td>척도</td>
+<td>지도/공공데이터</td>
+<td>실제 데이터 교체 시 WGS84 사용</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>경도</td>
+<td>도</td>
+<td>척도</td>
+<td>지도/공공데이터</td>
+<td>실제 데이터 교체 시 WGS84 사용</td>
+</tr>
+<tr>
+<td>distance_from_school_m</td>
+<td>학교와의 거리</td>
+<td>m</td>
+<td>척도</td>
+<td>GIS 계산</td>
+<td>직선거리 또는 보행거리로 대체 가능</td>
+</tr>
+<tr>
+<td>public_library_count_1km</td>
+<td>1km 내 공공도서관 수</td>
+<td>개</td>
+<td>척도</td>
+<td>서울시 공공도서관 현황정보</td>
+<td>공공 학습공간 공급 지표</td>
+</tr>
+</tbody></table></div>
+<h3 id="Survey_Items">Survey_Items</h3>
+<p>Survey_Items: 11행 x 4열 / 미리보기 10행 x 4열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Item</th>
+<th>Question</th>
+<th>Scale/Coding</th>
+<th>Related Variable</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Q1</td>
+<td>방과 후 학교 주변에서 공부할 공간이 충분하다고 느낀다.</td>
+<td>1=전혀 그렇지 않다 ~ 5=매우 그렇다</td>
+<td>역코딩 가능: 낮을수록 접근성 문제</td>
+</tr>
+<tr>
+<td>Q2</td>
+<td>집에서 조용히 공부하기 어렵다.</td>
+<td>1~5</td>
+<td>home_study_difficulty</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>도서관이나 공공 학습공간을 이용하고 싶지만 거리가 부담된다.</td>
+<td>1~5</td>
+<td>거리 접근성 불만</td>
+</tr>
+<tr>
+<td>Q4</td>
+<td>스터디카페 이용료가 부담된다.</td>
+<td>1~5</td>
+<td>비용 접근성 불만</td>
+</tr>
+<tr>
+<td>Q5</td>
+<td>밤에 공부 공간에서 집으로 돌아오는 길이 안전하지 않다고 느낀다.</td>
+<td>1~5</td>
+<td>안전 접근성 불만</td>
+</tr>
+<tr>
+<td>Q6</td>
+<td>주말에도 이용할 수 있는 공부 공간이 필요하다.</td>
+<td>1~5</td>
+<td>주말 운영 수요</td>
+</tr>
+<tr>
+<td>Q7</td>
+<td>학교 도서관이 저녁 시간까지 열리면 이용할 의향이 있다.</td>
+<td>1~5</td>
+<td>학교 개선안 수요</td>
+</tr>
+<tr>
+<td>Q8</td>
+<td>청소년센터나 공공기관의 무료 학습공간 정보를 알고 있다.</td>
+<td>1~5</td>
+<td>정보 접근성</td>
+</tr>
+<tr>
+<td>Q9</td>
+<td>스터디카페보다 공공 학습공간이 더 필요하다고 생각한다.</td>
+<td>1~5</td>
+<td>공공성 수요</td>
+</tr>
+</tbody></table></div>
+<h3 id="Field_Checklist">Field_Checklist</h3>
+<p>Field_Checklist: 9행 x 3열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>항목</th>
+<th>기록 방법</th>
+<th>예시</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>공간명</td>
+<td>지도/현장 방문으로 이름 기록</td>
+<td>성북정보도서관, ○○스터디카페</td>
+</tr>
+<tr>
+<td>공간 유형</td>
+<td>공공도서관/작은도서관/스터디카페/청소년센터</td>
+<td>공공도서관</td>
+</tr>
+<tr>
+<td>좌표</td>
+<td>지도에서 위도·경도 기록</td>
+<td>37.589, 127.025</td>
+</tr>
+<tr>
+<td>운영시간</td>
+<td>평일/주말 운영시간 분리 기록</td>
+<td>09:00~22:00</td>
+</tr>
+<tr>
+<td>이용료</td>
+<td>시간당/월 이용료 기록</td>
+<td>2,500원/시간</td>
+</tr>
+<tr>
+<td>좌석 수</td>
+<td>공개정보 또는 현장 추정</td>
+<td>80석</td>
+</tr>
+<tr>
+<td>야간 조명</td>
+<td>1~5점 관찰 점수</td>
+<td>4점</td>
+</tr>
+<tr>
+<td>보행 안전</td>
+<td>보도 폭, 횡단보도, 경사도 관찰</td>
+<td>3점</td>
+</tr>
+</tbody></table></div>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 9행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Data name</th>
+<th>Provider</th>
+<th>URL</th>
+<th>Format</th>
+<th>Main variables</th>
+<th>Use in project</th>
+<th>Availability</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>서울시 공공도서관 현황정보</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/OA-15480/S/1/datasetView.do</td>
+<td>CSV/API</td>
+<td>도서관명, 구명, 주소, 전화번호, 홈페이지주소, 운영시간, 정기휴관일, 위치정보</td>
+<td>공공도서관 위치·운영시간·좌석/공공성 지표</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 도서관 이용시간 및 휴관일 정보</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/OA-15479/S/1/datasetView.do</td>
+<td>CSV/API</td>
+<td>도서관명, 주소, 이용시간, 휴관일, 위치정보</td>
+<td>방과후·주말 이용 가능성 분석</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>소상공인시장진흥공단 상가(상권)정보</td>
+<td>소상공인시장진흥공단</td>
+<td>https://www.data.go.kr/data/15083033/fileData.do</td>
+<td>CSV</td>
+<td>상호명, 업종코드, 업종명, 주소, 경도, 위도</td>
+<td>스터디카페·독서실 민간 학습공간 추출</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 시설물 정보</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/OA-21698/S/1/datasetView.do</td>
+<td>CSV/API</td>
+<td>시설명, 위도, 경도, 시설용도분류, 도로명주소</td>
+<td>청소년문화정보도서관·청소년센터 등 위치 보완</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 청소년 수련시설 통계</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/392/S/2/datasetView.do</td>
+<td>통계/HWP</td>
+<td>청소년 수련시설 목적별 현황</td>
+<td>청소년시설 공급 수준 비교</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 버스정류소 위치정보</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/OA-15067/S/1/datasetView.do</td>
+<td>CSV/XLSX/API</td>
+<td>정류소ID, ARS-ID, 정류소명, 좌표</td>
+<td>공부 공간까지의 대중교통 접근성</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울교통공사 1~8호선 역사 좌표</td>
+<td>서울교통공사/공공데이터</td>
+<td>https://data.seoul.go.kr/dataList/OA-12035/S/1/datasetView.do</td>
+<td>CSV/API</td>
+<td>역명, 호선, 위도, 경도</td>
+<td>지하철 접근성 분석</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>학교 주변 현장조사</td>
+<td>학생 조사</td>
+<td>직접 수집</td>
+<td>XLSX/설문</td>
+<td>이용료, 좌석 수, 조명, 보행안전, 체감안전</td>
+<td>공공데이터에 없는 비용·안전·수요 보완</td>
+<td>학생 현장조사 필요</td>
+</tr>
+</tbody></table></div>
+<h3 id="SPSS_Steps">SPSS_Steps</h3>
+<p>SPSS_Steps: 9행 x 5열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Step</th>
+<th>Purpose</th>
+<th>Variables</th>
+<th>SPSS Menu</th>
+<th>Interpretation</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>CSV/XLSX를 SPSS로 불러오기</td>
+<td>전체 변수</td>
+<td>파일 → 열기 → 데이터</td>
+<td>첫 행을 변수명으로 읽고, Codebook대로 측도 지정</td>
+</tr>
+<tr>
+<td>2. 빈도분석</td>
+<td>우선순위 등급 분포 확인</td>
+<td>priority_level, recommendation</td>
+<td>분석 → 기술통계량 → 빈도분석</td>
+<td>Very High/High 비율 확인</td>
+</tr>
+<tr>
+<td>3. 기술통계</td>
+<td>접근성·비용·안전·수요 평균 확인</td>
+<td>accessibility_score, cost_score, safety_score, demand_score, priority_score</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>어떤 요인이 평균적으로 취약한지 판단</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>비용·거리·공공좌석과 우선순위 관계 확인</td>
+<td>priority_score, accessibility_score, avg_hourly_fee_won, public_seats_1km, nearest_public_library_m</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>높은 우선순위와 관련 높은 변수 확인</td>
+</tr>
+<tr>
+<td>5. 그룹 비교</td>
+<td>우선순위 등급별 접근성 차이 검토</td>
+<td>priority_level, accessibility_score, cost_score, safety_score</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>등급별 평균 차이를 정책 근거로 활용</td>
+</tr>
+<tr>
+<td>6. 회귀분석</td>
+<td>개선 우선순위 예측</td>
+<td>priority_score ← accessibility_score, cost_score, safety_score, demand_score</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>어떤 요인이 우선순위를 가장 많이 설명하는지 해석</td>
+</tr>
+<tr>
+<td>7. 군집분석</td>
+<td>생활권 유형 분류</td>
+<td>accessibility_score, cost_score, safety_score, demand_score</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>공공공간 부족형, 비용부담형, 안전취약형 등으로 명명</td>
+</tr>
+<tr>
+<td>8. 지도 시각화</td>
+<td>취약지역 표시</td>
+<td>x_m, y_m, priority_score, priority_level</td>
+<td>그래프 → 차트 작성기 → 산점도</td>
+<td>점 크기/색상으로 개선 우선순위 표현</td>
+</tr>
+</tbody></table></div>
+<h2 id="데이터-출처">데이터 출처</h2>
+<ul>
+<li>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">28_data_sources.xlsx</span></li>
+</ul>
+<h3 id="Sources">Sources</h3>
+<p>Sources: 9행 x 7열</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Data name</th>
+<th>Provider</th>
+<th>URL</th>
+<th>Format</th>
+<th>Main variables</th>
+<th>Use in project</th>
+<th>Availability</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>서울시 공공도서관 현황정보</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/OA-15480/S/1/datasetView.do</td>
+<td>CSV/API</td>
+<td>도서관명, 구명, 주소, 전화번호, 홈페이지주소, 운영시간, 정기휴관일, 위치정보</td>
+<td>공공도서관 위치·운영시간·좌석/공공성 지표</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 도서관 이용시간 및 휴관일 정보</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/OA-15479/S/1/datasetView.do</td>
+<td>CSV/API</td>
+<td>도서관명, 주소, 이용시간, 휴관일, 위치정보</td>
+<td>방과후·주말 이용 가능성 분석</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>소상공인시장진흥공단 상가(상권)정보</td>
+<td>소상공인시장진흥공단</td>
+<td>https://www.data.go.kr/data/15083033/fileData.do</td>
+<td>CSV</td>
+<td>상호명, 업종코드, 업종명, 주소, 경도, 위도</td>
+<td>스터디카페·독서실 민간 학습공간 추출</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 시설물 정보</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/OA-21698/S/1/datasetView.do</td>
+<td>CSV/API</td>
+<td>시설명, 위도, 경도, 시설용도분류, 도로명주소</td>
+<td>청소년문화정보도서관·청소년센터 등 위치 보완</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 청소년 수련시설 통계</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/392/S/2/datasetView.do</td>
+<td>통계/HWP</td>
+<td>청소년 수련시설 목적별 현황</td>
+<td>청소년시설 공급 수준 비교</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울시 버스정류소 위치정보</td>
+<td>서울특별시</td>
+<td>https://data.seoul.go.kr/dataList/OA-15067/S/1/datasetView.do</td>
+<td>CSV/XLSX/API</td>
+<td>정류소ID, ARS-ID, 정류소명, 좌표</td>
+<td>공부 공간까지의 대중교통 접근성</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>서울교통공사 1~8호선 역사 좌표</td>
+<td>서울교통공사/공공데이터</td>
+<td>https://data.seoul.go.kr/dataList/OA-12035/S/1/datasetView.do</td>
+<td>CSV/API</td>
+<td>역명, 호선, 위도, 경도</td>
+<td>지하철 접근성 분석</td>
+<td>즉시 다운로드 가능</td>
+</tr>
+<tr>
+<td>학교 주변 현장조사</td>
+<td>학생 조사</td>
+<td>직접 수집</td>
+<td>XLSX/설문</td>
+<td>이용료, 좌석 수, 조명, 보행안전, 체감안전</td>
+<td>공공데이터에 없는 비용·안전·수요 보완</td>
+<td>학생 현장조사 필요</td>
+</tr>
+</tbody></table></div>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

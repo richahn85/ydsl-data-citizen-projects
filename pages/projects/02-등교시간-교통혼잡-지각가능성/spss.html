@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>등교시간 교통혼잡 지각가능성 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="등교시간-교통혼잡-지각가능성---SPSS">등교시간 교통혼잡 지각가능성 - SPSS</h1>
+<p>상위 노트: <a href="02-%EB%93%B1%EA%B5%90%EC%8B%9C%EA%B0%84-%EA%B5%90%ED%86%B5%ED%98%BC%EC%9E%A1-%EC%A7%80%EA%B0%81%EA%B0%80%EB%8A%A5%EC%84%B1.html">등교시간 교통혼잡 지각가능성</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">02_spss_guide.docx</span></p>
+<p>SPSS 분석 가이드</p>
+<ol>
+<li>등교 시간 교통 혼잡과 지각 가능성 분석</li>
+</ol>
+<h2 id="1-데이터-불러오기">1. 데이터 불러오기</h2>
+<p>파일: 02_dataset.xlsx 또는 02_dataset.csv</p>
+<p>SPSS 메뉴: 파일 → 열기 → 데이터 → Excel 또는 CSV 선택 → 첫 행에서 변수 이름 읽어오기 체크</p>
+<p>변수 보기에서 student_id, gender, home_area, weekday, commute_route, late_yn, rain_yn은 명목, perceived_crowding은 서열, 나머지 수치 변수는 척도로 지정한다.</p>
+<h2 id="2-변수-계산-확인">2. 변수 계산 확인</h2>
+<p>late_min과 late_yn은 아래 방식으로 생성할 수 있다. 이미 데이터셋에 포함되어 있지만, 학생들이 직접 계산해보면 변수 생성 원리를 이해할 수 있다.</p>
+<p>COMPUTE travel_time_min = arrival_min - depart_min. COMPUTE late_min = arrival_min - school_start_min. IF (late_min &lt; 0) late_min = 0. IF (arrival_min &gt; school_start_min) late_yn = 1. IF (arrival_min &lt;= school_start_min) late_yn = 0. EXECUTE.</p>
+<h2 id="3-기술통계">3. 기술통계</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>목적</th>
+<th>SPSS 메뉴</th>
+<th>사용 변수</th>
+<th>해석</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>전체 등교 상황 파악</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>travel_time_min, late_min, bus_delay_min, subway_congestion_pct, lateness_risk_score</td>
+<td>평균과 표준편차로 등교 불안정성 확인</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-요일별-패턴-분석">4. 요일별 패턴 분석</h2>
+<p>목적: 월~금 중 어느 요일에 지각 가능성이 높은지 확인한다.</p>
+<p>SPSS 메뉴: 분석 → 평균비교 → 일원배치 분산분석</p>
+<p>종속변수: late_min 또는 travel_time_min / 요인: weekday</p>
+<p>해석: 월요일과 목요일 평균이 높다면 주초 혼잡 또는 우천 조건의 영향을 의심할 수 있다.</p>
+<h2 id="5-경로별-비교">5. 경로별 비교</h2>
+<p>목적: 버스직행, 지하철중심, 버스+지하철, 도보+마을버스, 도보 경로 중 어느 경로가 안정적인지 비교한다.</p>
+<p>SPSS 메뉴: 분석 → 평균비교 → 일원배치 분산분석</p>
+<p>종속변수: late_min, lateness_risk_score, route_stability_score / 요인: commute_route</p>
+<p>후속 분석: 평균표를 이용해 최적 등교 경로 추천표를 만든다.</p>
+<h2 id="6-상관분석">6. 상관분석</h2>
+<p>목적: 지각시간과 교통·날씨·출발요인의 관련성을 확인한다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>SPSS 메뉴</th>
+<th>변수</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>late_min, depart_min, bus_delay_min, subway_congestion_pct, rain_yn, transfer_count, perceived_crowding, departure_buffer_min</td>
+<td>상관계수가 양수이면 해당 요인이 커질수록 지각시간 증가, 음수이면 감소</td>
+</tr>
+</tbody></table></div>
+<h2 id="7-선형-회귀분석">7. 선형 회귀분석</h2>
+<p>목적: 지각시간을 설명하는 주요 변수를 찾는다.</p>
+<p>SPSS 메뉴: 분석 → 회귀분석 → 선형</p>
+<p>종속변수: late_min</p>
+<p>독립변수: depart_min, bus_delay_min, subway_congestion_pct, rain_yn, transfer_count, perceived_crowding, departure_buffer_min</p>
+<p>해석: B값이 양수이면 지각시간을 증가시키는 변수이고, 음수이면 지각시간을 줄이는 변수이다. p값이 .05 미만이면 통계적으로 유의하다고 판단할 수 있다.</p>
+<h2 id="8-로지스틱-회귀분석">8. 로지스틱 회귀분석</h2>
+<p>목적: 지각 여부(late_yn=1)를 예측한다.</p>
+<p>SPSS 메뉴: 분석 → 회귀분석 → 이분형 로지스틱</p>
+<p>종속변수: late_yn / 독립변수: bus_delay_min, rain_yn, transfer_count, departure_buffer_min, perceived_crowding</p>
+<p>해석: Exp(B)가 1보다 크면 지각 가능성을 높이는 변수, 1보다 작으면 지각 가능성을 낮추는 변수로 해석한다.</p>
+<h2 id="9-그래프-작성">9. 그래프 작성</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>그래프</th>
+<th>SPSS 메뉴</th>
+<th>사용 변수</th>
+<th>활용</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>요일별 평균 지각시간 막대그래프</td>
+<td>그래프 → 차트 작성기</td>
+<td>weekday, late_min</td>
+<td>요일별 위험 요인 설명</td>
+</tr>
+<tr>
+<td>경로별 지각률 막대그래프</td>
+<td>그래프 → 차트 작성기</td>
+<td>commute_route, late_yn</td>
+<td>최적 등교 경로 추천</td>
+</tr>
+<tr>
+<td>산점도</td>
+<td>그래프 → 차트 작성기</td>
+<td>route_stability_score, lateness_risk_score</td>
+<td>안정성 낮고 위험 높은 경로 식별</td>
+</tr>
+</tbody></table></div>
+<h2 id="10-보고서-작성-문장-예시">10. 보고서 작성 문장 예시</h2>
+<p>“분석 결과, 비 오는 날과 버스 지연시간은 지각시간 증가와 관련이 있었다. 특히 월요일과 우천일에는 평균 지각시간과 지각위험점수가 함께 높아졌다. 따라서 지각을 개인의 게으름으로만 해석하기보다, 등교 경로의 불확실성을 고려한 조기 출발 안내와 대체 경로 추천이 필요하다.”</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="02_spss_syntax-sps">02_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">02_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">* 02. 등교 시간 교통 혼잡과 지각 가능성 분석 SPSS Syntax.
+* 데이터 파일을 SPSS에서 연 후 실행하세요.
+
+VARIABLE LABELS
+ obs_id &quot;관측 ID&quot;
+ student_id &quot;학생 익명 ID&quot;
+ grade &quot;학년&quot;
+ gender &quot;성별&quot;
+ home_area &quot;거주 권역&quot;
+ date &quot;조사일&quot;
+ weekday &quot;요일&quot;
+ commute_route &quot;통학 경로 유형&quot;
+ school_start_min &quot;등교 기준 시각(분)&quot;
+ depart_min &quot;집 출발 시각(분)&quot;
+ arrival_min &quot;학교 도착 시각(분)&quot;
+ travel_time_min &quot;통학 소요시간(분)&quot;
+ late_min &quot;지각 시간(분)&quot;
+ late_yn &quot;지각 여부&quot;
+ bus_delay_min &quot;버스 지연시간(분)&quot;
+ subway_congestion_pct &quot;지하철 혼잡도(%)&quot;
+ rain_yn &quot;비 여부&quot;
+ temperature_c &quot;기온&quot;
+ transfer_count &quot;환승 횟수&quot;
+ walking_time_min &quot;도보 시간&quot;
+ bus_wait_min &quot;버스 대기시간&quot;
+ perceived_crowding &quot;체감 혼잡도&quot;
+ departure_buffer_min &quot;출발 여유시간&quot;
+ route_stability_score &quot;경로 안정성 점수&quot;
+ lateness_risk_score &quot;지각 위험점수&quot;
+ recommended_action &quot;추천 행동&quot;.
+EXECUTE.
+
+VALUE LABELS late_yn 0 &quot;정상&quot; 1 &quot;지각&quot;.
+VALUE LABELS rain_yn 0 &quot;비 안 옴&quot; 1 &quot;비 옴&quot;.
+VALUE LABELS perceived_crowding
+ 1 &quot;매우 여유&quot; 2 &quot;여유&quot; 3 &quot;보통&quot; 4 &quot;혼잡&quot; 5 &quot;매우 혼잡&quot;.
+EXECUTE.
+
+* 1. 변수 계산 검산.
+COMPUTE travel_time_check = arrival_min - depart_min.
+COMPUTE late_min_check = arrival_min - school_start_min.
+IF (late_min_check &lt; 0) late_min_check = 0.
+IF (arrival_min &gt; school_start_min) late_yn_check = 1.
+IF (arrival_min &lt;= school_start_min) late_yn_check = 0.
+EXECUTE.
+
+* 2. 기술통계.
+DESCRIPTIVES VARIABLES=travel_time_min late_min bus_delay_min subway_congestion_pct
+ transfer_count perceived_crowding departure_buffer_min route_stability_score lateness_risk_score
+ /STATISTICS=MEAN STDDEV MIN MAX.
+
+* 3. 요일별 평균 비교.
+ONEWAY late_min BY weekday
+ /STATISTICS DESCRIPTIVES
+ /MISSING ANALYSIS.
+
+* 4. 통학 경로별 평균 비교.
+ONEWAY late_min BY commute_route
+ /STATISTICS DESCRIPTIVES
+ /MISSING ANALYSIS.
+
+* 5. 상관분석.
+CORRELATIONS
+ /VARIABLES=late_min depart_min travel_time_min bus_delay_min subway_congestion_pct rain_yn
+ transfer_count perceived_crowding departure_buffer_min
+ /PRINT=TWOTAIL NOSIG
+ /MISSING=PAIRWISE.
+
+* 6. 선형 회귀분석: 지각시간 예측.
+REGRESSION
+ /DEPENDENT late_min
+ /METHOD=ENTER depart_min bus_delay_min subway_congestion_pct rain_yn transfer_count perceived_crowding departure_buffer_min
+ /STATISTICS COEFF OUTS R ANOVA COLLIN TOL.
+
+* 7. 이분형 로지스틱 회귀분석: 지각 여부 예측.
+LOGISTIC REGRESSION VARIABLES late_yn
+ /METHOD=ENTER bus_delay_min rain_yn transfer_count departure_buffer_min perceived_crowding
+ /PRINT=CI(95)
+ /CRITERIA=PIN(.05) POUT(.10) ITERATE(20) CUT(.5).
+
+* 8. 그래프는 메뉴 사용 권장:
+* 그래프 → 차트 작성기 → 막대그래프: weekday별 late_min 평균
+* 그래프 → 차트 작성기 → 막대그래프: commute_route별 late_yn 평균
+* 그래프 → 차트 작성기 → 산점도: route_stability_score x lateness_risk_score.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>

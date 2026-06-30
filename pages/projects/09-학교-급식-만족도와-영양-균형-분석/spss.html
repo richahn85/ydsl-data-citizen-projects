@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>학교 급식 만족도와 영양 균형 분석 - SPSS · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body data-search-index="../../../search-index.json" data-root-prefix="../../../">
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav><a class="" href="../../../index.html">홈</a>
+<a class="" href="../../../pages/teaching/index.html">강의 교안</a>
+<a class="" href="../../../pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+<a class="" href="../../../pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a></nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <label class="search-label" for="site-search">검색</label>
+      <input id="site-search" type="search" placeholder="프로젝트, 교안, 변수 검색">
+      <div id="search-results"></div>
+      <p class="sidebar-note">GitHub Pages 공개본입니다. 원본 CSV/XLSX/DOCX는 로컬 Obsidian vault에 보관되어 있습니다.</p>
+    </aside>
+    <article class="content">
+      <h1 id="학교-급식-만족도와-영양-균형-분석---SPSS">학교 급식 만족도와 영양 균형 분석 - SPSS</h1>
+<p>상위 노트: <a href="09-%ED%95%99%EA%B5%90-%EA%B8%89%EC%8B%9D-%EB%A7%8C%EC%A1%B1%EB%8F%84%EC%99%80-%EC%98%81%EC%96%91-%EA%B7%A0%ED%98%95-%EB%B6%84%EC%84%9D.html">학교 급식 만족도와 영양 균형 분석</a></p>
+<p>관련 개념: <a href="../../concepts/SPSS%20%EB%B6%84%EC%84%9D.html">concepts/SPSS 분석</a>, <a href="../../entities/SPSS.html">entities/SPSS</a></p>
+<h2 id="SPSS-안내-문서">SPSS 안내 문서</h2>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">09_spss_guide.docx</span></p>
+<p>SPSS 분석 가이드: 학교 급식 만족도와 영양 균형 분석</p>
+<h2 id="1-파일-불러오기">1. 파일 불러오기</h2>
+<p>SPSS에서 09_dataset.csv 또는 09_dataset.xlsx를 불러온다. CSV를 사용할 경우 인코딩은 UTF-8 또는 UTF-8-SIG로 설정한다.</p>
+<p>메뉴: 파일 → 열기 → 데이터 → 파일 유형에서 CSV 또는 Excel 선택</p>
+<h2 id="2-변수-보기-설정">2. 변수 보기 설정</h2>
+<p>Codebook 시트를 참고해 ID·성별·메뉴유형은 명목, 설문 문항은 서열, 만족도·영양점수·잔반율은 척도로 지정한다.</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>변수명</th>
+<th>SPSS 측도</th>
+<th>비고</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>student_id</td>
+<td>명목</td>
+<td>개인정보 미포함</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>서열</td>
+<td>1=1학년, 2=2학년, 3=3학년</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>명목</td>
+<td>선택 문항</td>
+</tr>
+<tr>
+<td>meal_date</td>
+<td>명목</td>
+<td>날짜형으로 변환 가능</td>
+</tr>
+<tr>
+<td>weekday</td>
+<td>명목</td>
+<td>월~금</td>
+</tr>
+<tr>
+<td>menu_name</td>
+<td>명목</td>
+<td>요리명 조합</td>
+</tr>
+<tr>
+<td>menu_category</td>
+<td>명목</td>
+<td>한식균형형 등</td>
+</tr>
+<tr>
+<td>energy_kcal</td>
+<td>척도</td>
+<td>CAL_INFO 참조</td>
+</tr>
+<tr>
+<td>carbohydrate_g</td>
+<td>척도</td>
+<td>NTR_INFO 참조</td>
+</tr>
+<tr>
+<td>protein_g</td>
+<td>척도</td>
+<td>NTR_INFO 참조</td>
+</tr>
+<tr>
+<td>fat_g</td>
+<td>척도</td>
+<td>NTR_INFO 참조</td>
+</tr>
+<tr>
+<td>sodium_mg</td>
+<td>척도</td>
+<td>NTR_INFO 참조</td>
+</tr>
+<tr>
+<td>fiber_g</td>
+<td>척도</td>
+<td>시범 변수</td>
+</tr>
+<tr>
+<td>calcium_mg</td>
+<td>척도</td>
+<td>NTR_INFO 참조</td>
+</tr>
+<tr>
+<td>iron_mg</td>
+<td>척도</td>
+<td>NTR_INFO 참조</td>
+</tr>
+<tr>
+<td>fruit_veg_servings</td>
+<td>척도</td>
+<td>학생 분석용 보완변수</td>
+</tr>
+<tr>
+<td>allergy_item_count</td>
+<td>척도</td>
+<td>DDISH_NM 알레르기 번호</td>
+</tr>
+<tr>
+<td>spicy_level</td>
+<td>서열</td>
+<td>1 낮음~5 높음</td>
+</tr>
+</tbody></table></div>
+<h2 id="3-기본-분석-절차">3. 기본 분석 절차</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>분석 단계</th>
+<th>분석 목적</th>
+<th>사용 변수</th>
+<th>SPSS 메뉴 경로</th>
+<th>해석 포인트</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1. 데이터 불러오기</td>
+<td>CSV/XLSX를 SPSS로 불러와 변수 보기에서 측도를 지정한다.</td>
+<td>전체 변수</td>
+<td>파일 → 열기 → 데이터</td>
+<td>날짜·범주·척도 변수 구분</td>
+</tr>
+<tr>
+<td>2. 기술통계</td>
+<td>만족도, 영양균형, 잔반율의 평균과 표준편차를 확인한다.</td>
+<td>satisfaction_score, nutrition_balance_score, leftover_pct</td>
+<td>분석 → 기술통계량 → 기술통계</td>
+<td>전체 급식 품질의 기본 수준 파악</td>
+</tr>
+<tr>
+<td>3. 메뉴유형별 평균 비교</td>
+<td>메뉴 유형별 만족도·영양균형·잔반율 차이를 비교한다.</td>
+<td>menu_category, satisfaction_score, nutrition_balance_score, leftover_pct</td>
+<td>분석 → 평균비교 → 일원배치 분산분석</td>
+<td>인기 메뉴와 균형 메뉴의 차이 확인</td>
+</tr>
+<tr>
+<td>4. 상관분석</td>
+<td>영양균형과 만족도, 잔반율 간 관계를 확인한다.</td>
+<td>satisfaction_score, nutrition_balance_score, leftover_pct, sodium_mg, fruit_veg_servings</td>
+<td>분석 → 상관분석 → 이변량 상관계수</td>
+<td>학생 선호와 건강성의 일치/불일치 판단</td>
+</tr>
+<tr>
+<td>5. 회귀분석</td>
+<td>만족도를 설명하는 요인을 파악한다.</td>
+<td>종속: satisfaction_score / 독립: taste_q, freshness_q, portion_q, nutrition_balance_score, processed_food_level</td>
+<td>분석 → 회귀분석 → 선형</td>
+<td>무엇이 만족도를 가장 크게 높이는지 확인</td>
+</tr>
+<tr>
+<td>6. 군집분석</td>
+<td>메뉴를 선호도와 영양균형 기준으로 유형화한다.</td>
+<td>preference_score, nutrition_balance_score, leftover_pct</td>
+<td>분석 → 분류분석 → K-평균 군집분석</td>
+<td>건강·선호 균형형, 선호 높음·영양 보완형 등 분류</td>
+</tr>
+<tr>
+<td>7. 시각화</td>
+<td>메뉴 유형별 결과와 선호-영양 차이를 그래프로 표현한다.</td>
+<td>menu_category, satisfaction_score, nutrition_balance_score, preference_nutrition_gap</td>
+<td>그래프 → 차트 작성기</td>
+<td>보고서용 핵심 시각화 생성</td>
+</tr>
+</tbody></table></div>
+<h2 id="4-Syntax-예시">4. Syntax 예시</h2>
+<p>GET DATA /TYPE=TXT /FILE=&#x27;09_dataset.csv&#x27; /ENCODING=&#x27;UTF8&#x27; /DELCASE=LINE /DELIMITERS=&#x27;,&#x27; /ARRANGEMENT=DELIMITED /FIRSTCASE=2 /VARIABLES= student_id A8 grade F1.0 gender A2 meal_date A10 weekday A2 menu_name A200 menu_category A30 energy_kcal F8.0 carbohydrate_g F8.1 protein_g F8.1 fat_g F8.1 sodium_mg F8.0 fiber_g F8.1 calcium_mg F8.0 iron_mg F8.1 fruit_veg_servings F8.1 allergy_item_count F8.0 spicy_level F8.0 processed_food_level F8.0 taste_q F8.0 appearance_q F8.0 freshness_q F8.0 portion_q F8.0 variety_q F8.0 nutrition_info_q F8.0 vegetable_accept_q F8.0 satiety_q F8.0 leftover_low_q F8.0 recommend_q F8.0 satisfaction_score F8.2 health_perception_score F8.2 leftover_pct F8.1 nutrition_balance_score F8.1 preference_score F8.1 preference_nutrition_gap F8.1 improvement_priority F8.0 meal_profile A30. EXECUTE.</p>
+<ul>
+<li>기술통계.</li>
+</ul>
+<p>DESCRIPTIVES VARIABLES=satisfaction_score nutrition_balance_score leftover_pct preference_nutrition_gap improvement_priority /STATISTICS=MEAN STDDEV MIN MAX.</p>
+<ul>
+<li>메뉴 유형별 평균 비교.</li>
+</ul>
+<p>ONEWAY satisfaction_score nutrition_balance_score leftover_pct BY menu_category /STATISTICS DESCRIPTIVES /MISSING ANALYSIS.</p>
+<ul>
+<li>상관분석.</li>
+</ul>
+<p>CORRELATIONS /VARIABLES=satisfaction_score nutrition_balance_score leftover_pct sodium_mg fruit_veg_servings processed_food_level /PRINT=TWOTAIL NOSIG /MISSING=PAIRWISE.</p>
+<ul>
+<li>회귀분석: 만족도 예측.</li>
+</ul>
+<p>REGRESSION /DEPENDENT satisfaction_score /METHOD=ENTER taste_q appearance_q freshness_q portion_q variety_q nutrition_balance_score processed_food_level.</p>
+<ul>
+<li>K-평균 군집분석.</li>
+</ul>
+<p>QUICK CLUSTER preference_score nutrition_balance_score leftover_pct /CRITERIA=CLUSTER(3) MXITER(10) /SAVE CLUSTER.</p>
+<ul>
+<li>산점도.</li>
+</ul>
+<p>GRAPH /SCATTERPLOT(BIVAR)=nutrition_balance_score WITH satisfaction_score. GRAPH /SCATTERPLOT(BIVAR)=satisfaction_score WITH leftover_pct.</p>
+<h2 id="5-해석-포인트">5. 해석 포인트</h2>
+<p>· 만족도와 영양균형 점수가 동시에 높은 메뉴는 ‘학생 친화형 건강 급식’의 모범 사례로 본다.</p>
+<p>· 만족도는 높지만 영양균형이 낮은 메뉴는 조리 방식과 구성 반찬을 보완한다.</p>
+<p>· 영양균형은 높지만 만족도가 낮고 잔반율이 높은 메뉴는 학생 수용성을 높이는 방식으로 개선한다.</p>
+<p>· 잔반율은 음식물 쓰레기 문제이면서 학생의 실제 섭취 여부를 보여주는 중요한 지표이다.</p>
+<h2 id="Syntax">Syntax</h2>
+<h3 id="09_spss_syntax-sps">09_spss_syntax.sps</h3>
+<p>원본: <span class="local-only" title="원본 파일은 로컬 Obsidian vault에서 확인">09_spss_syntax.sps</span></p>
+<pre><code class=" language-spss">GET DATA
+  /TYPE=TXT
+  /FILE=&#x27;09_dataset.csv&#x27;
+  /ENCODING=&#x27;UTF8&#x27;
+  /DELCASE=LINE
+  /DELIMITERS=&#x27;,&#x27;
+  /ARRANGEMENT=DELIMITED
+  /FIRSTCASE=2
+  /VARIABLES=
+  student_id A8
+  grade F1.0
+  gender A2
+  meal_date A10
+  weekday A2
+  menu_name A200
+  menu_category A30
+  energy_kcal F8.0
+  carbohydrate_g F8.1
+  protein_g F8.1
+  fat_g F8.1
+  sodium_mg F8.0
+  fiber_g F8.1
+  calcium_mg F8.0
+  iron_mg F8.1
+  fruit_veg_servings F8.1
+  allergy_item_count F8.0
+  spicy_level F8.0
+  processed_food_level F8.0
+  taste_q F8.0
+  appearance_q F8.0
+  freshness_q F8.0
+  portion_q F8.0
+  variety_q F8.0
+  nutrition_info_q F8.0
+  vegetable_accept_q F8.0
+  satiety_q F8.0
+  leftover_low_q F8.0
+  recommend_q F8.0
+  satisfaction_score F8.2
+  health_perception_score F8.2
+  leftover_pct F8.1
+  nutrition_balance_score F8.1
+  preference_score F8.1
+  preference_nutrition_gap F8.1
+  improvement_priority F8.0
+  meal_profile A30.
+EXECUTE.
+
+* 기술통계.
+DESCRIPTIVES VARIABLES=satisfaction_score nutrition_balance_score leftover_pct preference_nutrition_gap improvement_priority
+  /STATISTICS=MEAN STDDEV MIN MAX.
+
+* 메뉴 유형별 평균 비교.
+ONEWAY satisfaction_score nutrition_balance_score leftover_pct BY menu_category
+  /STATISTICS DESCRIPTIVES
+  /MISSING ANALYSIS.
+
+* 상관분석.
+CORRELATIONS
+  /VARIABLES=satisfaction_score nutrition_balance_score leftover_pct sodium_mg fruit_veg_servings processed_food_level
+  /PRINT=TWOTAIL NOSIG
+  /MISSING=PAIRWISE.
+
+* 회귀분석: 만족도 예측.
+REGRESSION
+  /DEPENDENT satisfaction_score
+  /METHOD=ENTER taste_q appearance_q freshness_q portion_q variety_q nutrition_balance_score processed_food_level.
+
+* K-평균 군집분석.
+QUICK CLUSTER preference_score nutrition_balance_score leftover_pct
+  /CRITERIA=CLUSTER(3) MXITER(10)
+  /SAVE CLUSTER.
+
+* 산점도.
+GRAPH /SCATTERPLOT(BIVAR)=nutrition_balance_score WITH satisfaction_score.
+GRAPH /SCATTERPLOT(BIVAR)=satisfaction_score WITH leftover_pct.</code></pre>
+    </article>
+  </main>
+  <footer>Generated 2026-06-30 23:11 · <a href="../../../pages/teaching/index.html">30개 강의 교안 보기</a></footer>
+  <script src="../../../site.js"></script>
+</body>
+</html>
