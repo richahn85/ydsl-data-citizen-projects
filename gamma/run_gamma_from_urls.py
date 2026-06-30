@@ -136,12 +136,16 @@ def read_csv(path: Path) -> list[dict[str, str]]:
 def read_existing_results(path: Path) -> dict[str, dict[str, str]]:
     if not path.exists():
         return {}
-    with path.open("r", encoding="utf-8-sig", newline="") as handle:
-        return {row.get("project_no", ""): row for row in csv.DictReader(handle)}
+    try:
+        with path.open("r", encoding="utf-8-sig", newline="") as handle:
+            return {row.get("project_no", ""): row for row in csv.DictReader(handle)}
+    except PermissionError:
+        print(f"  warning: cannot read existing results because {path} is locked.", file=sys.stderr)
+        return {}
 
 
-def write_results(path: Path, rows: list[dict[str, str]]) -> None:
-    fieldnames = [
+def result_fieldnames() -> list[str]:
+    return [
         "project_no",
         "title",
         "lesson_url",
@@ -155,12 +159,59 @@ def write_results(path: Path, rows: list[dict[str, str]]) -> None:
         "error",
         "updated_at",
     ]
+
+
+def write_results_once(path: Path, rows: list[dict[str, str]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8-sig", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer = csv.DictWriter(handle, fieldnames=result_fieldnames())
         writer.writeheader()
         writer.writerows(rows)
 
+
+def write_results(path: Path, rows: list[dict[str, str]]) -> Path:
+    try:
+        write_results_once(path, rows)
+        return path
+    except PermissionError:
+        timestamp = dt.datetime.now().strftime("%Y%m%d_%H%M%S")
+        fallback = path.with_name(f"{path.stem}_{timestamp}{path.suffix}")
+        write_results_once(fallback, rows)
+        print(
+            f"  warning: {path} is locked or read-only; wrote results to {fallback}",
+            file=sys.stderr,
+        )
+        return fallback
+
+
+def normalize_api_key(value: str) -> str:
+    return value.strip().strip('"').strip("'").strip()
+
+
+def validate_api_key(value: str, env_name: str) -> str:
+    key = normalize_api_key(value)
+    if not key:
+        raise ValueError(f"Missing API key. Set ${env_name} first.")
+    try:
+        key.encode("ascii")
+    except UnicodeEncodeError as exc:
+        raise ValueError(
+            f"${env_name} contains non-ASCII characters. Paste only the raw Gamma API key, "
+            "for example skgamma-..."
+        ) from exc
+
+    lowered = key.lower()
+    if "gamma_api_key" in lowered or "your_" in lowered or "paste" in lowered:
+        raise ValueError(
+            f"${env_name} looks like a placeholder, not a real Gamma API key. "
+            "Paste the key value from Gamma exactly."
+        )
+    if not re.match(r"^sk-?gamma[-_]", lowered):
+        print(
+            "  warning: Gamma API keys usually look like skgamma-...; continuing anyway.",
+            file=sys.stderr,
+        )
+    return key
 
 def http_json(
     method: str,
@@ -325,10 +376,13 @@ def main() -> int:
     results = [existing[key] for key in sorted(existing) if key]
     result_by_no = {row.get("project_no", ""): row for row in results}
 
-    api_key = os.environ.get(args.api_key_env, "").strip()
-    if not args.dry_run and not api_key:
-        print(f"Missing API key. Set ${args.api_key_env} first.", file=sys.stderr)
-        return 2
+    api_key = ""
+    if not args.dry_run:
+        try:
+            api_key = validate_api_key(os.environ.get(args.api_key_env, ""), args.api_key_env)
+        except ValueError as exc:
+            print(str(exc), file=sys.stderr)
+            return 2
 
     for row in rows:
         project_no = row["project_no"]
@@ -391,7 +445,7 @@ def main() -> int:
 
         result_by_no[project_no] = result_row
         ordered = [result_by_no[key] for key in sorted(result_by_no)]
-        write_results(args.out, ordered)
+        args.out = write_results(args.out, ordered)
 
         if not args.dry_run and args.sleep_seconds:
             time.sleep(args.sleep_seconds)

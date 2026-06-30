@@ -12,7 +12,7 @@
 
 ## 권장 자동 실행
 
-Gamma API 키를 발급한 뒤 PowerShell에서 실행합니다. API 키는 파일에 저장하지 말고 현재 터미널 환경 변수로만 넣으세요.
+Gamma API 키를 발급한 뒤 PowerShell에서 실행합니다. API 키는 파일에 저장하지 말고 현재 터미널 환경 변수로만 넣으세요. Gamma API 키는 보통 `sk-gamma-...` 또는 `skgamma-...`처럼 시작합니다. `여기에_Gamma_API_Key` 같은 예시 문구나 한글 설명은 넣으면 안 됩니다.
 
 가장 쉬운 방법은 대화형 실행기입니다. 처음에는 1개만 생성해서 정상 작동을 확인하세요.
 
@@ -60,6 +60,8 @@ Import-Csv .\gamma\gamma_results.csv | Select project_no,status,gamma_url,pptx_p
 ```
 
 `gamma_results.csv`가 없다면 실제 생성 요청이 시작되지 않은 것입니다. 이 경우 가장 흔한 원인은 API 키를 넣은 PowerShell 창과 실행한 PowerShell 창이 다른 것입니다.
+
+`PermissionError`가 나오면 `gamma_results.csv`가 Excel 등에서 열려 있는 경우가 많습니다. 파일을 닫고 다시 실행하세요. 최신 스크립트는 기본 결과 파일이 잠겨 있으면 `gamma_results_날짜시간.csv` 형태의 대체 파일에 결과를 저장합니다.
 
 ## 일부만 실행
 
