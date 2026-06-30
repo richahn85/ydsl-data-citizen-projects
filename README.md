@@ -15,6 +15,7 @@
 
 - `gamma/lesson_page_urls.csv`: 교안 30개 URL 큐
 - `gamma/run_gamma_from_urls.py`: Gamma API로 30개 PPTX를 순차 생성하는 스크립트
+- `gamma/run_gamma_interactive.ps1`: API 키를 입력받아 PowerShell에서 1개씩 확인하며 실행하는 스크립트
 - `gamma/copy_urls_for_gamma_import.ps1`: Gamma 웹 화면에 URL을 하나씩 넣을 때 쓰는 클립보드 보조 스크립트
 
 자세한 실행법은 `gamma/README.md`를 보세요.
