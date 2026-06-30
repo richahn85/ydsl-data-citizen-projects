@@ -63,6 +63,8 @@ Import-Csv .\gamma\gamma_results.csv | Select project_no,status,gamma_url,pptx_p
 
 `PermissionError`가 나오면 `gamma_results.csv`가 Excel 등에서 열려 있는 경우가 많습니다. 파일을 닫고 다시 실행하세요. 최신 스크립트는 기본 결과 파일이 잠겨 있으면 `gamma_results_날짜시간.csv` 형태의 대체 파일에 결과를 저장합니다.
 
+`HTTP 403`, `Cloudflare`, `browser_signature_banned`가 보이면 오래된 스크립트가 Python 기본 요청 헤더로 Gamma API에 접근한 것입니다. 최신 `run_gamma_from_urls.py`는 브라우저형 `User-Agent`를 넣어 이 문제를 피합니다.
+
 ## 일부만 실행
 
 ```powershell

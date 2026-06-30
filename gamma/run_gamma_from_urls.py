@@ -29,6 +29,10 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CSV = ROOT / "gamma" / "lesson_page_urls.csv"
 DEFAULT_OUT = ROOT / "gamma" / "gamma_results.csv"
 DEFAULT_DOWNLOAD_DIR = ROOT / "gamma" / "pptx"
+USER_AGENT = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+)
 
 
 class ArticleTextParser(HTMLParser):
@@ -222,7 +226,10 @@ def http_json(
     timeout: int = 60,
 ) -> dict[str, Any]:
     body = None
-    headers = {"Accept": "application/json"}
+    headers = {
+        "Accept": "application/json",
+        "User-Agent": USER_AGENT,
+    }
     if api_key:
         headers["X-API-KEY"] = api_key
     if payload is not None:
@@ -241,7 +248,7 @@ def http_json(
 def fetch_text(url: str, timeout: int = 60) -> str:
     request = urllib.request.Request(
         url,
-        headers={"User-Agent": "YDSL-Gamma-Queue/1.0"},
+        headers={"User-Agent": USER_AGENT},
     )
     with urllib.request.urlopen(request, timeout=timeout) as response:
         charset = response.headers.get_content_charset() or "utf-8"
@@ -336,7 +343,7 @@ def safe_filename(value: str) -> str:
 
 def download_file(url: str, target: Path) -> None:
     target.parent.mkdir(parents=True, exist_ok=True)
-    request = urllib.request.Request(url, headers={"User-Agent": "YDSL-Gamma-Queue/1.0"})
+    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     with urllib.request.urlopen(request, timeout=300) as response:
         target.write_bytes(response.read())
 
