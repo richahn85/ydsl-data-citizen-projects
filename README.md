@@ -9,6 +9,13 @@
 
 원본 CSV/XLSX/DOCX/SPSS/PDF 파일은 공개 저장소에 포함하지 않았고, 로컬 Obsidian vault에 보관합니다.
 
+## 지식 그래프
+
+Obsidian vault의 내부 링크 관계를 웹에서 볼 수 있도록 `graph.html`과 `graph-data.json`을 추가했습니다.
+
+- 공개 URL: `https://richahn85.github.io/ydsl-data-citizen-projects/graph.html`
+- 데이터 생성: `python build_graph_data.py`
+
 ## Gamma AI PPT 자동화
 
 30개 개별 강의 교안 URL을 Gamma AI에 순차적으로 넣을 수 있도록 `gamma/` 폴더를 추가했습니다.

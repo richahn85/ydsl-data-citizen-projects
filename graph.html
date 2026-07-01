@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YDSL 지식 그래프 · YDSL 데이터 시민 프로젝트 30</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%230b2545'/%3E%3Ccircle cx='10' cy='12' r='3' fill='%232563eb'/%3E%3Ccircle cx='22' cy='12' r='3' fill='%23059669'/%3E%3Ccircle cx='16' cy='22' r='3' fill='%23d97706'/%3E%3Cpath d='M10 12h12M10 12l6 10M22 12l-6 10' stroke='white' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="graph.css">
+</head>
+<body class="graph-body" data-graph-data="graph-data.json">
+  <header class="site-header">
+    <a class="brand" href="index.html">YDSL 데이터 시민 프로젝트 30</a>
+    <nav>
+      <a href="index.html">홈</a>
+      <a href="pages/teaching/index.html">강의 교안</a>
+      <a class="active" href="graph.html">그래프</a>
+      <a href="pages/synthesis/30%EA%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A3%BC%EC%A0%9C%20%EC%A7%80%EB%8F%84.html">주제 지도</a>
+      <a href="pages/synthesis/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%99%9C%EC%9A%A9%20%ED%8C%A8%ED%84%B4.html">데이터 패턴</a>
+    </nav>
+  </header>
+
+  <main class="graph-page">
+    <section class="graph-toolbar" aria-label="그래프 필터">
+      <div>
+        <h1>YDSL 지식 그래프</h1>
+        <p id="graph-stats">불러오는 중</p>
+      </div>
+      <div class="graph-controls">
+        <input id="graph-search" type="search" placeholder="검색">
+        <label><input type="checkbox" data-graph-group="teaching" checked> 강의</label>
+        <label><input type="checkbox" data-graph-group="projects" checked> 프로젝트</label>
+        <label><input type="checkbox" data-graph-group="concepts" checked> 개념</label>
+        <label><input type="checkbox" data-graph-group="entities" checked> 기관</label>
+        <label><input type="checkbox" data-graph-group="synthesis" checked> 종합</label>
+        <button id="graph-reset" type="button">초기화</button>
+      </div>
+    </section>
+
+    <section class="graph-shell">
+      <canvas id="graph-canvas" aria-label="YDSL 지식 그래프"></canvas>
+      <aside class="graph-detail" aria-live="polite">
+        <div id="graph-detail-empty">
+          <h2>노드</h2>
+          <p>검색하거나 노드를 선택하세요.</p>
+        </div>
+        <div id="graph-detail-content" hidden>
+          <p class="graph-kicker" id="graph-detail-group"></p>
+          <h2 id="graph-detail-title"></h2>
+          <p id="graph-detail-summary"></p>
+          <p id="graph-detail-degree"></p>
+          <a id="graph-detail-link" class="graph-open-link" href="#">페이지 열기</a>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer>YDSL 데이터 시민 프로젝트 30</footer>
+  <script src="graph.js"></script>
+</body>
+</html>
